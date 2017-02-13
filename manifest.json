@@ -1,12 +1,38 @@
 {
-  "Essentials": [
-    {
-      "title": "Set up your JMBR email",
-      "tags": [
-        "email",
-        "IT"
-      ],
-      "slug": "essentials-email-setup"
-    }
-  ]
+  "app": "JMBR",
+  "version": "0.0.1",
+  "description": "Welcome to the John Molson Business Review knowledge base.",
+
+  "articles" : {
+    "Essentials": [
+      {
+        "title": "Set up your JMBR email",
+        "tags": [
+          "email",
+          "IT"
+        ],
+        "slug": "essentials-email-setup"
+      },
+      {
+        "title": "Report a problem",
+        "tags": [
+          "problem",
+          "IT",
+          "issue"
+        ],
+        "slug": "essentials-report-problem"
+      }
+    ],
+
+    "Publishing": [
+      {
+        "title": "SEO keywords",
+        "tags": [
+          "SEO",
+          "marketing"
+        ],
+        "slug": "publishing-seo-keywords"
+      }
+    ]
+  }
 }

@@ -1,18 +1,14 @@
 const _ = require('lodash')
 import Vue from 'vue'
 import Vuex from 'vuex'
+const manifest = require('../manifest.json')
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        articles: require('../manifest.json'),
-        current: ""
-    },
-
-    mutations: {
-        updateCurrent(state, payload) {
-            state.current = payload.current
-        }
+        articles: manifest.articles,
+        app: manifest.app,
+        description: manifest.description
     }
 })
 

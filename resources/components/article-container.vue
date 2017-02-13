@@ -1,5 +1,9 @@
 <template>
-    <div class="ui text container" v-html="file" style="margin-top: 5rem; margin-bottom: 5rem;">
+    <!-- Container for documentation -->
+    <div class="ui text container"
+         v-html="file"
+         style="margin-top: 5rem; margin-bottom: 5rem;"
+    >
     </div>
 </template>
 
@@ -10,6 +14,8 @@
     }).use(require('markdown-it-center-text'))
 
     export default {
+        name: 'article-container',
+
         data() {
             return {
                 file: ""
@@ -28,7 +34,6 @@
         methods: {
             requiring() {
                 this.file = md.render(require(`../assets/${this.$route.params.article}.md`))
-                console.log("suck")
             }
         }
     }

@@ -14,6 +14,7 @@
 
 <script>
     export default {
+        name: 'app',
 
         components: {
             sidebar: require('./components/sidebar.vue'),

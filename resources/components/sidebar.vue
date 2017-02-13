@@ -28,6 +28,6 @@
 
 <script type="text/babel">
     export default {
-
+        name: 'sidebar'
     }
 </script>
