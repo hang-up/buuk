@@ -1,10 +1,7 @@
 <template>
     <div class="ui visible left vertical sidebar menu">
-        <a class="item">
-            <div class="ui transparent fluid input">
-                <input type="text" placeholder="Search...">
-            </div>
-        </a>
+
+        <search></search>
 
         <router-link to="/" class="item">
             Introduction
@@ -28,6 +25,10 @@
 
 <script type="text/babel">
     export default {
-        name: 'sidebar'
+        name: 'sidebar',
+
+        components: {
+            search: require('./search.vue')
+        }
     }
 </script>

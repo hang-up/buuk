@@ -8,7 +8,15 @@ const store = new Vuex.Store({
     state: {
         articles: manifest.articles,
         app: manifest.app,
-        description: manifest.description
+        description: manifest.description,
+        query: "",
+        tags: []
+    },
+
+    mutations: {
+        search(state, payload) {
+            state.query = payload.query
+        }
     }
 })
 
