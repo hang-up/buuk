@@ -39,6 +39,10 @@ module.exports = {
                 options: {
                     name: '[name].[ext]?[hash]'
                 }
+            },
+            {
+                test: /\.md/,
+                use: 'raw-loader'
             }
         ]
     },
