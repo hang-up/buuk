@@ -16,8 +16,20 @@
             }
         },
 
+        // We need to watch route and re-render since every page loads a different .md file.
+        watch: {
+            '$route' : 'requiring'
+        },
+
         mounted() {
-            this.file = md.render(require(`../assets/${this.$route.params.article}.md`))
+            this.requiring()
+        },
+
+        methods: {
+            requiring() {
+                this.file = md.render(require(`../assets/${this.$route.params.article}.md`))
+                console.log("suck")
+            }
         }
     }
 </script>
