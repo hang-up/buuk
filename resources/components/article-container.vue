@@ -1,5 +1,5 @@
 <template>
-    <div class="ui text container" v-html="file" style="margin-top: 5rem">
+    <div class="ui text container" v-html="file" style="margin-top: 5rem; margin-bottom: 5rem;">
     </div>
 </template>
 
