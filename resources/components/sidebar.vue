@@ -6,6 +6,10 @@
             </div>
         </a>
 
+        <router-link to="/" class="item">
+            Introduction
+        </router-link>
+
         <div class="item" v-for="(articles, category) in $store.state.articles">
             <h5>{{ category }}</h5>
 
