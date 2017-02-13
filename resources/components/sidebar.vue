@@ -21,9 +21,6 @@
                 >
                     {{ article.title }}
                 </router-link>
-                <!--<a class="item" v-for="article in articles " style="margin-left: 0.5rem;">-->
-                    <!--{{ article.title }}-->
-                <!--</a>-->
             </div>
         </div>
     </div>
