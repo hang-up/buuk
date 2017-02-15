@@ -1,5 +1,5 @@
 <template>
-    <div class="ui text container" style="margin-top: 5rem; margin-bottom: 5rem;" v-if="$store.state.searched.length">
+    <div class="ui text container" style="margin-top: 5rem; margin-bottom: 5rem;" v-if="$store.state.searched.length && $store.state.query">
 
         <h1>{{ $store.state.searched.length }} results found</h1>
         <hr>

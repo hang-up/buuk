@@ -1,11 +1,12 @@
 <template>
     <div style="margin-top: 5rem; margin-bottom: 5rem;">
         <!-- Container for search results -->
-        <search-results></search-results>
+        <search-results v-if="$store.state.query"></search-results>
 
         <!-- Container for documentation -->
         <div class="ui text container"
              v-html="file"
+             v-else
         >
         </div>
     </div>

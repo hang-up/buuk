@@ -9,6 +9,7 @@ const store = new Vuex.Store({
         articles: manifest.articles,
         app: manifest.app,
         description: manifest.description,
+        query: "",
         searched: []
     },
 
@@ -19,6 +20,14 @@ const store = new Vuex.Store({
 
         resetSearchResults(state) {
             state.searched = []
+        },
+
+        updateQuery(state, payload) {
+            state.query = payload.query
+        },
+
+        resetQuery(state) {
+            state.query = ""
         }
     }
 })

@@ -1,10 +1,12 @@
 <template>
     <div>
         <!-- Search results -->
-        <search-results></search-results>
+        <search-results v-if="$store.state.query"></search-results>
 
         <!-- Container for documentation -->
-        <div class="ui text container" style="margin-top: 5rem; margin-bottom: 5rem;">
+        <div class="ui text container"
+             style="margin-top: 5rem; margin-bottom: 5rem;"
+             v-else>
             <h1>
                 {{ $store.state.app }}
             </h1>

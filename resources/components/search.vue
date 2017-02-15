@@ -79,6 +79,13 @@
                         })
                     }
 
+                    // Sync our query with the store query so that we can display/hide search module.
+                    this.$store.commit({
+                        type: 'updateQuery',
+                        query: this.q
+                    })
+
+                    // Fetch store results array.
                     this.$store.commit({
                         type: 'searchResults',
                         searched: this.fuse.search(this.q)
