@@ -1,6 +1,19 @@
 <template>
+    <div class="ui text container" v-if="$store.state.searched.length" style="margin-top: 5rem; margin-bottom: 5rem;">
+
+        <h1>{{ $store.state.searched.length }} results found</h1>
+        <hr>
+        <div class="ui vertical segment " v-for="article in $store.state.searched">
+            <router-link :to="article.slug"
+            >
+                <h3>{{ article.title }}</h3>
+            </router-link>
+            <p>Tagged: {{ article.tags }}</p>
+        </div>
+    </div>
+
     <!-- Container for documentation -->
-    <div class="ui text container" style="margin-top: 5rem; margin-bottom: 5rem;">
+    <div class="ui text container" style="margin-top: 5rem; margin-bottom: 5rem;" v-else>
         <h1>
             {{ $store.state.app }}
         </h1>

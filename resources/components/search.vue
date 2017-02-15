@@ -19,8 +19,7 @@
                 q: "",
                 searchedArticles: [],
                 isDebouncing: false,
-                fuse: null,
-                res: []
+                fuse: null
             }
         },
 
@@ -74,12 +73,18 @@
                 setTimeout(() => {
 
                     if (this.q == "") {
-                        this.res = [];
+                        this.$store.commit({
+                            type: 'searchResults',
+                            searched: []
+                        })
                     }
-                    this.res = this.fuse.search(this.q);
+
+                    this.$store.commit({
+                        type: 'searchResults',
+                        searched: this.fuse.search(this.q)
+                    })
 
                     this.isDebouncing = !this.isDebouncing
-
                 }, 500)
             }, 500)
         }
