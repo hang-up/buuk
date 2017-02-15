@@ -15,6 +15,10 @@ const store = new Vuex.Store({
     mutations: {
         searchResults(state, payload) {
             state.searched = payload.searched
+        },
+
+        resetSearchResults(state) {
+            state.searched = []
         }
     }
 })
