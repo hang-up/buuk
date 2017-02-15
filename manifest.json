@@ -7,25 +7,12 @@
     "Essentials": [
       {
         "title": "Set up your JMBR email",
-        "tags": [
-          "essentials",
-          "set up",
-          "email",
-          "IT",
-          "gmail",
-          "inbox"
-        ],
+        "tags": "essentials, set up, email, IT, gmail, inbox",
         "slug": "essentials-email-setup"
       },
       {
         "title": "Report a problem",
-        "tags": [
-          "essentials",
-          "report",
-          "problem",
-          "IT",
-          "issue"
-        ],
+        "tags": "essentials, report, problem, IT, issue",
         "slug": "essentials-report-problem"
       }
     ],
@@ -33,11 +20,7 @@
     "Publishing": [
       {
         "title": "SEO keywords",
-        "tags": [
-          "publishing",
-          "SEO",
-          "marketing"
-        ],
+        "tags": "SEO, publishing, marketing",
         "slug": "publishing-seo-keywords"
       }
     ]
