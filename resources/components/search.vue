@@ -11,13 +11,22 @@
 
 <script>
     const _ = require('lodash')
+    const Fuse = require('fuse.js')
 
     export default {
         data() {
             return {
                 q: "",
-                isDebouncing: false
+                searchedArticles: [],
+                isDebouncing: false,
+                fuse: null,
+                res: []
             }
+        },
+
+        mounted() {
+            this.initSearch()
+            this.initSearchedArticles()
         },
 
         watch: {
@@ -27,12 +36,47 @@
         },
 
         methods: {
+            initSearchedArticles() {
+                _.forEach(this.$store.state.articles, (category) => {
+                    // Loop through every article of the category and push an object of the format { title, slug, tags }
+                    _.forEach(category, (article) => {
+                        this.searchedArticles.push({
+                            title: article.title,
+                            slug: article.slug,
+                            tags: article.tags
+                        })
+                    })
+                })
+            },
+
+            initSearch(){
+                let options = {
+                    keys: [
+                        {
+                            name: 'tags',
+                            weight: 0.8
+                        }, {
+                            name: 'title',
+                            weight: 0.1
+                        },
+                        {
+                            name: 'slug',
+                            weight: 0.1
+                        }
+                    ],
+                    threshold: 0.5,
+                }
+
+                this.fuse = new Fuse(this.searchedArticles, options)
+            },
+
             searchResults: _.debounce(function () {
                 setTimeout(() => {
-                    this.$store.commit({
-                        type: 'search',
-                        query: this.q
-                    })
+
+                    if (this.q == "") {
+                        this.res = [];
+                    }
+                    this.res = this.fuse.search(this.q);
 
                     this.isDebouncing = !this.isDebouncing
 
