@@ -2,6 +2,7 @@
   "app": "JMBR",
   "version": "0.0.1",
   "description": "Welcome to the John Molson Business Review knowledge base.",
+  "sub": "Sometimes you just need a little help! These pages provide how-to tips to get you started with JMBR online services.",
 
   "articles" : {
     "Essentials": [

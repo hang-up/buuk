@@ -9,6 +9,7 @@ const store = new Vuex.Store({
         articles: manifest.articles,
         app: manifest.app,
         description: manifest.description,
+        sub: manifest.sub,
         query: "",
         searched: []
     },

@@ -13,7 +13,8 @@
             <h3>
                 {{ $store.state.description }}
             </h3>
-            <p> These pages provide how-to tips to get you started on JMBR IS infrastructure.
+            <p>
+                {{ $store.state.sub }}
             </p>
 
             <div class="ui basic segment">
