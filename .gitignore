@@ -1,6 +1,5 @@
 .DS_Store
 node_modules/
-dist/
+dist/assets
 npm-debug.log
 .idea
-/resources/assets/*
