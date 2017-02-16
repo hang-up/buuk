@@ -4,4 +4,3 @@ dist/assets
 npm-debug.log
 .idea
 .gitignore
-.babelrc
