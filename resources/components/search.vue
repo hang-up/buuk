@@ -42,7 +42,7 @@
                         this.searchedArticles.push({
                             title: article.title,
                             slug: article.slug,
-                            tags: article.tags
+                            tags: article.tags.toString()
                         })
                     })
                 })

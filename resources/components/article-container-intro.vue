@@ -46,9 +46,8 @@
         },
 
         mounted() {
-            this.$store.commit({
-                type: 'resetSearchResults'
-            })
+            // Clear up search everytime we load a new article.
+            this.$store.dispatch('resetSearch')
         }
     }
 </script>

@@ -29,6 +29,13 @@ const store = new Vuex.Store({
         resetQuery(state) {
             state.query = ""
         }
+    },
+
+    actions: {
+        resetSearch({ commit }) {
+            commit('resetSearchResults')
+            commit('resetQuery')
+        }
     }
 })
 

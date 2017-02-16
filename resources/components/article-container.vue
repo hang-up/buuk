@@ -43,9 +43,7 @@
         methods: {
             requiring() {
                 // Clear up the viewport.
-                this.$store.commit({
-                    type: 'resetSearchResults'
-                })
+                this.$store.dispatch('resetSearch')
 
                 // Load the relevant md.
                 this.file = md.render(require(`../assets/${this.$route.params.article}.md`))
