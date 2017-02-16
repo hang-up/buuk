@@ -33,6 +33,11 @@ const store = new Vuex.Store({
     },
 
     actions: {
+        /**
+         * Reset search results and search query.
+         *
+         * @param commit
+         */
         resetSearch({ commit }) {
             commit('resetSearchResults')
             commit('resetQuery')
