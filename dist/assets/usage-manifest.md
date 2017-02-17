@@ -26,4 +26,4 @@ The heart of Bük is laying on its `manifest.json` file. The manifest for the cu
 
 There are no conventions for creating your wiki markdown files.
   
-**However the name of your .md files should be the same as the slug defined in `manifest.json`**
+**However your .md files must have the same name as the slug defined in `manifest.json`**
