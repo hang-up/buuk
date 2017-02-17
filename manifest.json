@@ -1,45 +1,82 @@
 {
-  "app": "JMBR",
+  "app": "Bük",
   "version": "1.0.0",
-  "description": "Welcome to the John Molson Business Review knowledge base.",
-  "sub": "Sometimes you just need a little help! These pages provide how-to tips to get you started with JMBR online services.",
+  "description": "Markdown based Javascript wiki engine.",
+  "sub": "Bük is a flat file markdown based wiki engine written in Javascript.",
 
   "articles" : {
-    "Essentials": [
+    "Getting Started": [
       {
-        "title": "Set up your JMBR email",
+        "title": "About Bük",
         "tags": [
-          "essentials",
-          "set up",
-          "email",
-          "IT",
-          "gmail",
-          "inbox"
+          "getting started",
+          "about",
+          "fuzzy",
+          "search",
+          "no server"
         ],
-        "slug": "essentials-email-setup"
+        "slug": "getting-started-about-buk"
       },
       {
-        "title": "Report a problem",
+        "title": "Installation",
         "tags": [
-          "essentials",
-          "report",
-          "problem",
-          "IT",
-          "issue"
+          "installation",
+          "how to"
         ],
-        "slug": "essentials-report-problem"
+        "slug": "getting-started-installation"
+      },
+      {
+        "title": "Extending Bük",
+        "tags": [
+          "fork",
+          "develop",
+          "npm"
+        ],
+        "slug": "getting-started-extending-buk"
       }
     ],
 
-    "Publishing": [
+    "Usage": [
       {
-        "title": "SEO keywords",
+        "title": "Manifest.json",
         "tags": [
-          "SEO",
-          "publishing",
-          "marketing"
+          "usage",
+          "manifest.json",
+          "how to write"
         ],
-        "slug": "publishing-seo-keywords"
+        "slug": "usage-manifest"
+      },
+
+      {
+        "title": "Write your own pages",
+        "tags": [
+          "wiki",
+          "extend",
+          "new"
+        ],
+        "slug": "usage-write-your-own-pages"
+      }
+    ],
+
+    "Other": [
+      {
+        "title": "Write your own pages",
+        "tags": [
+          "wiki",
+          "extend",
+          "new"
+        ],
+        "slug": "usage-write-your-own-pages"
+      },
+
+      {
+        "title": "References",
+        "tags": [
+          "licence",
+          "author",
+          "misc"
+        ],
+        "slug": "other-references"
       }
     ]
   }
