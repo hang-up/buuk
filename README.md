@@ -13,8 +13,10 @@ Simply drop in your .md files in a folder, update manifest.json and you get a wi
 ## Get started
 
 * Clone this repo
+* `npm install`
 * Drop your markdown files inside `dist/assets`
 * Update `manifest.json`
+* `npm run prod`
 
 ## Usage
 The heart of Bük is laying on its `manifest.json` file. A sample manifest is available by default:
