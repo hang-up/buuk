@@ -1,8 +1,7 @@
-# Bük
-
-> Markdown based Javascript wiki engine.
+<p align="center"><img src="http://groundedrob.com/images/projects/buk.png"></p>
 
 ## About Bük
+> Markdown based Javascript wiki engine.
 
 Bük is a flat file markdown based wiki engine written in Javascript.  
 
