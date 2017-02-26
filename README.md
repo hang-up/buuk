@@ -1,4 +1,4 @@
-<p align="center"><img src="http://groundedrob.com/images/projects/buk.png"></p>
+<p align="center"><img src="http://groundedrob.com/images/projects/buk.png" height='250px'></p>
 
 ## About Bük
 > Markdown based Javascript wiki engine.
