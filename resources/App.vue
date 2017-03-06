@@ -21,10 +21,6 @@
         components: {
             sidebar: require('./components/sidebar.vue'),
             articleContainer: require('./components/article-container.vue')
-        },
-
-        mounted() {
-            console.log(manifest)
         }
     }
 </script>
