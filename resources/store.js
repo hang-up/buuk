@@ -6,7 +6,6 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        source: manifest.source,
         articles: manifest.articles,
         app: manifest.app,
         description: manifest.description,

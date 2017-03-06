@@ -5,6 +5,7 @@
         <hr>
         <div class="ui vertical segment " v-for="article in $store.state.searched">
             <router-link :to="article.slug"
+                         v-on:click.native="clearSearch"
             >
                 <h3>{{ article.title }}</h3>
             </router-link>
@@ -16,3 +17,13 @@
         <hr>
     </div>
 </template>
+
+<script type="text/babel">
+    export default {
+        methods: {
+            clearSearch() {
+                this.$store.dispatch('resetSearch')
+            }
+        }
+    }
+</script>
