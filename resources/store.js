@@ -1,11 +1,12 @@
 const _ = require('lodash')
 import Vue from 'vue'
 import Vuex from 'vuex'
-const manifest = require('../manifest.json')
+const manifest = require('../manifest.js')
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
+        source: manifest.source,
         articles: manifest.articles,
         app: manifest.app,
         description: manifest.description,

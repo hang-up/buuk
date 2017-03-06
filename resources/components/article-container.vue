@@ -18,6 +18,8 @@
         typographer: true
     }).use(require('markdown-it-center-text'))
 
+    const path = require("path")
+
     export default {
         name: 'article-container',
 
@@ -46,7 +48,7 @@
                 this.$store.dispatch('resetSearch')
 
                 // Load the relevant md.
-                this.file = md.render(require(`../../dist/assets/${this.$route.params.article}.md`))
+                this.file = md.render(require(`../../dist${this.$store.state.source}${this.$route.params.article}.md`))
             }
         }
     }

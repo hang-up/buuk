@@ -1,6 +1,6 @@
-# Manifest.json
+# Manifest.js
 
-The heart of Bük is laying on its `manifest.json` file. The manifest for the current boilerplate follows this structure:
+The heart of Bük is laying on its `manifest.js` file. The manifest for the current boilerplate follows this structure:
 ```
     {
         "app": "Name of the wiki",

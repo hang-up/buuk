@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Markdown based Javascript wiki engine.",
   "sub": "Bük is a flat file markdown based wiki engine written in Javascript.",
+  "soure": "",
 
   "articles" : {
     "Getting Started": [

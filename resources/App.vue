@@ -13,12 +13,18 @@
 </template>
 
 <script>
+    const manifest = require('../manifest.js')
+
     export default {
         name: 'app',
 
         components: {
             sidebar: require('./components/sidebar.vue'),
             articleContainer: require('./components/article-container.vue')
+        },
+
+        mounted() {
+            console.log(manifest)
         }
     }
 </script>
