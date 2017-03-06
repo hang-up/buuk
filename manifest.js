@@ -41,10 +41,10 @@ module.exports = {
 
         "Usage": [
             {
-                title: "Manifest.json",
+                title: "Manifest.js",
                 tags: [
                     "usage",
-                    "manifest.json",
+                    "manifest.js",
                     "how to write"
                 ],
                 slug: "usage-manifest"
