@@ -7,8 +7,7 @@
 <template>
     <div>
         <!-- Load menu -->
-        <sidebar v-if="!isMobile"></sidebar>
-        <mobile-menu v-else></mobile-menu>
+        <sidebar></sidebar>
 
         <div class="pusher" v-bind:class="{ isSidebarCentered: !isMobile }">
             <div class="ui container">
@@ -23,20 +22,9 @@
     export default {
         name: 'app',
 
-        data() {
-            return {
-                isMobile: false
-            }
-        },
-
         components: {
             sidebar: require('./components/sidebar.vue'),
-            articleContainer: require('./components/article-container.vue'),
-            mobileMenu: require('./components/mobile-menu.vue')
-        },
-
-        mounted() {
-            window.innerWidth < 425 ? this.isMobile = true : null
+            articleContainer: require('./components/article-container.vue')
         }
     }
 </script>
