@@ -1,14 +1,23 @@
+<style scoped>
+    main {
+        padding-left: 300px;
+    }
+</style>
+
 <template>
     <div>
         <!-- Load menu -->
         <sidebar></sidebar>
 
-        <!--<div class="pusher">-->
-            <!--<div class="ui container">-->
-                <!--&lt;!&ndash; Article container will be loaded here. &ndash;&gt;-->
-                <!--<router-view></router-view>-->
-            <!--</div>-->
-        <!--</div>-->
+        <main>
+            <div class="container">
+                <div class="row">
+                    <!-- Article container will be loaded here. -->
+                    <router-view></router-view>
+                </div>
+            </div>
+        </main>
+
     </div>
 </template>
 
