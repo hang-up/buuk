@@ -1,20 +1,14 @@
-<style scoped>
-    .pusher.isSidebarCentered {
-        width: calc(100% - 260px)
-    }
-</style>
-
 <template>
     <div>
         <!-- Load menu -->
         <sidebar></sidebar>
 
-        <div class="pusher" v-bind:class="{ isSidebarCentered: !isMobile }">
-            <div class="ui container">
-                <!-- Article container will be loaded here. -->
-                <router-view></router-view>
-            </div>
-        </div>
+        <!--<div class="pusher">-->
+            <!--<div class="ui container">-->
+                <!--&lt;!&ndash; Article container will be loaded here. &ndash;&gt;-->
+                <!--<router-view></router-view>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </template>
 
