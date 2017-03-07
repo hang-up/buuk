@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
     app: "Bük",
-    version: "1.1.0",
+    version: "1.2.0",
     description: "Markdown based Javascript wiki engine.",
     sub: "Bük is a flat file markdown based wiki engine written in Javascript.",
 
