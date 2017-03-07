@@ -62,16 +62,6 @@ module.exports = {
 
         "Other": [
             {
-                title: "Write your own pages",
-                tags: [
-                    "wiki",
-                    "extend",
-                    "new"
-                ],
-                slug: "usage-write-your-own-pages"
-            },
-
-            {
                 title: "References",
                 tags: [
                     "licence",
