@@ -12,6 +12,7 @@
 <template>
     <ul class="side-nav fixed" id="nav-mobile">
 
+        <!-- Search input. -->
         <search></search>
 
         <li>
@@ -20,7 +21,7 @@
             </router-link>
         </li>
 
-
+        <!-- List of articles. -->
         <li class="no-padding">
             <ul class="collapsible" v-for="(articles, category) in $store.state.articles">
                 <li>

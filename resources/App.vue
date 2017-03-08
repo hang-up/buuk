@@ -8,12 +8,13 @@
 
 <template>
     <div>
-        <!-- Load menu -->
+        <!-- Menu. -->
         <sidebar></sidebar>
 
         <main>
             <div class="container">
-                <!-- Mobile menu trigger -->
+
+                <!-- Mobile menu trigger. -->
                 <a href="#"
                    data-activates="nav-mobile"
                    class="top-nav waves-effect waves-light hide-on-large-only btn button-collapse"
@@ -23,7 +24,7 @@
                 </a>
 
                 <div class="row">
-                    <!-- Article container will be loaded here. -->
+                    <!-- Article. -->
                     <router-view></router-view>
                 </div>
             </div>

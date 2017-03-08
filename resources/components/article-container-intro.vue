@@ -1,9 +1,9 @@
 <template>
     <div>
-        <!-- Search results -->
+        <!-- Search results. -->
         <search-results v-if="$store.state.query"></search-results>
 
-        <!-- Container for documentation -->
+        <!-- Article. -->
         <div class="col s12"
              style="margin-top: 5rem; margin-bottom: 5rem;"
              v-else>

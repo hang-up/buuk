@@ -1,10 +1,10 @@
 <template>
     <div style="margin-top: 5rem; margin-bottom: 5rem;"
          class="col s12">
-        <!-- Container for search results -->
+        <!-- Search results. -->
         <search-results v-if="$store.state.query"></search-results>
 
-        <!-- Container for documentation -->
+        <!-- Article. -->
         <div class="col s12 m9 l10"
              v-html="file"
              v-else
