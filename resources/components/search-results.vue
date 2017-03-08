@@ -1,5 +1,5 @@
 <template>
-    <div class="col s12" style="margin-top: 5rem; margin-bottom: 5rem;"
+    <div class="col s12"
          v-if="$store.state.searched.length && $store.state.query">
 
         <h1>{{ $store.state.searched.length }} results found</h1>

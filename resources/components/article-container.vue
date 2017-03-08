@@ -1,6 +1,5 @@
 <template>
-    <div style="margin-top: 5rem; margin-bottom: 5rem;"
-         class="col s12">
+    <div class="col s12">
         <!-- Search results. -->
         <search-results v-if="$store.state.query"></search-results>
 

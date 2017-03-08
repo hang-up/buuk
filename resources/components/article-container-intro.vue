@@ -5,7 +5,6 @@
 
         <!-- Article. -->
         <div class="col s12"
-             style="margin-top: 5rem; margin-bottom: 5rem;"
              v-else>
             <h1>
                 {{ $store.state.app }}
