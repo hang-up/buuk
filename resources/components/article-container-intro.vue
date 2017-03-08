@@ -1,3 +1,9 @@
+<style scoped>
+    .collection a.collection-item {
+        color: rgba(0, 0, 0, 0.87)
+    }
+</style>
+
 <template>
     <div>
         <!-- Search results. -->

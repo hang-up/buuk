@@ -7,6 +7,14 @@
         font-weight: 400;
         padding: 0 37.5px 0 45px;
     }
+
+    .bold>a {
+        font-weight: bold;
+    }
+
+    .collapsible-header {
+        padding-left: 32px !important;
+    }
 </style>
 
 <template>
@@ -22,10 +30,10 @@
         </li>
 
         <!-- List of articles. -->
-        <li class="no-padding">
+        <li>
             <ul class="collapsible" v-for="(articles, category) in $store.state.articles">
-                <li>
-                    <a class="collapsible-header waves-effect waves-teal">{{ category }}<i class="material-icons">arrow_drop_down</i></a>
+                <li class="bold">
+                    <a class="collapsible-header waves-effect waves-red">{{ category }}</a>
                     <div class="collapsible-body">
                         <ul>
                             <li>
