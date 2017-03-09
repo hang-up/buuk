@@ -1,8 +1,25 @@
-// Custom styling goes here!
-
-// Header styling.
+// Custom fonts.
 @import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('http://fonts.googleapis.com/icon?family=Material+Icons');
+
+// Materialize stylesheet.
+$roboto-font-path: "/dist/fonts/roboto/" !default;
+@import "~materialize-css/sass/materialize.scss";
+
+// Custom styling.
+$buk-color: #EF5350;
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
+}
+
+// Focused input style
+input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid $buk-color;
+  box-shadow: 0 1px 0 0 $buk-color;
+}
+
+// Focused label style
+input[type=text]:focus:not([readonly])+label {
+  color: $buk-color;
 }

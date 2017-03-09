@@ -1,12 +1,28 @@
+<style scoped>
+    .side-nav li .input-field,  .side-nav li label {
+        padding: 0 32px;
+    }
+
+    .input-field label:not(.label-icon).active {
+        -webkit-transform: translateY(-80%);
+        -moz-transform: translateY(-40%);
+        -ms-transform: translateY(-40%);
+        -o-transform: translateY(-40%);
+        transform: translateY(-80%);
+    }
+</style>
+
 <template>
-    <a class="item">
-        <div class="ui transparent fluid input">
+    <li>
+        <div class="input-field">
             <input type="text"
-                   placeholder="Search..."
                    v-model="q"
+                   class="validate"
+                   id="search_query"
             >
+            <label for="search_query">Search...</label>
         </div>
-    </a>
+    </li>
 </template>
 
 <script>
