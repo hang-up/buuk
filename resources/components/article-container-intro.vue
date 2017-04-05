@@ -45,6 +45,7 @@
                     New article render function (ability to set up custom folder directory inside manifest.js)
                 </li>
                 <li class="collection-item">
+                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
                     Search debounced to 250ms
                 </li>
             </ul>

@@ -108,8 +108,8 @@
                     })
 
                     this.isDebouncing = !this.isDebouncing
-                }, 500)
-            }, 500)
+                }, 250)
+            }, 250)
         }
     }
 </script>
