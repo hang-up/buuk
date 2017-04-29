@@ -7,6 +7,33 @@ module.exports = {
     sub: "Bük is a flat file markdown based wiki engine written in Javascript.",
 
     articles : {
+        "Nested Categories": {
+            "Category 1": [
+                {
+                    title: "About Bük",
+                    tags: [
+                        "getting started",
+                        "about",
+                        "fuzzy",
+                        "search",
+                        "no server"
+                    ],
+                    slug: "getting-started-about-buk"
+                },
+                {
+                    title: "About Bük",
+                    tags: [
+                        "getting started",
+                        "about",
+                        "fuzzy",
+                        "search",
+                        "no server"
+                    ],
+                    slug: "getting-started-about-buk"
+                }
+            ]
+        },
+
         "Getting Started": [
             {
                 title: "About Bük",

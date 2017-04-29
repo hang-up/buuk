@@ -26,7 +26,7 @@
 
             <h4 class="header">Progression status</h4>
             <div class="progress">
-                <div class="determinate" style="width: 0%"></div>
+                <div class="determinate" style="width: 10%"></div>
             </div>
 
             <ul class="collection with-header">

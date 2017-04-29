@@ -38,7 +38,7 @@
         name: 'app',
 
         components: {
-            sidebar: require('./components/sidebar.vue'),
+            sidebar: require('./components/sidebar/sidebar.vue'),
             articleContainer: require('./components/article-container.vue')
         },
 
