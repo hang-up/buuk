@@ -1,6 +1,7 @@
 <template>
     <li>
         <ul class="collapsible">
+            <!-- Check if the current articles has any sub cat. -->
             <li v-if="!isDeep(articles)">
                 <ul class="collapsible">
                     <li>
@@ -35,6 +36,7 @@
         props: ['articles', 'category'],
 
         methods: {
+
             isDeep(array) {
                 return _.isArray(array)
             }
