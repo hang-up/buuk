@@ -15,7 +15,7 @@
         <div class="collapsible-body">
             <ul class="collapsible" data-collapsible="accordion">
                 <li>
-                    <div >
+                    <div>
                         <ul class="collapsible" data-collapsible="accordion">
                             <sidebar-item v-for="(a, c) in articles" :articles="a" :category="c"></sidebar-item>
                         </ul>
