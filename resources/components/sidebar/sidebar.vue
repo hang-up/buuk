@@ -42,7 +42,7 @@
         name: 'sidebar',
 
         components: {
-            search: require('../search.vue'),
+            search: require('../search/search.vue'),
             'sidebar-item': require('./sidebar-item.vue')
         },
 

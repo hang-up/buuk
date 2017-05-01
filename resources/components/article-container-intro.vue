@@ -81,7 +81,7 @@
 <script type="text/babel">
     export default {
         components: {
-            searchResults: require('./search-results.vue')
+            searchResults: require('./search/search-results.vue')
         },
 
         mounted() {
