@@ -1,3 +1,9 @@
+<style>
+    .collapsible-body {
+        padding: 0 !important;
+    }
+</style>
+
 <template>
     <li>
         <ul class="collapsible">
@@ -14,13 +20,14 @@
                     </li>
                 </ul>
             </li>
-            <li class="bold" v-else>
+            <li v-else>
                 <a class="collapsible-header waves-effect waves-red">{{ category }}</a>
                 <div class="collapsible-body">
                     <ul>
                         <li v-for="article in articles">
                             <router-link :to="article.slug"
-                                class="waves-effect waves-light">
+                                class="waves-effect waves-light"
+                                style="font-weight: 400;">
                                 {{ article.title }}
                             </router-link>
                         </li>
