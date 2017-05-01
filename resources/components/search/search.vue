@@ -52,15 +52,24 @@
 
         methods: {
             initSearchedArticles() {
-                _.forEach(this.$store.state.articles, (category) => {
+                this.recursiveFlatten(this.$store.state.articles)
+            },
+
+            recursiveFlatten(array) {
+                _.forEach(_.flattenDeep(_.toArray(array)), (category) => {
                     // Loop through every article of the category and push an object of the format { title, slug, tags }
-                    _.forEach(category, (article) => {
+
+                    if(!("title" in category)) {
+                        this.recursiveFlatten(category)
+                    }
+                    else {
                         this.searchedArticles.push({
-                            title: article.title,
-                            slug: article.slug,
-                            tags: article.tags.toString()
+                            title: category.title,
+                            slug: category.slug,
+                            tags: category.tags.toString()
                         })
-                    })
+
+                    }
                 })
             },
 
