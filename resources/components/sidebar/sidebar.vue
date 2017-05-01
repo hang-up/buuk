@@ -31,7 +31,11 @@
         </li>
 
         <!-- List of articles. -->
-        <sidebar-item v-for="(articles, category) in $store.state.articles" :articles="articles" :category="category"></sidebar-item>
+        <li>
+            <ul class="collapsible" data-collapsible="accordion">
+                <sidebar-item v-for="(articles, category) in $store.state.articles" :articles="articles" :category="category"></sidebar-item>
+            </ul>
+        </li>
     </ul>
 </template>
 

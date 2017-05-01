@@ -9,36 +9,35 @@
 </style>
 
 <template>
-    <li>
-        <ul class="collapsible">
-            <!-- Check if the current articles has any sub cat. -->
-            <li v-if="!isDeep(articles)">
-                <ul class="collapsible">
-                    <li>
-                        <a class="collapsible-header waves-effect waves-red">{{ category }}</a>
-                        <div class="collapsible-body">
-                            <ul>
-                                <sidebar-item v-for="(a, c) in articles" :articles="a" :category="c"></sidebar-item>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-            <li v-else>
-                <a class="collapsible-header waves-effect waves-red">{{ category }}</a>
-                <div class="collapsible-body">
-                    <ul>
-                        <li v-for="article in articles">
-                            <router-link :to="article.slug"
-                                class="waves-effect waves-light"
-                                style="font-weight: 400;">
-                                {{ article.title }}
-                            </router-link>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
+    <!-- Check if the current articles has any sub cat. -->
+    <li v-if="!isDeep(articles)">
+        <a class="collapsible-header waves-effect waves-red">{{ category }}</a>
+        <div class="collapsible-body">
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div >
+                        <ul class="collapsible" data-collapsible="accordion">
+                            <sidebar-item v-for="(a, c) in articles" :articles="a" :category="c"></sidebar-item>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <!-- If no sub category. -->
+    <li v-else>
+        <a class="collapsible-header waves-effect waves-red">{{ category }}</a>
+        <div class="collapsible-body">
+            <ul>
+                <li v-for="article in articles">
+                    <router-link :to="article.slug"
+                                 class="waves-effect waves-light"
+                                 style="font-weight: 400;">
+                        {{ article.title }}
+                    </router-link>
+                </li>
+            </ul>
+        </div>
     </li>
 </template>
 
@@ -50,6 +49,11 @@
 
             isDeep(array) {
                 return _.isArray(array)
+            },
+
+            toggleCollapsible(anchor) {
+                console.log(anchor)
+                $(anchor).closest('.__js-hook').show()
             }
         },
 

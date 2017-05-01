@@ -7,46 +7,6 @@ module.exports = {
     sub: "Bük is a flat file markdown based wiki engine written in Javascript.",
 
     articles : {
-        "Nested Categories": {
-            "Category 1": [
-                {
-                    title: "About Bük",
-                    tags: [
-                        "getting started",
-                        "about",
-                        "fuzzy",
-                        "search",
-                        "no server"
-                    ],
-                    slug: "getting-started-about-buk"
-                },
-                {
-                    title: "About Bük",
-                    tags: [
-                        "getting started",
-                        "about",
-                        "fuzzy",
-                        "search",
-                        "no server"
-                    ],
-                    slug: "getting-started-about-buk"
-                }
-            ],
-            "Category 2" : {
-                "Nested Again": [
-                    {
-                        title: "References",
-                        tags: [
-                            "licence",
-                            "author",
-                            "misc"
-                        ],
-                        slug: "other-references"
-                    }
-                ]
-            },
-        },
-
         "Getting Started": [
             {
                 title: "About Bük",
@@ -99,6 +59,46 @@ module.exports = {
                 slug: "usage-write-your-own-pages"
             }
         ],
+
+        "Nested Categories": {
+            "Category 1": [
+                {
+                    title: "About Bük",
+                    tags: [
+                        "getting started",
+                        "about",
+                        "fuzzy",
+                        "search",
+                        "no server"
+                    ],
+                    slug: "getting-started-about-buk"
+                },
+                {
+                    title: "About Bük",
+                    tags: [
+                        "getting started",
+                        "about",
+                        "fuzzy",
+                        "search",
+                        "no server"
+                    ],
+                    slug: "getting-started-about-buk"
+                }
+            ],
+            "Category 2" : {
+                "Nested Again": [
+                    {
+                        title: "References",
+                        tags: [
+                            "licence",
+                            "author",
+                            "misc"
+                        ],
+                        slug: "other-references"
+                    }
+                ]
+            },
+        },
 
         "Other": [
             {
