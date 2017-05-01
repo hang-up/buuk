@@ -97,6 +97,26 @@ module.exports = {
                 ],
                 slug: "other-references"
             }
-        ]
+        ],
+
+        "Nested Twice": {
+            "Category 1" : {
+                "Nested Again": [
+                    {
+                        title: "References",
+                        tags: [
+                            "licence",
+                            "author",
+                            "misc"
+                        ],
+                        slug: "other-references"
+                    }
+                ]
+            },
+
+            "Category 2": {
+
+            }
+        }
     }
 }

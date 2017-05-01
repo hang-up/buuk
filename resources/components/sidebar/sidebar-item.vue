@@ -1,6 +1,10 @@
 <style>
     .collapsible-body {
-        padding: 0 !important;
+        padding: 0 0 0 1rem !important;
+    }
+
+    .side-nav .collapsible-header, .side-nav.fixed .collapsible-header {
+        padding: 0 32px !important;
     }
 </style>
 
