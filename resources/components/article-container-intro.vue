@@ -26,7 +26,7 @@
 
             <h4 class="header">Progression status</h4>
             <div class="progress">
-                <div class="determinate" style="width: 20%"></div>
+                <div class="determinate" style="width: 30%"></div>
             </div>
 
             <ul class="collection with-header">
@@ -36,7 +36,7 @@
                     Previous / Next shortcut
                 </li>
                 <li class="collection-item">
-                    <i class="tiny material-icons orange darken-1" style="color: #fff;">done</i>
+                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
                     Infinite categories nesting
                 </li>
                 <li class="collection-item">
