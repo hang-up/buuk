@@ -51,10 +51,20 @@
         },
 
         methods: {
+            /**
+             * Initialize our source search array.
+             *
+             */
             initSearchedArticles() {
                 this.recursiveFlatten(this.$store.state.articles)
             },
 
+            /**
+             * Recursively loop inside a given array, deepening every time we meet an object that don't have
+             * the key 'title' (assuming we don't have a category called 'title'...).
+             *
+             * @param array
+             */
             recursiveFlatten(array) {
                 _.forEach(_.flattenDeep(_.toArray(array)), (category) => {
                     // Loop through every article of the category and push an object of the format { title, slug, tags }
@@ -73,6 +83,10 @@
                 })
             },
 
+            /**
+             * Initialize our search feature.
+             *
+             */
             initSearch(){
                 let options = {
                     keys: [
@@ -94,6 +108,10 @@
                 this.fuse = new Fuse(this.searchedArticles, options)
             },
 
+            /**
+             * Perform the search.
+             *
+             */
             searchResults: _.debounce(function () {
                 setTimeout(() => {
 
