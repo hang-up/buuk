@@ -3,6 +3,12 @@
         padding: 0 0 0 1rem !important;
     }
 
+    .is-link{
+        text-decoration: underline dashed;
+        -ms-text-underline-position: under;
+        text-underline-position: under;
+    }
+
     .side-nav .collapsible-header, .side-nav.fixed .collapsible-header {
         padding: 0 32px !important;
     }
@@ -31,7 +37,7 @@
             <ul>
                 <li v-for="article in articles">
                     <router-link :to="article.slug"
-                                 class="waves-effect waves-light"
+                                 class="waves-effect waves-light is-link"
                                  style="font-weight: 400;">
                         {{ article.title }}
                     </router-link>
