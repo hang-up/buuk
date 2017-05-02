@@ -4,7 +4,11 @@
     }
 
     .is-link{
-        text-decoration: underline dashed;
+        text-decoration: underline;
+
+        -webkit-text-decoration-style: dashed;
+        text-decoration-style: dashed;
+
         -ms-text-underline-position: under;
         text-underline-position: under;
     }
