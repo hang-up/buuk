@@ -9,8 +9,8 @@ Vue.use(Vuex)
 Vue.use(VueRouter)
 
 const routes = [
-    { path: '/', component: require('./components/article-container-intro.vue') },
-    { path: '/:article', component: require('./components/article-container.vue')  }
+    { path: '/', component: require('./components/articles/article-container-intro.vue') },
+    { path: '/:article', component: require('./components/articles/article-container.vue')  }
 ]
 
 const router = new VueRouter({

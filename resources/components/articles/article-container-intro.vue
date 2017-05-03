@@ -44,7 +44,7 @@
                     Automated slug generation
                 </li>
                 <li class="collection-item">
-                    New article render function (ability to set up custom folder directory inside manifest.js)
+                    Improve search feature (factory to eliminate duplicate articles?)
                 </li>
                 <li class="collection-item">
                     <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
@@ -82,7 +82,7 @@
 <script type="text/babel">
     export default {
         components: {
-            searchResults: require('./search/search-results.vue')
+            searchResults: require('../search/search-results.vue')
         },
 
         mounted() {

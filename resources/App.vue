@@ -39,7 +39,7 @@
 
         components: {
             sidebar: require('./components/sidebar/sidebar.vue'),
-            articleContainer: require('./components/article-container.vue')
+            articleContainer: require('./components/articles/article-container.vue')
         },
 
         mounted() {
