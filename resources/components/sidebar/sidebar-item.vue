@@ -56,14 +56,8 @@
         props: ['articles', 'category'],
 
         methods: {
-
             isDeep(array) {
                 return _.isArray(array)
-            },
-
-            toggleCollapsible(anchor) {
-                console.log(anchor)
-                $(anchor).closest('.__js-hook').show()
             }
         },
 

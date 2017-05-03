@@ -16,16 +16,14 @@ module.exports = {
                     "fuzzy",
                     "search",
                     "no server"
-                ],
-                slug: "getting-started-about-buk"
+                ]
             },
             {
                 title: "Installation",
                 tags: [
                     "installation",
                     "how to"
-                ],
-                slug: "getting-started-installation"
+                ]
             },
             {
                 title: "Extending Bük",
@@ -33,8 +31,7 @@ module.exports = {
                     "fork",
                     "develop",
                     "npm"
-                ],
-                slug: "getting-started-extending-buk"
+                ]
             }
         ],
 
@@ -45,8 +42,7 @@ module.exports = {
                     "usage",
                     "manifest.js",
                     "how to write"
-                ],
-                slug: "usage-manifest"
+                ]
             },
 
             {
@@ -55,8 +51,7 @@ module.exports = {
                     "wiki",
                     "extend",
                     "new"
-                ],
-                slug: "usage-write-your-own-pages"
+                ]
             }
         ],
 
@@ -70,8 +65,7 @@ module.exports = {
                         "fuzzy",
                         "search",
                         "no server"
-                    ],
-                    slug: "getting-started-about-buk"
+                    ]
                 },
                 {
                     title: "About Bük",
@@ -81,8 +75,7 @@ module.exports = {
                         "fuzzy",
                         "search",
                         "no server"
-                    ],
-                    slug: "getting-started-about-buk"
+                    ]
                 }
             ],
             "Category 2" : {
@@ -93,8 +86,7 @@ module.exports = {
                             "licence",
                             "author",
                             "misc"
-                        ],
-                        slug: "other-references"
+                        ]
                     }
                 ]
             },
@@ -107,8 +99,7 @@ module.exports = {
                     "licence",
                     "author",
                     "misc"
-                ],
-                slug: "other-references"
+                ]
             }
         ]
     }

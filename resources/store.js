@@ -1,12 +1,14 @@
 const _ = require('lodash')
-import Vue from 'vue'
-import Vuex from 'vuex'
+const Vue = require('vue')
+const Vuex = require('vuex')
 const manifest = require('../manifest.js')
+const articles = require('../resources/components/utils/slugify').default.mounted()
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        articles: manifest.articles,
+        articles,
         app: manifest.app,
         description: manifest.description,
         sub: manifest.sub,
