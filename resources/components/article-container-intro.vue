@@ -26,7 +26,7 @@
 
             <h4 class="header">Progression status</h4>
             <div class="progress">
-                <div class="determinate" style="width: 30%"></div>
+                <div class="determinate" style="width: 50%"></div>
             </div>
 
             <ul class="collection with-header">
@@ -40,6 +40,7 @@
                     Infinite categories nesting
                 </li>
                 <li class="collection-item">
+                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
                     Automated slug generation
                 </li>
                 <li class="collection-item">
