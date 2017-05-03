@@ -32,6 +32,7 @@ export default {
             else {
                 _.forEach(categories, (article, _) =>{
 
+                    // We get the name of the parent article(key) and concat it with the name of the current article.
                     let _slug = lower(key) + "-" + lower(article.title)
                     article.slug = slugify(_slug)
 
