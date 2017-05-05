@@ -41,7 +41,6 @@
 
         mounted() {
             this.initSearch()
-            this.initSearchedArticles()
         },
 
         watch: {
@@ -51,38 +50,6 @@
         },
 
         methods: {
-            /**
-             * Initialize our source search array.
-             *
-             */
-            initSearchedArticles() {
-                this.recursiveFlatten(this.$store.state.articles)
-            },
-
-            /**
-             * Recursively loop inside a given array, deepening every time we meet an object that don't have
-             * the key 'title' (assuming we don't have a category called 'title'...).
-             *
-             * @param array
-             */
-            recursiveFlatten(array) {
-                _.forEach(_.flattenDeep(_.toArray(array)), (category) => {
-                    // Loop through every article of the category and push an object of the format { title, slug, tags }
-
-                    if(!("title" in category)) {
-                        this.recursiveFlatten(category)
-                    }
-                    else {
-                        this.searchedArticles.push({
-                            title: category.title,
-                            slug: category.slug,
-                            tags: category.tags.toString()
-                        })
-
-                    }
-                })
-            },
-
             /**
              * Initialize our search feature.
              *
@@ -105,7 +72,7 @@
                     threshold: 0.5,
                 }
 
-                this.fuse = new Fuse(this.searchedArticles, options)
+                this.fuse = new Fuse(this.$store.state.searchArticles, options)
             },
 
             /**
@@ -118,7 +85,7 @@
                     if (this.q == "") {
                         this.$store.commit({
                             type: 'searchResults',
-                            searched: []
+                            searchResults: []
                         })
                     }
 
@@ -131,7 +98,7 @@
                     // Fetch store results array.
                     this.$store.commit({
                         type: 'searchResults',
-                        searched: this.fuse.search(this.q)
+                        searchResults: this.fuse.search(this.q)
                     })
 
                     this.isDebouncing = !this.isDebouncing
