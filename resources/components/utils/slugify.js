@@ -1,6 +1,7 @@
 const slugify = require('slugify')
 const lower = require('lower-case')
 const articles = require('../../../manifest.js').articles;
+const options = require('../../../manifest.js').options;
 const _ = require('lodash')
 
 /**
@@ -37,10 +38,22 @@ export default {
             else {
                 _.forEach(categories, (article, _) =>{
 
-                    // We get the name of the parent article(key) and concat it with the name of the current article.
-                    let _slug = lower(key) + "-" + lower(article.title)
-                    article.slug = slugify(_slug)
+                    // First we need to check if the current article has any custom slugs.
+                    if (!article.slug) {
+                        let _slug = ""
 
+                        // We get the name of the parent article(key) and concat it with
+                        // the name of the current article.
+                        if (options.advanced_slugs) {
+                            _slug = lower(key) + "-" + lower(article.title)
+                        }
+                        // Otherwise we just create a simple slug based on the name of the article.
+                        else {
+                            _slug = lower(article.title)
+                        }
+
+                        article.slug = slugify(_slug)
+                    }
                 })
             }
         })

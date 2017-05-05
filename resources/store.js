@@ -11,10 +11,11 @@ const store = new Vuex.Store({
         app: manifest.app,
         description: manifest.description,
         sub: manifest.sub,
-        query: "",
+        options: manifest.options,
 
         articles,
 
+        query: "",
         searchArticles,
         searchResults: []
     },

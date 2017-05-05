@@ -6,6 +6,10 @@ module.exports = {
     description: "Markdown based Javascript wiki engine.",
     sub: "Bük is a flat file markdown based wiki engine written in Javascript.",
 
+    options: {
+        'advanced_slugs': true
+    },
+
     articles : {
         "Getting Started": [
             {
