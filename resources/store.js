@@ -1,6 +1,6 @@
 const Vue = require('vue')
 const Vuex = require('vuex')
-const manifest = require('../manifest.js')
+const manifest = require('../manifest.json')
 const articles = require('../resources/components/utils/slugify').default.mounted()
 const searchArticles = require('../resources/components/utils/searchify').default.mounted()
 

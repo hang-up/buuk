@@ -1,20 +1,18 @@
-const path = require('path')
+{
+    "app": "Bük",
+    "version": "1.2.0",
+    "description": "Markdown based Javascript wiki engine.",
+    "sub": "Bük is a flat file markdown based wiki engine written in Javascript.",
 
-module.exports = {
-    app: "Bük",
-    version: "1.2.0",
-    description: "Markdown based Javascript wiki engine.",
-    sub: "Bük is a flat file markdown based wiki engine written in Javascript.",
-
-    options: {
-        'advanced_slugs': true
+    "options": {
+        "advanced_slugs": true
     },
 
-    articles : {
+    "articles" : {
         "Getting Started": [
             {
-                title: "About Bük",
-                tags: [
+                "title": "About Bük",
+                "tags": [
                     "getting started",
                     "about",
                     "fuzzy",
@@ -23,15 +21,15 @@ module.exports = {
                 ]
             },
             {
-                title: "Installation",
-                tags: [
+                "title": "Installation",
+                "tags": [
                     "installation",
                     "how to"
                 ]
             },
             {
-                title: "Extending Bük",
-                tags: [
+                "title": "Extending Bük",
+                "tags": [
                     "fork",
                     "develop",
                     "npm"
@@ -41,8 +39,8 @@ module.exports = {
 
         "Usage": [
             {
-                title: "Manifest.js",
-                tags: [
+                "title": "Manifest.js",
+                "tags": [
                     "usage",
                     "manifest.js",
                     "how to write"
@@ -50,8 +48,8 @@ module.exports = {
             },
 
             {
-                title: "Write your own pages",
-                tags: [
+                "title": "Write your own pages",
+                "tags": [
                     "wiki",
                     "extend",
                     "new"
@@ -62,8 +60,8 @@ module.exports = {
         "Nested Categories": {
             "Category 1": [
                 {
-                    title: "About Bük",
-                    tags: [
+                    "title": "About Bük",
+                    "tags": [
                         "getting started",
                         "about",
                         "fuzzy",
@@ -72,8 +70,8 @@ module.exports = {
                     ]
                 },
                 {
-                    title: "About Bük",
-                    tags: [
+                    "title": "About Bük",
+                    "tags": [
                         "getting started",
                         "about",
                         "fuzzy",
@@ -85,21 +83,21 @@ module.exports = {
             "Category 2" : {
                 "Nested Again": [
                     {
-                        title: "References",
-                        tags: [
+                        "title": "References",
+                        "tags": [
                             "licence",
                             "author",
                             "misc"
                         ]
                     }
                 ]
-            },
+            }
         },
 
         "Other": [
             {
-                title: "References",
-                tags: [
+                "title": "References",
+                "tags": [
                     "licence",
                     "author",
                     "misc"

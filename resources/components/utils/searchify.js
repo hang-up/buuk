@@ -1,4 +1,4 @@
-const articles = require('../../../manifest.js').articles;
+const articles = require('../../../manifest.json').articles;
 const _ = require('lodash')
 
 export default {
