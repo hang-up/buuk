@@ -1,5 +1,5 @@
 <style scoped>
-    .side-nav li .input-field,  .side-nav li label {
+    .side-nav li .input-field, .side-nav li label {
         padding: 0 32px;
     }
 
@@ -10,11 +10,34 @@
         -o-transform: translateY(-40%);
         transform: translateY(-80%);
     }
+
+    /**
+        Needed for animating the cross deleting search terms.
+    **/
+    .fade-enter-active, .fade-leave-active {
+        transition: all .5s
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+        transform: translateY(10px);
+        opacity: 0;
+
+    }
 </style>
 
 <template>
     <li>
         <div class="input-field">
+
+            <!-- Delete search terms. -->
+            <transition name="fade">
+                <i class="material-icons"
+                   style="position: absolute; right: 26px; top: 10px; cursor: pointer"
+                   v-if='q != ""'
+                   @click='q = ""'
+                >clear</i>
+            </transition>
+
+            <!-- Search input. -->
             <input type="text"
                    v-model="q"
                    class="validate"

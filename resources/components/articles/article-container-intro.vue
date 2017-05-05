@@ -26,15 +26,12 @@
 
             <h4 class="header">Progression status</h4>
             <div class="progress">
-                <div class="determinate" style="width: 75%"></div>
+                <div class="determinate" style="width: 90%"></div>
             </div>
 
             <ul class="collection with-header">
                 <li class="collection-header"><h5>What's new in 2.0?</h5></li>
 
-                <li class="collection-item">
-                    Previous / Next shortcut
-                </li>
                 <li class="collection-item">
                     <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
                     Infinite categories nesting
@@ -49,6 +46,10 @@
                 </li>
                 <li class="collection-item">
                     <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
+                    Quick delete search term on search input
+                </li>
+                <li class="collection-item">
+                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
                     Search debounced to 250ms
                 </li>
             </ul>
@@ -58,6 +59,10 @@
 
                 <li class="collection-item">
                     Improved rendered layout (code snippets, readability)
+                </li>
+
+                <li class="collection-item">
+                    Previous / Next shortcut
                 </li>
 
                 <li class="collection-item">
