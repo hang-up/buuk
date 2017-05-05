@@ -3,7 +3,12 @@ const lower = require('lower-case')
 const articles = require('../../../manifest.js').articles;
 const _ = require('lodash')
 
-
+/**
+ * This will go through each article in the manifest and append a slug to them
+ * (if they already don't have one). The slug format is either a simple one
+ * (category-name) or an advanced one (direct parent)category-name-of-the-article.
+ *
+ */
 export default {
 
     /**

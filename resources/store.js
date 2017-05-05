@@ -1,4 +1,3 @@
-const _ = require('lodash')
 const Vue = require('vue')
 const Vuex = require('vuex')
 const manifest = require('../manifest.js')
@@ -9,11 +8,13 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        articles,
         app: manifest.app,
         description: manifest.description,
         sub: manifest.sub,
         query: "",
+
+        articles,
+
         searchArticles,
         searchResults: []
     },
