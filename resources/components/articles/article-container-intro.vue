@@ -26,7 +26,7 @@
 
             <h4 class="header">Progression status</h4>
             <div class="progress">
-                <div class="determinate" style="width: 50%"></div>
+                <div class="determinate" style="width: 75%"></div>
             </div>
 
             <ul class="collection with-header">
@@ -44,7 +44,8 @@
                     Automated slug generation
                 </li>
                 <li class="collection-item">
-                    Improve search feature (factory to eliminate duplicate articles?)
+                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
+                    Improve search feature
                 </li>
                 <li class="collection-item">
                     <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
