@@ -2,11 +2,18 @@
   "name": "buuk",
   "description": "Markdown based javascript wiki engine",
   "version": "2.0.1",
+  "keywords": ["markdown", "wiki", "vue", "vuejs", "md"],
+  "license": "MIT",
   "author": "Robert Hang (https://groundedrob.com)",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hang-up/buk.git"
+  },
+  "main": "dist/build.js",
   "dependencies": {
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
