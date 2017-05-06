@@ -1,5 +1,5 @@
 <style scoped>
-    .side-nav li .input-field,  .side-nav li label {
+    .side-nav li .input-field, .side-nav li label {
         padding: 0 32px;
     }
 
@@ -10,11 +10,34 @@
         -o-transform: translateY(-40%);
         transform: translateY(-80%);
     }
+
+    /**
+        Needed for animating the cross deleting search terms.
+    **/
+    .fade-enter-active, .fade-leave-active {
+        transition: all .5s
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+        transform: translateY(10px);
+        opacity: 0;
+
+    }
 </style>
 
 <template>
     <li>
         <div class="input-field">
+
+            <!-- Delete search terms. -->
+            <transition name="fade">
+                <i class="material-icons"
+                   style="position: absolute; right: 26px; top: 10px; cursor: pointer"
+                   v-if='q != ""'
+                   @click='q = ""'
+                >clear</i>
+            </transition>
+
+            <!-- Search input. -->
             <input type="text"
                    v-model="q"
                    class="validate"
@@ -41,7 +64,6 @@
 
         mounted() {
             this.initSearch()
-            this.initSearchedArticles()
         },
 
         watch: {
@@ -51,19 +73,10 @@
         },
 
         methods: {
-            initSearchedArticles() {
-                _.forEach(this.$store.state.articles, (category) => {
-                    // Loop through every article of the category and push an object of the format { title, slug, tags }
-                    _.forEach(category, (article) => {
-                        this.searchedArticles.push({
-                            title: article.title,
-                            slug: article.slug,
-                            tags: article.tags.toString()
-                        })
-                    })
-                })
-            },
-
+            /**
+             * Initialize our search feature.
+             *
+             */
             initSearch(){
                 let options = {
                     keys: [
@@ -82,16 +95,20 @@
                     threshold: 0.5,
                 }
 
-                this.fuse = new Fuse(this.searchedArticles, options)
+                this.fuse = new Fuse(this.$store.state.searchArticles, options)
             },
 
+            /**
+             * Perform the search.
+             *
+             */
             searchResults: _.debounce(function () {
                 setTimeout(() => {
 
                     if (this.q == "") {
                         this.$store.commit({
                             type: 'searchResults',
-                            searched: []
+                            searchResults: []
                         })
                     }
 
@@ -104,12 +121,12 @@
                     // Fetch store results array.
                     this.$store.commit({
                         type: 'searchResults',
-                        searched: this.fuse.search(this.q)
+                        searchResults: this.fuse.search(this.q)
                     })
 
                     this.isDebouncing = !this.isDebouncing
-                }, 500)
-            }, 500)
+                }, 250)
+            }, 250)
         }
     }
 </script>

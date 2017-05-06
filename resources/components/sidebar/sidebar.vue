@@ -23,6 +23,7 @@
         <!-- Search input. -->
         <search></search>
 
+        <!-- Introduction. -->
         <li>
             <router-link to="/" class="waves-effect waves-light">
                 Introduction
@@ -31,23 +32,8 @@
 
         <!-- List of articles. -->
         <li>
-            <ul class="collapsible" v-for="(articles, category) in $store.state.articles">
-                <li class="bold">
-                    <a class="collapsible-header waves-effect waves-red">{{ category }}</a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>
-                                <router-link :to="article.slug"
-                                             v-for="article in articles"
-                                             class="waves-effect waves-light"
-                                >
-                                    {{ article.title }}
-                                </router-link>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
+            <ul class="collapsible" data-collapsible="accordion">
+                <sidebar-item v-for="(articles, category) in $store.state.articles" :articles="articles" :category="category"></sidebar-item>
             </ul>
         </li>
     </ul>
@@ -60,7 +46,8 @@
         name: 'sidebar',
 
         components: {
-            search: require('./search.vue')
+            search: require('../search/search.vue'),
+            'sidebar-item': require('./sidebar-item.vue')
         },
 
         mounted() {

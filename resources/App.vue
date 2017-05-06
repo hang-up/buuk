@@ -38,8 +38,8 @@
         name: 'app',
 
         components: {
-            sidebar: require('./components/sidebar.vue'),
-            articleContainer: require('./components/article-container.vue')
+            sidebar: require('./components/sidebar/sidebar.vue'),
+            articleContainer: require('./components/articles/article-container.vue')
         },
 
         mounted() {

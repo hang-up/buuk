@@ -1,26 +1,32 @@
-const _ = require('lodash')
-import Vue from 'vue'
-import Vuex from 'vuex'
-const manifest = require('../manifest.js')
+const Vue = require('vue')
+const Vuex = require('vuex')
+const manifest = require('../manifest.json')
+const articles = require('../resources/components/utils/slugify').default.mounted()
+const searchArticles = require('../resources/components/utils/searchify').default.mounted()
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        articles: manifest.articles,
         app: manifest.app,
         description: manifest.description,
         sub: manifest.sub,
+        options: manifest.options,
+
+        articles,
+
         query: "",
-        searched: []
+        searchArticles,
+        searchResults: []
     },
 
     mutations: {
         searchResults(state, payload) {
-            state.searched = payload.searched
+            state.searchResults = payload.searchResults
         },
 
         resetSearchResults(state) {
-            state.searched = []
+            state.searchResults = []
         },
 
         updateQuery(state, payload) {

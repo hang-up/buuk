@@ -22,9 +22,11 @@
                 {{ $store.state.sub }}
             </p>
 
-            <ul class="collection with-header" v-for="(articles, category) in $store.state.articles">
-                <li class="collection-header"><h4>{{ category }}</h4></li>
-                <router-link v-for="article in articles"
+            <br>
+
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>All articles</h4></li>
+                <router-link v-for="article in this.$store.state.searchArticles"
                              :to="article.slug"
                              class="collection-item"
                 >
@@ -39,7 +41,7 @@
 <script type="text/babel">
     export default {
         components: {
-            searchResults: require('./search-results.vue')
+            searchResults: require('../search/search-results.vue')
         },
 
         mounted() {

@@ -1,11 +1,11 @@
 <template>
     <div class="col s12"
-         v-if="$store.state.searched.length && $store.state.query">
+         v-if="$store.state.searchResults.length && $store.state.query">
 
-        <h1>{{ $store.state.searched.length }} results found</h1>
+        <h1>{{ $store.state.searchResults.length }} results found</h1>
 
         <!-- Search results. -->
-        <div class="card" v-for="article in $store.state.searched">
+        <div class="card" v-for="article in $store.state.searchResults">
             <div class="card-content">
                 <router-link :to="article.slug"
                              v-on:click.native="clearSearch"

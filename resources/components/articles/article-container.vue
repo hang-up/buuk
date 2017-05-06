@@ -24,7 +24,7 @@
         name: 'article-container',
 
         components: {
-            searchResults: require('./search-results.vue')
+            searchResults: require('../search/search-results.vue')
         },
 
         data() {
@@ -48,7 +48,7 @@
                 this.$store.dispatch('resetSearch')
 
                 // Load the relevant md.
-                this.file = md.render(require(`../../dist/assets/${this.$route.params.article}.md`))
+                this.file = md.render(require(`../../../dist/assets/${this.$route.params.article}.md`))
             }
         }
     }
