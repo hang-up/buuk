@@ -1,6 +1,6 @@
 {
     "app": "Bük",
-    "version": "2.0.0",
+    "version": "2.x",
     "description": "Markdown based Javascript wiki engine.",
     "sub": "Bük is a flat file markdown based wiki engine written in Javascript.",
 
