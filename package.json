@@ -1,8 +1,14 @@
 {
   "name": "buuk",
   "description": "Markdown based javascript wiki engine",
-  "version": "2.0.1",
-  "keywords": ["markdown", "wiki", "vue", "vuejs", "md"],
+  "version": "2.0.2",
+  "keywords": [
+    "markdown",
+    "wiki",
+    "vue",
+    "vuejs",
+    "md"
+  ],
   "license": "MIT",
   "author": "Robert Hang (https://groundedrob.com)",
   "scripts": {
