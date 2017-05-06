@@ -1,7 +1,7 @@
 const slugify = require('slugify')
 const lower = require('lower-case')
 const articles = require('../../../manifest.json').articles;
-const options = require('../../../manifest.json').options;
+const options = require('../../../manifest').options;
 const _ = require('lodash')
 
 /**

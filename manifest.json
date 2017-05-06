@@ -1,6 +1,6 @@
 {
     "app": "Bük",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "description": "Markdown based Javascript wiki engine.",
     "sub": "Bük is a flat file markdown based wiki engine written in Javascript.",
 
@@ -21,43 +21,34 @@
                 ]
             },
             {
-                "title": "Installation",
+                "title": "Quickstart",
                 "tags": [
                     "installation",
                     "how to"
                 ]
             },
             {
-                "title": "Extending Bük",
+                "title": "References",
                 "tags": [
-                    "fork",
-                    "develop",
-                    "npm"
+                    "licence",
+                    "author",
+                    "misc"
                 ]
             }
         ],
 
         "Usage": [
             {
-                "title": "Manifest.js",
+                "title": "Manifest.json",
                 "tags": [
                     "usage",
                     "manifest.js",
                     "how to write"
                 ]
-            },
-
-            {
-                "title": "Write your own pages",
-                "tags": [
-                    "wiki",
-                    "extend",
-                    "new"
-                ]
             }
         ],
 
-        "Nested Categories": {
+        "Example Nested Categories": {
             "Category 1": [
                 {
                     "title": "About Bük",
@@ -67,7 +58,8 @@
                         "fuzzy",
                         "search",
                         "no server"
-                    ]
+                    ],
+                    "slug": "getting-started-about-buk"
                 },
                 {
                     "title": "About Bük",
@@ -77,7 +69,8 @@
                         "fuzzy",
                         "search",
                         "no server"
-                    ]
+                    ],
+                    "slug": "getting-started-about-buk"
                 }
             ],
             "Category 2" : {
@@ -88,21 +81,11 @@
                             "licence",
                             "author",
                             "misc"
-                        ]
+                        ],
+                        "slug": "other-references"
                     }
                 ]
             }
-        },
-
-        "Other": [
-            {
-                "title": "References",
-                "tags": [
-                    "licence",
-                    "author",
-                    "misc"
-                ]
-            }
-        ]
+        }
     }
 }

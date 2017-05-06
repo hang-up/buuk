@@ -24,62 +24,15 @@
 
             <br>
 
-            <h4 class="header">Progression status</h4>
-            <div class="progress">
-                <div class="determinate" style="width: 90%"></div>
-            </div>
-
             <ul class="collection with-header">
-                <li class="collection-header"><h5>What's new in 2.0?</h5></li>
-
-                <li class="collection-item">
-                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
-                    Infinite categories nesting
-                </li>
-                <li class="collection-item">
-                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
-                    Automated slug generation
-                </li>
-                <li class="collection-item">
-                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
-                    Improve search feature
-                </li>
-                <li class="collection-item">
-                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
-                    Quick delete search term on search input
-                </li>
-                <li class="collection-item">
-                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
-                    Search debounced to 250ms
-                </li>
+                <li class="collection-header"><h4>All articles</h4></li>
+                <router-link v-for="article in this.$store.state.searchArticles"
+                             :to="article.slug"
+                             class="collection-item"
+                >
+                    {{ article.title }}
+                </router-link>
             </ul>
-
-            <ul class="collection with-header">
-                <li class="collection-header"><h5>Upcoming in 2.x</h5></li>
-
-                <li class="collection-item">
-                    Improved rendered layout (code snippets, readability)
-                </li>
-
-                <li class="collection-item">
-                    Previous / Next shortcut
-                </li>
-
-                <li class="collection-item">
-                    Full screen layout
-                </li>
-
-            </ul>
-
-            <!--<ul class="collection with-header" v-for="(articles, category) in $store.state.articles">-->
-                <!--<li class="collection-header"><h4>{{ category }}</h4></li>-->
-                <!--<router-link v-for="article in articles"-->
-                             <!--:to="article.slug"-->
-                             <!--class="collection-item"-->
-                <!--&gt;-->
-                    <!--{{ article.title }}-->
-                <!--</router-link>-->
-            <!--</ul>-->
 
         </div>
     </div>
