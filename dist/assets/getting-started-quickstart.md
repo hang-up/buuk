@@ -4,14 +4,14 @@
 ##### NPM
 NPM is the recommended way of installing Bük.
 
-```
+```shell
 npm install buuk
 ```
 
 ##### Git Clone
 Alternatively, you can install Bük by directly cloning the repository from Github
 
-```
+```shell
 git clone https://github.com/hang-up/buk.git buk
 npm install
 ```

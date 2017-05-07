@@ -30,6 +30,7 @@
     "lower-case": "^1.1.4",
     "markdown-it": "^8.2.2",
     "markdown-it-center-text": "^1.0.3",
+    "markdown-it-highlightjs": "^3.0.0",
     "materialize-css": "^0.98.0",
     "node-sass": "^4.5.0",
     "raw-loader": "^0.5.1",
