@@ -42,6 +42,10 @@
                 </li>
 
                 <li class="collection-item">
+                    Improve image handling (use: markdown-it-block-image)
+                </li>
+
+                <li class="collection-item">
                     Allow custom css styling
                 </li>
 
