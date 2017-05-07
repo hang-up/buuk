@@ -32,7 +32,7 @@ npm install buuk
 
 
 ## Usage
-# Manifest.json
+### Manifest.json
 
 The heart of Bük is laying on its `manifest.json` file. The manifest for the current boilerplate follows this structure:
 ```
