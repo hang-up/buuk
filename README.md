@@ -11,20 +11,18 @@ Simply drop in your .md files in a folder, update manifest.json and you get a bl
 
 ## Get started
 
-1) Get Bük ( via npm or git clone)
-> ##### NPM
-NPM is the recommended way of installing Bük.
-
-```
-npm install buuk
-```
-
+1) Get Bük
 > ##### Git Clone
-Alternatively, you can install Bük by directly cloning the repository from Github
-
 ```
 git clone https://github.com/hang-up/buk.git buk
 npm install
+```
+
+> ##### NPM
+Alternatively, use NPM.
+
+```
+npm install buuk
 ```
 ---
 
