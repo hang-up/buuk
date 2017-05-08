@@ -12,7 +12,7 @@ export default {
      * @returns {*}
      */
     mounted() {
-        this.__setTheme()
+        this.setTheme()
     },
 
     /**
@@ -21,7 +21,7 @@ export default {
      * @returns {*}
      * @private
      */
-    __setTheme() {
+    setTheme() {
         switch (options.theme) {
             case 'default':
                 return null;
