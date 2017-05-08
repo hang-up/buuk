@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import store from './store.js'
 require('./sass/app.scss')
+require('./components/utils/themify').default.mounted()
 
 Vue.use(Vuex)
 Vue.use(VueRouter)

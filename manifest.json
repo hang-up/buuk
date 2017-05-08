@@ -5,7 +5,8 @@
     "sub": "Bük is a flat file markdown based wiki engine written in Javascript.",
 
     "options": {
-        "advanced_slugs": true
+        "advanced_slugs": true,
+        "theme": "medium"
     },
 
     "articles" : {

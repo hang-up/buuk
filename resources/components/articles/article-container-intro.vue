@@ -38,6 +38,7 @@
                 </li>
 
                 <li class="collection-item">
+                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
                     Improve readability (Github style?)
                 </li>
 
@@ -46,6 +47,7 @@
                 </li>
 
                 <li class="collection-item">
+                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
                     Allow custom css styling
                 </li>
 

@@ -5,6 +5,7 @@
 
         <!-- Article. -->
         <div class="col s12 m9 l10"
+             id="wrapper"
              v-html="file"
              v-else
         >
@@ -13,14 +14,14 @@
 </template>
 
 <script type="text/babel">
+
+    // Initialize our markdown parser.
     const md = require('markdown-it')({
         breaks: true,
         typographer: true
     })
         .use(require('markdown-it-center-text'))
         .use(require('markdown-it-highlightjs'), "auto")
-
-    const path = require("path")
 
     export default {
         name: 'article-container',
