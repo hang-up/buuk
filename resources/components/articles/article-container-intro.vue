@@ -5,7 +5,7 @@
 </style>
 
 <template>
-    <div>
+    <div id="wrapper">
         <!-- Search results. -->
         <search-results v-if="$store.state.query"></search-results>
 
@@ -26,7 +26,7 @@
 
             <h4 class="header">Progression status</h4>
             <div class="progress">
-                <div class="determinate" style="width: 0%"></div>
+                <div class="determinate" style="width: 60%"></div>
             </div>
 
             <ul class="collection with-header">
