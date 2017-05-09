@@ -43,7 +43,9 @@
         },
 
         mounted() {
-            $(".button-collapse").sideNav();
+            $(".button-collapse").sideNav({
+                draggable: true
+            });
         }
     }
 </script>

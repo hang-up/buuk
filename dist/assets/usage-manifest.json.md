@@ -1,7 +1,7 @@
 # Manifest.json
 
 The heart of Bük is laying on its `manifest.json` file. The manifest for the current boilerplate follows this structure:
-```
+```json
     {
         "app": "Name of the wiki",
         "version": "1.0.0",
@@ -9,8 +9,9 @@ The heart of Bük is laying on its `manifest.json` file. The manifest for the cu
         "sub": "More details about the wiki.",
         
         "options": {
-            "advanced_slugs: true
-        }
+            "advanced_slugs": true,
+            "theme": "default"
+        },
 
         "articles" : {                              // All articles to be indexed
             "Category 1": [                         // Category name
@@ -41,7 +42,7 @@ See the options section below to know more about how we auto generate slugs.
 #### Override slugs
 By default, Bük will generate a slug for every article indexed in the manifest.json file based on its `title` key.  
 If you wish to have a custom slug for an article, simply add a `"slug"` key to your article.
-```
+```json
 {
     "title": "Article title",   // Article name
     "tags": [                   // Tags to use when searched
@@ -56,32 +57,43 @@ If you wish to have a custom slug for an article, simply add a `"slug"` key to y
 ### Nested categories
 Bük allows an infinite degree of nested categories. Simply build your hierarchy inside `manifest.json` and name your markdown files accordingly. 
 An example of manifest using nested categories:
-```
-"articles" : {
-    "Level 0": {
-        "Level 1" : {
-            "Level 2 Category 1": [
-                {
-                    "title": "Article Title",   // level-2-category-1-article-title.md
-                    "tags": [
-                        "licence",
-                        "author",
-                        "misc"
-                    ]
-                }
-            ],
-            
-            "Level 2 Category 2": [
-                {
-                    "title": "Article Title",   // level-2-category-2-article-title.md
-                    "tags": [
-                        "licence",
-                        "author",
-                        "misc"
-                    ]
-                }
-            ]
-        }
-    }
+```json
+{
+  "articles" : {
+      "Level 0": {
+          "Level 1" : {
+              "Level 2 Category 1": [
+                  {
+                      "title": "Article Title",   // level-2-category-1-article-title.md
+                      "tags": [
+                          "licence",
+                          "author",
+                          "misc"
+                      ]
+                  }
+              ],
+              
+              "Level 2 Category 2": [
+                  {
+                      "title": "Article Title",   // level-2-category-2-article-title.md
+                      "tags": [
+                          "licence",
+                          "author",
+                          "misc"
+                      ]
+                  }
+              ]
+          }
+      }
+  }
 }
 ```
+
+### Theming
+> **New in 2.1**  
+#### theme
+By default, Bük ships with [Marked 2](http://marked2app.com/help/Writing_Custom_CSS.html) compatible theme.
+If you wish to add themes or change the theme used, simply 
+1) Drop a `scss` stylesheet in `resources/assets/sass/themes`
+2) Reference it in `resources/components/utils/themify.js`
+3) Update the `theme` key in your manifest.

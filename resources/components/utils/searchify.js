@@ -1,6 +1,12 @@
 const articles = require('../../../manifest.json').articles;
 const _ = require('lodash')
 
+
+/**
+ * This module will go through each article indexed in manifest.json and will initialize the search
+ * feature while filtering duplicates.
+ *
+ */
 export default {
 
     /**
