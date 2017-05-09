@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules && npm run transpile",
-    "transpile": "babel dist/bundle.js --out-file dist/transpiled.js && npm run uglify",
+    "transpile": "babel dist/bundle.js --presets=\"es2015\" --out-file dist/transpiled.js && npm run uglify",
     "uglify": "uglifyjs dist/transpiled.js --compress --stats --output dist/bundle.min.js && echo \"$(tput setaf 2)Build done! $(tput sgr 0)\""
   },
   "repository": {
