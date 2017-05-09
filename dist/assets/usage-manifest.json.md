@@ -93,7 +93,7 @@ An example of manifest using nested categories:
 > **New in 2.1**  
 #### theme
 By default, Bük ships with [Marked 2](http://marked2app.com/help/Writing_Custom_CSS.html) compatible theme.
-If you wish to change the theme used, simply 
+If you wish to add themes or change the theme used, simply 
 1) Drop a `scss` stylesheet in `resources/assets/sass/themes`
 2) Reference it in `resources/components/utils/themify.js`
 3) Update the `theme` key in your manifest.

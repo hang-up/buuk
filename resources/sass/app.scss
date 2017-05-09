@@ -9,6 +9,10 @@ $roboto-font-path: "/dist/fonts/roboto/" !default;
 // Custom styling.
 $buk-color: #EF5350;
 
+
+/*
+  Common style to all themes.
+ */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
 }
@@ -22,4 +26,28 @@ input[type=text]:focus:not([readonly]) {
 // Focused label style
 input[type=text]:focus:not([readonly])+label {
   color: $buk-color;
+}
+
+// Wrapper width.
+@media only screen and (min-width: 601px) {
+  #wrapper {
+    width: 100%;
+  }
+}
+
+// Code formatting.
+code{
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
+// Image.
+img {
+  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }

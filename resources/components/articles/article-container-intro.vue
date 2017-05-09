@@ -43,7 +43,8 @@
                 </li>
 
                 <li class="collection-item">
-                    Improve image handling (use: markdown-it-block-image)
+                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
+                    Improve image handling
                 </li>
 
                 <li class="collection-item">
