@@ -25,6 +25,10 @@ npm install buuk
 #### Development caveats
 > Include `bundle.min.js` in production  
 
-Due to Webpack compilation flow and Uglify inablity to process ES2015 files, running `npm run build` will call `transpile` and `uglify` tasks sequentially.
-An intermediate transpiled unminified ES5 script will be outputted from the `transpile` task (which is simply a npm script for `babel-cli`). 
-`uglify` will compress, minify and output `bundle.min.js` that you should use in production.
+Due to Webpack compilation flow and Uglify inablity to process ES2015 files, running `npm run build` will now call 2 new npm scripts sequentially: `transpile` and `uglify`.
+
+1) `transpile` uses `babel-cli` with the `es2015`presets and outputs `dist/transpiled.js`
+2) `uglify` uses `uglifyjs` to compress `dist/transpiled.js` into `dist/bundle.min.js`
+
+Due to this compilation flow, you SHOULD include `dist/bundle.min.js` in your `index.html` when in production. 
+In development, leave the un-minified version `dist/bundle.js` to benefit from hot reloading.
