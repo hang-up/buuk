@@ -26,7 +26,7 @@
 
             <h4 class="header">Progression status</h4>
             <div class="progress">
-                <div class="determinate" style="width: 80%"></div>
+                <div class="determinate" style="width: 90%"></div>
             </div>
 
             <ul class="collection with-header">
@@ -57,10 +57,6 @@
                     Allow custom css styling
                 </li>
 
-                <li class="collection-item">
-                    Full screen layout - different sidebar width
-                </li>
-
             </ul>
 
             <ul class="collection with-header">
@@ -68,6 +64,10 @@
 
                 <li class="collection-item">
                     Improve introduction page (list all nested articles)
+                </li>
+
+                <li class="collection-item">
+                    Full screen layout - different sidebar width
                 </li>
 
                 <li class="collection-item">
