@@ -26,7 +26,7 @@
 
             <h4 class="header">Progression status</h4>
             <div class="progress">
-                <div class="determinate" style="width: 60%"></div>
+                <div class="determinate" style="width: 80%"></div>
             </div>
 
             <ul class="collection with-header">
@@ -44,6 +44,11 @@
 
                 <li class="collection-item">
                     Improve image handling (use: markdown-it-block-image)
+                </li>
+
+                <li class="collection-item">
+                    <i class="tiny material-icons green darken-1" style="color: #fff;">done</i>
+                    Fix error during building process
                 </li>
 
                 <li class="collection-item">
