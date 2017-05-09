@@ -17,6 +17,13 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
 }
 
+hr {
+  width: 14%;
+  margin: 50px auto 50px auto;
+  border: 0;
+  border-top: 1px solid #dededc;
+}
+
 // Focused input style
 input[type=text]:focus:not([readonly]) {
   border-bottom: 1px solid $buk-color;
