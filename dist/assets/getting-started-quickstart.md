@@ -19,4 +19,12 @@ npm install buuk
 3) Update `manifest.json`
 4) `npm run build`
 
-**Refer to Usage/manifest.json to learn more about file naming conventions.**
+**Refer to Usage/manifest.json to learn more about file naming conventions.** 
+
+---
+#### Development caveats
+> Include `bundle.min.js` in production  
+
+Due to Webpack compilation flow and Uglify inablity to process ES2015 files, running `npm run build` will call `transpile` and `uglify` tasks sequentially.
+An intermediate transpiled unminified ES5 script will be outputted from the `transpile` task (which is simply a npm script for `babel-cli`). 
+`uglify` will compress, minify and output `bundle.min.js` that you should use in production.
