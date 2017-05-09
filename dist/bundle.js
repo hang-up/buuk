@@ -60515,69 +60515,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [(_vm.$store.state.query) ? _c('search-results') : _c('div', {
     staticClass: "col s12"
-  }, [_c('h1', [_vm._v("\n            " + _vm._s(_vm.$store.state.app) + "\n        ")]), _vm._v(" "), _c('h4', [_vm._v("\n            " + _vm._s(_vm.$store.state.description) + "\n        ")]), _vm._v(" "), _c('p', [_vm._v("\n            " + _vm._s(_vm.$store.state.sub) + "\n        ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('h4', {
-    staticClass: "header"
-  }, [_vm._v("Progression status")]), _vm._v(" "), _c('div', {
-    staticClass: "progress"
-  }, [_c('div', {
-    staticClass: "determinate",
-    staticStyle: {
-      "width": "90%"
-    }
-  })]), _vm._v(" "), _c('ul', {
+  }, [_c('h1', [_vm._v("\n            " + _vm._s(_vm.$store.state.app) + "\n        ")]), _vm._v(" "), _c('h4', [_vm._v("\n            " + _vm._s(_vm.$store.state.description) + "\n        ")]), _vm._v(" "), _c('p', [_vm._v("\n            " + _vm._s(_vm.$store.state.sub) + "\n        ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('ul', {
     staticClass: "collection with-header"
   }, [_c('li', {
     staticClass: "collection-header"
-  }, [_c('h5', [_vm._v("What's new in 2.1?")])]), _vm._v(" "), _c('li', {
-    staticClass: "collection-item"
-  }, [_c('i', {
-    staticClass: "tiny material-icons green darken-1",
-    staticStyle: {
-      "color": "#fff"
-    }
-  }, [_vm._v("done")]), _vm._v("\n                Improve code snippets\n            ")]), _vm._v(" "), _c('li', {
-    staticClass: "collection-item"
-  }, [_c('i', {
-    staticClass: "tiny material-icons green darken-1",
-    staticStyle: {
-      "color": "#fff"
-    }
-  }, [_vm._v("done")]), _vm._v("\n                Improve readability (Github style?)\n            ")]), _vm._v(" "), _c('li', {
-    staticClass: "collection-item"
-  }, [_c('i', {
-    staticClass: "tiny material-icons green darken-1",
-    staticStyle: {
-      "color": "#fff"
-    }
-  }, [_vm._v("done")]), _vm._v("\n                Improve image handling\n            ")]), _vm._v(" "), _c('li', {
-    staticClass: "collection-item"
-  }, [_c('i', {
-    staticClass: "tiny material-icons green darken-1",
-    staticStyle: {
-      "color": "#fff"
-    }
-  }, [_vm._v("done")]), _vm._v("\n                Fix error during building process\n            ")]), _vm._v(" "), _c('li', {
-    staticClass: "collection-item"
-  }, [_c('i', {
-    staticClass: "tiny material-icons green darken-1",
-    staticStyle: {
-      "color": "#fff"
-    }
-  }, [_vm._v("done")]), _vm._v("\n                Allow custom css styling\n            ")])]), _vm._v(" "), _c('ul', {
-    staticClass: "collection with-header"
-  }, [_c('li', {
-    staticClass: "collection-header"
-  }, [_c('h5', [_vm._v("Upcoming in > 2.1")])]), _vm._v(" "), _c('li', {
-    staticClass: "collection-item"
-  }, [_vm._v("\n                Improve introduction page (list all nested articles)\n            ")]), _vm._v(" "), _c('li', {
-    staticClass: "collection-item"
-  }, [_vm._v("\n                Full screen layout - different sidebar width\n            ")]), _vm._v(" "), _c('li', {
-    staticClass: "collection-item"
-  }, [_vm._v("\n                Previous / Next shortcut\n            ")]), _vm._v(" "), _c('li', {
-    staticClass: "collection-item"
-  }, [_vm._v("\n                Keyboard previous / next shortcut\n            ")]), _vm._v(" "), _c('li', {
-    staticClass: "collection-item"
-  }, [_vm._v("\n                Localize hard coded string\n            ")])])])], 1)
+  }, [_c('h4', [_vm._v("All articles")])]), _vm._v(" "), _vm._l((this.$store.state.searchArticles), function(article) {
+    return _c('router-link', {
+      staticClass: "collection-item",
+      attrs: {
+        "to": article.slug
+      }
+    }, [_vm._v("\n                " + _vm._s(article.title) + "\n            ")])
+  })], 2)])], 1)
 },staticRenderFns: []}
 
 /***/ }),
