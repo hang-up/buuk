@@ -1,8 +1,8 @@
 {
     "app": "Bük",
     "version": "2.1.x",
-    "description": "Markdown based Javascript wiki engine.",
-    "sub": "Bük is a flat file markdown based wiki engine written in Javascript.",
+    "description": "Markdown based wiki generator.",
+    "sub": "Bük is a markdown based wiki generator written in Javascript.",
 
     "options": {
         "advanced_slugs": true,
