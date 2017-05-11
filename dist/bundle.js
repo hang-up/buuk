@@ -32521,6 +32521,9 @@ var md = __webpack_require__(230)({
             // Clear up the viewport.
             this.$store.dispatch('resetSearch');
 
+            // Go on top of viewport.
+            window.scrollTo(0, 0);
+
             // Load the relevant md.
             this.file = md.render(__webpack_require__(30)("./" + this.$route.params.article + '.md'));
         }
@@ -60131,13 +60134,13 @@ module.exports = urlParse;
 /* 280 */
 /***/ (function(module, exports) {
 
-module.exports = "# About Bük\n\nBük is a flat file markdown based wiki engine written in Javascript.\n\n**No server needed.**  \n\nSimply drop in your .md files in a folder, update manifest.json and you get a blazing fast wiki with an integrated fuzzy search feature.\n\n# Extending Bük\n\nBük being open source, feel free to fork it and make it your own!  \nBuilt using [vue-cli](https://github.com/vuejs/vue-cli) with the [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template, running a local version of Bük is incredibly easy:\n```shell\n    cd buk\n    npm install\n    npm run dev     // Serving on localhost:8080 by default\n    \n    npm run build   // To generate a minified production ready script.\n```\n\nPlease refer to [vue-cli](https://github.com/vuejs/vue-cli) documentation for further customization.\n"
+module.exports = "# About Bük\n\nBük is a markdown based wiki generator written in Javascript. \n**No server needed.**  \n\nSimply drop in your .md files in a folder, update manifest.json and you get a blazing fast wiki with an integrated fuzzy search feature.\n\n# Extending Bük\n\nBük being open source, feel free to fork it and make it your own!  \nBuilt using [vue-cli](https://github.com/vuejs/vue-cli) with the [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template, running a local version of Bük is incredibly easy:\n```shell\n    cd buk\n    npm install\n    npm run dev     // Serving on localhost:8080 by default\n    \n    npm run build   // To generate a minified production ready script.\n```\n\nPlease refer to [vue-cli](https://github.com/vuejs/vue-cli) documentation for further customization.\n"
 
 /***/ }),
 /* 281 */
 /***/ (function(module, exports) {
 
-module.exports = "# Quickstart\n\n1) Get Bük\n> ##### Git Clone\n```\ngit clone https://github.com/hang-up/buk.git buk\nnpm install\n```\n\n> ##### NPM\nAlternatively, use NPM.\n\n```\nnpm install buuk\n```\n---\n\n2) Drop your markdown files inside `dist/assets`.\n3) Update `manifest.json`\n4) `npm run build`\n\n**Refer to Usage/manifest.json to learn more about file naming conventions.** \n\n---\n#### Development caveats\n> Include `bundle.min.js` in production  \n\nDue to Webpack compilation flow and Uglify inablity to process ES2015 files, running `npm run build` will now call 2 new npm scripts sequentially: `transpile` and `uglify`.\n\n1) `transpile` uses `babel-cli` with the `es2015`presets and outputs `dist/transpiled.js`\n2) `uglify` uses `uglifyjs` to compress `dist/transpiled.js` into `dist/bundle.min.js`\n\nDue to this compilation flow, you SHOULD include `dist/bundle.min.js` in your `index.html` when in production. \nIn development, leave the un-minified version `dist/bundle.js` to benefit from hot reloading."
+module.exports = "# Quickstart\n\n1) Get Bük\n> ##### Git Clone\n```\ngit clone https://github.com/hang-up/buk.git buk\ncd buk\nnpm install\n```\n\n> ##### NPM\nAlternatively, use NPM.\n\n```\nnpm install buuk\n```\n---\n\n2) Drop your markdown files inside `dist/assets`.\n3) Update `manifest.json`\n4) `npm run build`\n\n**Refer to Usage/manifest.json to learn more about file naming conventions.** \n\n---\n#### Development caveats\n> Include `bundle.min.js` in production  \n\nDue to Webpack compilation flow and Uglify inablity to process ES2015 files, running `npm run build` will now call 2  npm scripts sequentially: `transpile` and `uglify`.\n\n1) `transpile` uses `babel-cli` with the `es2015`presets and outputs `dist/transpiled.js`\n2) `uglify` uses `uglifyjs` to compress `dist/transpiled.js` into `dist/bundle.min.js`\n\nDue to this compilation flow, you SHOULD include `dist/bundle.min.js` in your `index.html` when in production. \nIn development, leave the un-minified version `dist/bundle.js` to benefit from hot reloading."
 
 /***/ }),
 /* 282 */
