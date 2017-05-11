@@ -50,6 +50,9 @@
                 // Clear up the viewport.
                 this.$store.dispatch('resetSearch')
 
+                // Go on top of viewport.
+                window.scrollTo(0, 0)
+
                 // Load the relevant md.
                 this.file = md.render(require(`../../../dist/assets/${this.$route.params.article}.md`))
             }
