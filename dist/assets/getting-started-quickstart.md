@@ -4,6 +4,7 @@
 > ##### Git Clone
 ```
 git clone https://github.com/hang-up/buk.git buk
+cd buk
 npm install
 ```
 
@@ -25,7 +26,7 @@ npm install buuk
 #### Development caveats
 > Include `bundle.min.js` in production  
 
-Due to Webpack compilation flow and Uglify inablity to process ES2015 files, running `npm run build` will now call 2 new npm scripts sequentially: `transpile` and `uglify`.
+Due to Webpack compilation flow and Uglify inablity to process ES2015 files, running `npm run build` will now call 2  npm scripts sequentially: `transpile` and `uglify`.
 
 1) `transpile` uses `babel-cli` with the `es2015`presets and outputs `dist/transpiled.js`
 2) `uglify` uses `uglifyjs` to compress `dist/transpiled.js` into `dist/bundle.min.js`

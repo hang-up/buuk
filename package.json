@@ -22,9 +22,6 @@
     "url": "https://github.com/hang-up/buk.git"
   },
   "main": "dist/build.min.js",
-  "dependencies": {
-    "vue": "^2.1.0"
-  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.0.0",
@@ -46,6 +43,7 @@
     "slugify": "^1.1.0",
     "style-loader": "^0.13.1",
     "uglifyjs": "^2.4.10",
+    "vue": "^2.1.0",
     "vue-loader": "^10.0.0",
     "vue-router": "^2.2.0",
     "vue-template-compiler": "^2.1.0",

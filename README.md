@@ -1,9 +1,9 @@
 <p align="center"><img src="http://groundedrob.com/images/projects/buk.png" height='250px'></p>
 
 ## About Bük
-> Markdown based Javascript wiki engine.
+> Markdown based wiki generator.
 
-Bük is a flat file markdown based wiki engine written in Javascript.  
+Bük is a markdown based wiki generator written in Javascript.  
 
 **No server needed.**
 
@@ -15,6 +15,7 @@ Simply drop in your .md files in a folder, update manifest.json and you get a bl
 > ##### Git Clone
 ```
 git clone https://github.com/hang-up/buk.git buk
+cd buk
 npm install
 ```
 
