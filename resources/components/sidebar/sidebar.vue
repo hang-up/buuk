@@ -15,10 +15,20 @@
     .collapsible-header {
         padding-left: 32px !important;
     }
+
+    li.logo {
+        padding: 2rem 0;
+    }
 </style>
 
 <template>
     <ul class="side-nav fixed" id="nav-mobile">
+
+        <li class="logo" v-if="this.$store.state.options.logo">
+            <a id="logo-container" href="/" class="brand-logo">
+                <img :src="this.$store.state.options.logo">
+            </a>
+        </li>
 
         <!-- Search input. -->
         <search></search>

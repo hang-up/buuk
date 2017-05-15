@@ -32826,6 +32826,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var Vue = __webpack_require__(6);
 
@@ -32954,7 +32964,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".side-nav .collapsible-body[data-v-4a36daea]{padding:0}ul.side-nav.fixed ul.collapsible .collapsible-body li a[data-v-4a36daea]{font-weight:400;padding:0 37.5px 0 45px}.bold>a[data-v-4a36daea]{font-weight:700}.collapsible-header[data-v-4a36daea]{padding-left:32px!important}", ""]);
+exports.push([module.i, ".side-nav .collapsible-body[data-v-4a36daea]{padding:0}ul.side-nav.fixed ul.collapsible .collapsible-body li a[data-v-4a36daea]{font-weight:400;padding:0 37.5px 0 45px}.bold>a[data-v-4a36daea]{font-weight:700}.collapsible-header[data-v-4a36daea]{padding-left:32px!important}li.logo[data-v-4a36daea]{padding:2rem 0}", ""]);
 
 // exports
 
@@ -60560,7 +60570,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "nav-mobile"
     }
-  }, [_c('search'), _vm._v(" "), _c('li', [_c('router-link', {
+  }, [(this.$store.state.options.logo) ? _c('li', {
+    staticClass: "logo"
+  }, [_c('a', {
+    staticClass: "brand-logo",
+    attrs: {
+      "id": "logo-container",
+      "href": "/"
+    }
+  }, [_c('img', {
+    attrs: {
+      "src": this.$store.state.options.logo
+    }
+  })])]) : _vm._e(), _vm._v(" "), _c('search'), _vm._v(" "), _c('li', [_c('router-link', {
     staticClass: "waves-effect waves-light",
     attrs: {
       "to": "/"
