@@ -1,13 +1,13 @@
 {
   "name": "buuk",
-  "description": "Markdown based javascript wiki engine",
+  "description": "A fast and simple markdown based documentation generator.",
   "version": "2.1.1",
   "keywords": [
     "markdown",
-    "wiki",
-    "vue",
-    "vuejs",
-    "md"
+    "documentation",
+    "doc",
+    "docs",
+    "generator"
   ],
   "license": "MIT",
   "author": "Robert Hang (https://groundedrob.com)",
