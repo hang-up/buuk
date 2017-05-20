@@ -24,7 +24,14 @@
                         <i class="material-icons">menu</i>
                     </a>
                     <ul>
-                        <li><a class="btn-floating blue btn-fullScreen" @click="toggleFullScreen"><i class="material-icons">fullscreen</i></a></li>
+                        <li><a class="btn-floating blue btn-fullScreen tooltipped"
+                               @click="toggleFullScreen"
+                               data-position="left"
+                               data-delay="50"
+                               data-tooltip="Toogle fullscreen">
+                                <i class="material-icons">fullscreen</i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -71,6 +78,12 @@
             $(".button-collapse").sideNav({
                 draggable: true
             })
+
+            /**
+             * Initialize tooltip.
+             *
+             */
+            $('.tooltipped').tooltip({delay: 50});
         },
 
         methods: {

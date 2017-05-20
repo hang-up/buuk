@@ -32344,6 +32344,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'app',
@@ -32368,6 +32372,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         $(".button-collapse").sideNav({
             draggable: true
         });
+
+        /**
+         * Initialize tooltip.
+         *
+         */
+        $('.tooltipped').tooltip({ delay: 50 });
     },
 
 
@@ -60497,7 +60507,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "fixed-action-btn click-to-toggle hide-on-med-and-down"
   }, [_vm._m(0), _vm._v(" "), _c('ul', [_c('li', [_c('a', {
-    staticClass: "btn-floating blue btn-fullScreen",
+    staticClass: "btn-floating blue btn-fullScreen tooltipped",
+    attrs: {
+      "data-position": "left",
+      "data-delay": "50",
+      "data-tooltip": "Toogle fullscreen"
+    },
     on: {
       "click": _vm.toggleFullScreen
     }
