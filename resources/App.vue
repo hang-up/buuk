@@ -1,4 +1,8 @@
 <style scoped>
+    main {
+        transition: all 0.2s ease-out;
+    }
+
     @media screen and (min-width:992px){
         main {
             padding-left: 300px;
@@ -12,7 +16,18 @@
         <sidebar></sidebar>
 
         <main>
+
             <div class="container">
+                <!-- Action bar for desktop layout only. TODO:Will be moved into its own component in 3.x -->
+                <div class="fixed-action-btn click-to-toggle hide-on-med-and-down">
+                    <a class="btn-floating red">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul>
+                        <li><a class="btn-floating blue btn-fullScreen" @click="toggleFullScreen"><i class="material-icons">fullscreen</i></a></li>
+                    </ul>
+                </div>
+
 
                 <!-- Mobile menu trigger. -->
                 <a href="#"
@@ -37,15 +52,45 @@
     export default {
         name: 'app',
 
+        data() {
+            return {
+                isFullScreen: false
+            }
+        },
+
         components: {
             sidebar: require('./components/sidebar/sidebar.vue'),
             articleContainer: require('./components/articles/article-container.vue')
         },
 
         mounted() {
+            /**
+             * Initialize mobile menu trigger.
+             *
+             */
             $(".button-collapse").sideNav({
                 draggable: true
-            });
+            })
+        },
+
+        methods: {
+            /**
+             * Toggle full screen.
+             */
+            toggleFullScreen() {
+                this.isFullScreen = !this.isFullScreen
+
+                // This is not data driven. It's gross.
+                switch(this.isFullScreen) {
+                    case true:
+                        $('#nav-mobile').css('transform', 'translateX(-300px)')
+                        $("main").css("padding-left", 0)
+                        break
+                    default:
+                        $('#nav-mobile').css('transform', 'translateX(0px)')
+                        $("main").css("padding-left", 300)
+                }
+            }
         }
     }
 </script>

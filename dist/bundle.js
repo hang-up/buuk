@@ -32329,9 +32329,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'app',
+
+    data: function data() {
+        return {
+            isFullScreen: false
+        };
+    },
+
 
     components: {
         sidebar: __webpack_require__(292),
@@ -32339,9 +32361,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     mounted: function mounted() {
+        /**
+         * Initialize mobile menu trigger.
+         *
+         */
         $(".button-collapse").sideNav({
             draggable: true
         });
+    },
+
+
+    methods: {
+        /**
+         * Toggle full screen.
+         */
+        toggleFullScreen: function toggleFullScreen() {
+            this.isFullScreen = !this.isFullScreen;
+
+            // This is not data driven. It's gross.
+            switch (this.isFullScreen) {
+                case true:
+                    $('#nav-mobile').css('transform', 'translateX(-300px)');
+                    $("main").css("padding-left", 0);
+                    break;
+                default:
+                    $('#nav-mobile').css('transform', 'translateX(0px)');
+                    $("main").css("padding-left", 300);
+            }
+        }
     }
 });
 
@@ -32922,7 +32969,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "@media screen and (min-width:992px){main[data-v-010c8e36]{padding-left:300px}}", ""]);
+exports.push([module.i, "main[data-v-010c8e36]{transition:all .2s ease-out}@media screen and (min-width:992px){main[data-v-010c8e36]{padding-left:300px}}", ""]);
 
 // exports
 
@@ -60447,10 +60494,25 @@ module.exports = Component.exports
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('sidebar'), _vm._v(" "), _c('main', [_c('div', {
     staticClass: "container"
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "fixed-action-btn click-to-toggle hide-on-med-and-down"
+  }, [_vm._m(0), _vm._v(" "), _c('ul', [_c('li', [_c('a', {
+    staticClass: "btn-floating blue btn-fullScreen",
+    on: {
+      "click": _vm.toggleFullScreen
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("fullscreen")])])])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('router-view')], 1)])])], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    staticClass: "btn-floating red"
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("menu")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('a', {
     staticClass: "top-nav waves-effect waves-light hide-on-large-only btn button-collapse",
     staticStyle: {
