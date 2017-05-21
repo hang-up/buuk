@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 308);
+/******/ 	return __webpack_require__(__webpack_require__.s = 309);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -256,7 +256,7 @@ function isWhiteSpace(code) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /*eslint-disable max-len*/
-var UNICODE_PUNCT_RE = __webpack_require__(10);
+var UNICODE_PUNCT_RE = __webpack_require__(11);
 
 // Currently without astral characters support.
 function isPunctChar(ch) {
@@ -328,7 +328,7 @@ function normalizeReference(str) {
 //
 exports.lib                 = {};
 exports.lib.mdurl           = __webpack_require__(18);
-exports.lib.ucmicro         = __webpack_require__(289);
+exports.lib.ucmicro         = __webpack_require__(290);
 
 exports.assign              = assign;
 exports.isString            = isString;
@@ -570,7 +570,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(305)
+var listToStyles = __webpack_require__(306)
 
 /*
 type StyleObject = {
@@ -773,6 +773,24 @@ function applyToTag (styleElement, obj) {
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(33),
+  /* template */
+  __webpack_require__(297),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
 /*
@@ -1024,7 +1042,7 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10704,10 +10722,10 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -27796,10 +27814,10 @@ module.exports = Vue$3;
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(23)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12), __webpack_require__(23)(module)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28158,7 +28176,7 @@ module.exports = Ruler;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28362,13 +28380,13 @@ module.exports = Token;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports=/[!-#%-\*,-/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u0AF0\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E44\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC9\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD807[\uDC41-\uDC45\uDC70\uDC71]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 var g;
@@ -28392,24 +28410,6 @@ try {
 // easier to handle this case. if(!global) { ...}
 
 module.exports = g;
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(33),
-  /* template */
-  __webpack_require__(296),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-
-module.exports = Component.exports
 
 
 /***/ }),
@@ -29571,7 +29571,7 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(34),
   /* template */
-  __webpack_require__(299),
+  __webpack_require__(300),
   /* scopeId */
   null,
   /* cssModules */
@@ -29619,7 +29619,7 @@ module.exports = function(module) {
 var content = __webpack_require__(38);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, {});
+var update = __webpack_require__(6)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -29641,13 +29641,13 @@ if(false) {
 
 
 /* styles */
-__webpack_require__(300)
+__webpack_require__(301)
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(31),
   /* template */
-  __webpack_require__(293),
+  __webpack_require__(294),
   /* scopeId */
   "data-v-010c8e36",
   /* cssModules */
@@ -29663,13 +29663,13 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(302)
+__webpack_require__(303)
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(32),
   /* template */
-  __webpack_require__(295),
+  __webpack_require__(296),
   /* scopeId */
   "data-v-1f8c9105",
   /* cssModules */
@@ -32185,13 +32185,13 @@ const options = __webpack_require__(3).options;
                 return null;
 
             case 'amblin':
-                return __webpack_require__(285)
-
-            case 'github':
                 return __webpack_require__(286)
 
-            case 'medium':
+            case 'github':
                 return __webpack_require__(287)
+
+            case 'medium':
+                return __webpack_require__(288)
 
             default:
                 return null;
@@ -32204,14 +32204,14 @@ const options = __webpack_require__(3).options;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(13);
 
 
 const manifest = __webpack_require__(3)
-const articles = __webpack_require__(307).default.mounted()
-const searchArticles = __webpack_require__(306).default.mounted()
+const articles = __webpack_require__(308).default.mounted()
+const searchArticles = __webpack_require__(307).default.mounted()
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */])
 
@@ -32270,7 +32270,8 @@ var map = {
 	"./getting-started-about-buk.md": 280,
 	"./getting-started-quickstart.md": 281,
 	"./getting-started-references.md": 282,
-	"./usage-manifest.json.md": 283
+	"./index.md": 283,
+	"./usage-manifest.json.md": 284
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -32348,6 +32349,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'app',
@@ -32360,8 +32364,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     components: {
-        sidebar: __webpack_require__(292),
-        articleContainer: __webpack_require__(12)
+        sidebar: __webpack_require__(293),
+        articleContainer: __webpack_require__(5)
     },
 
     mounted: function mounted() {
@@ -32683,7 +32687,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-var _ = __webpack_require__(7);
+var _ = __webpack_require__(8);
 var Fuse = __webpack_require__(48);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32894,14 +32898,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-var Vue = __webpack_require__(6);
+var Vue = __webpack_require__(7);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'sidebar',
 
     components: {
-        search: __webpack_require__(290),
-        'sidebar-item': __webpack_require__(291)
+        search: __webpack_require__(291),
+        'sidebar-item': __webpack_require__(292)
     },
 
     mounted: function mounted() {
@@ -53556,7 +53560,7 @@ module.exports = function (opts) {
   re.src_Any = __webpack_require__(21).source;
   re.src_Cc  = __webpack_require__(19).source;
   re.src_Z   = __webpack_require__(20).source;
-  re.src_P   = __webpack_require__(10).source;
+  re.src_P   = __webpack_require__(11).source;
 
   // \p{\Z\P\Cc\CF} (white spaces + control + format + punctuation)
   re.src_ZPCc = [ re.src_Z, re.src_P, re.src_Cc ].join('|');
@@ -54856,7 +54860,7 @@ module.exports = MarkdownIt;
 
 
 
-var Ruler           = __webpack_require__(8);
+var Ruler           = __webpack_require__(9);
 
 
 var _rules = [
@@ -54986,7 +54990,7 @@ module.exports = ParserBlock;
 
 
 
-var Ruler  = __webpack_require__(8);
+var Ruler  = __webpack_require__(9);
 
 
 var _rules = [
@@ -55050,7 +55054,7 @@ module.exports = Core;
 
 
 
-var Ruler           = __webpack_require__(8);
+var Ruler           = __webpack_require__(9);
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -57105,7 +57109,7 @@ module.exports = function reference(state, startLine, _endLine, silent) {
 
 
 
-var Token = __webpack_require__(9);
+var Token = __webpack_require__(10);
 var isSpace = __webpack_require__(0).isSpace;
 
 
@@ -58069,7 +58073,7 @@ module.exports = function smartquotes(state) {
 //
 
 
-var Token = __webpack_require__(9);
+var Token = __webpack_require__(10);
 
 
 function StateCore(src, md, env) {
@@ -58810,7 +58814,7 @@ module.exports = function newline(state, silent) {
 
 
 
-var Token          = __webpack_require__(9);
+var Token          = __webpack_require__(10);
 var isWhiteSpace   = __webpack_require__(0).isWhiteSpace;
 var isPunctChar    = __webpack_require__(0).isPunctChar;
 var isMdAsciiPunct = __webpack_require__(0).isMdAsciiPunct;
@@ -60195,7 +60199,7 @@ module.exports = urlParse;
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)(module), __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)(module), __webpack_require__(12)))
 
 /***/ }),
 /* 280 */
@@ -60219,10 +60223,16 @@ module.exports = "# References\n\n### Built using:\n* [vue](https://vuejs.org/) 
 /* 283 */
 /***/ (function(module, exports) {
 
-module.exports = "# Manifest.json\n\nThe heart of Bük is laying on its `manifest.json` file. The manifest for the current boilerplate follows this structure:\n```json\n    {\n        \"app\": \"Name of the wiki\",\n        \"version\": \"1.0.0\",\n        \"description\": \"General description of the wiki.\",\n        \"sub\": \"More details about the wiki.\",\n        \n        \"options\": {\n            \"advanced_slugs\": true,\n            \"theme\": \"default\"\n        },\n\n        \"articles\" : {                              // All articles to be indexed\n            \"Category 1\": [                         // Category name\n              {\n                \"title\": \"Article title\",           // Article name\n                \"tags\": [                           // Tags to use when searched\n                  \"tag 1\",\n                  \"tag 2\",\n                  \"tag 3\"\n                ]\n              }\n            ]\n        }\n    }\n```\n\n### File naming convention\n**Your markdown (.md) file names must match the slug generated by Bük or defined in `manifest.json`.**\nSee the options section below to know more about how we auto generate slugs.\n\n### Options\n#### advanced_slugs\n1. When `advanced_slugs` is set to `true` (default setting), Bük will generate a slug based on the following pattern: `direct-parent-category-title-of-the-article` (eg. usage-manifest.json).\n2. When set to `false`, Bük will simply take the title of the article as slugs (eg. manifest.json)\n\n> Advanced slugs are useful when having multiple articles with the same title defined in the manifest.\n\n#### Override slugs\nBy default, Bük will generate a slug for every article indexed in the manifest.json file based on its `title` key.  \nIf you wish to have a custom slug for an article, simply add a `\"slug\"` key to your article.\n```json\n{\n    \"title\": \"Article title\",   // Article name\n    \"tags\": [                   // Tags to use when searched\n        \"tag 1\",\n        \"tag 2\",\n        \"tag 3\"\n    ],\n    \"slug\": \"custom-slug\"       // Associated .md file must be named custom-slug.md\n}\n```\n\n### Nested categories\nBük allows an infinite degree of nested categories. Simply build your hierarchy inside `manifest.json` and name your markdown files accordingly. \nAn example of manifest using nested categories:\n```json\n{\n  \"articles\" : {\n      \"Level 0\": {\n          \"Level 1\" : {\n              \"Level 2 Category 1\": [\n                  {\n                      \"title\": \"Article Title\",   // level-2-category-1-article-title.md\n                      \"tags\": [\n                          \"licence\",\n                          \"author\",\n                          \"misc\"\n                      ]\n                  }\n              ],\n              \n              \"Level 2 Category 2\": [\n                  {\n                      \"title\": \"Article Title\",   // level-2-category-2-article-title.md\n                      \"tags\": [\n                          \"licence\",\n                          \"author\",\n                          \"misc\"\n                      ]\n                  }\n              ]\n          }\n      }\n  }\n}\n```\n\n### Theming\n> **New in 2.1**  \n#### theme\nBy default, Bük ships with [Marked 2](http://marked2app.com/help/Writing_Custom_CSS.html) compatible theme.\nIf you wish to add themes or change the theme used, simply \n1) Drop a `scss` stylesheet in `resources/assets/sass/themes`\n2) Reference it in `resources/components/utils/themify.js`\n3) Update the `theme` key in your manifest."
+module.exports = "# Bük\n> A fast and simple markdown based documentation generator.\n\nBük is a markdown based static site generator geared towards documentation.\n\n### Features\n* Fuzzy search\n* Material Design\n* Customizable themes\n* No fancy server needed\n* No static files generated\n"
 
 /***/ }),
 /* 284 */
+/***/ (function(module, exports) {
+
+module.exports = "# Manifest.json\n\nThe heart of Bük is laying on its `manifest.json` file. The manifest for the current boilerplate follows this structure:\n```json\n    {\n        \"app\": \"Name of the wiki\",\n        \"version\": \"1.0.0\",\n        \"description\": \"General description of the wiki.\",\n        \"sub\": \"More details about the wiki.\",\n        \n        \"options\": {\n            \"advanced_slugs\": true,\n            \"theme\": \"default\"\n        },\n\n        \"articles\" : {                              // All articles to be indexed\n            \"Category 1\": [                         // Category name\n              {\n                \"title\": \"Article title\",           // Article name\n                \"tags\": [                           // Tags to use when searched\n                  \"tag 1\",\n                  \"tag 2\",\n                  \"tag 3\"\n                ]\n              }\n            ]\n        }\n    }\n```\n\n### File naming convention\n**Your markdown (.md) file names must match the slug generated by Bük or defined in `manifest.json`.**\nSee the options section below to know more about how we auto generate slugs.\n\n### Options\n#### advanced_slugs\n1. When `advanced_slugs` is set to `true` (default setting), Bük will generate a slug based on the following pattern: `direct-parent-category-title-of-the-article` (eg. usage-manifest.json).\n2. When set to `false`, Bük will simply take the title of the article as slugs (eg. manifest.json)\n\n> Advanced slugs are useful when having multiple articles with the same title defined in the manifest.\n\n#### Override slugs\nBy default, Bük will generate a slug for every article indexed in the manifest.json file based on its `title` key.  \nIf you wish to have a custom slug for an article, simply add a `\"slug\"` key to your article.\n```json\n{\n    \"title\": \"Article title\",   // Article name\n    \"tags\": [                   // Tags to use when searched\n        \"tag 1\",\n        \"tag 2\",\n        \"tag 3\"\n    ],\n    \"slug\": \"custom-slug\"       // Associated .md file must be named custom-slug.md\n}\n```\n\n### Nested categories\nBük allows an infinite degree of nested categories. Simply build your hierarchy inside `manifest.json` and name your markdown files accordingly. \nAn example of manifest using nested categories:\n```json\n{\n  \"articles\" : {\n      \"Level 0\": {\n          \"Level 1\" : {\n              \"Level 2 Category 1\": [\n                  {\n                      \"title\": \"Article Title\",   // level-2-category-1-article-title.md\n                      \"tags\": [\n                          \"licence\",\n                          \"author\",\n                          \"misc\"\n                      ]\n                  }\n              ],\n              \n              \"Level 2 Category 2\": [\n                  {\n                      \"title\": \"Article Title\",   // level-2-category-2-article-title.md\n                      \"tags\": [\n                          \"licence\",\n                          \"author\",\n                          \"misc\"\n                      ]\n                  }\n              ]\n          }\n      }\n  }\n}\n```\n\n### Theming\n> **New in 2.1**  \n#### theme\nBy default, Bük ships with [Marked 2](http://marked2app.com/help/Writing_Custom_CSS.html) compatible theme.\nIf you wish to add themes or change the theme used, simply \n1) Drop a `scss` stylesheet in `resources/assets/sass/themes`\n2) Reference it in `resources/components/utils/themify.js`\n3) Update the `theme` key in your manifest."
+
+/***/ }),
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -60334,7 +60344,7 @@ module.exports = "# Manifest.json\n\nThe heart of Bük is laying on its `manifes
 
 
 /***/ }),
-/* 285 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -60343,7 +60353,7 @@ module.exports = "# Manifest.json\n\nThe heart of Bük is laying on its `manifes
 var content = __webpack_require__(39);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, {});
+var update = __webpack_require__(6)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -60360,7 +60370,7 @@ if(false) {
 }
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -60369,7 +60379,7 @@ if(false) {
 var content = __webpack_require__(40);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, {});
+var update = __webpack_require__(6)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -60386,7 +60396,7 @@ if(false) {
 }
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -60395,7 +60405,7 @@ if(false) {
 var content = __webpack_require__(41);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(5)(content, {});
+var update = __webpack_require__(6)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -60412,13 +60422,13 @@ if(false) {
 }
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports) {
 
 module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804\uDCBD|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60426,31 +60436,9 @@ module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u2
 
 exports.Any = __webpack_require__(21);
 exports.Cc  = __webpack_require__(19);
-exports.Cf  = __webpack_require__(288);
-exports.P   = __webpack_require__(10);
+exports.Cf  = __webpack_require__(289);
+exports.P   = __webpack_require__(11);
 exports.Z   = __webpack_require__(20);
-
-
-/***/ }),
-/* 290 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(301)
-
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(35),
-  /* template */
-  __webpack_require__(294),
-  /* scopeId */
-  "data-v-0fae2651",
-  /* cssModules */
-  null
-)
-
-module.exports = Component.exports
 
 
 /***/ }),
@@ -60459,15 +60447,15 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(304)
+__webpack_require__(302)
 
 var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(36),
+  __webpack_require__(35),
   /* template */
-  __webpack_require__(298),
+  __webpack_require__(295),
   /* scopeId */
-  null,
+  "data-v-0fae2651",
   /* cssModules */
   null
 )
@@ -60481,13 +60469,35 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(303)
+__webpack_require__(305)
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(36),
+  /* template */
+  __webpack_require__(299),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 293 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(304)
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(37),
   /* template */
-  __webpack_require__(297),
+  __webpack_require__(298),
   /* scopeId */
   "data-v-4a36daea",
   /* cssModules */
@@ -60498,7 +60508,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 293 */
+/* 294 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -60543,7 +60553,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 }]}
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -60595,7 +60605,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -60620,7 +60630,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -60638,7 +60648,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -60680,7 +60690,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -60723,7 +60733,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -60755,7 +60765,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -60768,7 +60778,7 @@ if(content.locals) module.exports = content.locals;
 var update = __webpack_require__(4)("404504fe", content, true);
 
 /***/ }),
-/* 301 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -60781,7 +60791,7 @@ if(content.locals) module.exports = content.locals;
 var update = __webpack_require__(4)("4ea4abb4", content, true);
 
 /***/ }),
-/* 302 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -60794,7 +60804,7 @@ if(content.locals) module.exports = content.locals;
 var update = __webpack_require__(4)("8c88d21c", content, true);
 
 /***/ }),
-/* 303 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -60807,7 +60817,7 @@ if(content.locals) module.exports = content.locals;
 var update = __webpack_require__(4)("3f6a5d0b", content, true);
 
 /***/ }),
-/* 304 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -60820,7 +60830,7 @@ if(content.locals) module.exports = content.locals;
 var update = __webpack_require__(4)("101467d3", content, true);
 
 /***/ }),
-/* 305 */
+/* 306 */
 /***/ (function(module, exports) {
 
 /**
@@ -60853,13 +60863,13 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 306 */
+/* 307 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 const articles = __webpack_require__(3).articles;
-const _ = __webpack_require__(7)
+const _ = __webpack_require__(8)
 
 
 /**
@@ -60913,16 +60923,16 @@ const _ = __webpack_require__(7)
 });
 
 /***/ }),
-/* 307 */
+/* 308 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-const slugify = __webpack_require__(284)
+const slugify = __webpack_require__(285)
 const lower = __webpack_require__(227)
 const articles = __webpack_require__(3).articles;
 const options = __webpack_require__(3).options;
-const _ = __webpack_require__(7)
+const _ = __webpack_require__(8)
 
 
 /**
@@ -60995,14 +61005,14 @@ const _ = __webpack_require__(7)
 
 
 /***/ }),
-/* 308 */
+/* 309 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__App_vue__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__App_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_router__ = __webpack_require__(27);
@@ -61014,14 +61024,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__(24)
 __webpack_require__(28).default.mounted()
+const options = __webpack_require__(3).options
 
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */])
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vue_router__["a" /* default */])
 
-const routes = [
-    { path: '/', component: __webpack_require__(26) },
-    { path: '/:article', component: __webpack_require__(12)  }
+/*
+    This will be moved into routes.js in 3.x
+ */
+let routes = [
+    {
+        path: '/:article',
+        name: 'article',
+        component: __webpack_require__(5)
+    }
 ]
+if (options.introduction && options.introduction !== null) {
+    routes.push({
+        path: '/',
+        redirect: `${options.introduction}`,
+        component: __webpack_require__(5)})
+}
+else {
+    routes.push({ path: '/', component: __webpack_require__(26) })
+}
 
 const router = new __WEBPACK_IMPORTED_MODULE_3_vue_router__["a" /* default */]({
     routes
