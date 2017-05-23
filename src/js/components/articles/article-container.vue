@@ -1,12 +1,13 @@
 <template>
     <div class="col s12">
         <!-- Search results. -->
-        <!--<search-results v-if="$store.state.query"></search-results>-->
+        <search-results v-if="$store.state.query"></search-results>
 
         <!-- Article. -->
         <div class="col s12 m9 l10"
              id="wrapper"
              v-html="file"
+             v-else
         >
         </div>
     </div>

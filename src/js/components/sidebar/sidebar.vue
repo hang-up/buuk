@@ -32,7 +32,7 @@
         </li>
 
         <!-- Search input. -->
-        <!--<search></search>-->
+        <search></search>
 
         <!-- Introduction. -->
         <li>
@@ -57,7 +57,7 @@
         name: 'sidebar',
 
         components: {
-//            search: require('../search/search.vue'),
+            search: require('../search/search.vue'),
             'sidebar-item': require('./sidebar-item.vue')
         },
 

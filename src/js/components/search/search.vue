@@ -105,7 +105,7 @@
             searchResults: _.debounce(function () {
                 setTimeout(() => {
 
-                    if (this.q == "") {
+                    if (this.q === "") {
                         this.$store.commit({
                             type: 'searchResults',
                             searchResults: []
