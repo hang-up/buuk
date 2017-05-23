@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-const manifest = require('../manifest.json')
-const articles = require('../resources/components/utils/slugify').default.mounted()
-const searchArticles = require('../resources/components/utils/searchify').default.mounted()
+const manifest = require('../../../manifest.json')
+
+const bootstrap = require('../bootstrap/autoload')
+const articles = bootstrap.slug
+const searchArticles = bootstrap.search
 
 Vue.use(Vuex)
 
