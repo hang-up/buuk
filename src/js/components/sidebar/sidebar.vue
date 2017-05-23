@@ -24,6 +24,7 @@
 <template>
     <ul class="side-nav fixed" id="nav-mobile">
 
+        <!-- Logo. -->
         <li class="logo" v-if="this.$store.state.options.logo">
             <a id="logo-container" href="/" class="brand-logo">
                 <img :src="this.$store.state.options.logo">
@@ -31,7 +32,7 @@
         </li>
 
         <!-- Search input. -->
-        <search></search>
+        <!--<search></search>-->
 
         <!-- Introduction. -->
         <li>
@@ -56,7 +57,7 @@
         name: 'sidebar',
 
         components: {
-            search: require('../search/search.vue'),
+//            search: require('../search/search.vue'),
             'sidebar-item': require('./sidebar-item.vue')
         },
 
