@@ -12,13 +12,13 @@ function setTheme() {
             return null;
 
         case 'amblin':
-            return require('../../sass/themes/amblin.scss')
+            return 'amblin.scss'
 
         case 'github':
-            return require('../../sass/themes/github.scss')
+            return 'github.scss'
 
         case 'medium':
-            return require('../../sass/themes/medium.scss')
+            return 'medium.scss'
 
         default:
             return null;

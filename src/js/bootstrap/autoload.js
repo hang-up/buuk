@@ -6,6 +6,7 @@
 
 // Register all bootstrappers.
 module.exports = {
+    render: require('./renderBootstrap').boot(),
     slug: require('./slugBootstrap').boot(),
     search: require('./searchBootstrap').boot(),
     theme: require('./themeBootstrap').boot(),
