@@ -1,8 +1,8 @@
 {
     "app": "Bük",
-    "version": "2.1.x",
-    "description": "Markdown based wiki generator.",
-    "sub": "Bük is a markdown based wiki generator written in Javascript.",
+    "version": "3.0.x",
+    "description": "Markdown based documentation generator.",
+    "sub": "Bük is a fast and simple markdown based static site generator geared towards documentation.",
 
     "options": {
         "advanced_slugs": true,
