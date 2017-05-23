@@ -66,8 +66,8 @@
         },
 
         components: {
-            sidebar: require('./components/sidebar/sidebar.vue'),
-            articleContainer: require('./components/articles/article-container.vue')
+            sidebar: require('./js/components/sidebar/sidebar.vue'),
+            articleContainer: require('./js/components/articles/article-container.vue')
         },
 
         mounted() {

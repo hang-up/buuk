@@ -5,14 +5,14 @@ export function boot() {
         {
             path: '/:article',
             name: 'article',
-            component: require('../components/articles/article-container-intro.vue')
+            component: require('../components/articles/article-container.vue')
         }
     ]
     if (options.introduction && options.introduction !== null) {
         routes.push({
             path: '/',
             redirect: `${options.introduction}`,
-            component: require('../components/articles/article-container-intro.vue')
+            component: require('../components/articles/article-container.vue')
         })
     }
     else {

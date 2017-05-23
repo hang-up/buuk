@@ -1,0 +1,46 @@
+<template>
+    <div id="wrapper">
+        <!-- Search results. -->
+        <search-results v-if="$store.state.query"></search-results>
+
+        <!-- Article. -->
+        <div class="col s12"
+             v-else>
+            <h1>
+                {{ $store.state.app }}
+            </h1>
+            <h4>
+                {{ $store.state.description }}
+            </h4>
+            <p>
+                {{ $store.state.sub }}
+            </p>
+
+            <br>
+
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>All articles</h4></li>
+                <router-link v-for="article in this.$store.state.searchArticles"
+                             :to="article.slug"
+                             class="collection-item"
+                >
+                    {{ article.title }}
+                </router-link>
+            </ul>
+
+        </div>
+    </div>
+</template>
+
+<script type="text/babel">
+    export default {
+        components: {
+            searchResults: require('../search/search-results.vue')
+        },
+
+        mounted() {
+            // Clear up search every time we load a new article.
+            this.$store.dispatch('resetSearch')
+        }
+    }
+</script>

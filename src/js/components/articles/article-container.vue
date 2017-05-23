@@ -1,13 +1,12 @@
 <template>
     <div class="col s12">
         <!-- Search results. -->
-        <search-results v-if="$store.state.query"></search-results>
+        <!--<search-results v-if="$store.state.query"></search-results>-->
 
         <!-- Article. -->
         <div class="col s12 m9 l10"
              id="wrapper"
              v-html="file"
-             v-else
         >
         </div>
     </div>
@@ -54,7 +53,7 @@
                 window.scrollTo(0, 0)
 
                 // Load the relevant md.
-                this.file = md.render(require(`../../../dist/assets/${this.$route.params.article}.md`))
+                this.file = md.render(require(`../../../../docs/${this.$route.params.article}.md`))
             }
         }
     }
