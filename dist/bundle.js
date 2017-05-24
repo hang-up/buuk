@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 309);
+/******/ 	return __webpack_require__(__webpack_require__.s = 311);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -150,7 +150,7 @@ var UNESCAPE_ALL_RE = new RegExp(UNESCAPE_MD_RE.source + '|' + ENTITY_RE.source,
 
 var DIGITAL_ENTITY_TEST_RE = /^#((?:x[a-f0-9]{1,8}|[0-9]{1,8}))/i;
 
-var entities = __webpack_require__(14);
+var entities = __webpack_require__(15);
 
 function replaceEntityPattern(match, name) {
   var code = 0;
@@ -256,7 +256,7 @@ function isWhiteSpace(code) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /*eslint-disable max-len*/
-var UNICODE_PUNCT_RE = __webpack_require__(11);
+var UNICODE_PUNCT_RE = __webpack_require__(10);
 
 // Currently without astral characters support.
 function isPunctChar(ch) {
@@ -327,8 +327,8 @@ function normalizeReference(str) {
 // bundled size (e.g. a browser build).
 //
 exports.lib                 = {};
-exports.lib.mdurl           = __webpack_require__(18);
-exports.lib.ucmicro         = __webpack_require__(290);
+exports.lib.mdurl           = __webpack_require__(19);
+exports.lib.ucmicro         = __webpack_require__(289);
 
 exports.assign              = assign;
 exports.isString            = isString;
@@ -463,9 +463,9 @@ module.exports = function normalizeComponent (
 
 module.exports = {
 	"app": "Bük",
-	"version": "2.1.x",
-	"description": "Markdown based wiki generator.",
-	"sub": "Bük is a markdown based wiki generator written in Javascript.",
+	"version": "3.0.x",
+	"description": "Markdown based documentation generator.",
+	"sub": "Bük is a fast and simple markdown based static site generator geared towards documentation.",
 	"options": {
 		"advanced_slugs": true,
 		"theme": "medium"
@@ -552,245 +552,6 @@ module.exports = {
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-  Modified by Evan You @yyx990803
-*/
-
-var hasDocument = typeof document !== 'undefined'
-
-if (typeof DEBUG !== 'undefined' && DEBUG) {
-  if (!hasDocument) {
-    throw new Error(
-    'vue-style-loader cannot be used in a non-browser environment. ' +
-    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
-  ) }
-}
-
-var listToStyles = __webpack_require__(306)
-
-/*
-type StyleObject = {
-  id: number;
-  parts: Array<StyleObjectPart>
-}
-
-type StyleObjectPart = {
-  css: string;
-  media: string;
-  sourceMap: ?string
-}
-*/
-
-var stylesInDom = {/*
-  [id: number]: {
-    id: number,
-    refs: number,
-    parts: Array<(obj?: StyleObjectPart) => void>
-  }
-*/}
-
-var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
-var singletonElement = null
-var singletonCounter = 0
-var isProduction = false
-var noop = function () {}
-
-// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-// tags it will allow on a page
-var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
-
-module.exports = function (parentId, list, _isProduction) {
-  isProduction = _isProduction
-
-  var styles = listToStyles(parentId, list)
-  addStylesToDom(styles)
-
-  return function update (newList) {
-    var mayRemove = []
-    for (var i = 0; i < styles.length; i++) {
-      var item = styles[i]
-      var domStyle = stylesInDom[item.id]
-      domStyle.refs--
-      mayRemove.push(domStyle)
-    }
-    if (newList) {
-      styles = listToStyles(parentId, newList)
-      addStylesToDom(styles)
-    } else {
-      styles = []
-    }
-    for (var i = 0; i < mayRemove.length; i++) {
-      var domStyle = mayRemove[i]
-      if (domStyle.refs === 0) {
-        for (var j = 0; j < domStyle.parts.length; j++) {
-          domStyle.parts[j]()
-        }
-        delete stylesInDom[domStyle.id]
-      }
-    }
-  }
-}
-
-function addStylesToDom (styles /* Array<StyleObject> */) {
-  for (var i = 0; i < styles.length; i++) {
-    var item = styles[i]
-    var domStyle = stylesInDom[item.id]
-    if (domStyle) {
-      domStyle.refs++
-      for (var j = 0; j < domStyle.parts.length; j++) {
-        domStyle.parts[j](item.parts[j])
-      }
-      for (; j < item.parts.length; j++) {
-        domStyle.parts.push(addStyle(item.parts[j]))
-      }
-      if (domStyle.parts.length > item.parts.length) {
-        domStyle.parts.length = item.parts.length
-      }
-    } else {
-      var parts = []
-      for (var j = 0; j < item.parts.length; j++) {
-        parts.push(addStyle(item.parts[j]))
-      }
-      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
-    }
-  }
-}
-
-function createStyleElement () {
-  var styleElement = document.createElement('style')
-  styleElement.type = 'text/css'
-  head.appendChild(styleElement)
-  return styleElement
-}
-
-function addStyle (obj /* StyleObjectPart */) {
-  var update, remove
-  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
-
-  if (styleElement) {
-    if (isProduction) {
-      // has SSR styles and in production mode.
-      // simply do nothing.
-      return noop
-    } else {
-      // has SSR styles but in dev mode.
-      // for some reason Chrome can't handle source map in server-rendered
-      // style tags - source maps in <style> only works if the style tag is
-      // created and inserted dynamically. So we remove the server rendered
-      // styles and inject new ones.
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  if (isOldIE) {
-    // use singleton mode for IE9.
-    var styleIndex = singletonCounter++
-    styleElement = singletonElement || (singletonElement = createStyleElement())
-    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
-    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
-  } else {
-    // use multi-style-tag mode in all other cases
-    styleElement = createStyleElement()
-    update = applyToTag.bind(null, styleElement)
-    remove = function () {
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  update(obj)
-
-  return function updateStyle (newObj /* StyleObjectPart */) {
-    if (newObj) {
-      if (newObj.css === obj.css &&
-          newObj.media === obj.media &&
-          newObj.sourceMap === obj.sourceMap) {
-        return
-      }
-      update(obj = newObj)
-    } else {
-      remove()
-    }
-  }
-}
-
-var replaceText = (function () {
-  var textStore = []
-
-  return function (index, replacement) {
-    textStore[index] = replacement
-    return textStore.filter(Boolean).join('\n')
-  }
-})()
-
-function applyToSingletonTag (styleElement, index, remove, obj) {
-  var css = remove ? '' : obj.css
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = replaceText(index, css)
-  } else {
-    var cssNode = document.createTextNode(css)
-    var childNodes = styleElement.childNodes
-    if (childNodes[index]) styleElement.removeChild(childNodes[index])
-    if (childNodes.length) {
-      styleElement.insertBefore(cssNode, childNodes[index])
-    } else {
-      styleElement.appendChild(cssNode)
-    }
-  }
-}
-
-function applyToTag (styleElement, obj) {
-  var css = obj.css
-  var media = obj.media
-  var sourceMap = obj.sourceMap
-
-  if (media) {
-    styleElement.setAttribute('media', media)
-  }
-
-  if (sourceMap) {
-    // https://developer.chrome.com/devtools/docs/javascript-debugging
-    // this makes source maps inside style tags work properly in Chrome
-    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
-    // http://stackoverflow.com/a/26603875
-    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
-  }
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild)
-    }
-    styleElement.appendChild(document.createTextNode(css))
-  }
-}
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(33),
-  /* template */
-  __webpack_require__(297),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 6 */
 /***/ (function(module, exports) {
 
 /*
@@ -1042,7 +803,228 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 7 */
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(305)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10725,7 +10707,7 @@ module.exports = Vue$3;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -27814,10 +27796,10 @@ module.exports = Vue$3;
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12), __webpack_require__(23)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12), __webpack_require__(24)(module)))
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28176,7 +28158,7 @@ module.exports = Ruler;
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28380,10 +28362,28 @@ module.exports = Token;
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports=/[!-#%-\*,-/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u0AF0\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E44\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC9\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD807[\uDC41-\uDC45\uDC70\uDC71]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(33),
+  /* template */
+  __webpack_require__(296),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
 
 /***/ }),
 /* 12 */
@@ -29229,17 +29229,37 @@ var index_esm = {
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* What is a bootstrapper?
+    - it mutates the store if it deals with the store
+    - it defines inherent behaviour (routing, progressive, engine selection, ...)
+ */
+
+
+// Register all bootstrappers.
+window.buk = "buk"
+
+module.exports = {
+    slug: __webpack_require__(309).boot(),
+    search: __webpack_require__(308).boot(),
+    theme: __webpack_require__(310).boot(),
+    routes: __webpack_require__(307).boot()
+}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 // HTML5 entities map: { name -> utf16string }
 //
 
 
 /*eslint quotes:0*/
-module.exports = __webpack_require__(47);
+module.exports = __webpack_require__(46);
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29274,7 +29294,7 @@ module.exports.HTML_OPEN_CLOSE_TAG_RE = HTML_OPEN_CLOSE_TAG_RE;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29408,7 +29428,7 @@ module.exports.postProcess = function emphasis(state) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29532,46 +29552,46 @@ module.exports.postProcess = function strikethrough(state) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 
-module.exports.encode = __webpack_require__(276);
-module.exports.decode = __webpack_require__(275);
-module.exports.format = __webpack_require__(277);
-module.exports.parse  = __webpack_require__(278);
+module.exports.encode = __webpack_require__(275);
+module.exports.decode = __webpack_require__(274);
+module.exports.format = __webpack_require__(276);
+module.exports.parse  = __webpack_require__(277);
 
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-module.exports=/[\0-\x1F\x7F-\x9F]/
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports=/[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/
+module.exports=/[\0-\x1F\x7F-\x9F]/
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
-module.exports=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/
+module.exports=/[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/
 
 /***/ }),
 /* 22 */
+/***/ (function(module, exports) {
+
+module.exports=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/
+
+/***/ }),
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(34),
   /* template */
-  __webpack_require__(300),
+  __webpack_require__(298),
   /* scopeId */
   null,
   /* cssModules */
@@ -29582,7 +29602,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -29610,7 +29630,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -29619,7 +29639,7 @@ module.exports = function(module) {
 var content = __webpack_require__(38);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, {});
+var update = __webpack_require__(4)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -29636,42 +29656,20 @@ if(false) {
 }
 
 /***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(301)
-
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(31),
-  /* template */
-  __webpack_require__(294),
-  /* scopeId */
-  "data-v-010c8e36",
-  /* cssModules */
-  null
-)
-
-module.exports = Component.exports
-
-
-/***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(303)
+__webpack_require__(304)
 
 var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(32),
+  __webpack_require__(31),
   /* template */
-  __webpack_require__(296),
+  __webpack_require__(299),
   /* scopeId */
-  "data-v-1f8c9105",
+  "data-v-78c4b035",
   /* cssModules */
   null
 )
@@ -32155,63 +32153,16 @@ if (inBrowser && window.Vue) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-const options = __webpack_require__(3).options;
-
-/**
- * This module is responsible for everything UI related.
- *
- */
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-    /**
-     * Entry point.
-     *
-     * @returns {*}
-     */
-    mounted() {
-        this.setTheme()
-    },
-
-    /**
-     * Set the appropriate theme.
-     *
-     * @returns {*}
-     * @private
-     */
-    setTheme() {
-        switch (options.theme) {
-            case 'default':
-                return null;
-
-            case 'amblin':
-                return __webpack_require__(286)
-
-            case 'github':
-                return __webpack_require__(287)
-
-            case 'medium':
-                return __webpack_require__(288)
-
-            default:
-                return null;
-        }
-    }
-});
-
-/***/ }),
-/* 29 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(13);
 
 
 const manifest = __webpack_require__(3)
-const articles = __webpack_require__(308).default.mounted()
-const searchArticles = __webpack_require__(307).default.mounted()
+
+const bootstrap = __webpack_require__(14)
+const articles = bootstrap.slug
+const searchArticles = bootstrap.search
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */])
 
@@ -32263,15 +32214,40 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 /* harmony default export */ __webpack_exports__["a"] = (store);
 
 /***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./amblin.scss": 285,
+	"./github.scss": 286,
+	"./medium.scss": 287
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 29;
+
+/***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./getting-started-about-buk.md": 280,
-	"./getting-started-quickstart.md": 281,
-	"./getting-started-references.md": 282,
-	"./index.md": 283,
-	"./usage-manifest.json.md": 284
+	"./getting-started-about-buk.md": 279,
+	"./getting-started-quickstart.md": 280,
+	"./getting-started-references.md": 281,
+	"./index.md": 282,
+	"./usage-manifest.json.md": 283
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -32365,7 +32341,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     components: {
         sidebar: __webpack_require__(293),
-        articleContainer: __webpack_require__(5)
+        articleContainer: __webpack_require__(11)
     },
 
     mounted: function mounted() {
@@ -32446,80 +32422,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        searchResults: __webpack_require__(22)
+        searchResults: __webpack_require__(23)
     },
 
     mounted: function mounted() {
-        // Clear up search everytime we load a new article.
+        // Clear up search every time we load a new article.
         this.$store.dispatch('resetSearch');
     }
 });
@@ -32548,16 +32458,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 // Initialize our markdown parser.
-var md = __webpack_require__(230)({
-    breaks: true,
-    typographer: true
-}).use(__webpack_require__(228)).use(__webpack_require__(229), "auto");
+var md = __webpack_require__(306).boot();
+
+console.log(window.buk);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'article-container',
 
     components: {
-        searchResults: __webpack_require__(22)
+        searchResults: __webpack_require__(23)
     },
 
     data: function data() {
@@ -32687,8 +32596,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-var _ = __webpack_require__(8);
-var Fuse = __webpack_require__(48);
+var _ = __webpack_require__(7);
+var Fuse = __webpack_require__(47);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -32743,7 +32652,7 @@ var Fuse = __webpack_require__(48);
 
             setTimeout(function () {
 
-                if (_this.q == "") {
+                if (_this.q === "") {
                     _this.$store.commit({
                         type: 'searchResults',
                         searchResults: []
@@ -32897,8 +32806,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
-var Vue = __webpack_require__(7);
+var Vue = __webpack_require__(6);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'sidebar',
@@ -32983,7 +32893,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "main[data-v-010c8e36]{transition:all .2s ease-out}@media screen and (min-width:992px){main[data-v-010c8e36]{padding-left:300px}}", ""]);
+exports.push([module.i, ".collapsible-body{padding:0 0 0 1rem!important}.is-link{text-decoration:underline;-webkit-text-decoration-style:dashed;text-decoration-style:dashed;-ms-text-underline-position:under;text-underline-position:under}.side-nav .collapsible-header,.side-nav.fixed .collapsible-header{padding:0 32px!important}", ""]);
 
 // exports
 
@@ -32997,7 +32907,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".side-nav li .input-field[data-v-0fae2651],.side-nav li label[data-v-0fae2651]{padding:0 32px}.input-field label:not(.label-icon).active[data-v-0fae2651]{-webkit-transform:translateY(-80%);transform:translateY(-80%)}.fade-enter-active[data-v-0fae2651],.fade-leave-active[data-v-0fae2651]{transition:all .5s}.fade-enter[data-v-0fae2651],.fade-leave-to[data-v-0fae2651]{transform:translateY(10px);opacity:0}", ""]);
+exports.push([module.i, ".side-nav li .input-field[data-v-3d5dcb70],.side-nav li label[data-v-3d5dcb70]{padding:0 32px}.input-field label:not(.label-icon).active[data-v-3d5dcb70]{-webkit-transform:translateY(-80%);transform:translateY(-80%)}.fade-enter-active[data-v-3d5dcb70],.fade-leave-active[data-v-3d5dcb70]{transition:all .5s}.fade-enter[data-v-3d5dcb70],.fade-leave-to[data-v-3d5dcb70]{transform:translateY(10px);opacity:0}", ""]);
 
 // exports
 
@@ -33011,7 +32921,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".collection a.collection-item[data-v-1f8c9105]{color:rgba(0,0,0,.87)}", ""]);
+exports.push([module.i, ".side-nav .collapsible-body[data-v-5b3f6bea]{padding:0}ul.side-nav.fixed ul.collapsible .collapsible-body li a[data-v-5b3f6bea]{font-weight:400;padding:0 37.5px 0 45px}.bold>a[data-v-5b3f6bea]{font-weight:700}.collapsible-header[data-v-5b3f6bea]{padding-left:32px!important}li.logo[data-v-5b3f6bea]{padding:2rem 0}", ""]);
 
 // exports
 
@@ -33025,27 +32935,13 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".side-nav .collapsible-body[data-v-4a36daea]{padding:0}ul.side-nav.fixed ul.collapsible .collapsible-body li a[data-v-4a36daea]{font-weight:400;padding:0 37.5px 0 45px}.bold>a[data-v-4a36daea]{font-weight:700}.collapsible-header[data-v-4a36daea]{padding-left:32px!important}li.logo[data-v-4a36daea]{padding:2rem 0}", ""]);
+exports.push([module.i, "main[data-v-78c4b035]{transition:all .2s ease-out}@media screen and (min-width:992px){main[data-v-78c4b035]{padding-left:300px}}", ""]);
 
 // exports
 
 
 /***/ }),
 /* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)();
-// imports
-
-
-// module
-exports.push([module.i, ".collapsible-body{padding:0 0 0 1rem!important}.is-link{text-decoration:underline;-webkit-text-decoration-style:dashed;text-decoration-style:dashed;-ms-text-underline-position:under;text-underline-position:under}.side-nav .collapsible-header,.side-nav.fixed .collapsible-header{padding:0 32px!important}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -35177,7 +35073,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -36005,7 +35901,7 @@ module.exports = {
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -36827,190 +36723,190 @@ https://highlightjs.org/
 
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var hljs = __webpack_require__(49);
+var hljs = __webpack_require__(48);
 
-hljs.registerLanguage('1c', __webpack_require__(51));
-hljs.registerLanguage('abnf', __webpack_require__(52));
-hljs.registerLanguage('accesslog', __webpack_require__(53));
-hljs.registerLanguage('actionscript', __webpack_require__(54));
-hljs.registerLanguage('ada', __webpack_require__(55));
-hljs.registerLanguage('apache', __webpack_require__(56));
-hljs.registerLanguage('applescript', __webpack_require__(57));
-hljs.registerLanguage('cpp', __webpack_require__(81));
-hljs.registerLanguage('arduino', __webpack_require__(58));
-hljs.registerLanguage('armasm', __webpack_require__(59));
-hljs.registerLanguage('xml', __webpack_require__(221));
-hljs.registerLanguage('asciidoc', __webpack_require__(60));
-hljs.registerLanguage('aspectj', __webpack_require__(61));
-hljs.registerLanguage('autohotkey', __webpack_require__(62));
-hljs.registerLanguage('autoit', __webpack_require__(63));
-hljs.registerLanguage('avrasm', __webpack_require__(64));
-hljs.registerLanguage('awk', __webpack_require__(65));
-hljs.registerLanguage('axapta', __webpack_require__(66));
-hljs.registerLanguage('bash', __webpack_require__(67));
-hljs.registerLanguage('basic', __webpack_require__(68));
-hljs.registerLanguage('bnf', __webpack_require__(69));
-hljs.registerLanguage('brainfuck', __webpack_require__(70));
-hljs.registerLanguage('cal', __webpack_require__(71));
-hljs.registerLanguage('capnproto', __webpack_require__(72));
-hljs.registerLanguage('ceylon', __webpack_require__(73));
-hljs.registerLanguage('clean', __webpack_require__(74));
-hljs.registerLanguage('clojure', __webpack_require__(76));
-hljs.registerLanguage('clojure-repl', __webpack_require__(75));
-hljs.registerLanguage('cmake', __webpack_require__(77));
-hljs.registerLanguage('coffeescript', __webpack_require__(78));
-hljs.registerLanguage('coq', __webpack_require__(79));
-hljs.registerLanguage('cos', __webpack_require__(80));
-hljs.registerLanguage('crmsh', __webpack_require__(82));
-hljs.registerLanguage('crystal', __webpack_require__(83));
-hljs.registerLanguage('cs', __webpack_require__(84));
-hljs.registerLanguage('csp', __webpack_require__(85));
-hljs.registerLanguage('css', __webpack_require__(86));
-hljs.registerLanguage('d', __webpack_require__(87));
-hljs.registerLanguage('markdown', __webpack_require__(146));
-hljs.registerLanguage('dart', __webpack_require__(88));
-hljs.registerLanguage('delphi', __webpack_require__(89));
-hljs.registerLanguage('diff', __webpack_require__(90));
-hljs.registerLanguage('django', __webpack_require__(91));
-hljs.registerLanguage('dns', __webpack_require__(92));
-hljs.registerLanguage('dockerfile', __webpack_require__(93));
-hljs.registerLanguage('dos', __webpack_require__(94));
-hljs.registerLanguage('dsconfig', __webpack_require__(95));
-hljs.registerLanguage('dts', __webpack_require__(96));
-hljs.registerLanguage('dust', __webpack_require__(97));
-hljs.registerLanguage('ebnf', __webpack_require__(98));
-hljs.registerLanguage('elixir', __webpack_require__(99));
-hljs.registerLanguage('elm', __webpack_require__(100));
-hljs.registerLanguage('ruby', __webpack_require__(185));
-hljs.registerLanguage('erb', __webpack_require__(101));
-hljs.registerLanguage('erlang-repl', __webpack_require__(102));
-hljs.registerLanguage('erlang', __webpack_require__(103));
-hljs.registerLanguage('excel', __webpack_require__(104));
-hljs.registerLanguage('fix', __webpack_require__(105));
-hljs.registerLanguage('flix', __webpack_require__(106));
-hljs.registerLanguage('fortran', __webpack_require__(107));
-hljs.registerLanguage('fsharp', __webpack_require__(108));
-hljs.registerLanguage('gams', __webpack_require__(109));
-hljs.registerLanguage('gauss', __webpack_require__(110));
-hljs.registerLanguage('gcode', __webpack_require__(111));
-hljs.registerLanguage('gherkin', __webpack_require__(112));
-hljs.registerLanguage('glsl', __webpack_require__(113));
-hljs.registerLanguage('go', __webpack_require__(114));
-hljs.registerLanguage('golo', __webpack_require__(115));
-hljs.registerLanguage('gradle', __webpack_require__(116));
-hljs.registerLanguage('groovy', __webpack_require__(117));
-hljs.registerLanguage('haml', __webpack_require__(118));
-hljs.registerLanguage('handlebars', __webpack_require__(119));
-hljs.registerLanguage('haskell', __webpack_require__(120));
-hljs.registerLanguage('haxe', __webpack_require__(121));
-hljs.registerLanguage('hsp', __webpack_require__(122));
-hljs.registerLanguage('htmlbars', __webpack_require__(123));
-hljs.registerLanguage('http', __webpack_require__(124));
-hljs.registerLanguage('hy', __webpack_require__(125));
-hljs.registerLanguage('inform7', __webpack_require__(126));
-hljs.registerLanguage('ini', __webpack_require__(127));
-hljs.registerLanguage('irpf90', __webpack_require__(128));
-hljs.registerLanguage('java', __webpack_require__(129));
-hljs.registerLanguage('javascript', __webpack_require__(130));
-hljs.registerLanguage('jboss-cli', __webpack_require__(131));
-hljs.registerLanguage('json', __webpack_require__(132));
-hljs.registerLanguage('julia', __webpack_require__(133));
-hljs.registerLanguage('kotlin', __webpack_require__(134));
-hljs.registerLanguage('lasso', __webpack_require__(135));
-hljs.registerLanguage('ldif', __webpack_require__(136));
-hljs.registerLanguage('leaf', __webpack_require__(137));
-hljs.registerLanguage('less', __webpack_require__(138));
-hljs.registerLanguage('lisp', __webpack_require__(139));
-hljs.registerLanguage('livecodeserver', __webpack_require__(140));
-hljs.registerLanguage('livescript', __webpack_require__(141));
-hljs.registerLanguage('llvm', __webpack_require__(142));
-hljs.registerLanguage('lsl', __webpack_require__(143));
-hljs.registerLanguage('lua', __webpack_require__(144));
-hljs.registerLanguage('makefile', __webpack_require__(145));
-hljs.registerLanguage('mathematica', __webpack_require__(147));
-hljs.registerLanguage('matlab', __webpack_require__(148));
-hljs.registerLanguage('maxima', __webpack_require__(149));
-hljs.registerLanguage('mel', __webpack_require__(150));
-hljs.registerLanguage('mercury', __webpack_require__(151));
-hljs.registerLanguage('mipsasm', __webpack_require__(152));
-hljs.registerLanguage('mizar', __webpack_require__(153));
-hljs.registerLanguage('perl', __webpack_require__(167));
-hljs.registerLanguage('mojolicious', __webpack_require__(154));
-hljs.registerLanguage('monkey', __webpack_require__(155));
-hljs.registerLanguage('moonscript', __webpack_require__(156));
-hljs.registerLanguage('n1ql', __webpack_require__(157));
-hljs.registerLanguage('nginx', __webpack_require__(158));
-hljs.registerLanguage('nimrod', __webpack_require__(159));
-hljs.registerLanguage('nix', __webpack_require__(160));
-hljs.registerLanguage('nsis', __webpack_require__(161));
-hljs.registerLanguage('objectivec', __webpack_require__(162));
-hljs.registerLanguage('ocaml', __webpack_require__(163));
-hljs.registerLanguage('openscad', __webpack_require__(164));
-hljs.registerLanguage('oxygene', __webpack_require__(165));
-hljs.registerLanguage('parser3', __webpack_require__(166));
-hljs.registerLanguage('pf', __webpack_require__(168));
-hljs.registerLanguage('php', __webpack_require__(169));
-hljs.registerLanguage('pony', __webpack_require__(170));
-hljs.registerLanguage('powershell', __webpack_require__(171));
-hljs.registerLanguage('processing', __webpack_require__(172));
-hljs.registerLanguage('profile', __webpack_require__(173));
-hljs.registerLanguage('prolog', __webpack_require__(174));
-hljs.registerLanguage('protobuf', __webpack_require__(175));
-hljs.registerLanguage('puppet', __webpack_require__(176));
-hljs.registerLanguage('purebasic', __webpack_require__(177));
-hljs.registerLanguage('python', __webpack_require__(178));
-hljs.registerLanguage('q', __webpack_require__(179));
-hljs.registerLanguage('qml', __webpack_require__(180));
-hljs.registerLanguage('r', __webpack_require__(181));
-hljs.registerLanguage('rib', __webpack_require__(182));
-hljs.registerLanguage('roboconf', __webpack_require__(183));
-hljs.registerLanguage('rsl', __webpack_require__(184));
-hljs.registerLanguage('ruleslanguage', __webpack_require__(186));
-hljs.registerLanguage('rust', __webpack_require__(187));
-hljs.registerLanguage('scala', __webpack_require__(188));
-hljs.registerLanguage('scheme', __webpack_require__(189));
-hljs.registerLanguage('scilab', __webpack_require__(190));
-hljs.registerLanguage('scss', __webpack_require__(191));
-hljs.registerLanguage('shell', __webpack_require__(192));
-hljs.registerLanguage('smali', __webpack_require__(193));
-hljs.registerLanguage('smalltalk', __webpack_require__(194));
-hljs.registerLanguage('sml', __webpack_require__(195));
-hljs.registerLanguage('sqf', __webpack_require__(196));
-hljs.registerLanguage('sql', __webpack_require__(197));
-hljs.registerLanguage('stan', __webpack_require__(198));
-hljs.registerLanguage('stata', __webpack_require__(199));
-hljs.registerLanguage('step21', __webpack_require__(200));
-hljs.registerLanguage('stylus', __webpack_require__(201));
-hljs.registerLanguage('subunit', __webpack_require__(202));
-hljs.registerLanguage('swift', __webpack_require__(203));
-hljs.registerLanguage('taggerscript', __webpack_require__(204));
-hljs.registerLanguage('yaml', __webpack_require__(223));
-hljs.registerLanguage('tap', __webpack_require__(205));
-hljs.registerLanguage('tcl', __webpack_require__(206));
-hljs.registerLanguage('tex', __webpack_require__(207));
-hljs.registerLanguage('thrift', __webpack_require__(208));
-hljs.registerLanguage('tp', __webpack_require__(209));
-hljs.registerLanguage('twig', __webpack_require__(210));
-hljs.registerLanguage('typescript', __webpack_require__(211));
-hljs.registerLanguage('vala', __webpack_require__(212));
-hljs.registerLanguage('vbnet', __webpack_require__(213));
-hljs.registerLanguage('vbscript', __webpack_require__(215));
-hljs.registerLanguage('vbscript-html', __webpack_require__(214));
-hljs.registerLanguage('verilog', __webpack_require__(216));
-hljs.registerLanguage('vhdl', __webpack_require__(217));
-hljs.registerLanguage('vim', __webpack_require__(218));
-hljs.registerLanguage('x86asm', __webpack_require__(219));
-hljs.registerLanguage('xl', __webpack_require__(220));
-hljs.registerLanguage('xquery', __webpack_require__(222));
-hljs.registerLanguage('zephir', __webpack_require__(224));
+hljs.registerLanguage('1c', __webpack_require__(50));
+hljs.registerLanguage('abnf', __webpack_require__(51));
+hljs.registerLanguage('accesslog', __webpack_require__(52));
+hljs.registerLanguage('actionscript', __webpack_require__(53));
+hljs.registerLanguage('ada', __webpack_require__(54));
+hljs.registerLanguage('apache', __webpack_require__(55));
+hljs.registerLanguage('applescript', __webpack_require__(56));
+hljs.registerLanguage('cpp', __webpack_require__(80));
+hljs.registerLanguage('arduino', __webpack_require__(57));
+hljs.registerLanguage('armasm', __webpack_require__(58));
+hljs.registerLanguage('xml', __webpack_require__(220));
+hljs.registerLanguage('asciidoc', __webpack_require__(59));
+hljs.registerLanguage('aspectj', __webpack_require__(60));
+hljs.registerLanguage('autohotkey', __webpack_require__(61));
+hljs.registerLanguage('autoit', __webpack_require__(62));
+hljs.registerLanguage('avrasm', __webpack_require__(63));
+hljs.registerLanguage('awk', __webpack_require__(64));
+hljs.registerLanguage('axapta', __webpack_require__(65));
+hljs.registerLanguage('bash', __webpack_require__(66));
+hljs.registerLanguage('basic', __webpack_require__(67));
+hljs.registerLanguage('bnf', __webpack_require__(68));
+hljs.registerLanguage('brainfuck', __webpack_require__(69));
+hljs.registerLanguage('cal', __webpack_require__(70));
+hljs.registerLanguage('capnproto', __webpack_require__(71));
+hljs.registerLanguage('ceylon', __webpack_require__(72));
+hljs.registerLanguage('clean', __webpack_require__(73));
+hljs.registerLanguage('clojure', __webpack_require__(75));
+hljs.registerLanguage('clojure-repl', __webpack_require__(74));
+hljs.registerLanguage('cmake', __webpack_require__(76));
+hljs.registerLanguage('coffeescript', __webpack_require__(77));
+hljs.registerLanguage('coq', __webpack_require__(78));
+hljs.registerLanguage('cos', __webpack_require__(79));
+hljs.registerLanguage('crmsh', __webpack_require__(81));
+hljs.registerLanguage('crystal', __webpack_require__(82));
+hljs.registerLanguage('cs', __webpack_require__(83));
+hljs.registerLanguage('csp', __webpack_require__(84));
+hljs.registerLanguage('css', __webpack_require__(85));
+hljs.registerLanguage('d', __webpack_require__(86));
+hljs.registerLanguage('markdown', __webpack_require__(145));
+hljs.registerLanguage('dart', __webpack_require__(87));
+hljs.registerLanguage('delphi', __webpack_require__(88));
+hljs.registerLanguage('diff', __webpack_require__(89));
+hljs.registerLanguage('django', __webpack_require__(90));
+hljs.registerLanguage('dns', __webpack_require__(91));
+hljs.registerLanguage('dockerfile', __webpack_require__(92));
+hljs.registerLanguage('dos', __webpack_require__(93));
+hljs.registerLanguage('dsconfig', __webpack_require__(94));
+hljs.registerLanguage('dts', __webpack_require__(95));
+hljs.registerLanguage('dust', __webpack_require__(96));
+hljs.registerLanguage('ebnf', __webpack_require__(97));
+hljs.registerLanguage('elixir', __webpack_require__(98));
+hljs.registerLanguage('elm', __webpack_require__(99));
+hljs.registerLanguage('ruby', __webpack_require__(184));
+hljs.registerLanguage('erb', __webpack_require__(100));
+hljs.registerLanguage('erlang-repl', __webpack_require__(101));
+hljs.registerLanguage('erlang', __webpack_require__(102));
+hljs.registerLanguage('excel', __webpack_require__(103));
+hljs.registerLanguage('fix', __webpack_require__(104));
+hljs.registerLanguage('flix', __webpack_require__(105));
+hljs.registerLanguage('fortran', __webpack_require__(106));
+hljs.registerLanguage('fsharp', __webpack_require__(107));
+hljs.registerLanguage('gams', __webpack_require__(108));
+hljs.registerLanguage('gauss', __webpack_require__(109));
+hljs.registerLanguage('gcode', __webpack_require__(110));
+hljs.registerLanguage('gherkin', __webpack_require__(111));
+hljs.registerLanguage('glsl', __webpack_require__(112));
+hljs.registerLanguage('go', __webpack_require__(113));
+hljs.registerLanguage('golo', __webpack_require__(114));
+hljs.registerLanguage('gradle', __webpack_require__(115));
+hljs.registerLanguage('groovy', __webpack_require__(116));
+hljs.registerLanguage('haml', __webpack_require__(117));
+hljs.registerLanguage('handlebars', __webpack_require__(118));
+hljs.registerLanguage('haskell', __webpack_require__(119));
+hljs.registerLanguage('haxe', __webpack_require__(120));
+hljs.registerLanguage('hsp', __webpack_require__(121));
+hljs.registerLanguage('htmlbars', __webpack_require__(122));
+hljs.registerLanguage('http', __webpack_require__(123));
+hljs.registerLanguage('hy', __webpack_require__(124));
+hljs.registerLanguage('inform7', __webpack_require__(125));
+hljs.registerLanguage('ini', __webpack_require__(126));
+hljs.registerLanguage('irpf90', __webpack_require__(127));
+hljs.registerLanguage('java', __webpack_require__(128));
+hljs.registerLanguage('javascript', __webpack_require__(129));
+hljs.registerLanguage('jboss-cli', __webpack_require__(130));
+hljs.registerLanguage('json', __webpack_require__(131));
+hljs.registerLanguage('julia', __webpack_require__(132));
+hljs.registerLanguage('kotlin', __webpack_require__(133));
+hljs.registerLanguage('lasso', __webpack_require__(134));
+hljs.registerLanguage('ldif', __webpack_require__(135));
+hljs.registerLanguage('leaf', __webpack_require__(136));
+hljs.registerLanguage('less', __webpack_require__(137));
+hljs.registerLanguage('lisp', __webpack_require__(138));
+hljs.registerLanguage('livecodeserver', __webpack_require__(139));
+hljs.registerLanguage('livescript', __webpack_require__(140));
+hljs.registerLanguage('llvm', __webpack_require__(141));
+hljs.registerLanguage('lsl', __webpack_require__(142));
+hljs.registerLanguage('lua', __webpack_require__(143));
+hljs.registerLanguage('makefile', __webpack_require__(144));
+hljs.registerLanguage('mathematica', __webpack_require__(146));
+hljs.registerLanguage('matlab', __webpack_require__(147));
+hljs.registerLanguage('maxima', __webpack_require__(148));
+hljs.registerLanguage('mel', __webpack_require__(149));
+hljs.registerLanguage('mercury', __webpack_require__(150));
+hljs.registerLanguage('mipsasm', __webpack_require__(151));
+hljs.registerLanguage('mizar', __webpack_require__(152));
+hljs.registerLanguage('perl', __webpack_require__(166));
+hljs.registerLanguage('mojolicious', __webpack_require__(153));
+hljs.registerLanguage('monkey', __webpack_require__(154));
+hljs.registerLanguage('moonscript', __webpack_require__(155));
+hljs.registerLanguage('n1ql', __webpack_require__(156));
+hljs.registerLanguage('nginx', __webpack_require__(157));
+hljs.registerLanguage('nimrod', __webpack_require__(158));
+hljs.registerLanguage('nix', __webpack_require__(159));
+hljs.registerLanguage('nsis', __webpack_require__(160));
+hljs.registerLanguage('objectivec', __webpack_require__(161));
+hljs.registerLanguage('ocaml', __webpack_require__(162));
+hljs.registerLanguage('openscad', __webpack_require__(163));
+hljs.registerLanguage('oxygene', __webpack_require__(164));
+hljs.registerLanguage('parser3', __webpack_require__(165));
+hljs.registerLanguage('pf', __webpack_require__(167));
+hljs.registerLanguage('php', __webpack_require__(168));
+hljs.registerLanguage('pony', __webpack_require__(169));
+hljs.registerLanguage('powershell', __webpack_require__(170));
+hljs.registerLanguage('processing', __webpack_require__(171));
+hljs.registerLanguage('profile', __webpack_require__(172));
+hljs.registerLanguage('prolog', __webpack_require__(173));
+hljs.registerLanguage('protobuf', __webpack_require__(174));
+hljs.registerLanguage('puppet', __webpack_require__(175));
+hljs.registerLanguage('purebasic', __webpack_require__(176));
+hljs.registerLanguage('python', __webpack_require__(177));
+hljs.registerLanguage('q', __webpack_require__(178));
+hljs.registerLanguage('qml', __webpack_require__(179));
+hljs.registerLanguage('r', __webpack_require__(180));
+hljs.registerLanguage('rib', __webpack_require__(181));
+hljs.registerLanguage('roboconf', __webpack_require__(182));
+hljs.registerLanguage('rsl', __webpack_require__(183));
+hljs.registerLanguage('ruleslanguage', __webpack_require__(185));
+hljs.registerLanguage('rust', __webpack_require__(186));
+hljs.registerLanguage('scala', __webpack_require__(187));
+hljs.registerLanguage('scheme', __webpack_require__(188));
+hljs.registerLanguage('scilab', __webpack_require__(189));
+hljs.registerLanguage('scss', __webpack_require__(190));
+hljs.registerLanguage('shell', __webpack_require__(191));
+hljs.registerLanguage('smali', __webpack_require__(192));
+hljs.registerLanguage('smalltalk', __webpack_require__(193));
+hljs.registerLanguage('sml', __webpack_require__(194));
+hljs.registerLanguage('sqf', __webpack_require__(195));
+hljs.registerLanguage('sql', __webpack_require__(196));
+hljs.registerLanguage('stan', __webpack_require__(197));
+hljs.registerLanguage('stata', __webpack_require__(198));
+hljs.registerLanguage('step21', __webpack_require__(199));
+hljs.registerLanguage('stylus', __webpack_require__(200));
+hljs.registerLanguage('subunit', __webpack_require__(201));
+hljs.registerLanguage('swift', __webpack_require__(202));
+hljs.registerLanguage('taggerscript', __webpack_require__(203));
+hljs.registerLanguage('yaml', __webpack_require__(222));
+hljs.registerLanguage('tap', __webpack_require__(204));
+hljs.registerLanguage('tcl', __webpack_require__(205));
+hljs.registerLanguage('tex', __webpack_require__(206));
+hljs.registerLanguage('thrift', __webpack_require__(207));
+hljs.registerLanguage('tp', __webpack_require__(208));
+hljs.registerLanguage('twig', __webpack_require__(209));
+hljs.registerLanguage('typescript', __webpack_require__(210));
+hljs.registerLanguage('vala', __webpack_require__(211));
+hljs.registerLanguage('vbnet', __webpack_require__(212));
+hljs.registerLanguage('vbscript', __webpack_require__(214));
+hljs.registerLanguage('vbscript-html', __webpack_require__(213));
+hljs.registerLanguage('verilog', __webpack_require__(215));
+hljs.registerLanguage('vhdl', __webpack_require__(216));
+hljs.registerLanguage('vim', __webpack_require__(217));
+hljs.registerLanguage('x86asm', __webpack_require__(218));
+hljs.registerLanguage('xl', __webpack_require__(219));
+hljs.registerLanguage('xquery', __webpack_require__(221));
+hljs.registerLanguage('zephir', __webpack_require__(223));
 
 module.exports = hljs;
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs){
@@ -37093,7 +36989,7 @@ module.exports = function(hljs){
 };
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -37168,7 +37064,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -37210,7 +37106,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -37288,7 +37184,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = // We try to support full Ada2012
@@ -37465,7 +37361,7 @@ function(hljs) {
 };
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -37515,7 +37411,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -37605,7 +37501,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -37709,7 +37605,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -37805,7 +37701,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -37997,7 +37893,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports) {
 
 module.exports = function (hljs) {
@@ -38146,7 +38042,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38198,7 +38094,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38338,7 +38234,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38404,7 +38300,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38461,7 +38357,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38496,7 +38392,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38575,7 +38471,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38630,7 +38526,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs){
@@ -38663,7 +38559,7 @@ module.exports = function(hljs){
 };
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs){
@@ -38704,7 +38600,7 @@ module.exports = function(hljs){
 };
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38788,7 +38684,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38841,7 +38737,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38912,7 +38808,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38941,7 +38837,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 75 */
+/* 74 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -38960,7 +38856,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -39059,7 +38955,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -39101,7 +38997,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -39251,7 +39147,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 79 */
+/* 78 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -39322,7 +39218,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, exports) {
 
 module.exports = function cos (hljs) {
@@ -39450,7 +39346,7 @@ module.exports = function cos (hljs) {
 };
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -39629,7 +39525,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -39727,7 +39623,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -39908,7 +39804,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 84 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -40079,7 +39975,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 85 */
+/* 84 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -40105,7 +40001,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 86 */
+/* 85 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -40214,7 +40110,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 87 */
+/* 86 */
 /***/ (function(module, exports) {
 
 module.exports = /**
@@ -40476,7 +40372,7 @@ function(hljs) {
 };
 
 /***/ }),
-/* 88 */
+/* 87 */
 /***/ (function(module, exports) {
 
 module.exports = function (hljs) {
@@ -40581,7 +40477,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 89 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -40654,7 +40550,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 90 */
+/* 89 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -40698,7 +40594,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 91 */
+/* 90 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -40766,7 +40662,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 92 */
+/* 91 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -40799,7 +40695,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 93 */
+/* 92 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -40825,7 +40721,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 94 */
+/* 93 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -40881,7 +40777,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -40932,7 +40828,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41060,7 +40956,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41096,7 +40992,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41133,7 +41029,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41234,7 +41130,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41322,7 +41218,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41341,7 +41237,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 102 */
+/* 101 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41391,7 +41287,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41541,7 +41437,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41593,7 +41489,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 105 */
+/* 104 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41626,7 +41522,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 106 */
+/* 105 */
 /***/ (function(module, exports) {
 
 module.exports = function (hljs) {
@@ -41675,7 +41571,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 107 */
+/* 106 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41750,7 +41646,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 108 */
+/* 107 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -41813,7 +41709,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ (function(module, exports) {
 
 module.exports = function (hljs) {
@@ -41971,7 +41867,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -42199,7 +42095,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -42270,7 +42166,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, exports) {
 
 module.exports = function (hljs) {
@@ -42311,7 +42207,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -42432,7 +42328,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -42490,7 +42386,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 115 */
+/* 114 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -42517,7 +42413,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -42556,7 +42452,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -42654,7 +42550,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports) {
 
 module.exports = // TODO support filter tags like :javascript, support inline HTML
@@ -42765,7 +42661,7 @@ function(hljs) {
 };
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -42803,7 +42699,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -42929,7 +42825,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -43045,7 +42941,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 122 */
+/* 121 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -43095,7 +42991,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 123 */
+/* 122 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -43170,7 +43066,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 124 */
+/* 123 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -43215,7 +43111,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 125 */
+/* 124 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -43321,7 +43217,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 126 */
+/* 125 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -43382,7 +43278,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 127 */
+/* 126 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -43452,7 +43348,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 128 */
+/* 127 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -43532,7 +43428,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 129 */
+/* 128 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -43644,7 +43540,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 130 */
+/* 129 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -43819,7 +43715,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 131 */
+/* 130 */
 /***/ (function(module, exports) {
 
 module.exports = function (hljs) {
@@ -43870,7 +43766,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 132 */
+/* 131 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -43911,7 +43807,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 133 */
+/* 132 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -44093,7 +43989,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 134 */
+/* 133 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -44271,7 +44167,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 135 */
+/* 134 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -44438,7 +44334,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 136 */
+/* 135 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -44465,7 +44361,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 137 */
+/* 136 */
 /***/ (function(module, exports) {
 
 module.exports = function (hljs) {
@@ -44509,7 +44405,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 138 */
+/* 137 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -44653,7 +44549,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 139 */
+/* 138 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -44760,7 +44656,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 140 */
+/* 139 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -44921,7 +44817,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 141 */
+/* 140 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -45074,7 +44970,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 142 */
+/* 141 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -45167,7 +45063,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 143 */
+/* 142 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -45254,7 +45150,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 144 */
+/* 143 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -45324,7 +45220,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 145 */
+/* 144 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -45409,7 +45305,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 146 */
+/* 145 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -45521,7 +45417,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 147 */
+/* 146 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -45583,7 +45479,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 148 */
+/* 147 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -45675,7 +45571,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 149 */
+/* 148 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -46085,7 +45981,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 150 */
+/* 149 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -46314,7 +46210,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 151 */
+/* 150 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -46400,7 +46296,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 152 */
+/* 151 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -46490,7 +46386,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 153 */
+/* 152 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -46513,7 +46409,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 154 */
+/* 153 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -46542,7 +46438,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 155 */
+/* 154 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -46621,7 +46517,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 156 */
+/* 155 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -46737,7 +46633,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 157 */
+/* 156 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -46810,7 +46706,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 158 */
+/* 157 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -46907,7 +46803,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 159 */
+/* 158 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -46966,7 +46862,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 160 */
+/* 159 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -47019,7 +46915,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 161 */
+/* 160 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -47129,7 +47025,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 162 */
+/* 161 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -47224,7 +47120,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 163 */
+/* 162 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -47299,7 +47195,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 164 */
+/* 163 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -47360,7 +47256,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 165 */
+/* 164 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -47434,7 +47330,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 166 */
+/* 165 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -47486,7 +47382,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 167 */
+/* 166 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -47647,7 +47543,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 168 */
+/* 167 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -47703,7 +47599,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 169 */
+/* 168 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -47834,7 +47730,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 170 */
+/* 169 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -47929,7 +47825,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 171 */
+/* 170 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48014,7 +47910,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 172 */
+/* 171 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48066,7 +47962,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 173 */
+/* 172 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48100,7 +47996,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 174 */
+/* 173 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48192,7 +48088,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 175 */
+/* 174 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48232,7 +48128,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 176 */
+/* 175 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48351,7 +48247,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 177 */
+/* 176 */
 /***/ (function(module, exports) {
 
 module.exports = // Base deafult colors in PB IDE: background: #FFFFDF; foreground: #000000;
@@ -48413,7 +48309,7 @@ function(hljs) {
 };
 
 /***/ }),
-/* 178 */
+/* 177 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48533,7 +48429,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 179 */
+/* 178 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48560,7 +48456,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 180 */
+/* 179 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48733,7 +48629,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 181 */
+/* 180 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48807,7 +48703,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 182 */
+/* 181 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48838,7 +48734,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 183 */
+/* 182 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48909,7 +48805,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 184 */
+/* 183 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -48949,7 +48845,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 185 */
+/* 184 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -49130,7 +49026,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 186 */
+/* 185 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -49195,7 +49091,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 187 */
+/* 186 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -49307,7 +49203,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 188 */
+/* 187 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -49426,7 +49322,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 189 */
+/* 188 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -49574,7 +49470,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 190 */
+/* 189 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -49632,7 +49528,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 191 */
+/* 190 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -49734,7 +49630,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 192 */
+/* 191 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -49753,7 +49649,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 193 */
+/* 192 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -49813,7 +49709,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 194 */
+/* 193 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -49867,7 +49763,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 195 */
+/* 194 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -49937,7 +49833,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 196 */
+/* 195 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -50312,7 +50208,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 197 */
+/* 196 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -50476,7 +50372,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 198 */
+/* 197 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -50563,7 +50459,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 199 */
+/* 198 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -50605,7 +50501,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 200 */
+/* 199 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -50656,7 +50552,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 201 */
+/* 200 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51114,7 +51010,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 202 */
+/* 201 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51152,7 +51048,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 203 */
+/* 202 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51273,7 +51169,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 204 */
+/* 203 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51321,7 +51217,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 205 */
+/* 204 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51361,7 +51257,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 206 */
+/* 205 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51426,7 +51322,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 207 */
+/* 206 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51492,7 +51388,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 208 */
+/* 207 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51531,7 +51427,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 209 */
+/* 208 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51619,7 +51515,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 210 */
+/* 209 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51689,7 +51585,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 211 */
+/* 210 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51849,7 +51745,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 212 */
+/* 211 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51903,7 +51799,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 213 */
+/* 212 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51963,7 +51859,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 214 */
+/* 213 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -51979,7 +51875,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 215 */
+/* 214 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -52022,7 +51918,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 216 */
+/* 215 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -52125,7 +52021,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 217 */
+/* 216 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -52190,7 +52086,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 218 */
+/* 217 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -52300,7 +52196,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 219 */
+/* 218 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -52440,7 +52336,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 220 */
+/* 219 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -52517,7 +52413,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 221 */
+/* 220 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -52624,7 +52520,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 222 */
+/* 221 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -52699,7 +52595,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 223 */
+/* 222 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -52791,7 +52687,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 224 */
+/* 223 */
 /***/ (function(module, exports) {
 
 module.exports = function(hljs) {
@@ -52902,7 +52798,7 @@ module.exports = function(hljs) {
 };
 
 /***/ }),
-/* 225 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53058,7 +52954,7 @@ function createNormalizer() {
 function compile(self) {
 
   // Load & clone RE patterns.
-  var re = self.re = __webpack_require__(226)(self.__opts__);
+  var re = self.re = __webpack_require__(225)(self.__opts__);
 
   // Define dynamic patterns
   var tlds = self.__tlds__.slice();
@@ -53546,7 +53442,7 @@ module.exports = LinkifyIt;
 
 
 /***/ }),
-/* 226 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53557,10 +53453,10 @@ module.exports = function (opts) {
   var re = {};
 
   // Use direct extract instead of `regenerate` to reduse browserified size
-  re.src_Any = __webpack_require__(21).source;
-  re.src_Cc  = __webpack_require__(19).source;
-  re.src_Z   = __webpack_require__(20).source;
-  re.src_P   = __webpack_require__(11).source;
+  re.src_Any = __webpack_require__(22).source;
+  re.src_Cc  = __webpack_require__(20).source;
+  re.src_Z   = __webpack_require__(21).source;
+  re.src_P   = __webpack_require__(10).source;
 
   // \p{\Z\P\Cc\CF} (white spaces + control + format + punctuation)
   re.src_ZPCc = [ re.src_Z, re.src_P, re.src_Cc ].join('|');
@@ -53730,7 +53626,7 @@ module.exports = function (opts) {
 
 
 /***/ }),
-/* 227 */
+/* 226 */
 /***/ (function(module, exports) {
 
 /**
@@ -53790,7 +53686,7 @@ module.exports = function (str, locale) {
 
 
 /***/ }),
-/* 228 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53902,10 +53798,10 @@ module.exports = function centertext_plugin(md) {
 
 
 /***/ }),
-/* 229 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const hljs = __webpack_require__(50)
+const hljs = __webpack_require__(49)
 
 const maybe = f => {
   try {
@@ -53953,18 +53849,18 @@ module.exports = highlightjs
 
 
 /***/ }),
-/* 230 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 
-module.exports = __webpack_require__(236);
+module.exports = __webpack_require__(235);
 
 
 /***/ }),
-/* 231 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54044,7 +53940,7 @@ module.exports = [
 
 
 /***/ }),
-/* 232 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54052,13 +53948,13 @@ module.exports = [
 
 
 
-exports.parseLinkLabel       = __webpack_require__(234);
-exports.parseLinkDestination = __webpack_require__(233);
-exports.parseLinkTitle       = __webpack_require__(235);
+exports.parseLinkLabel       = __webpack_require__(233);
+exports.parseLinkDestination = __webpack_require__(232);
+exports.parseLinkTitle       = __webpack_require__(234);
 
 
 /***/ }),
-/* 233 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54145,7 +54041,7 @@ module.exports = function parseLinkDestination(str, pos, max) {
 
 
 /***/ }),
-/* 234 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54200,7 +54096,7 @@ module.exports = function parseLinkLabel(state, start, disableNested) {
 
 
 /***/ }),
-/* 235 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54260,7 +54156,7 @@ module.exports = function parseLinkTitle(str, pos, max) {
 
 
 /***/ }),
-/* 236 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54270,20 +54166,20 @@ module.exports = function parseLinkTitle(str, pos, max) {
 
 
 var utils        = __webpack_require__(0);
-var helpers      = __webpack_require__(232);
-var Renderer     = __webpack_require__(243);
-var ParserCore   = __webpack_require__(238);
-var ParserBlock  = __webpack_require__(237);
-var ParserInline = __webpack_require__(239);
-var LinkifyIt    = __webpack_require__(225);
-var mdurl        = __webpack_require__(18);
-var punycode     = __webpack_require__(279);
+var helpers      = __webpack_require__(231);
+var Renderer     = __webpack_require__(242);
+var ParserCore   = __webpack_require__(237);
+var ParserBlock  = __webpack_require__(236);
+var ParserInline = __webpack_require__(238);
+var LinkifyIt    = __webpack_require__(224);
+var mdurl        = __webpack_require__(19);
+var punycode     = __webpack_require__(278);
 
 
 var config = {
-  'default': __webpack_require__(241),
-  zero: __webpack_require__(242),
-  commonmark: __webpack_require__(240)
+  'default': __webpack_require__(240),
+  zero: __webpack_require__(241),
+  commonmark: __webpack_require__(239)
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -54848,7 +54744,7 @@ module.exports = MarkdownIt;
 
 
 /***/ }),
-/* 237 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54860,23 +54756,23 @@ module.exports = MarkdownIt;
 
 
 
-var Ruler           = __webpack_require__(9);
+var Ruler           = __webpack_require__(8);
 
 
 var _rules = [
   // First 2 params - rule name & source. Secondary array - list of rules,
   // which can be terminated by this one.
-  [ 'table',      __webpack_require__(255),      [ 'paragraph', 'reference' ] ],
-  [ 'code',       __webpack_require__(245) ],
-  [ 'fence',      __webpack_require__(246),      [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
-  [ 'blockquote', __webpack_require__(244), [ 'paragraph', 'reference', 'list' ] ],
-  [ 'hr',         __webpack_require__(248),         [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
-  [ 'list',       __webpack_require__(251),       [ 'paragraph', 'reference', 'blockquote' ] ],
-  [ 'reference',  __webpack_require__(253) ],
-  [ 'heading',    __webpack_require__(247),    [ 'paragraph', 'reference', 'blockquote' ] ],
-  [ 'lheading',   __webpack_require__(250) ],
-  [ 'html_block', __webpack_require__(249), [ 'paragraph', 'reference', 'blockquote' ] ],
-  [ 'paragraph',  __webpack_require__(252) ]
+  [ 'table',      __webpack_require__(254),      [ 'paragraph', 'reference' ] ],
+  [ 'code',       __webpack_require__(244) ],
+  [ 'fence',      __webpack_require__(245),      [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
+  [ 'blockquote', __webpack_require__(243), [ 'paragraph', 'reference', 'list' ] ],
+  [ 'hr',         __webpack_require__(247),         [ 'paragraph', 'reference', 'blockquote', 'list' ] ],
+  [ 'list',       __webpack_require__(250),       [ 'paragraph', 'reference', 'blockquote' ] ],
+  [ 'reference',  __webpack_require__(252) ],
+  [ 'heading',    __webpack_require__(246),    [ 'paragraph', 'reference', 'blockquote' ] ],
+  [ 'lheading',   __webpack_require__(249) ],
+  [ 'html_block', __webpack_require__(248), [ 'paragraph', 'reference', 'blockquote' ] ],
+  [ 'paragraph',  __webpack_require__(251) ]
 ];
 
 
@@ -54970,14 +54866,14 @@ ParserBlock.prototype.parse = function (src, md, env, outTokens) {
 };
 
 
-ParserBlock.prototype.State = __webpack_require__(254);
+ParserBlock.prototype.State = __webpack_require__(253);
 
 
 module.exports = ParserBlock;
 
 
 /***/ }),
-/* 238 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54990,16 +54886,16 @@ module.exports = ParserBlock;
 
 
 
-var Ruler  = __webpack_require__(9);
+var Ruler  = __webpack_require__(8);
 
 
 var _rules = [
-  [ 'normalize',      __webpack_require__(259)      ],
-  [ 'block',          __webpack_require__(256)          ],
-  [ 'inline',         __webpack_require__(257)         ],
-  [ 'linkify',        __webpack_require__(258)        ],
-  [ 'replacements',   __webpack_require__(260)   ],
-  [ 'smartquotes',    __webpack_require__(261)    ]
+  [ 'normalize',      __webpack_require__(258)      ],
+  [ 'block',          __webpack_require__(255)          ],
+  [ 'inline',         __webpack_require__(256)         ],
+  [ 'linkify',        __webpack_require__(257)        ],
+  [ 'replacements',   __webpack_require__(259)   ],
+  [ 'smartquotes',    __webpack_require__(260)    ]
 ];
 
 
@@ -55035,14 +54931,14 @@ Core.prototype.process = function (state) {
   }
 };
 
-Core.prototype.State = __webpack_require__(262);
+Core.prototype.State = __webpack_require__(261);
 
 
 module.exports = Core;
 
 
 /***/ }),
-/* 239 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55054,31 +54950,31 @@ module.exports = Core;
 
 
 
-var Ruler           = __webpack_require__(9);
+var Ruler           = __webpack_require__(8);
 
 
 ////////////////////////////////////////////////////////////////////////////////
 // Parser rules
 
 var _rules = [
-  [ 'text',            __webpack_require__(273) ],
-  [ 'newline',         __webpack_require__(271) ],
-  [ 'escape',          __webpack_require__(267) ],
-  [ 'backticks',       __webpack_require__(264) ],
-  [ 'strikethrough',   __webpack_require__(17).tokenize ],
-  [ 'emphasis',        __webpack_require__(16).tokenize ],
-  [ 'link',            __webpack_require__(270) ],
-  [ 'image',           __webpack_require__(269) ],
-  [ 'autolink',        __webpack_require__(263) ],
-  [ 'html_inline',     __webpack_require__(268) ],
-  [ 'entity',          __webpack_require__(266) ]
+  [ 'text',            __webpack_require__(272) ],
+  [ 'newline',         __webpack_require__(270) ],
+  [ 'escape',          __webpack_require__(266) ],
+  [ 'backticks',       __webpack_require__(263) ],
+  [ 'strikethrough',   __webpack_require__(18).tokenize ],
+  [ 'emphasis',        __webpack_require__(17).tokenize ],
+  [ 'link',            __webpack_require__(269) ],
+  [ 'image',           __webpack_require__(268) ],
+  [ 'autolink',        __webpack_require__(262) ],
+  [ 'html_inline',     __webpack_require__(267) ],
+  [ 'entity',          __webpack_require__(265) ]
 ];
 
 var _rules2 = [
-  [ 'balance_pairs',   __webpack_require__(265) ],
-  [ 'strikethrough',   __webpack_require__(17).postProcess ],
-  [ 'emphasis',        __webpack_require__(16).postProcess ],
-  [ 'text_collapse',   __webpack_require__(274) ]
+  [ 'balance_pairs',   __webpack_require__(264) ],
+  [ 'strikethrough',   __webpack_require__(18).postProcess ],
+  [ 'emphasis',        __webpack_require__(17).postProcess ],
+  [ 'text_collapse',   __webpack_require__(273) ]
 ];
 
 
@@ -55219,14 +55115,14 @@ ParserInline.prototype.parse = function (str, md, env, outTokens) {
 };
 
 
-ParserInline.prototype.State = __webpack_require__(272);
+ParserInline.prototype.State = __webpack_require__(271);
 
 
 module.exports = ParserInline;
 
 
 /***/ }),
-/* 240 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55313,7 +55209,7 @@ module.exports = {
 
 
 /***/ }),
-/* 241 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55361,7 +55257,7 @@ module.exports = {
 
 
 /***/ }),
-/* 242 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55430,7 +55326,7 @@ module.exports = {
 
 
 /***/ }),
-/* 243 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55772,7 +55668,7 @@ module.exports = Renderer;
 
 
 /***/ }),
-/* 244 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56065,7 +55961,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 245 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56106,7 +56002,7 @@ module.exports = function code(state, startLine, endLine/*, silent*/) {
 
 
 /***/ }),
-/* 246 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56207,7 +56103,7 @@ module.exports = function fence(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 247 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56269,7 +56165,7 @@ module.exports = function heading(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 248 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56321,7 +56217,7 @@ module.exports = function hr(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 249 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56330,8 +56226,8 @@ module.exports = function hr(state, startLine, endLine, silent) {
 
 
 
-var block_names = __webpack_require__(231);
-var HTML_OPEN_CLOSE_TAG_RE = __webpack_require__(15).HTML_OPEN_CLOSE_TAG_RE;
+var block_names = __webpack_require__(230);
+var HTML_OPEN_CLOSE_TAG_RE = __webpack_require__(16).HTML_OPEN_CLOSE_TAG_RE;
 
 // An array of opening and corresponding closing sequences for html tags,
 // last argument defines whether it can terminate a paragraph or not
@@ -56402,7 +56298,7 @@ module.exports = function html_block(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 250 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56492,7 +56388,7 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
 
 
 /***/ }),
-/* 251 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56837,7 +56733,7 @@ module.exports = function list(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 252 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56896,7 +56792,7 @@ module.exports = function paragraph(state, startLine/*, endLine*/) {
 
 
 /***/ }),
-/* 253 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57101,7 +56997,7 @@ module.exports = function reference(state, startLine, _endLine, silent) {
 
 
 /***/ }),
-/* 254 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57109,7 +57005,7 @@ module.exports = function reference(state, startLine, _endLine, silent) {
 
 
 
-var Token = __webpack_require__(10);
+var Token = __webpack_require__(9);
 var isSpace = __webpack_require__(0).isSpace;
 
 
@@ -57338,7 +57234,7 @@ module.exports = StateBlock;
 
 
 /***/ }),
-/* 255 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57541,7 +57437,7 @@ module.exports = function table(state, startLine, endLine, silent) {
 
 
 /***/ }),
-/* 256 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57564,7 +57460,7 @@ module.exports = function block(state) {
 
 
 /***/ }),
-/* 257 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57584,7 +57480,7 @@ module.exports = function inline(state) {
 
 
 /***/ }),
-/* 258 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57724,7 +57620,7 @@ module.exports = function linkify(state) {
 
 
 /***/ }),
-/* 259 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57751,7 +57647,7 @@ module.exports = function inline(state) {
 
 
 /***/ }),
-/* 260 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57865,7 +57761,7 @@ module.exports = function replace(state) {
 
 
 /***/ }),
-/* 261 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58065,7 +57961,7 @@ module.exports = function smartquotes(state) {
 
 
 /***/ }),
-/* 262 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58073,7 +57969,7 @@ module.exports = function smartquotes(state) {
 //
 
 
-var Token = __webpack_require__(10);
+var Token = __webpack_require__(9);
 
 
 function StateCore(src, md, env) {
@@ -58092,7 +57988,7 @@ module.exports = StateCore;
 
 
 /***/ }),
-/* 263 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58171,7 +58067,7 @@ module.exports = function autolink(state, silent) {
 
 
 /***/ }),
-/* 264 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58221,7 +58117,7 @@ module.exports = function backtick(state, silent) {
 
 
 /***/ }),
-/* 265 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58272,7 +58168,7 @@ module.exports = function link_pairs(state) {
 
 
 /***/ }),
-/* 266 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58280,7 +58176,7 @@ module.exports = function link_pairs(state) {
 
 
 
-var entities          = __webpack_require__(14);
+var entities          = __webpack_require__(15);
 var has               = __webpack_require__(0).has;
 var isValidEntityCode = __webpack_require__(0).isValidEntityCode;
 var fromCodePoint     = __webpack_require__(0).fromCodePoint;
@@ -58327,7 +58223,7 @@ module.exports = function entity(state, silent) {
 
 
 /***/ }),
-/* 267 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58386,7 +58282,7 @@ module.exports = function escape(state, silent) {
 
 
 /***/ }),
-/* 268 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58395,7 +58291,7 @@ module.exports = function escape(state, silent) {
 
 
 
-var HTML_TAG_RE = __webpack_require__(15).HTML_TAG_RE;
+var HTML_TAG_RE = __webpack_require__(16).HTML_TAG_RE;
 
 
 function isLetter(ch) {
@@ -58440,7 +58336,7 @@ module.exports = function html_inline(state, silent) {
 
 
 /***/ }),
-/* 269 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58599,7 +58495,7 @@ module.exports = function image(state, silent) {
 
 
 /***/ }),
-/* 270 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58756,7 +58652,7 @@ module.exports = function link(state, silent) {
 
 
 /***/ }),
-/* 271 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58805,7 +58701,7 @@ module.exports = function newline(state, silent) {
 
 
 /***/ }),
-/* 272 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58814,7 +58710,7 @@ module.exports = function newline(state, silent) {
 
 
 
-var Token          = __webpack_require__(10);
+var Token          = __webpack_require__(9);
 var isWhiteSpace   = __webpack_require__(0).isWhiteSpace;
 var isPunctChar    = __webpack_require__(0).isPunctChar;
 var isMdAsciiPunct = __webpack_require__(0).isMdAsciiPunct;
@@ -58942,7 +58838,7 @@ module.exports = StateInline;
 
 
 /***/ }),
-/* 273 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59038,7 +58934,7 @@ module.exports = function text(state, silent) {
 
 
 /***/ }),
-/* 274 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59078,7 +58974,7 @@ module.exports = function text_collapse(state) {
 
 
 /***/ }),
-/* 275 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59207,7 +59103,7 @@ module.exports = decode;
 
 
 /***/ }),
-/* 276 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59312,7 +59208,7 @@ module.exports = encode;
 
 
 /***/ }),
-/* 277 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59344,7 +59240,7 @@ module.exports = function format(url) {
 
 
 /***/ }),
-/* 278 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59663,7 +59559,7 @@ module.exports = urlParse;
 
 
 /***/ }),
-/* 279 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -60199,40 +60095,40 @@ module.exports = urlParse;
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)(module), __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24)(module), __webpack_require__(12)))
 
 /***/ }),
-/* 280 */
+/* 279 */
 /***/ (function(module, exports) {
 
 module.exports = "# About Bük\n\nBük is a markdown based wiki generator written in Javascript. \n**No server needed.**  \n\nSimply drop in your .md files in a folder, update manifest.json and you get a blazing fast wiki with an integrated fuzzy search feature.\n\n# Extending Bük\n\nBük being open source, feel free to fork it and make it your own!  \nBuilt using [vue-cli](https://github.com/vuejs/vue-cli) with the [webpack-simple](https://github.com/vuejs-templates/webpack-simple) template, running a local version of Bük is incredibly easy:\n```shell\n    cd buk\n    npm install\n    npm run dev     // Serving on localhost:8080 by default\n    \n    npm run build   // To generate a minified production ready script.\n```\n\nPlease refer to [vue-cli](https://github.com/vuejs/vue-cli) documentation for further customization.\n"
 
 /***/ }),
-/* 281 */
+/* 280 */
 /***/ (function(module, exports) {
 
 module.exports = "# Quickstart\n\n1) Get Bük\n> ##### Git Clone\n```\ngit clone https://github.com/hang-up/buk.git buk\ncd buk\nnpm install\n```\n\n> ##### NPM\nAlternatively, use NPM.\n\n```\nnpm install buuk\n```\n---\n\n2) Drop your markdown files inside `dist/assets`.\n3) Update `manifest.json`\n4) `npm run build`\n\n**Refer to Usage/manifest.json to learn more about file naming conventions.** \n\n---\n#### Development caveats\n> Include `bundle.min.js` in production  \n\nDue to Webpack compilation flow and Uglify inablity to process ES2015 files, running `npm run build` will now call 2  npm scripts sequentially: `transpile` and `uglify`.\n\n1) `transpile` uses `babel-cli` with the `es2015`presets and outputs `dist/transpiled.js`\n2) `uglify` uses `uglifyjs` to compress `dist/transpiled.js` into `dist/bundle.min.js`\n\nDue to this compilation flow, you SHOULD include `dist/bundle.min.js` in your `index.html` when in production. \nIn development, leave the un-minified version `dist/bundle.js` to benefit from hot reloading."
 
 /***/ }),
-/* 282 */
+/* 281 */
 /***/ (function(module, exports) {
 
 module.exports = "# References\n\n### Built using:\n* [vue](https://vuejs.org/) -  [vuex](https://vuex.vuejs.org) - [vue-router](https://router.vuejs.org)\n* [fuse.js](http:http://fusejs.io/)\n\n### Parser\nBük is using [markdown-it](https://github.com/markdown-it/markdown-it) as a parser to display your markdown pages. If you encounter any parsing caveats, please address your issues [here](https://github.com/markdown-it/markdown-it/issues).  \n\n### Licence\nMIT"
 
 /***/ }),
-/* 283 */
+/* 282 */
 /***/ (function(module, exports) {
 
-module.exports = "# Bük\n> A fast and simple markdown based documentation generator.\n\nBük is a markdown based static site generator geared towards documentation.\n\n### Features\n* Fuzzy search\n* Material Design\n* Customizable themes\n* No fancy server needed\n* No static files generated\n"
+module.exports = "# Bük\n> A fast and simple markdown based documentation generator.\n\nBük is a markdown based static site generator geared towards documentation.\n\n**This is a custom introductory page! It is just yet another markdown file you can edit however you like.** \n"
 
 /***/ }),
-/* 284 */
+/* 283 */
 /***/ (function(module, exports) {
 
 module.exports = "# Manifest.json\n\nThe heart of Bük is laying on its `manifest.json` file. The manifest for the current boilerplate follows this structure:\n```json\n    {\n        \"app\": \"Name of the wiki\",\n        \"version\": \"1.0.0\",\n        \"description\": \"General description of the wiki.\",\n        \"sub\": \"More details about the wiki.\",\n        \n        \"options\": {\n            \"advanced_slugs\": true,\n            \"theme\": \"default\"\n        },\n\n        \"articles\" : {                              // All articles to be indexed\n            \"Category 1\": [                         // Category name\n              {\n                \"title\": \"Article title\",           // Article name\n                \"tags\": [                           // Tags to use when searched\n                  \"tag 1\",\n                  \"tag 2\",\n                  \"tag 3\"\n                ]\n              }\n            ]\n        }\n    }\n```\n\n### File naming convention\n**Your markdown (.md) file names must match the slug generated by Bük or defined in `manifest.json`.**\nSee the options section below to know more about how we auto generate slugs.\n\n### Options\n#### advanced_slugs\n1. When `advanced_slugs` is set to `true` (default setting), Bük will generate a slug based on the following pattern: `direct-parent-category-title-of-the-article` (eg. usage-manifest.json).\n2. When set to `false`, Bük will simply take the title of the article as slugs (eg. manifest.json)\n\n> Advanced slugs are useful when having multiple articles with the same title defined in the manifest.\n\n#### Override slugs\nBy default, Bük will generate a slug for every article indexed in the manifest.json file based on its `title` key.  \nIf you wish to have a custom slug for an article, simply add a `\"slug\"` key to your article.\n```json\n{\n    \"title\": \"Article title\",   // Article name\n    \"tags\": [                   // Tags to use when searched\n        \"tag 1\",\n        \"tag 2\",\n        \"tag 3\"\n    ],\n    \"slug\": \"custom-slug\"       // Associated .md file must be named custom-slug.md\n}\n```\n\n### Nested categories\nBük allows an infinite degree of nested categories. Simply build your hierarchy inside `manifest.json` and name your markdown files accordingly. \nAn example of manifest using nested categories:\n```json\n{\n  \"articles\" : {\n      \"Level 0\": {\n          \"Level 1\" : {\n              \"Level 2 Category 1\": [\n                  {\n                      \"title\": \"Article Title\",   // level-2-category-1-article-title.md\n                      \"tags\": [\n                          \"licence\",\n                          \"author\",\n                          \"misc\"\n                      ]\n                  }\n              ],\n              \n              \"Level 2 Category 2\": [\n                  {\n                      \"title\": \"Article Title\",   // level-2-category-2-article-title.md\n                      \"tags\": [\n                          \"licence\",\n                          \"author\",\n                          \"misc\"\n                      ]\n                  }\n              ]\n          }\n      }\n  }\n}\n```\n\n### Theming\n> **New in 2.1**  \n#### theme\nBy default, Bük ships with [Marked 2](http://marked2app.com/help/Writing_Custom_CSS.html) compatible theme.\nIf you wish to add themes or change the theme used, simply \n1) Drop a `scss` stylesheet in `resources/assets/sass/themes`\n2) Reference it in `resources/components/utils/themify.js`\n3) Update the `theme` key in your manifest."
 
 /***/ }),
-/* 285 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -60344,7 +60240,7 @@ module.exports = "# Manifest.json\n\nThe heart of Bük is laying on its `manifes
 
 
 /***/ }),
-/* 286 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -60353,7 +60249,7 @@ module.exports = "# Manifest.json\n\nThe heart of Bük is laying on its `manifes
 var content = __webpack_require__(39);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, {});
+var update = __webpack_require__(4)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -60370,7 +60266,7 @@ if(false) {
 }
 
 /***/ }),
-/* 287 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -60379,7 +60275,7 @@ if(false) {
 var content = __webpack_require__(40);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, {});
+var update = __webpack_require__(4)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -60396,7 +60292,7 @@ if(false) {
 }
 
 /***/ }),
-/* 288 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -60405,7 +60301,7 @@ if(false) {
 var content = __webpack_require__(41);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(6)(content, {});
+var update = __webpack_require__(4)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -60422,23 +60318,41 @@ if(false) {
 }
 
 /***/ }),
-/* 289 */
+/* 288 */
 /***/ (function(module, exports) {
 
 module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804\uDCBD|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/
 
 /***/ }),
-/* 290 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.Any = __webpack_require__(21);
-exports.Cc  = __webpack_require__(19);
-exports.Cf  = __webpack_require__(289);
-exports.P   = __webpack_require__(11);
-exports.Z   = __webpack_require__(20);
+exports.Any = __webpack_require__(22);
+exports.Cc  = __webpack_require__(20);
+exports.Cf  = __webpack_require__(288);
+exports.P   = __webpack_require__(10);
+exports.Z   = __webpack_require__(21);
+
+
+/***/ }),
+/* 290 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(32),
+  /* template */
+  __webpack_require__(300),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
 
 
 /***/ }),
@@ -60455,7 +60369,7 @@ var Component = __webpack_require__(2)(
   /* template */
   __webpack_require__(295),
   /* scopeId */
-  "data-v-0fae2651",
+  "data-v-3d5dcb70",
   /* cssModules */
   null
 )
@@ -60469,13 +60383,13 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(305)
+__webpack_require__(301)
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(36),
   /* template */
-  __webpack_require__(299),
+  __webpack_require__(294),
   /* scopeId */
   null,
   /* cssModules */
@@ -60491,15 +60405,15 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(304)
+__webpack_require__(303)
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(37),
   /* template */
-  __webpack_require__(298),
+  __webpack_require__(297),
   /* scopeId */
-  "data-v-4a36daea",
+  "data-v-5b3f6bea",
   /* cssModules */
   null
 )
@@ -60512,45 +60426,43 @@ module.exports = Component.exports
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('sidebar'), _vm._v(" "), _c('main', [_c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "fixed-action-btn click-to-toggle hide-on-med-and-down"
-  }, [_vm._m(0), _vm._v(" "), _c('ul', [_c('li', [_c('a', {
-    staticClass: "btn-floating blue btn-fullScreen tooltipped",
+  return (!_vm.isDeep(_vm.articles)) ? _c('li', [_c('a', {
+    staticClass: "collapsible-header waves-effect waves-red"
+  }, [_vm._v(_vm._s(_vm.category))]), _vm._v(" "), _c('div', {
+    staticClass: "collapsible-body"
+  }, [_c('ul', {
+    staticClass: "collapsible",
     attrs: {
-      "data-position": "left",
-      "data-delay": "50",
-      "data-tooltip": "Toogle fullscreen"
-    },
-    on: {
-      "click": _vm.toggleFullScreen
+      "data-collapsible": "accordion"
     }
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("fullscreen")])])])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('router-view')], 1)])])], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('a', {
-    staticClass: "btn-floating red"
-  }, [_c('i', {
-    staticClass: "material-icons"
-  }, [_vm._v("menu")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('a', {
-    staticClass: "top-nav waves-effect waves-light hide-on-large-only btn button-collapse",
-    staticStyle: {
-      "margin-top": "19.25px"
-    },
+  }, [_c('li', [_c('div', [_c('ul', {
+    staticClass: "collapsible",
     attrs: {
-      "href": "#",
-      "data-activates": "nav-mobile"
+      "data-collapsible": "accordion"
     }
-  }, [_c('i', {
-    staticClass: "material-icons left"
-  }, [_vm._v("menu")]), _vm._v("\n                Menu\n            ")])
-}]}
+  }, _vm._l((_vm.articles), function(a, c) {
+    return _c('sidebar-item', {
+      attrs: {
+        "articles": a,
+        "category": c
+      }
+    })
+  }))])])])])]) : _c('li', [_c('a', {
+    staticClass: "collapsible-header waves-effect waves-red"
+  }, [_vm._v(_vm._s(_vm.category))]), _vm._v(" "), _c('div', {
+    staticClass: "collapsible-body"
+  }, [_c('ul', _vm._l((_vm.articles), function(article) {
+    return _c('li', [_c('router-link', {
+      staticClass: "waves-effect waves-light is-link",
+      staticStyle: {
+        "font-weight": "400"
+      },
+      attrs: {
+        "to": article.slug
+      }
+    }, [_vm._v("\n                    " + _vm._s(article.title) + "\n                ")])], 1)
+  }))])])
+},staticRenderFns: []}
 
 /***/ }),
 /* 295 */
@@ -60610,31 +60522,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    attrs: {
-      "id": "wrapper"
-    }
-  }, [(_vm.$store.state.query) ? _c('search-results') : _c('div', {
-    staticClass: "col s12"
-  }, [_c('h1', [_vm._v("\n            " + _vm._s(_vm.$store.state.app) + "\n        ")]), _vm._v(" "), _c('h4', [_vm._v("\n            " + _vm._s(_vm.$store.state.description) + "\n        ")]), _vm._v(" "), _c('p', [_vm._v("\n            " + _vm._s(_vm.$store.state.sub) + "\n        ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('ul', {
-    staticClass: "collection with-header"
-  }, [_c('li', {
-    staticClass: "collection-header"
-  }, [_c('h4', [_vm._v("All articles")])]), _vm._v(" "), _vm._l((this.$store.state.searchArticles), function(article) {
-    return _c('router-link', {
-      staticClass: "collection-item",
-      attrs: {
-        "to": article.slug
-      }
-    }, [_vm._v("\n                " + _vm._s(article.title) + "\n            ")])
-  })], 2)])], 1)
-},staticRenderFns: []}
-
-/***/ }),
-/* 297 */
-/***/ (function(module, exports) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
     staticClass: "col s12"
   }, [(_vm.$store.state.query) ? _c('search-results') : _c('div', {
     staticClass: "col s12 m9 l10",
@@ -60648,7 +60535,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
-/* 298 */
+/* 297 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -60690,50 +60577,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
-/* 299 */
-/***/ (function(module, exports) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (!_vm.isDeep(_vm.articles)) ? _c('li', [_c('a', {
-    staticClass: "collapsible-header waves-effect waves-red"
-  }, [_vm._v(_vm._s(_vm.category))]), _vm._v(" "), _c('div', {
-    staticClass: "collapsible-body"
-  }, [_c('ul', {
-    staticClass: "collapsible",
-    attrs: {
-      "data-collapsible": "accordion"
-    }
-  }, [_c('li', [_c('div', [_c('ul', {
-    staticClass: "collapsible",
-    attrs: {
-      "data-collapsible": "accordion"
-    }
-  }, _vm._l((_vm.articles), function(a, c) {
-    return _c('sidebar-item', {
-      attrs: {
-        "articles": a,
-        "category": c
-      }
-    })
-  }))])])])])]) : _c('li', [_c('a', {
-    staticClass: "collapsible-header waves-effect waves-red"
-  }, [_vm._v(_vm._s(_vm.category))]), _vm._v(" "), _c('div', {
-    staticClass: "collapsible-body"
-  }, [_c('ul', _vm._l((_vm.articles), function(article) {
-    return _c('li', [_c('router-link', {
-      staticClass: "waves-effect waves-light is-link",
-      staticStyle: {
-        "font-weight": "400"
-      },
-      attrs: {
-        "to": article.slug
-      }
-    }, [_vm._v("\n                    " + _vm._s(article.title) + "\n                ")])], 1)
-  }))])])
-},staticRenderFns: []}
-
-/***/ }),
-/* 300 */
+/* 298 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -60765,6 +60609,76 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
+/* 299 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('sidebar'), _vm._v(" "), _c('main', [_c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "fixed-action-btn click-to-toggle hide-on-med-and-down"
+  }, [_vm._m(0), _vm._v(" "), _c('ul', [_c('li', [_c('a', {
+    staticClass: "btn-floating blue btn-fullScreen tooltipped",
+    attrs: {
+      "data-position": "left",
+      "data-delay": "50",
+      "data-tooltip": "Toogle fullscreen"
+    },
+    on: {
+      "click": _vm.toggleFullScreen
+    }
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("fullscreen")])])])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('router-view')], 1)])])], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    staticClass: "btn-floating red"
+  }, [_c('i', {
+    staticClass: "material-icons"
+  }, [_vm._v("menu")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    staticClass: "top-nav waves-effect waves-light hide-on-large-only btn button-collapse",
+    staticStyle: {
+      "margin-top": "19.25px"
+    },
+    attrs: {
+      "href": "#",
+      "data-activates": "nav-mobile"
+    }
+  }, [_c('i', {
+    staticClass: "material-icons left"
+  }, [_vm._v("menu")]), _vm._v("\n                Menu\n            ")])
+}]}
+
+/***/ }),
+/* 300 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    attrs: {
+      "id": "wrapper"
+    }
+  }, [(_vm.$store.state.query) ? _c('search-results') : _c('div', {
+    staticClass: "col s12"
+  }, [_c('h1', [_vm._v("\n            " + _vm._s(_vm.$store.state.app) + "\n        ")]), _vm._v(" "), _c('h4', [_vm._v("\n            " + _vm._s(_vm.$store.state.description) + "\n        ")]), _vm._v(" "), _c('p', [_vm._v("\n            " + _vm._s(_vm.$store.state.sub) + "\n        ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('ul', {
+    staticClass: "collection with-header"
+  }, [_c('li', {
+    staticClass: "collection-header"
+  }, [_c('h4', [_vm._v("All articles")])]), _vm._v(" "), _vm._l((this.$store.state.searchArticles), function(article) {
+    return _c('router-link', {
+      staticClass: "collection-item",
+      attrs: {
+        "to": article.slug
+      }
+    }, [_vm._v("\n                " + _vm._s(article.title) + "\n            ")])
+  })], 2)])], 1)
+},staticRenderFns: []}
+
+/***/ }),
 /* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60775,7 +60689,7 @@ var content = __webpack_require__(42);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("404504fe", content, true);
+var update = __webpack_require__(5)("8aa21138", content, true);
 
 /***/ }),
 /* 302 */
@@ -60788,7 +60702,7 @@ var content = __webpack_require__(43);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("4ea4abb4", content, true);
+var update = __webpack_require__(5)("183a50e6", content, true);
 
 /***/ }),
 /* 303 */
@@ -60801,7 +60715,7 @@ var content = __webpack_require__(44);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("8c88d21c", content, true);
+var update = __webpack_require__(5)("32874453", content, true);
 
 /***/ }),
 /* 304 */
@@ -60814,23 +60728,10 @@ var content = __webpack_require__(45);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(4)("3f6a5d0b", content, true);
+var update = __webpack_require__(5)("6de20902", content, true);
 
 /***/ }),
 /* 305 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(46);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("101467d3", content, true);
-
-/***/ }),
-/* 306 */
 /***/ (function(module, exports) {
 
 /**
@@ -60863,64 +60764,58 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
+/* 306 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["boot"] = boot;
+
+/*
+    This is a direct bootstrap meaning it doesn't need to be registered inside autoload to be used.
+ */
+function boot() {
+    // Switch renderer here. UML support?
+    const md = __webpack_require__(229)({
+        breaks: true,
+        typographer: true
+    })
+        .use(__webpack_require__(227))
+        .use(__webpack_require__(228), "auto");
+
+    return md
+}
+
+/***/ }),
 /* 307 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-const articles = __webpack_require__(3).articles;
-const _ = __webpack_require__(8)
+/* harmony export (immutable) */ __webpack_exports__["boot"] = boot;
+const options = __webpack_require__(3).options
 
-
-/**
- * This module will go through each article indexed in manifest.json and will initialize the search
- * feature while filtering duplicates.
- *
- */
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-    /**
-     * Simple object to hold a flattened array of articles.
-     *
-     */
-    data: {
-        flatArticles: []
-    },
-
-    /**
-     * Entry point.
-     *
-     * @returns {Array}
-     */
-    mounted() {
-        this.searchify(articles)
-
-        // We filter our articles by their slug uniqueness.
-        return _.uniqBy(this.data.flatArticles, 'slug')
-    },
-
-    /**
-     * Recursively loop through a given set of articles to feed them into an array used by fuse.js.
-     *
-     * @param articles
-     */
-    searchify(articles) {
-        _.forEach(_.flattenDeep(_.toArray(articles)), (category) => {
-            // Loop through every article of the category and push an object of the format { title, slug, tags }
-
-            if(!("title" in category)) {
-                this.searchify(category)
-            }
-            else {
-                this.data.flatArticles.push({
-                    title: category.title,
-                    slug: category.slug,
-                    tags: category.tags.toString()
-                })
-            }
+function boot() {
+    let routes = [
+        {
+            path: '/:article',
+            name: 'article',
+            component: __webpack_require__(11)
+        }
+    ]
+    if (options.introduction && options.introduction !== null) {
+        routes.push({
+            path: '/',
+            redirect: `${options.introduction}`,
+            component: __webpack_require__(11)
         })
     }
-});
+    else {
+        routes.push({ path: '/', component: __webpack_require__(290) })
+    }
+
+    return routes;
+}
 
 /***/ }),
 /* 308 */
@@ -60928,81 +60823,59 @@ const _ = __webpack_require__(8)
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-const slugify = __webpack_require__(285)
-const lower = __webpack_require__(227)
+/* harmony export (immutable) */ __webpack_exports__["boot"] = boot;
 const articles = __webpack_require__(3).articles;
-const options = __webpack_require__(3).options;
-const _ = __webpack_require__(8)
-
+const _ = __webpack_require__(7)
 
 /**
- * This will go through each article in the manifest and append a slug to them
- * (if they already don't have one). The slug format is either a simple one
- * (category-name) or an advanced one (direct parent)category-name-of-the-article.
+ * Simple object to hold a flattened array of articles.
  *
  */
-/* harmony default export */ __webpack_exports__["default"] = ({
+let data = {
+    flatArticles: []
+}
 
+/**
+ * Recursively loop through a given set of articles to feed them into an array used by fuse.js.
+ *
+ * @param articles
+ * @param res
+ */
+function searchify(articles) {
+    _.forEach(_.flattenDeep(_.toArray(articles)), (category) => {
+        // Loop through every article of the category and push an object of the format { title, slug, tags }
+
+
+        if(!("title" in category)) {
+            searchify(category)
+        }
+        else {
+            data.flatArticles.push({
+                title: category.title,
+                slug: category.slug,
+                tags: category.tags.toString()
+            })
+        }
+    })
+}
+
+/**
+ * This module will go through each article indexed in manifest.json and will initialize the search
+ * feature while filtering duplicates.
+ *
+ */
+function boot() {
     /**
      * Entry point.
      *
-     * @returns {*}
+     * @returns {Array}
      */
-    mounted() {
-        return this.slugify(articles)
-    },
+    searchify(articles)
 
-    /**
-     * Recursively loop through a given articles array to slug each article.
-     * A slug will be of the following format:
-     *      (direct parent)category-name-of-the-article
-     *
-     * @param articles
-     * @returns {*}
-     */
-    slugify(articles) {
+    // We filter our articles by their slug uniqueness.
+    return _.uniqBy(data.flatArticles, 'slug')
 
-        _.forEach(articles, (categories, key) => {
-            if (!this._isDeep(categories)) {
-                this.slugify(categories)
-            }
-            else {
-                _.forEach(categories, (article, _) =>{
-
-                    // First we need to check if the current article has any custom slugs.
-                    if (!article.slug) {
-                        let _slug = ""
-
-                        // We get the name of the parent article(key) and concat it with
-                        // the name of the current article.
-                        if (options.advanced_slugs) {
-                            _slug = lower(key) + "-" + lower(article.title)
-                        }
-                        // Otherwise we just create a simple slug based on the name of the article.
-                        else {
-                            _slug = lower(article.title)
-                        }
-
-                        article.slug = slugify(_slug)
-                    }
-                })
-            }
-        })
-
-        return articles
-    },
-
-    /**
-     * Check if a category has any sub categories.
-     *
-     * @param array
-     * @private
-     */
-    _isDeep(array) {
-        return _.isArray(array)
-    }
-});
-
+}
 
 /***/ }),
 /* 309 */
@@ -61010,55 +60883,158 @@ const _ = __webpack_require__(8)
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__App_vue__ = __webpack_require__(25);
+/* harmony export (immutable) */ __webpack_exports__["boot"] = boot;
+const slugger = __webpack_require__(284)
+const lower = __webpack_require__(226)
+const articles = __webpack_require__(3).articles;
+const options = __webpack_require__(3).options;
+const _ = __webpack_require__(7)
+
+/**
+ * Recursively loop through a given articles array to slug each article.
+ * A slug will be of the following format:
+ *      (direct parent)category-name-of-the-article
+ *
+ * @param articles
+ * @returns {*}
+ */
+function slugify(articles) {
+
+    _.forEach(articles, (categories, key) => {
+        if (!_isDeep(categories)) {
+            slugify(categories)
+        }
+        else {
+            _.forEach(categories, (article, _) =>{
+
+                // First we need to check if the current article has any custom slugs.
+                if (!article.slug) {
+                    let _slug = ""
+
+                    // We get the name of the parent article(key) and concat it with
+                    // the name of the current article.
+                    if (options.advanced_slugs) {
+                        _slug = lower(key) + "-" + lower(article.title)
+                    }
+                    // Otherwise we just create a simple slug based on the name of the article.
+                    else {
+                        _slug = lower(article.title)
+                    }
+
+                    article.slug = slugger(_slug)
+                }
+            })
+        }
+    })
+
+    return articles
+}
+
+/**
+ * Check if a category has any sub categories.
+ *
+ * @param array
+ * @private
+ */
+function _isDeep(array) {
+    return _.isArray(array)
+}
+
+/**
+ * This will go through each article in the manifest and append a slug to them
+ * (if they already don't have one). The slug format is either a simple one
+ * (category-name) or an advanced one (direct parent)category-name-of-the-article.
+ *
+ */
+function boot() {
+
+    /**
+     * Entry point.
+     *
+     * @returns {*}
+     */
+    return slugify(articles)
+}
+
+
+/***/ }),
+/* 310 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (immutable) */ __webpack_exports__["boot"] = boot;
+const options = __webpack_require__(3).options;
+
+/**
+ * Set the appropriate theme.
+ *
+ * @returns {*}
+ * @private
+ */
+function setTheme() {
+    switch (options.theme) {
+        case 'default':
+            return null;
+
+        case 'amblin':
+            return 'amblin.scss'
+
+        case 'github':
+            return 'github.scss'
+
+        case 'medium':
+            return 'medium.scss'
+
+        default:
+            return null;
+    }
+}
+
+/**
+ * This module is responsible for everything UI related.
+ *
+ */
+function boot() {
+    return setTheme()
+}
+
+/***/ }),
+/* 311 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__App_vue__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__App_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_router__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_js__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__js_data_store__ = __webpack_require__(28);
 
 
 
 
 
-__webpack_require__(24)
-__webpack_require__(28).default.mounted()
-const options = __webpack_require__(3).options
+const bootstrap = __webpack_require__(14)
+__webpack_require__(25)
+__webpack_require__(29)(`./${bootstrap.theme}`)
 
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */])
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vue_router__["a" /* default */])
 
-/*
-    This will be moved into routes.js in 3.x
- */
-let routes = [
-    {
-        path: '/:article',
-        name: 'article',
-        component: __webpack_require__(5)
-    }
-]
-if (options.introduction && options.introduction !== null) {
-    routes.push({
-        path: '/',
-        redirect: `${options.introduction}`,
-        component: __webpack_require__(5)})
-}
-else {
-    routes.push({ path: '/', component: __webpack_require__(26) })
-}
-
 const router = new __WEBPACK_IMPORTED_MODULE_3_vue_router__["a" /* default */]({
-    routes
+    routes: bootstrap.routes
 })
 
 new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
     el: '#app',
-    store: __WEBPACK_IMPORTED_MODULE_4__store_js__["a" /* default */],
+    store: __WEBPACK_IMPORTED_MODULE_4__js_data_store__["a" /* default */],
     router,
     render: h => h(__WEBPACK_IMPORTED_MODULE_0__App_vue___default.a)
 })
+
 
 
 /***/ })

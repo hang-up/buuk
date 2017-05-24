@@ -103,29 +103,26 @@
              *
              */
             searchResults: _.debounce(function () {
-                setTimeout(() => {
-
-                    if (this.q === "") {
-                        this.$store.commit({
-                            type: 'searchResults',
-                            searchResults: []
-                        })
-                    }
-
-                    // Sync our query with the store query so that we can display/hide search module.
-                    this.$store.commit({
-                        type: 'updateQuery',
-                        query: this.q
-                    })
-
-                    // Fetch store results array.
+                if (this.q === "") {
                     this.$store.commit({
                         type: 'searchResults',
-                        searchResults: this.fuse.search(this.q)
+                        searchResults: []
                     })
+                }
 
-                    this.isDebouncing = !this.isDebouncing
-                }, 250)
+                // Sync our query with the store query so that we can display/hide search module.
+                this.$store.commit({
+                    type: 'updateQuery',
+                    query: this.q
+                })
+
+                // Fetch store results array.
+                this.$store.commit({
+                    type: 'searchResults',
+                    searchResults: this.fuse.search(this.q)
+                })
+
+                this.isDebouncing = !this.isDebouncing
             }, 250)
         }
     }
