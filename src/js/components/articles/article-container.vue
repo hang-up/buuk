@@ -14,10 +14,6 @@
 </template>
 
 <script type="text/babel">
-
-    // Initialize our markdown parser.
-    const md = require('../../bootstrap/renderBootstrap').boot()
-
     export default {
         name: 'article-container',
 
@@ -42,6 +38,9 @@
 
         methods: {
             requiring() {
+                // Initialize our markdown parser.
+                const md = require('../../bootstrap/autoload').render
+
                 // Clear up the viewport.
                 this.$store.dispatch('resetSearch')
 
