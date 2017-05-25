@@ -60,6 +60,9 @@
                @click='q = ""'
             >clear</i>
         </transition>
+
+        <!-- Search Results. -->
+        <search-results :q.sync="q"></search-results>
     </div>
 </template>
 
@@ -68,6 +71,10 @@
     const Fuse = require('fuse.js')
 
     export default {
+        components: {
+            searchResults: require('./search-results.vue')
+        },
+
         data() {
             return {
                 q: "",
