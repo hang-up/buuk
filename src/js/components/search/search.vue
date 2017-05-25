@@ -24,12 +24,12 @@
     }
 
     .search-wrapper {
-        margin: 0 12px;
+        margin: 12px;
         transition: margin .25s ease;
     }
 
     .search-wrapper.focused {
-        margin: 0;
+        margin: 12px 0;
     }
 
     .search-wrapper #search {
@@ -53,9 +53,14 @@
         <div class="search-wrapper card"
              v-bind:class="{ focused: isFocused }"
              ref="searchWrapper"
-             v-on:click="isFocused = !isFocused">
+             >
 
-            <input type="text" id="search" placeholder="Search" v-on:blur="isFocused = !isFocused">
+            <input type="text"
+                   id="search"
+                   v-model="q"
+                   placeholder="Search..."
+                   v-on:click="isFocused = !isFocused"
+                   v-on:blur="isFocused = !isFocused">
 
             <!-- Delete search terms. -->
             <transition name="fade">
@@ -67,29 +72,6 @@
             </transition>
         </div>
     </li>
-
-
-    <!--<li>-->
-        <!--<div class="input-field">-->
-
-            <!-- Delete search terms. -->
-            <!--<transition name="fade">-->
-                <!--<i class="material-icons"-->
-                   <!--style="position: absolute; right: 26px; top: 10px; cursor: pointer"-->
-                   <!--v-if='q != ""'-->
-                   <!--@click='q = ""'-->
-                <!--&gt;clear</i>-->
-            <!--</transition>-->
-
-            <!--&lt;!&ndash; Search input. &ndash;&gt;-->
-            <!--<input type="text"-->
-                   <!--v-model="q"-->
-                   <!--class="validate"-->
-                   <!--id="search_query"-->
-            <!--&gt;-->
-            <!--<label for="search_query">Search...</label>-->
-        <!--</div>-->
-    <!--</li>-->
 </template>
 
 <script>
