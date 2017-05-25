@@ -32,7 +32,9 @@
         </li>
 
         <!-- Search input. -->
-        <search></search>
+        <li>
+            <search></search>
+        </li>
 
         <!-- Introduction. -->
         <li>

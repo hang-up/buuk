@@ -17,7 +17,9 @@
     .fade-enter-active, .fade-leave-active {
         transition: all .5s
     }
-    .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+
+    .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
+    {
         transform: translateY(10px);
         opacity: 0;
 
@@ -49,29 +51,28 @@
 </style>
 
 <template>
-    <li class="search">
-        <div class="search-wrapper card"
-             v-bind:class="{ focused: isFocused }"
-             ref="searchWrapper"
-             >
+    <div class="search-wrapper card"
+         v-bind:class="{ focused: isFocused }"
+         ref="searchWrapper"
+    >
 
-            <input type="text"
-                   id="search"
-                   v-model="q"
-                   placeholder="Search..."
-                   v-on:click="isFocused = !isFocused"
-                   v-on:blur="isFocused = !isFocused">
+        <!-- Search input. -->
+        <input type="text"
+               id="search"
+               v-model="q"
+               placeholder="Search..."
+               v-on:click="isFocused = !isFocused"
+               v-on:blur="isFocused = !isFocused">
 
-            <!-- Delete search terms. -->
-            <transition name="fade">
-                <i class="material-icons"
-                   style="position: absolute; right: 26px; top: 10px; cursor: pointer"
-                   v-if='q != ""'
-                   @click='q = ""'
-                >clear</i>
-            </transition>
-        </div>
-    </li>
+        <!-- Delete search terms. -->
+        <transition name="fade">
+            <i class="material-icons"
+               style="position: absolute; right: 26px; top: 10px; cursor: pointer"
+               v-if='q != ""'
+               @click='q = ""'
+            >clear</i>
+        </transition>
+    </div>
 </template>
 
 <script>
