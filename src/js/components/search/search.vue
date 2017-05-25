@@ -1,16 +1,4 @@
 <style scoped>
-    .side-nav li .input-field, .side-nav li label {
-        padding: 0 32px;
-    }
-
-    .input-field label:not(.label-icon).active {
-        -webkit-transform: translateY(-80%);
-        -moz-transform: translateY(-40%);
-        -ms-transform: translateY(-40%);
-        -o-transform: translateY(-40%);
-        transform: translateY(-80%);
-    }
-
     /**
         Needed for animating the cross deleting search terms.
     **/
