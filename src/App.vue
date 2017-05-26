@@ -18,7 +18,7 @@
         <main>
 
             <div class="container">
-                <!-- Fixed action button -->
+                <!-- Floating action button -->
                 <fab></fab>
 
                 <!-- Mobile menu trigger. -->
