@@ -21,6 +21,9 @@
                 <!-- Floating action button -->
                 <fab></fab>
 
+                <!-- Navigation -->
+                <article-navigator></article-navigator>
+
                 <!-- Mobile menu trigger. -->
                 <a href="#"
                    data-activates="nav-mobile"
@@ -51,7 +54,8 @@
         components: {
             fab: require('./js/components/articles/fab.vue'),
             sidebar: require('./js/components/sidebar/sidebar.vue'),
-            articleContainer: require('./js/components/articles/article-container.vue')
+            articleContainer: require('./js/components/articles/article-container.vue'),
+            articleNavigator: require('./js/components/articles/article-navigator.vue')
         },
 
         mounted() {
@@ -68,26 +72,6 @@
              *
              */
             $('.tooltipped').tooltip({delay: 50});
-        },
-
-        methods: {
-            /**
-             * Toggle full screen.
-             */
-            toggleFullScreen() {
-                this.isFullScreen = !this.isFullScreen
-
-                // This is not data driven. It's gross.
-                switch(this.isFullScreen) {
-                    case true:
-                        $('#nav-mobile').css('transform', 'translateX(-300px)')
-                        $("main").css("padding-left", 0)
-                        break
-                    default:
-                        $('#nav-mobile').css('transform', 'translateX(0px)')
-                        $("main").css("padding-left", 300)
-                }
-            }
         }
     }
 </script>
