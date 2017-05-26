@@ -1,11 +1,7 @@
 <template>
     <div id="wrapper">
-        <!-- Search results. -->
-        <search-results v-if="$store.state.query"></search-results>
-
         <!-- Article. -->
-        <div class="col s12"
-             v-else>
+        <div class="col s12">
             <h1>
                 {{ $store.state.app }}
             </h1>
