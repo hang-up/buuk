@@ -43,7 +43,12 @@
                 window.scrollTo(0, 0)
 
                 // Load the relevant md.
-                this.file = md.render(require(`../../../../docs/${this.$route.params.article}.md`))
+                try {
+                    this.file = md.render(require(`../../../../docs/${this.$route.params.article}.md`))
+                }
+                catch (e) {
+                    this.file = md.render(require(`../../../../docs/404.md`))
+                }
             }
         }
     }
