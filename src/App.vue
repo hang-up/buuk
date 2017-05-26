@@ -18,23 +18,8 @@
         <main>
 
             <div class="container">
-                <!-- Action bar for desktop layout only. TODO:Will be moved into its own component in 3.x -->
-                <div class="fixed-action-btn click-to-toggle hide-on-med-and-down">
-                    <a class="btn-floating red">
-                        <i class="material-icons">menu</i>
-                    </a>
-                    <ul>
-                        <li><a class="btn-floating blue btn-fullScreen tooltipped"
-                               @click="toggleFullScreen"
-                               data-position="left"
-                               data-delay="50"
-                               data-tooltip="Toogle fullscreen">
-                                <i class="material-icons">fullscreen</i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
+                <!-- Fixed action button -->
+                <fab></fab>
 
                 <!-- Mobile menu trigger. -->
                 <a href="#"
@@ -45,10 +30,8 @@
                     Menu
                 </a>
 
-                <div class="row">
-                    <!-- Article. -->
-                    <router-view></router-view>
-                </div>
+                <!-- Article. -->
+                <router-view></router-view>
             </div>
         </main>
 
@@ -66,6 +49,7 @@
         },
 
         components: {
+            fab: require('./js/components/articles/fab.vue'),
             sidebar: require('./js/components/sidebar/sidebar.vue'),
             articleContainer: require('./js/components/articles/article-container.vue')
         },
