@@ -22,7 +22,9 @@
                 <fab></fab>
 
                 <!-- Navigation -->
-                <article-navigator></article-navigator>
+                <article-navigator action="previous"></article-navigator>
+                <article-navigator action="next"></article-navigator>
+
 
                 <!-- Mobile menu trigger. -->
                 <a href="#"
