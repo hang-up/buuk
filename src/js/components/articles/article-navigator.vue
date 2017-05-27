@@ -1,16 +1,16 @@
 <style>
-    .btn-navigator-left {
+    .btn-navigator {
         position: fixed !important;
-        left: 312px;
         top: 50%;
         transform: translateY(-50%);
     }
 
+    .btn-navigator-left {
+        left: 312px;
+    }
+
     .btn-navigator-right {
-        position: fixed !important;
         right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
     }
 </style>
 
@@ -20,30 +20,37 @@
               waves-light
               grey lighten-2
               tooltipped
-              btn-navigator-left"
-       data-position="right"
-       data-tooltip="Previous"
-       v-if="action === 'previous'"
+              btn-navigator"
+       v-bind:class="position"
+       :data-position="toolTipPosition"
+       :data-tooltip="link"
     >
-        <i class="material-icons">keyboard_arrow_left</i>
-    </a>
-
-    <a class="btn-floating
-              waves-effect
-              waves-light
-              grey lighten-2
-              tooltipped
-              btn-navigator-right"
-       data-position="left"
-       data-tooltip="Next"
-       v-else-if="action === 'next'"
-    >
-        <i class="material-icons">keyboard_arrow_right</i>
+        <slot name="content"></slot>
     </a>
 </template>
 
 <script>
     export default {
-        props: ['link', 'action']
+        props: ['link', 'action'],
+
+        computed: {
+            toolTipPosition() {
+                switch (this.action) {
+                    case 'previous':
+                        return 'right'
+                    break
+                    case 'next':
+                        return 'left'
+                    break
+                }
+            },
+
+            position() {
+                return {
+                    "btn-navigator-left": this.action === 'previous',
+                    "btn-navigator-right": this.action === 'next'
+                }
+            }
+        }
     }
 </script>

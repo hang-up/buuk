@@ -22,8 +22,12 @@
                 <fab></fab>
 
                 <!-- Navigation -->
-                <article-navigator action="previous"></article-navigator>
-                <article-navigator action="next"></article-navigator>
+                <article-navigator action="previous">
+                    <i class="material-icons" slot="content">keyboard_arrow_left</i>
+                </article-navigator>
+                <article-navigator action="next">
+                    <i class="material-icons" slot="content">keyboard_arrow_right</i>
+                </article-navigator>
 
 
                 <!-- Mobile menu trigger. -->
@@ -74,6 +78,10 @@
              *
              */
             $('.tooltipped').tooltip({delay: 50});
+        },
+
+        methods: {
+
         }
     }
 </script>
