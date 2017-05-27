@@ -21,15 +21,6 @@
                 <!-- Floating action button -->
                 <fab></fab>
 
-                <!-- Navigation -->
-                <article-navigator action="previous">
-                    <i class="material-icons" slot="content">keyboard_arrow_left</i>
-                </article-navigator>
-                <article-navigator action="next">
-                    <i class="material-icons" slot="content">keyboard_arrow_right</i>
-                </article-navigator>
-
-
                 <!-- Mobile menu trigger. -->
                 <a href="#"
                    data-activates="nav-mobile"
@@ -60,8 +51,7 @@
         components: {
             fab: require('./js/components/articles/fab.vue'),
             sidebar: require('./js/components/sidebar/sidebar.vue'),
-            articleContainer: require('./js/components/articles/article-container.vue'),
-            articleNavigator: require('./js/components/articles/article-navigator.vue')
+            articleContainer: require('./js/components/articles/article-container.vue')
         },
 
         mounted() {
@@ -78,10 +68,6 @@
              *
              */
             $('.tooltipped').tooltip({delay: 50});
-        },
-
-        methods: {
-
         }
     }
 </script>
