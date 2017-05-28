@@ -6,7 +6,8 @@
 
     "options": {
         "advanced_slugs": true,
-        "theme": "medium"
+        "theme": "medium",
+        "lang": "en"
     },
 
     "articles" : {

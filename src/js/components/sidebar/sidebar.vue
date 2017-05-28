@@ -39,7 +39,7 @@
         <!-- Introduction. -->
         <li>
             <router-link to="/" class="waves-effect waves-light">
-                Introduction
+                {{ $store.state.localizations.introduction }}
             </router-link>
         </li>
 

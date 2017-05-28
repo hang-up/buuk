@@ -48,7 +48,7 @@
         <input type="text"
                id="search"
                v-model="q"
-               placeholder="Search..."
+               :placeholder="$store.state.localizations.search"
                v-on:click="isFocused = !isFocused"
                v-on:blur="isFocused = !isFocused">
 

@@ -8,7 +8,7 @@
                    @click="toggleFullScreen"
                    data-position="top"
                    data-delay="50"
-                   data-tooltip="Toogle fullscreen">
+                   :data-tooltip="$store.state.localizations.toggle_fs">
                 <i class="material-icons">fullscreen</i>
             </a>
             </li>

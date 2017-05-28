@@ -5,6 +5,7 @@ const manifest = require('../../../manifest.json')
 const bootstrap = require('../bootstrap/autoload')
 const articles = bootstrap.slug
 const searchArticles = bootstrap.search
+const localizations = bootstrap.localization
 
 Vue.use(Vuex)
 
@@ -14,6 +15,7 @@ const store = new Vuex.Store({
         description: manifest.description,
         sub: manifest.sub,
         options: manifest.options,
+        localizations,
 
         articles,
 

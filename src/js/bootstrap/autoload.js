@@ -10,5 +10,6 @@ module.exports = {
     slug: require('./slugBootstrap').boot(),
     search: require('./searchBootstrap').boot(),
     theme: require('./themeBootstrap').boot(),
-    routes: require('./routes').boot()
+    routes: require('./routes').boot(),
+    localization: require('./localizationBootstrap').boot()
 }

@@ -20,7 +20,7 @@
         </router-link>
     </div>
     <ul class="collection" v-else-if="!$store.state.searchResults.length && $store.state.query != ''">
-       <li class="collection-item">No result found</li>
+       <li class="collection-item">{{ $store.state.localizations.no_result }}</li>
     </ul>
 </template>
 
