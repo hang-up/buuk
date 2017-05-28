@@ -18,7 +18,7 @@
         <main>
 
             <!-- Navigation -->
-            <navigation v-if="$route != '/'"></navigation>
+            <navigation></navigation>
 
             <div class="container">
                 <!-- Floating action button -->
