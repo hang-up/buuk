@@ -5,7 +5,7 @@
 
     @media screen and (min-width:992px){
         main {
-            padding-left: 300px;
+            margin-left: 300px;
         }
     }
 </style>
@@ -16,6 +16,9 @@
         <sidebar></sidebar>
 
         <main>
+
+            <!-- Navigation -->
+            <navigation></navigation>
 
             <div class="container">
                 <!-- Floating action button -->
@@ -51,7 +54,8 @@
         components: {
             fab: require('./js/components/articles/fab.vue'),
             sidebar: require('./js/components/sidebar/sidebar.vue'),
-            articleContainer: require('./js/components/articles/article-container.vue')
+            articleContainer: require('./js/components/articles/article-container.vue'),
+            navigation: require('./js/components/navigation/navigation.vue')
         },
 
         mounted() {

@@ -6,7 +6,7 @@
     }
 
     .btn-navigator-left {
-        left: 312px;
+        margin-left: 12px;
     }
 
     .btn-navigator-right {
@@ -15,18 +15,12 @@
 </style>
 
 <template>
-    <a class="btn-floating
-              waves-effect
-              waves-light
-              grey lighten-2
-              tooltipped
-              btn-navigator"
-       v-bind:class="position"
-       :data-position="toolTipPosition"
-       :data-tooltip="link"
+    <router-link class="btn-floating waves-effect waves-light grey lighten-2 btn-navigator"
+                 v-bind:class="position"
+                 :to="link"
     >
         <slot name="content"></slot>
-    </a>
+    </router-link>
 </template>
 
 <script>
@@ -34,17 +28,11 @@
         props: ['link', 'action'],
 
         computed: {
-            toolTipPosition() {
-                switch (this.action) {
-                    case 'previous':
-                        return 'right'
-                    break
-                    case 'next':
-                        return 'left'
-                    break
-                }
-            },
-
+            /**
+             * Returns the position of the navigator (left / right)
+             *
+             * @returns {{btn-navigator-left: boolean, btn-navigator-right: boolean}}
+             */
             position() {
                 return {
                     "btn-navigator-left": this.action === 'previous',

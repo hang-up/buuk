@@ -21,36 +21,42 @@
             '$route' : 'getArticlePosition'
         },
 
-        mounted() {
-            /**
-             * Initialize tooltip.
-             *
-             */
-            $('.tooltipped').tooltip({delay: 50});
-        },
-
         computed: {
+            /**
+             * Returns the previous article slug.
+             *
+             * @returns {null|number}
+             * */
             getPreviousArticle() {
                 if (this.getArticlePosition() === 0) {
                     return null
                 }
                 else
-                    return this.$store.state.searchArticles[this.getArticlePosition() - 1].title
+                    return this.$store.state.searchArticles[this.getArticlePosition() - 1].slug
             },
 
+            /**
+             * Returns the next article slug.
+             *
+             * @returns {null|number}
+             * */
             getNextArticle() {
                 if (this.getArticlePosition() === this.$store.state.searchArticles.length - 1) {
                     return null
                 }
                 else
-                    return this.$store.state.searchArticles[this.getArticlePosition() + 1].title
+                    return this.$store.state.searchArticles[this.getArticlePosition() + 1].slug
             }
         },
 
         methods: {
             /**
-             * /!\ This won't work as intended if there are duplicate articles with the same slug since
+             * Returns the index of the current article viewed from our flatten articles array.
+             *
+             * NOTES: This won't work as intended if there are duplicate articles with the same slug since
              * we trim duplicate articles based on slug uniqueness.
+             *
+             * @returns {number}
              */
             getArticlePosition() {
                 // Get the article slug.

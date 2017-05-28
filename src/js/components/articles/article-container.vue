@@ -1,9 +1,5 @@
 <template>
     <div class="col s12">
-
-        <!-- Navigation -->
-        <navigation></navigation>
-
         <div class="col s12 m9 l10"
              id="wrapper"
              v-html="file"
@@ -17,8 +13,7 @@
         name: 'article-container',
 
         components: {
-            searchResults: require('../search/search-results.vue'),
-            navigation: require('../navigation/navigation.vue')
+            searchResults: require('../search/search-results.vue')
         },
 
         data() {

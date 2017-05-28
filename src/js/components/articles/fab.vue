@@ -29,11 +29,11 @@
                 switch(this.isFullScreen) {
                     case true:
                         $('#nav-mobile').css('transform', 'translateX(-300px)')
-                        $("main").css("padding-left", 0)
+                        $("main").css("margin-left", 0)
                         break
                     default:
                         $('#nav-mobile').css('transform', 'translateX(0px)')
-                        $("main").css("padding-left", 300)
+                        $("main").css("margin-left", 300)
                 }
             }
         }
