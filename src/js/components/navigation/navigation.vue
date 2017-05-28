@@ -25,11 +25,11 @@
             /**
              * Returns the previous article slug.
              *
-             * @returns {null|number}
+             * @returns {boolean|number}
              * */
             getPreviousArticle() {
-                if (this.getArticlePosition() === 0) {
-                    return null
+                if (this.getArticlePosition() <= 0) {
+                    return false
                 }
                 else
                     return this.$store.state.searchArticles[this.getArticlePosition() - 1].slug
@@ -38,11 +38,11 @@
             /**
              * Returns the next article slug.
              *
-             * @returns {null|number}
+             * @returns {boolean|number}
              * */
             getNextArticle() {
                 if (this.getArticlePosition() === this.$store.state.searchArticles.length - 1) {
-                    return null
+                    return false
                 }
                 else
                     return this.$store.state.searchArticles[this.getArticlePosition() + 1].slug
@@ -56,7 +56,7 @@
              * NOTES: This won't work as intended if there are duplicate articles with the same slug since
              * we trim duplicate articles based on slug uniqueness.
              *
-             * @returns {number}
+             * @returns {number|boolean}
              */
             getArticlePosition() {
                 // Get the article slug.
@@ -66,6 +66,7 @@
                 return _.findIndex(this.$store.state.searchArticles, (article) => {
                     return article.slug === current
                 })
+
             }
         }
     }
