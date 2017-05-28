@@ -6,6 +6,7 @@ const bootstrap = require('../bootstrap/autoload')
 const articles = bootstrap.slug
 const searchArticles = bootstrap.search
 const localizations = bootstrap.localization
+const logo = bootstrap.sidebar
 
 Vue.use(Vuex)
 
@@ -14,7 +15,7 @@ const store = new Vuex.Store({
         app: manifest.app,
         description: manifest.description,
         sub: manifest.sub,
-        options: manifest.options,
+        logo,
         localizations,
 
         articles,

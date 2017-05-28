@@ -11,5 +11,6 @@ module.exports = {
     search: require('./searchBootstrap').boot(),
     theme: require('./themeBootstrap').boot(),
     routes: require('./routes').boot(),
-    localization: require('./localizationBootstrap').boot()
+    localization: require('./localizationBootstrap').boot(),
+    sidebar: require('./sidebarBootstrap').boot()
 }

@@ -25,10 +25,8 @@
     <ul class="side-nav fixed" id="nav-mobile">
 
         <!-- Logo. -->
-        <li class="logo" v-if="this.$store.state.options.logo">
-            <a id="logo-container" href="/" class="brand-logo">
-                <img :src="this.$store.state.options.logo">
-            </a>
+        <li class="logo" v-if="this.$store.state.logo">
+            <sidebar-logo :source="this.$store.state.logo"></sidebar-logo>
         </li>
 
         <!-- Search input. -->
