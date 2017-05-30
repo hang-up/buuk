@@ -1,6 +1,6 @@
 <style scoped>
     main {
-        transition: all 0.2s ease-out;
+        transition: all .3s ease-in;
     }
 
     @media screen and (min-width:992px){
