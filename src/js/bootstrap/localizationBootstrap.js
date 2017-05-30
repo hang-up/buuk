@@ -16,6 +16,11 @@ const fr = {
     'introduction': "Introduction"
 }
 
+/**
+ * This module is responsible for returning the right localizations.
+ *
+ * @returns {*}
+ */
 export function boot() {
     switch (lang) {
         case 'en':

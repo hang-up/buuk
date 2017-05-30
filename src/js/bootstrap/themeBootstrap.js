@@ -26,7 +26,7 @@ function setTheme() {
 }
 
 /**
- * This module is responsible for everything UI related.
+ * This module is responsible for everything themeing related.
  *
  */
 export function boot() {

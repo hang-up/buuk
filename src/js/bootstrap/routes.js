@@ -1,5 +1,10 @@
 const options = require('../../../manifest.json').options
 
+/**
+ * This module registers all routes of the application.
+ *
+ * @returns {[*]}
+ */
 export function boot() {
     let routes = [
         {

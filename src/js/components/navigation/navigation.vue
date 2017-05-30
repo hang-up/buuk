@@ -17,7 +17,9 @@
             articleNavigator: require('./article-navigator.vue')
         },
 
+
         watch: {
+            // We need to watch $route so we can render the right arrows every time we switch articles.
             '$route' : 'getArticlePosition'
         },
 
@@ -48,6 +50,11 @@
                     return this.$store.state.searchArticles[this.getArticlePosition() + 1].slug
             },
 
+            /**
+             * Determine if we are on mobile.
+             *
+             * @returns {boolean}
+             * */
             isMobile() {
                 return window.innerWidth < 993
             }

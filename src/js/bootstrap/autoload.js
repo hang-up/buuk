@@ -1,8 +1,9 @@
-/* What is a bootstrapper?
-    - it mutates the store if it deals with the store
-    - it defines inherent behaviour (routing, progressive, engine selection, ...)
+/**
+ * Registers all bootstrappers.
+ *
+ * A bootstrapper is a standalone module exporting a boot() method.
+ *
  */
-
 
 // Register all bootstrappers.
 module.exports = {

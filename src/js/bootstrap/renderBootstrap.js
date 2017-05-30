@@ -1,3 +1,7 @@
+/**
+ * This module returns the appropriate markdown parser.
+ *
+ */
 export function boot() {
     // Switch renderer here. UML support?
     const md = require('markdown-it')({
