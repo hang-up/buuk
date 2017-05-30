@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="!isMobile">
         <article-navigator action="previous" :link="getPreviousArticle" v-if="getPreviousArticle">
             <i class="material-icons" slot="content">keyboard_arrow_left</i>
         </article-navigator>
@@ -46,6 +46,10 @@
                 }
                 else
                     return this.$store.state.searchArticles[this.getArticlePosition() + 1].slug
+            },
+
+            isMobile() {
+                return window.innerWidth < 993
             }
         },
 
