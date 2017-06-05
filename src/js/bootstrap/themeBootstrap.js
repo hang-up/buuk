@@ -8,20 +8,17 @@ const options = require('../../../manifest').options;
  */
 function setTheme() {
     switch (options.theme) {
-        case 'default':
-            return null;
-
         case 'amblin':
             return 'amblin.scss'
 
         case 'github':
             return 'github.scss'
 
-        case 'medium':
-            return 'medium.scss'
+        case 'default':
+            return 'default.scss'
 
         default:
-            return null;
+            return 'default.scss'
     }
 }
 

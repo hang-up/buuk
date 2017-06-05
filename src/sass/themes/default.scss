@@ -1,35 +1,49 @@
-#wrapper {
-  font-family: -apple-system,BlinkMacSystemFont, "Segoe UI", "mr-eaves-modern", sans-serif;
+$colors: (
+  text: #333,
+  blockquote: #EF5350,
+  light: #eeeff0
+);
+
+#wrapper > * {
+  font-family: -apple-system,BlinkMacSystemFont, "Segoe UI", "mr-eaves-modern", sans-serif !important;
   -webkit-font-smoothing: antialiased;
+}
+
+#wrapper {
   padding-top: 50px;
   padding-bottom: 50px;
 
   p, ul, ol {
-    color: rgb(51, 51, 50);
-    font-size: 16px;
-    margin: 0;
-    margin-bottom: 30px;
-    line-height: 1.8;
-    letter-spacing: -0.02em;
+    font-size: 17px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: -.021em;
+    line-height: 1.52947;
+    color: map-get($colors, text);
   }
 
   li {
     margin-bottom: 12px;
   }
 
-  h1, h2 {
+  h1, h2, h3, h4, h5 {
     font-weight: bold;
-    margin-bottom: 6px;
-    color: #333332;
+    color: map-get($colors, text);
+    text-rendering: optimizeLegibility;
   }
 
   h1 {
     font-size: 40px;
+    line-height: 1.05;
+    letter-spacing: .008em;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
   }
 
   h2 {
     font-size: 35px;
   }
+
 
   h3 {
     font-size: 30px;
@@ -51,12 +65,15 @@
     margin: 0;
     display: block;
     line-height: 1.5;
-    color: #333332;
-    font-style: italic;
-    border-left: 3px solid #57ad68;
+    color: map-get($colors, text);
+    border-left: 3px solid map-get($colors, blockquote);
     padding-left: 20px;
     margin-left: -26px;
     margin-bottom: 30px;
+
+    font-style: italic;
+    letter-spacing: -.003em;
+
   }
 
   figure {
@@ -76,10 +93,10 @@
   }
 
   hr {
-    width: 14%;
+    width: 100%;
     margin: 50px auto 40px auto;
     border: 0;
-    border-top: 1px solid #dededc;
+    border-top: 1px solid map-get($colors, light);
   }
 
   pre {
