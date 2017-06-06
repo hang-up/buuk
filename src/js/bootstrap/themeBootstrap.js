@@ -11,9 +11,6 @@ function setTheme() {
         case 'amblin':
             return 'amblin.scss'
 
-        case 'github':
-            return 'github.scss'
-
         case 'default':
             return 'default.scss'
 
