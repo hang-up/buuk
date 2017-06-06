@@ -9,7 +9,7 @@ export function boot() {
         typographer: true
     })
         .use(require('markdown-it-center-text'))
-        .use(require('markdown-it-highlightjs'), "auto");
+        .use(window.highlightjs, "auto");
 
     return md
 }

@@ -1,12 +1,19 @@
 var path = require('path')
 var webpack = require('webpack')
 
+// Include this to visualize output content.
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+
 module.exports = {
-    entry: './src/main.js',
+    entry: {
+        'bundle': './src/main.js',
+        'vendor': './src/js/vendor.js'
+    },
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
-        filename: 'bundle.js'
+        filename: '[name].js'
     },
     module: {
         rules: [
@@ -65,6 +72,7 @@ module.exports = {
     performance: {
         hints: false
     },
+    // plugins: [new BundleAnalyzerPlugin()],
     devtool: '#eval-source-map'
 }
 

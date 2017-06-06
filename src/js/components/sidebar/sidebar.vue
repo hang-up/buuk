@@ -1,4 +1,8 @@
 <style scoped>
+    .side-nav {
+        overflow-x: hidden;
+    }
+
     .side-nav .collapsible-body {
         padding: 0;
     }

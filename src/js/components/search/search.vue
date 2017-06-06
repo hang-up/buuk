@@ -67,7 +67,7 @@
 </template>
 
 <script>
-    const _ = require('lodash')
+    const _ = window._
     const Fuse = require('fuse.js')
 
     export default {
