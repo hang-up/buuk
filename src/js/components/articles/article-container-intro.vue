@@ -17,6 +17,7 @@
             <ul class="collection with-header">
                 <li class="collection-header"><h4>{{ $store.state.localizations.all_articles }}</h4></li>
                 <router-link v-for="article in this.$store.state.searchArticles"
+                             :key="article.slug"
                              :to="article.slug"
                              class="collection-item"
                 >

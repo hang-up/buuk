@@ -15,6 +15,7 @@
                      v-on:click.native="clearSearch"
                      class="collection-item"
                      v-for="article in $store.state.searchResults"
+                     :key="article.slug"
         >
             <span>{{ article.title }}</span>
         </router-link>

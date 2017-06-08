@@ -27,7 +27,7 @@
                 <li>
                     <div>
                         <ul class="collapsible" data-collapsible="accordion">
-                            <sidebar-item v-for="(a, c) in articles" :articles="a" :category="c"></sidebar-item>
+                            <sidebar-item v-for="(a, c) in articles" :articles="a" :category="c" :key="a.slug"></sidebar-item>
                         </ul>
                     </div>
                 </li>
@@ -39,7 +39,7 @@
         <a class="collapsible-header waves-effect waves-red">{{ category }}</a>
         <div class="collapsible-body">
             <ul>
-                <li v-for="article in articles">
+                <li v-for="article in articles" :key="article.slug">
                     <router-link :to="article.slug"
                                  class="waves-effect waves-light is-link"
                                  style="font-weight: 400;">
