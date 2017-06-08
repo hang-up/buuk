@@ -12,7 +12,7 @@
   "license": "MIT",
   "author": "Robert Hang (https://groundedrob.com)",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config=./build/webpack.config.js --inline --hot --open",
     "build": "cross-env NODE_ENV=production node build/build.js"
   },
   "repository": {
@@ -21,7 +21,6 @@
   },
   "main": "dist/build.min.js",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
