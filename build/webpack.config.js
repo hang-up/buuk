@@ -11,8 +11,8 @@ module.exports = {
         'vendor': './src/js/vendor.js'
     },
     output: {
-        path: path.resolve(__dirname, './dist'),
-        publicPath: '/dist/',
+        path: path.resolve(__dirname, '../dist'),
+        publicPath: '../dist/',
         filename: '[name].js'
     },
     module: {
@@ -33,11 +33,14 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/,
-                include: [
-                    "/node_modules/markdown-it-highlightjs"
-                ]
+                exclude: /node_modules\/(?!(markdown-it-highlightjs)\/).*/, // https://github.com/webpack/webpack/issues/2031
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env'],
+                        plugins: [require('babel-plugin-transform-object-rest-spread')]
+                    }
+                }
             },
             {
                 test: /\.(sass|scss)$/,
@@ -85,13 +88,12 @@ if (process.env.NODE_ENV === 'production') {
                 NODE_ENV: '"production"'
             }
         }),
-        // Webpack seems to not transpile our ES2015 to ES5 causing Uglify to bork miserably. Until we find out why...
-        // new webpack.optimize.UglifyJsPlugin({
-        //     sourceMap: true,
-        //     compress: {
-        //         warnings: false
-        //     }
-        // }),
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true,
+            compress: {
+                warnings: false
+            }
+        }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
         })
