@@ -1,10 +1,10 @@
 <template>
     <div v-if="!isMobile">
         <article-navigator action="previous" :link="getPreviousArticle" v-if="getPreviousArticle">
-            <i class="material-icons" slot="content">keyboard_arrow_left</i>
+            <i class="mi mi-chevron-left" slot="content"></i>
         </article-navigator>
         <article-navigator action="next" :link="getNextArticle" v-if="getNextArticle">
-            <i class="material-icons" slot="content">keyboard_arrow_right</i>
+            <i class="mi mi-chevron-right" slot="content"></i>
         </article-navigator>
     </div>
 </template>

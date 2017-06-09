@@ -1,7 +1,7 @@
 <template>
     <div class="fixed-action-btn click-to-toggle horizontal hide-on-med-and-down">
         <a class="btn-floating btn-large red">
-            <i class="material-icons">menu</i>
+            <i class="mi mi-menu"></i>
         </a>
         <ul>
             <li><a class="btn-floating blue btn-fullScreen tooltipped"
@@ -9,7 +9,7 @@
                    data-position="top"
                    data-delay="50"
                    :data-tooltip="$store.state.localizations.toggle_fs">
-                <i class="material-icons">fullscreen</i>
+                <i class="mi mi-fullscreen"></i>
             </a>
             </li>
         </ul>
