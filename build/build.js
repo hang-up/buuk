@@ -1,9 +1,22 @@
 var ora = require('ora')
 var chalk = require('chalk')
-var webpackConfig = require('./webpack.config')
 var webpack = require('webpack')
+var webpackConfig
 
+// Load the right webpack config file.
+switch (process.env.NODE_ENV) {
+    case 'offline':
+        webpackConfig = require('./webpack.pwa.config')
+        break
 
+    case 'production':
+        webpackConfig = require('./webpack.config')
+        break
+}
+
+/*
+    Start spinning!
+ */
 var spinner = ora('building for production...')
 spinner.start()
 
