@@ -12,8 +12,9 @@
   "license": "MIT",
   "author": "Robert Hang (https://groundedrob.com)",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config=./build/webpack.config.js --inline --hot --open",
-    "build": "cross-env NODE_ENV=production node build/build.js"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config=./build/webpack.config.js --inline --hot --open --compress",
+    "build": "cross-env NODE_ENV=production node build/build.js",
+    "offline": "cross-env NODE_ENV=offline node build/build.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "markdown-it-highlightjs": "^3.0.0",
     "materialize-css": "https://github.com/ZiperRom1/materialize/tarball/7a0f549d461f2f512078ca52a19d97445351bf06",
     "node-sass": "^4.5.0",
+    "offline-plugin": "^4.8.1",
     "ora": "^1.2.0",
     "raw-loader": "^0.5.1",
     "sass-loader": "^5.0.1",
@@ -52,6 +54,7 @@
     "vuex": "^2.3.1",
     "webpack": "^2.6.1",
     "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-dev-server": "^2.2.0"
+    "webpack-dev-server": "^2.2.0",
+    "webpack-merge": "^4.1.0"
   }
 }
