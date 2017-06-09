@@ -48,7 +48,7 @@
         <!-- List of articles. -->
         <li>
             <ul class="collapsible" data-collapsible="accordion">
-                <sidebar-item v-for="(articles, category) in $store.state.articles" :articles="articles" :category="category"></sidebar-item>
+                <sidebar-item v-for="(articles, category) in $store.state.articles" :articles="articles" :category="category" :key="category"></sidebar-item>
             </ul>
         </li>
     </ul>
