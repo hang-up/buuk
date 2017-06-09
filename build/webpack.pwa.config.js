@@ -12,9 +12,7 @@ var pwaConfig = merge(config, {
                 events: true
             },
             externals: [
-                'index.html',
-                'https://fonts.googleapis.com/icon?family=Material+Icons',
-                'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/github.min.css'
+                'index.html'
             ],
         })
     ]
