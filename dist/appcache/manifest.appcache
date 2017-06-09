@@ -1,0 +1,11 @@
+CACHE MANIFEST
+#ver:6/9/2017, 1:40:19 PM
+#plugin:4.8.1
+
+CACHE:
+/dist/vendor.js
+/dist/bundle.js
+/dist/
+
+NETWORK:
+*
