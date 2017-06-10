@@ -1,11 +1,9 @@
 CACHE MANIFEST
-#ver:6/9/2017, 2:41:47 PM
+#ver:6/10/2017, 6:57:25 PM
 #plugin:4.8.1
 
 CACHE:
-/dist/vendor.js
-/dist/bundle.js
-/dist/
+/
 
 NETWORK:
 *
