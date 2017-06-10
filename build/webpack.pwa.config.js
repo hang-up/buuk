@@ -6,13 +6,22 @@ var OfflinePlugin = require('offline-plugin');
 var pwaConfig = merge(config, {
     plugins: [
         new OfflinePlugin({
-            publicPath: '/dist/',
+            publicPath: '/',
             ServiceWorker: {
                 navigateFallbackURL: '/',
                 events: true
             },
+            caches: {
+                main: [
+                    "/"
+                ],
+                additional: [],
+                optional:[]
+            },
             externals: [
-                'index.html'
+                "/dist/vendor.js",
+                "/dist/bundle.js",
+                '/'
             ],
         })
     ]
