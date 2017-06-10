@@ -1,0 +1,31 @@
+{
+  "short_name": "Bük",
+  "name": "A markdown based documentation generator.",
+  "icons": [
+    {
+      "src": "/dist/images/logo96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/dist/images/logo152x152.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/dist/images/logo192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/dist/images/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait"
+}
