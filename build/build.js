@@ -1,14 +1,13 @@
 var ora = require('ora')
-var chalk = require('chalk')
 var webpack = require('webpack')
 var mv = require('mv')
-var rimraf = require('rimraf')
+var del = require('del')
 var webpackConfig
 var spinMessage
 
 // Load the right webpack config file.
 switch (process.env.NODE_ENV) {
-    case 'offline':
+    case 'pwa':
         webpackConfig = require('./webpack.pwa.config')
         spinMessage = "building progressive web app"
         break
@@ -36,18 +35,24 @@ webpack(webpackConfig, function (err, stats) {
             chunkModules: false
         }) + '\n\n')
 
-    if (process.env.NODE_ENV === 'offline') {
-        spinner.info('Copying service worker to root...')
+    if (process.env.NODE_ENV === 'pwa') {
+        spinner.info('Moving service worker to root...')
         mv('dist/sw.js', './sw.js', function(err) {
-            console.log(chalk.cyan('Service worker moved.\n'))
+            spinner.info('Service worker moved')
             spinner.succeed('Build complete.')
         });
     }
-    else {
-        spinner.succeed('Deleting sw...')
-        // mv('dist/sw.js', './sw.js', function(err) {
-        //     console.log(chalk.cyan('Service worker deleted.\n'))
-        //     spinner.succeed('Build complete.')
-        // });
+    else if (process.env.NODE_ENV === 'production') {
+        spinner.warn('Deleting sw...')
+        try {
+            del(['sw.js']).then(function(paths) {
+                spinner.info('Service worker deleted')
+                spinner.succeed('Build complete.')
+            });
+        }
+        catch (e) {
+            spinner.info('No service worker found.')
+            spinner.succeed('Build complete.')
+        }
     }
 })
