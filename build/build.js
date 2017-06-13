@@ -2,6 +2,7 @@ var ora = require('ora')
 var chalk = require('chalk')
 var webpack = require('webpack')
 var mv = require('mv')
+var rimraf = require('rimraf')
 var webpackConfig
 var spinMessage
 
@@ -41,5 +42,12 @@ webpack(webpackConfig, function (err, stats) {
             console.log(chalk.cyan('Service worker moved.\n'))
             spinner.succeed('Build complete.')
         });
+    }
+    else {
+        spinner.succeed('Deleting sw...')
+        // mv('dist/sw.js', './sw.js', function(err) {
+        //     console.log(chalk.cyan('Service worker deleted.\n'))
+        //     spinner.succeed('Build complete.')
+        // });
     }
 })

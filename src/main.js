@@ -12,7 +12,7 @@ require(`./sass/themes/${bootstrap.theme}`)
  * Uncomment this line when running npm run offline.
  * This setup SW + AppCache and make Buuk a progressive app.
  */
-require('./pwa')
+// require('./pwa')
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
