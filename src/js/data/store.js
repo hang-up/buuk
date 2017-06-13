@@ -12,8 +12,8 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        app: manifest.app,
-        description: manifest.description,
+        short_name: manifest.short_name,
+        name: manifest.name,
         sub: manifest.sub,
         logo,
         localizations,

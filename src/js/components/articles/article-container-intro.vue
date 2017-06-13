@@ -3,10 +3,10 @@
         <!-- Article. -->
         <div class="col s12">
             <h1>
-                {{ $store.state.app }}
+                {{ $store.state.short_name }}
             </h1>
             <h4>
-                {{ $store.state.description }}
+                {{ $store.state.name }}
             </h4>
             <p>
                 {{ $store.state.sub }}
