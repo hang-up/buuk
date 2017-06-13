@@ -62,7 +62,8 @@
 
         components: {
             search: require('../search/search.vue'),
-            'sidebar-item': require('./sidebar-item.vue')
+            'sidebar-item': require('./sidebar-item.vue'),
+            'sidebar-logo': require('./siderbar-logo.vue')
         },
 
         mounted() {
