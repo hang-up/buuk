@@ -15,13 +15,19 @@ var pwaConfig = merge(config, {
                 main: [
                     "/"
                 ],
-                additional: [],
+                additional: [
+                    ':externals:'
+                ],
                 optional:[]
             },
+
+            // Removes warning for about `additional` section usage
+            safeToUseOptionalCaches: true,
+
             externals: [
+                "/",
                 "/dist/vendor.js",
-                "/dist/bundle.js",
-                '/'
+                "/dist/bundle.js"
             ],
         })
     ]
