@@ -12,7 +12,7 @@
   "license": "MIT",
   "author": "Robert Hang (https://groundedrob.com)",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config=./build/webpack.config.js --inline --hot --open --compress",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config=./build/webpack.config.js --inline --hot --open ",
     "build": "cross-env NODE_ENV=production node build/build.js",
     "offline": "cross-env NODE_ENV=offline node build/build.js"
   },
