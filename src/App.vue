@@ -1,5 +1,5 @@
 <style scoped>
-    main {
+    main, #nav-mobile {
         transition: all .3s ease-in;
     }
 
@@ -22,7 +22,7 @@
 
             <div class="container">
                 <!-- Floating action button -->
-                <fab></fab>
+                <fab :is-full-screen.sync="isFullScreen"></fab>
 
                 <!-- Mobile menu trigger. -->
                 <a href="#"
