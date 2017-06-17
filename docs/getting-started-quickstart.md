@@ -16,20 +16,29 @@ npm install buuk
 ```
 ---
 
-2) Drop your markdown files inside `dist/assets`.
+2) Drop your markdown files inside `docs`.
 3) Update `manifest.json`
-4) `npm run build`
+4) `npm run build` or `npm run pwa`
 
 **Refer to Usage/manifest.json to learn more about file naming conventions.** 
 
 ---
-#### Development caveats
-> Include `bundle.min.js` in production  
+## Scripts
 
-Due to Webpack compilation flow and Uglify inablity to process ES2015 files, running `npm run build` will now call 2  npm scripts sequentially: `transpile` and `uglify`.
+```
+ npm run dev
+```
+Will serve a local version of Bük on `localhost:8080` with hot module replacement enabled by default.
 
-1) `transpile` uses `babel-cli` with the `es2015`presets and outputs `dist/transpiled.js`
-2) `uglify` uses `uglifyjs` to compress `dist/transpiled.js` into `dist/bundle.min.js`
+```
+ npm run build
+```
+Will compile all markdown files referenced inside manifest and output two scripts: `dist/vendor.js` and `dist/bundle.js`
+* `vendor.js` references vendor libraries needed and can be cached for an extensive period of time
+* `bundle.js` actually contains the interesting part.
 
-Due to this compilation flow, you SHOULD include `dist/bundle.min.js` in your `index.html` when in production. 
-In development, leave the un-minified version `dist/bundle.js` to benefit from hot reloading.
+```
+npm run pwa
+```
+Does the same as above but will generate /update a service worker `sw.js` at the root of the folder. This enables progressive web application capabilities including offline view and fast loading time. 
+More info on that can be found [here!](https://developers.google.com/web/progressive-web-apps/)

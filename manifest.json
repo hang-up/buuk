@@ -79,10 +79,25 @@
           "manifest.js",
           "how to write"
         ]
+      },
+      {
+        "title": "Bootstrappers",
+        "tags": [
+          "usage",
+          "bootstrappers",
+          "json",
+          "autoload",
+          "localization",
+          "renderer",
+          "search",
+          "sidebar",
+          "slug",
+          "theme"
+        ]
       }
     ],
 
-    "Example Nested Categories": {
+    "Example of nested categories": {
       "Category 1": [
         {
           "title": "About Bük",
