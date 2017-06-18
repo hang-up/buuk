@@ -33,7 +33,7 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                exclude: /node_modules\/(?!(markdown-it-highlightjs)\/).*/, // https://github.com/webpack/webpack/issues/2031
+                exclude: /node_modules\/(?!(markdown-it-highlightjs|markdown-it-mermaid)\/).*/, // https://github.com/webpack/webpack/issues/2031
                 use: {
                     loader: 'babel-loader',
                     options: {
