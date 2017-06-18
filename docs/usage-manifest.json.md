@@ -54,14 +54,19 @@ The default manifest will follow this structure:
 - `false`: will only take the title of the article as slugs (eg. manifest.json)
 
 >> **introduction**
-- `name`: Associates a markdown file as the introduction page. The file must be referenced inside `/docs`
+- `name`: Associates a markdown file as the introduction page. The file must be referenced inside `/docs
 
 >> **theme**
 - `default`: This will reference the `default` theme found in `themeBootstrap.js`. See Bootstrapper section for more details.
 
 >> **lang**
 - `en`: references `en` language in `localizationBootstrap.js`. See Boostrapper section for more details.
-- 
+
+>> **uml**
+- `true`: will make use of [mermaid](http://knsv.github.io/mermaid/) to generate markdown based UML diagram.
+ Note that you will need to uncomment `<link rel="stylesheet" href="dist/mermaid.min.css">` and `<script src="dist/mermaid.min.js"></script>` in `index.html`
+
+---
 
 ### Articles
 

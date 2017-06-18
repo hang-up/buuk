@@ -9,6 +9,8 @@
 </template>
 
 <script type="text/babel">
+    const options = require('../../../../manifest.json').options
+
     export default {
         name: 'article-container',
 
@@ -44,12 +46,21 @@
 
                 // Load the relevant md.
                 try {
-                    this.file = md.render(require(`../../../../docs/${this.$route.params.article}.md`))
+                    if (options.uml) {
+                        new Promise((resolve, reject) => {
+                            this.file = md.render(require(`../../../../docs/${this.$route.params.article}.md`))
+                            resolve()
+                        }).then(() => {
+                            window.mermaid.init(undefined, ".mermaid")
+                        })
+                    }
+                    else
+                        this.file = md.render(require(`../../../../docs/${this.$route.params.article}.md`))
                 }
                 catch (e) {
                     this.file = md.render(require(`../../../../docs/404.md`))
                 }
-            }
+            },
         }
     }
 </script>

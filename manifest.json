@@ -39,7 +39,8 @@
   "options": {
     "advanced_slugs": true,
     "theme": "default",
-    "lang": "en"
+    "lang": "en",
+    "uml": false
   },
 
   "articles" : {
