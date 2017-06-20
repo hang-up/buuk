@@ -39,7 +39,7 @@
                 const md = require('../../bootstrap/autoload').render
 
                 // Clear up the viewport.
-                this.$store.dispatch('resetSearch')
+                this.$store.dispatch('search/resetSearch')
 
                 // Go on top of viewport.
                 window.scrollTo(0, 0)
