@@ -9,6 +9,8 @@
 </template>
 
 <script type="text/babel">
+    const options = require('../../../../manifest.json').options
+
     export default {
         name: 'article-container',
 
@@ -37,19 +39,28 @@
                 const md = require('../../bootstrap/autoload').render
 
                 // Clear up the viewport.
-                this.$store.dispatch('resetSearch')
+                this.$store.dispatch('search/resetSearch')
 
                 // Go on top of viewport.
                 window.scrollTo(0, 0)
 
-                // Load the relevant md.
+                // Load the relevant md with appropriate option.
                 try {
-                    this.file = md.render(require(`../../../../docs/${this.$route.params.article}.md`))
+                    if (options.uml) {
+                        new Promise((resolve, reject) => {
+                            this.file = md.render(require(`../../../../docs/${this.$route.params.article}.md`))
+                            resolve()
+                        }).then(() => {
+                            window.mermaid.init(undefined, ".mermaid")
+                        })
+                    }
+                    else
+                        this.file = md.render(require(`../../../../docs/${this.$route.params.article}.md`))
                 }
                 catch (e) {
                     this.file = md.render(require(`../../../../docs/404.md`))
                 }
-            }
+            },
         }
     }
 </script>

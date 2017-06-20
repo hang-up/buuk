@@ -34,7 +34,7 @@
                     return false
                 }
                 else
-                    return this.$store.state.searchArticles[this.getArticlePosition() - 1].slug
+                    return this.$store.state.search.searchArticles[this.getArticlePosition() - 1].slug
             },
 
             /**
@@ -43,11 +43,11 @@
              * @returns {boolean|number}
              * */
             getNextArticle() {
-                if (this.getArticlePosition() === this.$store.state.searchArticles.length - 1) {
+                if (this.getArticlePosition() === this.$store.state.search.searchArticles.length - 1) {
                     return false
                 }
                 else
-                    return this.$store.state.searchArticles[this.getArticlePosition() + 1].slug
+                    return this.$store.state.search.searchArticles[this.getArticlePosition() + 1].slug
             },
 
             /**
@@ -74,7 +74,7 @@
                 let current = this.$route.fullPath.substr(1)
 
                 // Return where we are in a flat array of articles.
-                return _.findIndex(this.$store.state.searchArticles, (article) => {
+                return _.findIndex(this.$store.state.search.searchArticles, (article) => {
                     return article.slug === current
                 })
 

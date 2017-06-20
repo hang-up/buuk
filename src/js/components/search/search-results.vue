@@ -10,18 +10,18 @@
 </style>
 
 <template>
-    <div class="collection" v-if="$store.state.searchResults.length && $store.state.query">
+    <div class="collection" v-if="$store.state.search.searchResults.length && $store.state.search.query">
         <router-link :to="article.slug"
                      v-on:click.native="clearSearch"
                      class="collection-item"
-                     v-for="article in $store.state.searchResults"
+                     v-for="article in $store.state.search.searchResults"
                      :key="article.slug"
         >
             <span>{{ article.title }}</span>
         </router-link>
     </div>
-    <ul class="collection" v-else-if="!$store.state.searchResults.length && $store.state.query != ''">
-       <li class="collection-item">{{ $store.state.localizations.no_result }}</li>
+    <ul class="collection" v-else-if="!$store.state.search.searchResults.length && $store.state.search.query != ''">
+       <li class="collection-item">{{ $store.state.bootstrap.localizations.no_result }}</li>
     </ul>
 </template>
 
@@ -32,7 +32,7 @@
         methods: {
             clearSearch() {
                 this.$emit('update:q', "")
-                this.$store.dispatch('resetSearch')
+                this.$store.dispatch('search/resetSearch')
             }
         }
     }

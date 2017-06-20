@@ -8,7 +8,7 @@
                    @click="toggleFullScreen"
                    data-position="top"
                    data-delay="50"
-                   :data-tooltip="$store.state.localizations.toggle_fs">
+                   :data-tooltip="$store.state.bootstrap.localizations.toggle_fs">
                 <i class="mi mi-fullscreen"></i>
             </a>
             </li>
@@ -18,16 +18,20 @@
 
 <script>
     export default {
+        props: ['isFullScreen'],
+
         methods: {
             /**
              * Toggle full screen.
              */
             toggleFullScreen() {
-                this.isFullScreen = !this.isFullScreen
+                // Eventually this isFullScreen variable will be of use in other places...
+                // Should we move it to the store in that case?
+                this.$emit('update:isFullScreen', !this.isFullScreen)
 
                 // This is not data driven. It's gross.
                 switch(this.isFullScreen) {
-                    case true:
+                    case false:
                         $('#nav-mobile').css('transform', 'translateX(-300px)')
                         $("main").css("margin-left", 0)
                         break

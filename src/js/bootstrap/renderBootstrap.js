@@ -1,15 +1,26 @@
+const mdi = require('markdown-it')
+const mdict = require('markdown-it-center-text')
+
+const umlSupport = require('../../../manifest.json').options.uml
 /**
  * This module returns the appropriate markdown parser.
  *
  */
 export function boot() {
-    // Switch renderer here. UML support?
-    const md = require('markdown-it')({
+    const md = mdi({
         breaks: true,
         typographer: true
     })
-        .use(require('markdown-it-center-text'))
-        .use(window.highlightjs, "auto");
+
+    // Default plugins.
+    md
+        .use(mdict)
+        .use(window.highlightjs, "auto")
+
+    // If we decide to support uml, we'll need to import mermaid.
+    if (umlSupport) {
+        md.use(require('markdown-it-mermaid/src'))
+    }
 
     return md
 }
