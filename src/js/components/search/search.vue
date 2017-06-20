@@ -48,7 +48,7 @@
         <input type="text"
                id="search"
                v-model="q"
-               :placeholder="$store.state.localizations.search"
+               :placeholder="$store.state.bootstrap.localizations.search"
                v-on:click="isFocused = !isFocused"
                v-on:blur="isFocused = !isFocused">
 
@@ -118,7 +118,7 @@
                     threshold: 0.5,
                 }
 
-                this.fuse = new Fuse(this.$store.state.searchArticles, options)
+                this.fuse = new Fuse(this.$store.state.search.searchArticles, options)
             },
 
             /**
@@ -128,20 +128,20 @@
             searchResults: _.debounce(function () {
                 if (this.q === "") {
                     this.$store.commit({
-                        type: 'searchResults',
+                        type: 'search/searchResults',
                         searchResults: []
                     })
                 }
 
                 // Sync our query with the store query so that we can display/hide search module.
                 this.$store.commit({
-                    type: 'updateQuery',
+                    type: 'search/updateQuery',
                     query: this.q
                 })
 
                 // Fetch store results array.
                 this.$store.commit({
-                    type: 'searchResults',
+                    type: 'search/searchResults',
                     searchResults: this.fuse.search(this.q)
                 })
 

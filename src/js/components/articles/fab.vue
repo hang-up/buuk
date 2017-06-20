@@ -8,7 +8,7 @@
                    @click="toggleFullScreen"
                    data-position="top"
                    data-delay="50"
-                   :data-tooltip="$store.state.localizations.toggle_fs">
+                   :data-tooltip="$store.state.bootstrap.localizations.toggle_fs">
                 <i class="mi mi-fullscreen"></i>
             </a>
             </li>

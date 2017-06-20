@@ -29,8 +29,8 @@
     <ul class="side-nav fixed" id="nav-mobile">
 
         <!-- Logo. -->
-        <li class="logo" v-if="this.$store.state.logo">
-            <sidebar-logo :source="this.$store.state.logo"></sidebar-logo>
+        <li class="logo" v-if="$store.state.bootstrap.logo != ''">
+            <sidebar-logo :source="$store.state.bootstrap.logo"></sidebar-logo>
         </li>
 
         <!-- Search input. -->
@@ -41,14 +41,14 @@
         <!-- Introduction. -->
         <li>
             <router-link to="/" class="waves-effect waves-light">
-                {{ $store.state.localizations.introduction }}
+                {{ $store.state.bootstrap.localizations.introduction }}
             </router-link>
         </li>
 
         <!-- List of articles. -->
         <li>
             <ul class="collapsible" data-collapsible="accordion">
-                <sidebar-item v-for="(articles, category) in $store.state.articles" :articles="articles" :category="category" :key="category"></sidebar-item>
+                <sidebar-item v-for="(articles, category) in $store.state.articles.articles" :articles="articles" :category="category" :key="category"></sidebar-item>
             </ul>
         </li>
     </ul>
