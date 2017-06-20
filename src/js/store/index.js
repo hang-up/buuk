@@ -8,12 +8,10 @@ import search from './modules/search/index'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-    state: {
-        modules: {
-            articles,
-            bootstrap,
-            search
-        }
+    modules: {
+        articles,
+        bootstrap,
+        search
     }
 })
 
