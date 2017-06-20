@@ -1,7 +1,7 @@
 const slugger = require('slugify')
 const lower = require('lower-case')
-const articles = require('../../../manifest.json').articles;
-const options = require('../../../manifest').options;
+const articles = require('../../../../../manifest.json').articles;
+const options = require('../../../../../manifest.json').options;
 const _ = window._
 
 /**
@@ -56,16 +56,8 @@ function _isDeep(array) {
 
 /**
  * This will go through each article in the manifest and append a slug to them
- * (if they already don't have one). The slug format is either a simple one
+ * (if they don't have one). The slug format is either a simple one
  * (category-name) or an advanced one (direct parent)category-name-of-the-article.
  *
  */
-export function boot() {
-
-    /**
-     * Entry point.
-     *
-     * @returns {*}
-     */
-    return slugify(articles)
-}
+export default slugify(articles)

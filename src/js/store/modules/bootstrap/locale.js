@@ -1,5 +1,3 @@
-const lang = require('../../../manifest.json').options.lang
-
 const en = {
     'all_articles': "All articles",
     'toggle_fs': "Toggle fullscreen",
@@ -16,23 +14,7 @@ const fr = {
     'introduction': "Introduction"
 }
 
-/**
- * This module is responsible for returning the right localizations.
- *
- * @returns {*}
- */
-export function boot() {
-    switch (lang) {
-        case 'en':
-            return en
-        break
-
-        case 'fr':
-            return fr
-            break
-
-        default:
-            return en
-        break
-    }
+export {
+    en,
+    fr
 }
