@@ -21,7 +21,7 @@
         </router-link>
     </div>
     <ul class="collection" v-else-if="!$store.state.search.searchResults.length && $store.state.search.query != ''">
-       <li class="collection-item">{{ $store.bootstrap.localizations.no_result }}</li>
+       <li class="collection-item">{{ $store.state.bootstrap.localizations.no_result }}</li>
     </ul>
 </template>
 
