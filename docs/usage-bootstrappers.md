@@ -8,9 +8,6 @@ In practice, one bootstrapper should equal one specific role fulfilled. As such,
 
 Entry point of all bootstrappers.
 
->> **localizationBootstap**
-
-Returns the right localization according to the manifest `lang` option.
 >> **renderBootstrap**
 
 Returns the appropriate markdown parser.
@@ -18,15 +15,6 @@ Returns the appropriate markdown parser.
 >> **routes**
 
 Registers all application specific routes.
->> **searchBootstrap**
-
-Returns a flat array of unique articles based on their slug. Used to feed the search feature.
->> **sidebarBootstrap**
-
-Used to define specific behaviour related to the sidebar (logo eg.).
->> **slugBootstrap**
-
-Returns an object representative of the article hierarchy defined in manifest.json. Each article will be generated a slug if necessary.
 
 >> **themeBootstrap**
 
