@@ -2,7 +2,7 @@ import App from './App.vue'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-import store from './js/data/store'
+import store from './js/store/index'
 const bootstrap = require('./js/bootstrap/autoload')
 require('./sass/app.scss')
 require(`./sass/themes/${bootstrap.theme}`)
