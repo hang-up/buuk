@@ -50,7 +50,7 @@ The default manifest will follow this structure:
 
 ### Options
 >> **advanced_slugs**
-- `true` (default setting): will generate a slug based on the following pattern: `direct-parent-category-title-of-the-article` (eg. usage-manifest.json).
+- `true` (default): will generate a slug based on the following pattern: `direct-parent-category-title-of-the-article` (eg. usage-manifest.json).
 - `false`: will only take the title of the article as slugs (eg. manifest.json)
 
 >> **introduction**
@@ -64,8 +64,8 @@ The default manifest will follow this structure:
 
 >> **uml**
 - `true`: will make use of [mermaid](http://knsv.github.io/mermaid/) to generate markdown based UML diagram.
- Note that you will need to uncomment `<link rel="stylesheet" href="dist/mermaid.min.css">` and `<script src="dist/mermaid.min.js"></script>` in `index.html`
-
+ You will need to uncomment `<link rel="stylesheet" href="dist/mermaid.min.css">` and `<script src="dist/mermaid.min.js"></script>` in `index.html`
+- `false` (default): no uml support will be available. 
 ---
 
 ### Articles
