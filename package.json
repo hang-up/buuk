@@ -7,7 +7,9 @@
     "documentation",
     "doc",
     "docs",
-    "generator"
+    "pwa",
+    "progressive",
+    "progressive web application"
   ],
   "license": "MIT",
   "author": "Robert Hang (https://groundedrob.com)",
