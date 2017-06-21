@@ -39,12 +39,12 @@
                 const md = require('../../bootstrap/autoload').render
 
                 // Clear up the viewport.
-                this.$store.dispatch('resetSearch')
+                this.$store.dispatch('search/resetSearch')
 
                 // Go on top of viewport.
                 window.scrollTo(0, 0)
 
-                // Load the relevant md.
+                // Load the relevant md with appropriate option.
                 try {
                     if (options.uml) {
                         new Promise((resolve, reject) => {
