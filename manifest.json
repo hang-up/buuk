@@ -44,98 +44,16 @@
   },
 
   "articles" : {
-    "Getting Started": [
+    "Categorie 1": [
       {
-        "title": "About Bük",
+        "title": "Example",
         "tags": [
-          "getting started",
-          "about",
+          "example",
+          "search",
           "fuzzy",
-          "search",
-          "no server"
-        ]
-      },
-      {
-        "title": "Quickstart",
-        "tags": [
-          "installation",
-          "how to"
-        ]
-      },
-      {
-        "title": "References",
-        "tags": [
-          "licence",
-          "author",
-          "misc"
+          "bük"
         ]
       }
-    ],
-
-    "Usage": [
-      {
-        "title": "Manifest.json",
-        "tags": [
-          "usage",
-          "manifest.js",
-          "how to write"
-        ]
-      },
-      {
-        "title": "Bootstrappers",
-        "tags": [
-          "usage",
-          "bootstrappers",
-          "json",
-          "autoload",
-          "localization",
-          "renderer",
-          "search",
-          "sidebar",
-          "slug",
-          "theme"
-        ]
-      }
-    ],
-
-    "Example of nested categories": {
-      "Category 1": [
-        {
-          "title": "About Bük",
-          "tags": [
-            "getting started",
-            "about",
-            "fuzzy",
-            "search",
-            "no server"
-          ],
-          "slug": "getting-started-about-buk"
-        },
-        {
-          "title": "About Bük",
-          "tags": [
-            "getting started",
-            "about",
-            "fuzzy",
-            "search",
-            "no server"
-          ],
-          "slug": "getting-started-about-buk"
-        }
-      ],
-      "Category 2" : {
-        "Nested Again": [
-          {
-            "title": "References",
-            "tags": [
-              "licence",
-              "author",
-              "misc"
-            ],
-            "slug": "getting-started-references"
-          }
-        ]
-      }
-    }
+    ]
   }
 }
