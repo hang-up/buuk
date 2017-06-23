@@ -10,7 +10,8 @@ Entry point of all bootstrappers.
 
 >> **renderBootstrap**
 
-Returns the appropriate markdown parser.
+Bük makes use of [markdown-it](https://github.com/markdown-it/markdown-it) as the underlying parser.
+This bootstrap will return the appropriate parser using the right options.
 
 >> **routes**
 
