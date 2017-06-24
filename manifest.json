@@ -1,92 +1,59 @@
 {
-    "app": "Bük",
-    "version": "2.1.x",
-    "description": "Markdown based wiki generator.",
-    "sub": "Bük is a markdown based wiki generator written in Javascript.",
+  "short_name": "Bük",
+  "name": "A markdown based documentation generator.",
+  "sub": "Bük is a fast and simple markdown based static site generator geared towards documentation.",
 
-    "options": {
-        "advanced_slugs": true,
-        "theme": "medium"
+  "background_color": "#fff",
+  "theme_color": "#fff",
+  "display": "standalone",
+  "orientation": "portrait",
+
+  "start_url": ".",
+
+  "version": "3.0.x",
+
+  "icons": [
+    {
+      "src": "/dist/images/logo96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
     },
-
-    "articles" : {
-        "Getting Started": [
-            {
-                "title": "About Bük",
-                "tags": [
-                    "getting started",
-                    "about",
-                    "fuzzy",
-                    "search",
-                    "no server"
-                ]
-            },
-            {
-                "title": "Quickstart",
-                "tags": [
-                    "installation",
-                    "how to"
-                ]
-            },
-            {
-                "title": "References",
-                "tags": [
-                    "licence",
-                    "author",
-                    "misc"
-                ]
-            }
-        ],
-
-        "Usage": [
-            {
-                "title": "Manifest.json",
-                "tags": [
-                    "usage",
-                    "manifest.js",
-                    "how to write"
-                ]
-            }
-        ],
-
-        "Example Nested Categories": {
-            "Category 1": [
-                {
-                    "title": "About Bük",
-                    "tags": [
-                        "getting started",
-                        "about",
-                        "fuzzy",
-                        "search",
-                        "no server"
-                    ],
-                    "slug": "getting-started-about-buk"
-                },
-                {
-                    "title": "About Bük",
-                    "tags": [
-                        "getting started",
-                        "about",
-                        "fuzzy",
-                        "search",
-                        "no server"
-                    ],
-                    "slug": "getting-started-about-buk"
-                }
-            ],
-            "Category 2" : {
-                "Nested Again": [
-                    {
-                        "title": "References",
-                        "tags": [
-                            "licence",
-                            "author",
-                            "misc"
-                        ],
-                        "slug": "getting-started-references"
-                    }
-                ]
-            }
-        }
+    {
+      "src": "/dist/images/logo144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/dist/images/logo192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/dist/images/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
+  ],
+
+
+  "options": {
+    "advanced_slugs": true,
+    "theme": "default",
+    "lang": "en",
+    "uml": false
+  },
+
+  "articles" : {
+    "Categorie 1": [
+      {
+        "title": "Example",
+        "tags": [
+          "example",
+          "search",
+          "fuzzy",
+          "bük"
+        ]
+      }
+    ]
+  }
 }
