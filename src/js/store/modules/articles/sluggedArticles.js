@@ -2,7 +2,7 @@ const slugger = require('slugify')
 const lower = require('lower-case')
 const articles = require('../../../../../manifest.json').articles;
 const options = require('../../../../../manifest.json').options;
-const _ = window._
+const _ = require('lodash')
 
 /**
  * Recursively loop through a given articles array to slug each article.

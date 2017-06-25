@@ -8,7 +8,7 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 module.exports = {
     entry: {
         'bundle': './src/main.js',
-        'vendor': './src/js/vendor.js'
+        'vendor': ['lodash', 'markdown-it-highlightjs', 'jquery', 'materialize-css/dist/js/materialize.min']
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
@@ -65,7 +65,8 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.common.js'
+            'vue$': 'vue/dist/vue.common.js',
+            'jquery': 'jquery/dist/jquery.min.js'
         }
     },
     devServer: {
@@ -75,7 +76,16 @@ module.exports = {
     performance: {
         hints: false
     },
-    // plugins: [new BundleAnalyzerPlugin()],
+    plugins: [
+        // https://github.com/Dogfalo/materialize/issues/1229#issuecomment-269185997
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: "jquery",
+            'window.$': 'jquery',
+            'window.jQuery': 'jquery',
+        })
+        // new BundleAnalyzerPlugin()
+    ],
     devtool: '#eval-source-map'
 }
 
@@ -94,6 +104,30 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'pwa') {
                 warnings: false
             }
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor",
+            minChunks: function (module) {
+                // This prevents stylesheet resources with the .css or .scss extension
+                // from being moved from their original chunk to the vendor chunk
+                if(module.resource && (/^.*\.(css|scss)$/).test(module.resource)) {
+                    return false;
+                }
+                return module.context && module.context.indexOf("node_modules") !== -1;
+            }
+        }),
+        // Moved webpack bootstrap logic into a separate file.
+        // https://webpack.js.org/plugins/commons-chunk-plugin/#manifest-file
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "manifest",
+            minChunks: Infinity
+        }),
+        // Look through all lazy loaded chunks, and if we find the same module appearing across 2 chunks,
+        // move them into a separate async commons chunk.
+        new webpack.optimize.CommonsChunkPlugin({
+            minChunks: 2,
+            async: true,
+            children: true
+         }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
         })

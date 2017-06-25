@@ -1,5 +1,5 @@
 const articles = require('../../../../../manifest.json').articles;
-const _ = window._
+const _ = require('lodash')
 
 /**
  * Simple object to hold a flattened array of articles.
