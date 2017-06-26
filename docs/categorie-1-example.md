@@ -23,6 +23,10 @@ labi Sidonius?
 4. Genu patrem aevi ponderis trabs et sorsque
 5. Vidisse milite vultu sub ut rursus utraque
 
+Liste pointée.
+* Ici
+* et la
+
 ## Index sceptrum silvamque conscelero dubita virili cultique
 
 Nec secus exstitit ambos quartusque frondes, nunc quam gurgite.

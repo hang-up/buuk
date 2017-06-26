@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    const _ = window._
+    const _ = require('lodash')
 
     export default {
         components: {

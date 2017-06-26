@@ -27,7 +27,8 @@ var pwaConfig = merge(config, {
             externals: [
                 "/",
                 "/dist/vendor.js",
-                "/dist/bundle.js"
+                "/dist/bundle.js",
+                "/dist/manifest.js"
             ],
         })
     ]

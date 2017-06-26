@@ -15,7 +15,7 @@ export function boot() {
     // Default plugins.
     md
         .use(mdict)
-        .use(window.highlightjs, "auto")
+        .use(require('markdown-it-highlightjs'), "auto")
 
     // If we decide to support uml, we'll need to import mermaid.
     if (umlSupport) {
