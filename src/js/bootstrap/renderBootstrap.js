@@ -1,26 +1,26 @@
 const mdi = require('markdown-it')
-const mdict = require('markdown-it-center-text')
 
-const umlSupport = require('../../../manifest.json').options.uml
 /**
  * This module returns the appropriate markdown parser.
  *
  */
 export function boot() {
     const md = mdi({
+        html: false,                                // true this to enable hmtl in markdown.
         breaks: true,
-        typographer: true
+        typographer: true,
+        linkify: true
     })
-
-    // Default plugins.
-    md
-        .use(mdict)
+    /*
+        Base plugins.
+     */
+        .use(require('markdown-it-center-text'))
         .use(require('markdown-it-highlightjs'), "auto")
-
-    // If we decide to support uml, we'll need to import mermaid.
-    if (umlSupport) {
-        md.use(require('markdown-it-mermaid/src'))
-    }
+        .use(require('markdown-it-sup'))
+    /*
+        Conditional plugins.
+     */
+    // .use(require('markdown-it-mermaid/src'))
 
     return md
 }

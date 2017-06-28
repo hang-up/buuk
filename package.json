@@ -41,6 +41,7 @@
     "markdown-it-center-text": "^1.0.3",
     "markdown-it-highlightjs": "^3.0.0",
     "markdown-it-mermaid": "^0.1.8",
+    "markdown-it-sup": "^1.0.0",
     "material-icons": "^0.1.0",
     "materialize-css": "https://github.com/ZiperRom1/materialize/tarball/7a0f549d461f2f512078ca52a19d97445351bf06",
     "mv": "^2.1.1",
