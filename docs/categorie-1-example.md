@@ -2,6 +2,10 @@
 
 ## Illac Achaemenides non laniata est vera sic
 
+[ ] unchecked
+[x] checked
+
+_Underlined text_
 
 Lorem markdownum comes in saevo caelestesque. Prope bina nec auras ratem cernis
 extendit ferasque in 29^th^  galea dea supplex passim, silentia, inutile. Percussit
