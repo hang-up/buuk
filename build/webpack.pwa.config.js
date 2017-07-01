@@ -26,9 +26,14 @@ var pwaConfig = merge(config, {
 
             externals: [
                 "/",
+                "/manifest.json",
                 "/dist/vendor.js",
                 "/dist/bundle.js",
-                "/dist/manifest.js"
+                "/dist/manifest.js",
+                "/dist/fonts/roboto/Roboto-Regular.woff2",
+                "/dist/fonts/roboto/Roboto-Light.woff2",
+                "/dist/fonts/roboto/Roboto-Medium.woff2",
+                "https://fonts.gstatic.com/s/materialicons/v22/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2"
             ],
         })
     ]
