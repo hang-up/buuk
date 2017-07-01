@@ -23,6 +23,7 @@ export function boot() {
      */
     //     .use(require('markdown-it-mermaid'))
     //     .use(require('markdown-it-checkbox'))
+    //     .use(require('markdown-it-latex'))
 
     return md
 }

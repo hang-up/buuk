@@ -2,8 +2,6 @@
 
 ## Illac Achaemenides non laniata est vera sic
 
-[ ] unchecked
-[x] checked
 
 _Underlined text_
 
@@ -30,6 +28,7 @@ labi Sidonius?
 
 Liste pointée.
 * Ici
+    * Aussi ici
 * et la
 
 ## Index sceptrum silvamque conscelero dubita virili cultique
