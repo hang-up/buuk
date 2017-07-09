@@ -136,21 +136,12 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 ![Minion](https://octodex.github.com/images/minion.png)
 ![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
 
-Like links, Images also have a footnote style syntax
-
-![Alt text][id]
-
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
-
-
 ## Plugins
 
-The killer feature of `markdown-it` is very effective support of
+Bük making use of `markdown-it` as the rendering parser, extending rendering capabilities should be easy thanks to the use of `markdown-it-plugins` :
 [syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
 
-
+For more details, [here is the documentation for integrating a plugin.](https://buuk.groundedrob.com/#/usage-extending-renderer)
 ### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
 
 > Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
