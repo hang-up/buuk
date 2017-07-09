@@ -30,6 +30,14 @@ $colors: (
     }
   }
 
+  ul:not(.collection) li > ul li {
+    list-style-type: circle;
+  }
+
+  ul:not(.collection) li > ul li > ul li {
+    list-style-type: square;
+  }
+
   li {
     margin-bottom: 12px;
   }
