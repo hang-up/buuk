@@ -156,7 +156,6 @@ For more details, [here is the documentation for integrating a plugin.](https://
 _underlined text_
 
 ### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
-##### (disabled by default)
 
 > Classic markup: :wink: :cry: :laughing: :yum:
 >
@@ -165,6 +164,5 @@ _underlined text_
 see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
 
 ### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
-##### (disabled by default)
 
 ==Marked text==

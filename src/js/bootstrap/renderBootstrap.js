@@ -19,11 +19,11 @@ export function boot() {
         .use(require('markdown-it-sup'))
         .use(require('markdown-it-sub'))
         .use(require('markdown-it-underline'))
+        .use(require('markdown-it-emoji'))
+        .use(require('markdown-it-mark'))
     /*
         Conditional plugins.
      */
-        // .use(require('markdown-it-emoji'))
-        // .use(require('markdown-it-mark'))
         // .use(require('markdown-it-mermaid'))
         // .use(require('markdown-it-checkbox'))
         // .use(require('markdown-it-latex'))
