@@ -142,7 +142,21 @@ Bük making use of `markdown-it` as the rendering parser, extending rendering ca
 [syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
 
 For more details, [here is the documentation for integrating a plugin.](https://buuk.groundedrob.com/#/usage-extending-renderer)
+### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
+
+- 19^th^
+- H~2~O
+
+### [\<center>](https://github.com/jay-hodgson/markdown-it-center-text)
+
+-> Centered text <-
+
+### [\<underline>](https://www.npmjs.com/package/markdown-it-underline)
+
+_underlined text_
+
 ### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
+##### (disabled by default)
 
 > Classic markup: :wink: :cry: :laughing: :yum:
 >
@@ -150,12 +164,7 @@ For more details, [here is the documentation for integrating a plugin.](https://
 
 see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
 
-
-### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
-
-- 19^th^
-- H~2~O
-
 ### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
+##### (disabled by default)
 
 ==Marked text==
