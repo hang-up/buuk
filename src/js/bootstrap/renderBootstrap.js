@@ -17,7 +17,10 @@ export function boot() {
         .use(require('markdown-it-center-text'))
         .use(require('markdown-it-highlightjs'), "auto")
         .use(require('markdown-it-sup'))
+        .use(require('markdown-it-sub'))
         .use(require('markdown-it-underline'))
+        .use(require('markdown-it-emoji'))
+        .use(require('markdown-it-mark'))
     /*
         Conditional plugins.
      */
