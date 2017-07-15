@@ -62,3 +62,10 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+
+// Hide those when printing.
+@media print {
+  #nav-mobile, #nav-mobile-trigger, .btn-navigator, .fixed-action-btn {
+    display: none !important;
+  }
+}

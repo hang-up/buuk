@@ -28,6 +28,7 @@
                 <a href="#"
                    data-activates="nav-mobile"
                    class="top-nav waves-effect waves-light hide-on-large-only btn button-collapse"
+                   id="nav-mobile-trigger"
                    style="margin-top: 19.25px">
                     <i class="material-icons left">menu</i>
                     Menu
