@@ -1,5 +1,9 @@
 const articles = require('../../../../../manifest.json').articles;
-const _ = require('lodash')
+
+const forEach = require('lodash/forEach')
+const flattenDeep = require('lodash/flattenDeep')
+const toArray = require('lodash/toArray')
+const uniqBy = require('lodash/uniqBy')
 
 /**
  * Simple object to hold a flattened array of articles.
@@ -16,9 +20,8 @@ let data = {
  * @param res
  */
 function searchify(articles) {
-    _.forEach(_.flattenDeep(_.toArray(articles)), (category) => {
+    forEach(flattenDeep(toArray(articles)), (category) => {
         // Loop through every article of the category and push an object of the format { title, slug, tags }
-
 
         if(!("title" in category)) {
             searchify(category)
@@ -33,7 +36,7 @@ function searchify(articles) {
     })
 
     // We filter our articles by their slug uniqueness.
-    return _.uniqBy(data.flatArticles, 'slug')
+    return uniqBy(data.flatArticles, 'slug')
 }
 
 /**

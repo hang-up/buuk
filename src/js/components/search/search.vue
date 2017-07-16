@@ -67,7 +67,7 @@
 </template>
 
 <script>
-    const _ = require('lodash')
+    import debounce from 'lodash/debounce'
     const Fuse = require('fuse.js')
 
     export default {
@@ -125,7 +125,7 @@
              * Perform the search.
              *
              */
-            searchResults: _.debounce(function () {
+            searchResults: debounce(function () {
                 if (this.q === "") {
                     this.$store.commit({
                         type: 'search/searchResults',
