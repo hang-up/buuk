@@ -1,58 +1,35 @@
+require('./check-versions')()
+
+process.env.NODE_ENV = 'production'
+
 var ora = require('ora')
+var rm = require('rimraf')
+var path = require('path')
+var chalk = require('chalk')
 var webpack = require('webpack')
-var mv = require('mv')
-var del = require('del')
-var webpackConfig
-var spinMessage
+var config = require('../config')
+var webpackConfig = require('./webpack.prod.conf')
 
-// Load the right webpack config file.
-switch (process.env.NODE_ENV) {
-    case 'pwa':
-        webpackConfig = require('./webpack.pwa.config')
-        spinMessage = "building progressive web app"
-        break
-
-    case 'production':
-        webpackConfig = require('./webpack.config')
-        spinMessage = "building for production"
-        break
-}
-
-/*
-    Start spinning!
- */
-var spinner = ora(spinMessage)
+var spinner = ora('building for production...')
 spinner.start()
 
-// Webpack
-webpack(webpackConfig, function (err, stats) {
+rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
+  if (err) throw err
+  webpack(webpackConfig, function (err, stats) {
+    spinner.stop()
     if (err) throw err
     process.stdout.write(stats.toString({
-            colors: true,
-            modules: false,
-            children: false,
-            chunks: false,
-            chunkModules: false
-        }) + '\n\n')
+      colors: true,
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false
+    }) + '\n\n')
 
-    if (process.env.NODE_ENV === 'pwa') {
-        spinner.info('Moving service worker to root...')
-        mv('dist/sw.js', './sw.js', function(err) {
-            spinner.info('Service worker moved')
-            spinner.succeed('Build complete.')
-        });
-    }
-    else if (process.env.NODE_ENV === 'production') {
-        spinner.warn('Deleting sw...')
-        try {
-            del(['sw.js']).then(function(paths) {
-                spinner.info('Service worker deleted')
-                spinner.succeed('Build complete.')
-            });
-        }
-        catch (e) {
-            spinner.info('No service worker found.')
-            spinner.succeed('Build complete.')
-        }
-    }
+    console.log(chalk.cyan('  Build complete.\n'))
+    console.log(chalk.yellow(
+      '  Tip: built files are meant to be served over an HTTP server.\n' +
+      '  Opening index.html over file:// won\'t work.\n'
+    ))
+  })
 })
