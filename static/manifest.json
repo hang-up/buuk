@@ -1,6 +1,10 @@
 {
-  "name": "buuk",
-  "short_name": "buuk",
+  "name": "A markdown based documentation generator.",
+  "short_name": "Bük",
+  "sub": "Bük is a fast and simple markdown based static site generator geared towards documentation.",
+
+
+
   "icons": [
     {
       "src": "/static/img/icons/android-chrome-192x192.png",
@@ -15,6 +19,31 @@
   ],
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#4DBA87"
+  "background_color": "#fff",
+  "theme_color": "#fff",
+
+
+
+  "options": {
+    "advanced_slugs": true,
+    "theme": "default",
+    "lang": "en",
+    "uml": false
+  },
+
+
+
+  "articles": {
+    "Categorie 1": [
+      {
+        "title": "Example",
+        "tags": [
+          "example",
+          "search",
+          "fuzzy",
+          "bük"
+        ]
+      }
+    ]
+  }
 }
