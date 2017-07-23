@@ -68,7 +68,7 @@
 
 <script>
     import debounce from 'lodash/debounce'
-    import Fuse from 'fuse'
+    import Fuse from 'fuse.js'
     import searchResults from './search-results.vue'
 
     export default {

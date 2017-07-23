@@ -1,4 +1,4 @@
-import manifest from '../../../../../manifest.json'
+import manifest from '../../../../../static/manifest.json'
 import locale from './locale'
 
 // Get the logo if set inside manifest options.

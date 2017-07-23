@@ -1,4 +1,4 @@
-import { articles } from '../../../../../manifest.json'
+import { articles } from '../../../../../static/manifest.json'
 import forEach from 'lodash/forEach'
 import flattenDeep from 'lodash/flattenDeep'
 import toArray from 'lodash/toArray'

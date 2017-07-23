@@ -1,6 +1,6 @@
 import slugger from 'slugify'
 import lower from 'lower-case'
-import { articles, options } from '../../../../../manifest.json'
+import { articles, options } from '../../../../../static/manifest.json'
 import forEach from 'lodash/forEach'
 import isArray from 'lodash/isArray'
 
