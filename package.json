@@ -53,7 +53,7 @@
     "markdown-it-sup": "^1.0.0",
     "markdown-it-underline": "^1.0.1",
     "material-icons": "^0.1.0",
-    "materialize-css": "https://github.com/ZiperRom1/materialize/tarball/7a0f549d461f2f512078ca52a19d97445351bf06",
+    "materialize-css": "https://github.com/hang-up/materialize/archive/v0.100.1-roboto.tar.gz",
     "node-sass": "^4.5.0",
     "opn": "^4.0.2",
     "optimize-css-assets-webpack-plugin": "^1.3.0",
