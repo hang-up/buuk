@@ -52,12 +52,14 @@
 </template>
 
 <script>
+    import isArray from 'lodash/isArray'
+
     export default{
         props: ['articles', 'category'],
 
         methods: {
             isDeep(array) {
-                return _.isArray(array)
+                return isArray(array)
             }
         },
 
