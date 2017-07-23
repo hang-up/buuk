@@ -3,6 +3,8 @@ import App from './App'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import store from './js/store'
+require('materialize-css/dist/js/materialize.min')
+
 
 // Load bootstrap
 const bootstrap = require('./js/bootstrap/autoload')
