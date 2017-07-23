@@ -2,10 +2,13 @@ import Vue from 'vue'
 import App from './App'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-import bootstrap from './js/bootstrap/autoload'
-import './sass/app.scss'
+import store from './js/store'
+
+// Load bootstrap
+const bootstrap = require('./js/bootstrap/autoload')
 
 // Load the chosen theme.
+require('./sass/app.scss')
 require(`./sass/themes/${bootstrap.theme}`)
 
 Vue.use(Vuex)
@@ -16,7 +19,6 @@ const router = new VueRouter({
     routes: bootstrap.routes
 })
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
     store,
