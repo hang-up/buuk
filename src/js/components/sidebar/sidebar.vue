@@ -57,8 +57,8 @@
 <script type="text/babel">
     import Vue from 'vue'
     import search from '../search/search.vue'
-    import sidebarItem from 'sidebar-item'
-    import sidebarLogo  from 'siderbar-logo.vue'
+    import sidebarItem from './sidebar-item'
+    import sidebarLogo  from './siderbar-logo.vue'
 
     export default {
         name: 'sidebar',
