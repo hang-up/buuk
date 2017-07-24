@@ -22,11 +22,11 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            '@': resolve('src')
         }
     },
     module: {
         rules: [
+            // Will eventually include this to lint the code... Not yet though.
             // {
             //   test: /\.(js|vue)$/,
             //   loader: 'eslint-loader',
@@ -57,14 +57,6 @@ module.exports = {
                 options: {
                     limit: 10000,
                     name: utils.assetsPath('img/[name].[hash:7].[ext]')
-                }
-            },
-            {
-                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 10000,
-                    name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
                 }
             },
             {

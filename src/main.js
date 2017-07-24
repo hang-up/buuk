@@ -7,18 +7,18 @@ require('materialize-css/dist/js/materialize.min')
 
 
 // Load bootstrap
-const bootstrap = require('./js/bootstrap/autoload')
+import { theme, routes } from './js/bootstrap/autoload'
 
 // Load the chosen theme.
 require('./sass/app.scss')
-require(`./sass/themes/${bootstrap.theme}`)
+require(`./sass/themes/${theme}`)
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
 const router = new VueRouter({
-    routes: bootstrap.routes
+    routes
 })
 
 new Vue({
