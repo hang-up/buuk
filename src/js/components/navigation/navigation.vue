@@ -10,9 +10,11 @@
 </template>
 
 <script>
+    import articleNavigator from './article-navigator.vue'
+
     export default {
         components: {
-            articleNavigator: require('./article-navigator.vue')
+            articleNavigator
         },
 
 

@@ -1,45 +1,21 @@
-<p align="center"><img src="http://groundedrob.com/images/projects/buk.png" height='250px'></p>
+# buuk
 
-## About Bük
-> A markdown based documentation generator.
+> A Vue.js project
 
-Bük is a fast and simple markdown based static site generator geared towards documentation.
+## Build Setup
 
-Simply drop in your .md files in a folder, update manifest.json and you get a blazing fast wiki with an integrated fuzzy search feature.
-
-## Quickstart
-
-1) Get Bük
-> ##### Git Clone
-```
-git clone https://github.com/hang-up/buk.git buk
-cd buk
-npm install
-```
-
-> ##### NPM
-Alternatively, use NPM.
-
-```
-npm install buuk
-
+``` bash
 # install dependencies
 npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
 ```
----
 
-2) Drop your markdown files in `docs`.
-3) Update `manifest.json`
-4) `npm run build` or `npm run pwa`
-
-
-## Documentation - Example
-To check out live example which also happen to be the docs, visit: [buuk.groundedrob.com](https://buuk.groundedrob.com)
-
-## Changelog:
-Details changes for each release are documented in the [release notes](https://github.com/hang-up/buk/releases)
-
-### Licence
-MIT
-
-
+For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

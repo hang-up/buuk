@@ -16,7 +16,7 @@ const fr = {
     'print': "Imprimer la page"
 }
 
-export {
+export default {
     en,
     fr
 }

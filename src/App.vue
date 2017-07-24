@@ -3,7 +3,7 @@
         transition: all .3s ease-in;
     }
 
-    @media screen and (min-width:992px){
+    @media screen and (min-width: 992px) {
         main {
             margin-left: 300px;
         }
@@ -43,22 +43,24 @@
 </template>
 
 <script>
+    import fab from './js/components/articles/fab.vue'
+    import sidebar from './js/components/sidebar/sidebar.vue'
+    import articleContainer from './js/components/articles/article-container.vue'
+    import navigation from './js/components/navigation/navigation.vue'
+
     export default {
         name: 'app',
-
         data() {
             return {
                 isFullScreen: false
             }
         },
-
         components: {
-            fab: require('./js/components/articles/fab.vue'),
-            sidebar: require('./js/components/sidebar/sidebar.vue'),
-            articleContainer: require('./js/components/articles/article-container.vue'),
-            navigation: require('./js/components/navigation/navigation.vue')
+            fab,
+            sidebar,
+            articleContainer,
+            navigation
         },
-
         mounted() {
             /**
              * Initialize mobile menu trigger.
@@ -67,7 +69,6 @@
             $(".button-collapse").sideNav({
                 draggable: true
             })
-
             /**
              * Initialize tooltip.
              *

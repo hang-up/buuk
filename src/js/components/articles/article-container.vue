@@ -9,13 +9,14 @@
 </template>
 
 <script type="text/babel">
-    const options = require('../../../../manifest.json').options
+    import { options } from '../../../../static/manifest.json'
+    import searchResults from '../search/search-results.vue'
 
     export default {
         name: 'article-container',
 
         components: {
-            searchResults: require('../search/search-results.vue')
+            searchResults
         },
 
         data() {

@@ -55,15 +55,18 @@
 </template>
 
 <script type="text/babel">
-    const Vue = require('vue')
+    import Vue from 'vue'
+    import search from '../search/search.vue'
+    import sidebarItem from './sidebar-item'
+    import sidebarLogo  from './siderbar-logo.vue'
 
     export default {
         name: 'sidebar',
 
         components: {
-            search: require('../search/search.vue'),
-            'sidebar-item': require('./sidebar-item.vue'),
-            'sidebar-logo': require('./siderbar-logo.vue')
+            search,
+            'sidebar-item': sidebarItem,
+            'sidebar-logo': sidebarLogo
         },
 
         mounted() {

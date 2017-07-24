@@ -68,11 +68,12 @@
 
 <script>
     import debounce from 'lodash/debounce'
-    const Fuse = require('fuse.js')
+    import Fuse from 'fuse.js'
+    import searchResults from './search-results.vue'
 
     export default {
         components: {
-            searchResults: require('./search-results.vue')
+            searchResults
         },
 
         data() {

@@ -1,9 +1,8 @@
-const articles = require('../../../../../manifest.json').articles;
-
-const forEach = require('lodash/forEach')
-const flattenDeep = require('lodash/flattenDeep')
-const toArray = require('lodash/toArray')
-const uniqBy = require('lodash/uniqBy')
+import { articles } from '../../../../../static/manifest.json'
+import forEach from 'lodash/forEach'
+import flattenDeep from 'lodash/flattenDeep'
+import toArray from 'lodash/toArray'
+import uniqBy from 'lodash/uniqBy'
 
 /**
  * Simple object to hold a flattened array of articles.

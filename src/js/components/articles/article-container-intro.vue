@@ -30,9 +30,11 @@
 </template>
 
 <script type="text/babel">
+    import searchResults from '../search/search-results.vue'
+
     export default {
         components: {
-            searchResults: require('../search/search-results.vue')
+            searchResults
         },
 
         mounted() {

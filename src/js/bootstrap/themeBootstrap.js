@@ -1,4 +1,4 @@
-const options = require('../../../manifest').options;
+import { options } from '../../../static/manifest.json'
 
 /**
  * Set the appropriate theme.

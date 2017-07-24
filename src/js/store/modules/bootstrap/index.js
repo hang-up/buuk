@@ -1,5 +1,5 @@
-const manifest = require('../../../../../manifest.json')
-const locale = require('./locale')
+import manifest from '../../../../../static/manifest.json'
+import locale from './locale'
 
 // Get the logo if set inside manifest options.
 const logo = manifest.options.logo ? manifest.options.logo : ""
