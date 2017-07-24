@@ -1,9 +1,22 @@
 {
   "name": "buuk",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "robhang <robert@kemsolutions.com>",
-  "private": true,
+  "description": "A fast and simple markdown based documentation generator.",
+  "version": "3.0.4",
+  "keywords": [
+    "markdown",
+    "documentation",
+    "doc",
+    "docs",
+    "pwa",
+    "progressive",
+    "progressive web application"
+  ],
+  "license": "MIT",
+  "author": "Robert Hang (https://groundedrob.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hang-up/buuk.git"
+  },
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
