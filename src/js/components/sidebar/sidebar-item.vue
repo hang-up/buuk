@@ -13,6 +13,10 @@
         text-underline-position: under;
     }
 
+    .router-link-exact-active {
+        background: red
+    }
+
     .side-nav .collapsible-header, .side-nav.fixed .collapsible-header {
         padding: 0 32px !important;
     }
@@ -42,7 +46,8 @@
                 <li v-for="article in articles" :key="article.slug">
                     <router-link :to="article.slug"
                                  class="waves-effect waves-light is-link"
-                                 style="font-weight: 400;">
+                                 style="font-weight: 400;"
+                                 exact>
                         {{ article.title }}
                     </router-link>
                 </li>
