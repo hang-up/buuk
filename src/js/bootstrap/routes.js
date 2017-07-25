@@ -2,8 +2,6 @@ import { options } from '../../../static/manifest.json'
 import articleContainer from '../components/articles/article-container.vue'
 import articleContainerIntro from '../components/articles/article-container-intro.vue'
 
-// const options = require('../../../manifest.json').options
-
 /**
  * This module registers all routes of the application.
  *
