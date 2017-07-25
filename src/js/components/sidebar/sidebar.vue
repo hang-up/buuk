@@ -29,7 +29,7 @@
     <ul class="side-nav fixed" id="nav-mobile">
 
         <!-- Logo. -->
-        <li class="logo" v-if="$store.state.bootstrap.logo != ''">
+        <li class="logo" v-if="$store.state.bootstrap.logo !== '' && $store.state.bootstrap.logo !== null">
             <sidebar-logo :source="$store.state.bootstrap.logo"></sidebar-logo>
         </li>
 
