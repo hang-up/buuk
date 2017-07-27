@@ -13,10 +13,6 @@
         text-underline-position: under;
     }
 
-    .router-link-exact-active {
-        background: red
-    }
-
     .side-nav .collapsible-header, .side-nav.fixed .collapsible-header {
         padding: 0 32px !important;
     }

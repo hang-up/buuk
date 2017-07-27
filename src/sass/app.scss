@@ -68,3 +68,9 @@ img {
     display: none !important;
   }
 }
+
+// Current article highlight.
+.router-link-exact-active {
+  border-left: 4px solid $buk-color;
+  color: $buk-color !important;
+}
