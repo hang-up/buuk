@@ -49,17 +49,17 @@
                 try {
                     if (options.uml) {
                         new Promise((resolve, reject) => {
-                            this.file = md.render(require(`../../../../docs/${this.$route.params.article}.md`))
+                            this.file = md.render(require(`../../../../static/docs/${this.$route.params.article}.md`))
                             resolve()
                         }).then(() => {
                             window.mermaid.init(undefined, ".mermaid")
                         })
                     }
                     else
-                        this.file = md.render(require(`../../../../docs/${this.$route.params.article}.md`))
+                        this.file = md.render(require(`../../../../static/docs/${this.$route.params.article}.md`))
                 }
                 catch (e) {
-                    this.file = md.render(require(`../../../../docs/404.md`))
+                    this.file = md.render(require(`../../../../static/docs/404.md`))
                 }
             },
         }
