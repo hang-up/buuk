@@ -8,6 +8,5 @@
 // Register all bootstrappers.
 module.exports = {
     render: require('./renderBootstrap').boot(),
-    theme: require('./themeBootstrap').boot(),
     routes: require('./routes').boot(),
 }

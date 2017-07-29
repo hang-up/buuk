@@ -27,7 +27,7 @@
 
   "options": {
     "advanced_slugs": true,
-    "theme": "default",
+    "introduction": null,
     "lang": "en",
     "uml": false
   },

@@ -17,9 +17,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     module: {
         rules: utils.styleLoaders({
             sourceMap: config.build.productionSourceMap,
-            // extract: true will make use of extractTextPlugin, messing up the styling since all theme stylesheet will be
-            // included in the outputted file. Will need to eventually maybe probably work on that....
-            extract: false
+            extract: true
         })
     },
     devtool: config.build.productionSourceMap ? '#source-map' : false,

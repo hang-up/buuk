@@ -7,11 +7,10 @@ require('materialize-css/dist/js/materialize.min')
 
 
 // Load bootstrap
-import { theme, routes } from './js/bootstrap/autoload'
+import { routes } from './js/bootstrap/autoload'
 
 // Load the chosen theme.
 require('./sass/app.scss')
-require(`./sass/themes/${theme}`)
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
