@@ -29,7 +29,7 @@
           if (file.match(/\.(js|css)$/)) { %>
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
 
-    <!-- Bük specific style -->
+    <!-- BÜK: specific style -->
     <!--<link rel="stylesheet" href="dist/mermaid.min.css">-->
 
   </head>
@@ -39,10 +39,9 @@
     </noscript>
     <div id="app"></div>
 
-    <!-- Bük specific scripts -->
+    <!-- BÜK: specific scripts -->
     <!--<script src="dist/mermaid.min.js"></script>-->
 
-    <!-- Todo: only include in production -->
     <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
     <!-- built files will be auto injected -->
   </body>
