@@ -4,7 +4,7 @@ const mdi = require('markdown-it')
  * This module returns the appropriate markdown parser.
  *
  */
-export function boot() {
+export function renderer() {
     const md = mdi({
         html: false,                                // true this to enable hmtl in markdown.
         breaks: true,

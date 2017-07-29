@@ -7,7 +7,7 @@ import articleContainerIntro from '../components/articles/article-container-intr
  *
  * @returns {[*]}
  */
-export function boot() {
+export function routes() {
     let routes = [
         {
             path: '/:article',

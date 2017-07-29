@@ -11,6 +11,7 @@
 <script type="text/babel">
     import { options } from '../../../../static/manifest.json'
     import searchResults from '../search/search-results.vue'
+    import { renderer } from '../../bootstrap/renderer'
 
     export default {
         name: 'article-container',
@@ -36,9 +37,6 @@
 
         methods: {
             requiring() {
-                // Initialize our markdown parser.
-                const md = require('../../bootstrap/autoload').render
-
                 // Clear up the viewport.
                 this.$store.dispatch('search/resetSearch')
 
@@ -49,17 +47,17 @@
                 try {
                     if (options.uml) {
                         new Promise((resolve, reject) => {
-                            this.file = md.render(require(`../../../../static/docs/${this.$route.params.article}.md`))
+                            this.file = renderer().render(require(`../../../../static/docs/${this.$route.params.article}.md`))
                             resolve()
                         }).then(() => {
                             window.mermaid.init(undefined, ".mermaid")
                         })
                     }
                     else
-                        this.file = md.render(require(`../../../../static/docs/${this.$route.params.article}.md`))
+                        this.file = renderer().render(require(`../../../../static/docs/${this.$route.params.article}.md`))
                 }
                 catch (e) {
-                    this.file = md.render(require(`../../../../static/docs/404.md`))
+                    this.file = renderer().render(require(`../../../../static/docs/404.md`))
                 }
             },
         }
