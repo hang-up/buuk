@@ -102,7 +102,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         ]),
         // service worker caching
         new SWPrecacheWebpackPlugin({
-            cacheId: 'my-vue-app',
+            cacheId: 'buuk-pwa',
             filename: 'service-worker.js',
             staticFileGlobs: ['dist/**/*.{js,html,css,png}'],
             runtimeCaching: [{
