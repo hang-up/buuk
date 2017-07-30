@@ -104,7 +104,12 @@ var webpackConfig = merge(baseWebpackConfig, {
         new SWPrecacheWebpackPlugin({
             cacheId: 'my-vue-app',
             filename: 'service-worker.js',
-            staticFileGlobs: ['dist/**/*.{js,html,css,png}'],
+            staticFileGlobs: ['dist/**/*.{js,html,css,png,woff2}'],
+            runtimeCaching: [{
+                // https://googlechrome.github.io/sw-toolbox/api.html#handlers
+                handler: 'fastest',
+                urlPattern: /^https:\/\/fonts\.gstatic\.com\/s\/materialicons\/v22\/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw\.woff2/,
+            }],
             minify: true,
             stripPrefix: 'dist/'
         })
