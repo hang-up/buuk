@@ -45,12 +45,14 @@ module.exports = {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loaders: [
                     {
+                        // Inline images smaller than 10kb
                         loader: 'url-loader',
                         options: {
                             limit: 10000,
                             name: utils.assetsPath('img/[name].[hash:7].[ext]')
                         }
                     },
+                    // Or attempt to optimize them.
                     'image-webpack-loader?bypassOnDebug&optimizationLevel=6&interlaced=false'
                 ]
             },
