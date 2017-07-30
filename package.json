@@ -50,6 +50,7 @@
     "fuse.js": "^3.0.5",
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.3",
+    "image-webpack-loader": "^3.3.1",
     "jquery": "^2.2.4",
     "lodash": "^4.17.4",
     "lower-case": "^1.1.4",
