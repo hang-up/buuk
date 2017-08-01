@@ -73,3 +73,9 @@ img {
   border-left: 4px solid $buk-color;
   color: $buk-color !important;
 }
+
+// Sidebar effects.
+.waves-effect.waves-buk-color .waves-ripple {
+  background-color: $buk-color;
+  background-color: rgba($buk-color, 0.65);
+}
