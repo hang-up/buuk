@@ -1,0 +1,50 @@
+{
+  "name": "A markdown based documentation generator.",
+  "short_name": "Bük",
+  "sub": "Bük is a fast and simple markdown based static site generator geared towards documentation.",
+
+
+
+  "icons": [
+    {
+      "src": "/static/img/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/img/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff",
+  "theme_color": "#fff",
+
+
+
+  "options": {
+    "advanced_slugs": true,
+    "introduction": null,
+    "lang": "en",
+    "uml": false
+  },
+
+
+
+  "articles": {
+    "Categorie 1": [
+      {
+        "title": "Example",
+        "tags": [
+          "example",
+          "search",
+          "fuzzy",
+          "bük"
+        ]
+      }
+    ]
+  }
+}

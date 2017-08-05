@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8">
-    <title>Bük</title>
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bük</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/icons/favicon-16x16.png">
+    <!--[if IE]><link rel="shortcut icon" href="/static/img/icons/favicon.ico"><![endif]-->
 
-    <link rel="manifest" href="manifest.json">
-
-    <!--<link rel="stylesheet" href="dist/mermaid.min.css">-->
+    <!-- Add to home screen for Android and modern mobile browsers -->
+    <link rel="manifest" href="/static/manifest.json">
     <meta name="theme-color" content="#fff">
-</head>
-<body>
-<div id="app"></div>
+
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="buuk">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/icons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/static/img/icons/safari-pinned-tab.svg" color="#d95959">
 
 
-<!--<script src="dist/mermaid.min.js"></script>-->
-<script src="dist/manifest.js" charset="utf-8"></script>
-<script src="dist/vendor.js" charset="utf-8"></script>
-<script src="dist/bundle.js" charset="utf-8"></script>
-<noscript>You will need Javascript enabled in order to view this page.</noscript>
-</body>
+    <!-- Add to home screen for Windows -->
+    <meta name="msapplication-config" content="/static/img/icons/browserconfig.xml">
+
+    <% for (var chunk of webpack.chunks) {
+        for (var file of chunk.files) {
+          if (file.match(/\.(js|css)$/)) { %>
+    <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
+
+    <!-- BÜK: specific style -->
+    <!--<link rel="stylesheet" href="dist/mermaid.min.css">-->
+
+  </head>
+  <body>
+    <noscript>
+      You will need Javascript enabled in order to use this app.
+    </noscript>
+    <div id="app"></div>
+
+    <!-- BÜK: specific scripts -->
+    <!--<script src="dist/mermaid.min.js"></script>-->
+
+    <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
+    <!-- built files will be auto injected -->
+  </body>
 </html>

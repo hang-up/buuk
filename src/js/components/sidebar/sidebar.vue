@@ -29,7 +29,7 @@
     <ul class="side-nav fixed" id="nav-mobile">
 
         <!-- Logo. -->
-        <li class="logo" v-if="$store.state.bootstrap.logo != ''">
+        <li class="logo" v-if="$store.state.bootstrap.logo !== '' && $store.state.bootstrap.logo !== null">
             <sidebar-logo :source="$store.state.bootstrap.logo"></sidebar-logo>
         </li>
 
@@ -55,15 +55,18 @@
 </template>
 
 <script type="text/babel">
-    const Vue = require('vue')
+    import Vue from 'vue'
+    import search from '../search/search.vue'
+    import sidebarItem from './sidebar-item'
+    import sidebarLogo  from './siderbar-logo.vue'
 
     export default {
         name: 'sidebar',
 
         components: {
-            search: require('../search/search.vue'),
-            'sidebar-item': require('./sidebar-item.vue'),
-            'sidebar-logo': require('./siderbar-logo.vue')
+            search,
+            'sidebar-item': sidebarItem,
+            'sidebar-logo': sidebarLogo
         },
 
         mounted() {

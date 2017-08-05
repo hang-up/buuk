@@ -1,8 +1,8 @@
-const slugger = require('slugify')
-const lower = require('lower-case')
-const articles = require('../../../../../manifest.json').articles;
-const options = require('../../../../../manifest.json').options;
-const _ = require('lodash')
+import slugger from 'slugify'
+import lower from 'lower-case'
+import { articles, options } from '../../../../../static/manifest.json'
+import forEach from 'lodash/forEach'
+import isArray from 'lodash/isArray'
 
 /**
  * Recursively loop through a given articles array to slug each article.
@@ -14,12 +14,12 @@ const _ = require('lodash')
  */
 function slugify(articles) {
 
-    _.forEach(articles, (categories, key) => {
+    forEach(articles, (categories, key) => {
         if (!_isDeep(categories)) {
             slugify(categories)
         }
         else {
-            _.forEach(categories, (article, _) =>{
+            forEach(categories, (article, _) =>{
 
                 // First we need to check if the current article has any custom slugs.
                 if (!article.slug) {
@@ -51,7 +51,7 @@ function slugify(articles) {
  * @private
  */
 function _isDeep(array) {
-    return _.isArray(array)
+    return isArray(array)
 }
 
 /**

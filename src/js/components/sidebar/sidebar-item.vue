@@ -21,7 +21,7 @@
 <template>
     <!-- Check if the current articles has any sub cat. -->
     <li v-if="!isDeep(articles)">
-        <a class="collapsible-header waves-effect waves-red">{{ category }}</a>
+        <a class="collapsible-header waves-effect waves-buk-color">{{ category }}</a>
         <div class="collapsible-body">
             <ul class="collapsible" data-collapsible="accordion">
                 <li>
@@ -36,13 +36,14 @@
     </li>
     <!-- If no sub category. -->
     <li v-else>
-        <a class="collapsible-header waves-effect waves-red">{{ category }}</a>
+        <a class="collapsible-header waves-effect waves-buk-color">{{ category }}</a>
         <div class="collapsible-body">
             <ul>
                 <li v-for="article in articles" :key="article.slug">
                     <router-link :to="article.slug"
                                  class="waves-effect waves-light is-link"
-                                 style="font-weight: 400;">
+                                 style="font-weight: 400;"
+                                 exact>
                         {{ article.title }}
                     </router-link>
                 </li>
@@ -52,12 +53,14 @@
 </template>
 
 <script>
+    import isArray from 'lodash/isArray'
+
     export default{
         props: ['articles', 'category'],
 
         methods: {
             isDeep(array) {
-                return _.isArray(array)
+                return isArray(array)
             }
         },
 

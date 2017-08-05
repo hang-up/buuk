@@ -1,29 +1,28 @@
-import App from './App.vue'
 import Vue from 'vue'
+import App from './App'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-import store from './js/store/index'
-const bootstrap = require('./js/bootstrap/autoload')
+import store from './js/store'
+require('materialize-css/dist/js/materialize.min')
+
+
+// Load bootstrap
+import { routes } from './js/bootstrap/routes'
+
+// Load the chosen theme.
 require('./sass/app.scss')
-require(`./sass/themes/${bootstrap.theme}`)
-
-
-/**
- * Uncomment this line when running npm run pwa.
- * This setup SW + AppCache and make Buuk a progressive app.
- */
-require('./pwa')
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
+Vue.config.productionTip = false
 
 const router = new VueRouter({
-    routes: bootstrap.routes
+    routes: routes()
 })
 
 new Vue({
-    el: '#app',
+  el: '#app',
     store,
     router,
     render: h => h(App)
-})
+});

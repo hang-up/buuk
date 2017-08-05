@@ -10,11 +10,11 @@
 </template>
 
 <script>
-    const _ = require('lodash')
+    import articleNavigator from './article-navigator.vue'
 
     export default {
         components: {
-            articleNavigator: require('./article-navigator.vue')
+            articleNavigator
         },
 
 
@@ -74,7 +74,7 @@
                 let current = this.$route.fullPath.substr(1)
 
                 // Return where we are in a flat array of articles.
-                return _.findIndex(this.$store.state.search.searchArticles, (article) => {
+                return this.$store.state.search.searchArticles.findIndex((article) => {
                     return article.slug === current
                 })
 

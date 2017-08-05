@@ -67,12 +67,13 @@
 </template>
 
 <script>
-    const _ = require('lodash')
-    const Fuse = require('fuse.js')
+    import debounce from 'lodash/debounce'
+    import Fuse from 'fuse.js'
+    import searchResults from './search-results.vue'
 
     export default {
         components: {
-            searchResults: require('./search-results.vue')
+            searchResults
         },
 
         data() {
@@ -125,7 +126,7 @@
              * Perform the search.
              *
              */
-            searchResults: _.debounce(function () {
+            searchResults: debounce(function () {
                 if (this.q === "") {
                     this.$store.commit({
                         type: 'search/searchResults',
