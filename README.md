@@ -20,21 +20,21 @@ npm install
 ```
 
 > ##### NPM
-Bük is also available on NPM. The default behaviour of NPM will install Bük in `/node_modules`. Since Bük is not meant to be used as a dependency you can safely extract it and use it as a standalone.
 
 ```shell
 npm install buuk
 
-# move buuk out of node_modules and install dependencies.
+# safely move buuk out of node_modules since it's not supposed to be a dependency.
+# then install dependencies
 mv node_modules/buuk . && cd buuk  && npm install
 ```
 > **(Optional) Version controlling your documents**
 
-- If you need to version control your documents, we recommend you to [fork](https://help.github.com/articles/fork-a-repo/) this repository and then sync it whenever a new release becomes available.
-- Or you can also simply change the remote after creating an empty repo on your github account: 
+If you need to version control your documents, you can:
+- [Fork](https://help.github.com/articles/fork-a-repo/) this repository and then sync it whenever a new release becomes available.
+- Change the remote after creating an empty repo on your github account: 
 
 ```shell
-# change remote if version control is needed
 git remote set-url origin https://github.com/YOUR OWN USER NAME/buk.git
 ```
 
