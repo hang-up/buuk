@@ -48,6 +48,14 @@ npm run build
 # outputted files will be in /dist
 ```
 
+<u>**An important note:**</u> in order to view the webpage, it needs to be hosted by a webserver. If you want a simple method to test on your local machine, use `local-web-server`:
+
+```shell
+npm i local-web-server -g
+cd dist
+ws
+```
+
 **Refer to Usage/manifest.json to learn more about file naming conventions.** 
 
 ## Documentation - Example
