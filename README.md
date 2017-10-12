@@ -48,6 +48,8 @@ npm run build
 # outputted files will be in /dist
 ```
 
+-----------
+
 Viewing the content outputted in `dist` requires a web server. You set up a quick web server in two easy ways:
 
 1. `npm run dev` - opens a webserver at localhost:8000
