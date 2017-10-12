@@ -48,7 +48,10 @@ npm run build
 # outputted files will be in /dist
 ```
 
-<u>**An important note:**</u> in order to view the webpage, it needs to be hosted by a webserver. If you want a simple method to test on your local machine, use `local-web-server`:
+Viewing the content outputted in `dist` requires a web server. You set up a quick web server in two easy ways:
+
+1. `npm run dev` - opens a webserver at localhost:8000
+2. Use the `local-web-server` package:
 
 ```shell
 npm i local-web-server -g
