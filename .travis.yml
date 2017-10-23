@@ -8,6 +8,13 @@ notifications:
     on_success: never
     on_failure: always
 
+before_install:
+  - npm i -g npm@latest
+
+cache:
+  directories:
+    - "node_modules"
+
 branches:
   only:
     - master
