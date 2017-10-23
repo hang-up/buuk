@@ -1,4 +1,6 @@
 language: node_js
+node_js:
+    - "6"
 sudo: required
 
 notifications:
@@ -7,9 +9,6 @@ notifications:
       - robhang.up@gmail.com
     on_success: never
     on_failure: always
-
-before_install:
-  - npm i -g npm@lts
 
 cache:
   directories:
