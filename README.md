@@ -1,5 +1,7 @@
 <p align="center"><img src="http://groundedrob.com/images/projects/buk.png" height='250px'></p>
 
+[![Build Status](https://travis-ci.org/hang-up/buuk.svg?branch=master)](https://travis-ci.org/hang-up/buuk)
+
 ## About Bük
 > A markdown based documentation generator.
 
@@ -48,20 +50,22 @@ npm run build
 # outputted files will be in /dist
 ```
 
+#### **Refer to Usage/manifest.json to learn more about file naming conventions.** 
 -----------
 
-Viewing the content outputted in `dist` requires a web server. You set up a quick web server in two easy ways:
 
-1. `npm run dev` - opens a webserver at localhost:8000
-2. Use the `local-web-server` package:
+## Testing
 
+`npm run dev` - opens a webserver on localhost:8000 with HMR 
+
+## Outputted files
+Built files are meant to be served over an HTTP server. For example (with `local-web-server`):
 ```shell
 npm i local-web-server -g
 cd dist
+# start web server inside /dist folder
 ws
 ```
-
-**Refer to Usage/manifest.json to learn more about file naming conventions.** 
 
 ## Documentation - Example
 To check out live example which also happen to be the docs, visit: [buuk.groundedrob.com](https://buuk.groundedrob.com)
@@ -71,5 +75,3 @@ Details changes for each release are documented in the [release notes](https://g
 
 ### Licence
 MIT
-
-
