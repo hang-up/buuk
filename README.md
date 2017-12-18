@@ -1,77 +1,21 @@
-<p align="center"><img src="http://groundedrob.com/images/projects/buk.png" height='250px'></p>
+# buuk4
 
-[![Build Status](https://travis-ci.org/hang-up/buuk.svg?branch=master)](https://travis-ci.org/hang-up/buuk)
+> A Vue.js project
 
-## About Bük
-> A markdown based documentation generator.
+## Build Setup
 
-Bük is a fast and simple markdown based static site generator geared towards documentation.
-
-Simply drop in your .md files in a folder, update manifest.json and you get a blazing fast wiki with an integrated fuzzy search feature.
-
-# Quickstart
-
-1. Get Bük
-
-> ##### GitHub
-
-```shell
-git clone https://github.com/hang-up/buk.git buk
-cd buk
+``` bash
+# install dependencies
 npm install
-```
 
-> ##### NPM
+# serve with hot reload at localhost:8080
+npm run dev
 
-```shell
-npm install buuk
-
-# safely move buuk out of node_modules since it's not supposed to be a dependency.
-# then install dependencies
-mv node_modules/buuk . && cd buuk  && npm install
-```
-> **(Optional) Version controlling your documents**
-
-If you need to version control your documents, you can:
-- [Fork](https://help.github.com/articles/fork-a-repo/) this repository and then sync it whenever a new release becomes available.
-- Change the remote after creating an empty repo on your github account: 
-
-```shell
-git remote set-url origin https://github.com/YOUR OWN USER NAME/buk.git
-```
-
----
-
-2. Drop your markdown files in `static/docs`.
-3. Update `static/manifest.json`
-4. Finally:
-```shell
+# build for production with minification
 npm run build
-# outputted files will be in /dist
+
+# build for production and view the bundle analyzer report
+npm run build --report
 ```
 
-#### **Refer to Usage/manifest.json to learn more about file naming conventions.** 
------------
-
-
-## Testing
-
-`npm run dev` - opens a webserver on localhost:8000 with HMR 
-
-## Outputted files
-Built files are meant to be served over an HTTP server. For example (with `local-web-server`):
-```shell
-npm i local-web-server -g
-cd dist
-# start web server inside /dist folder
-ws
-```
-
-## Documentation - Example
-To check out live example which also happen to be the docs, visit: [buuk.groundedrob.com](https://buuk.groundedrob.com)
-
-## Changelog:
-Details changes for each release are documented in the [release notes](https://github.com/hang-up/buk/releases)
-
-### Licence
-MIT
+For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
