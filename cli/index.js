@@ -69,6 +69,8 @@ commander
                             shell.cd('..')
 
                             // Write manifest file.
+                            answers = {...answers, articles: {}}
+
                             jsonfile.writeFileSync(`${__dirname}/manifest.json`, answers, {spaces: 2, EOL: '\r\n'})
                             cp(`${__dirname}/manifest.json`, `${shell.pwd().stdout}/${folder}/manifest.json`)
                             console.log(chalk.green('Buuk initialized!'))
@@ -86,6 +88,8 @@ commander
                     shell.cd('..')
 
                     // Write manifest file.
+                    answers = {...answers, articles: {}}
+
                     jsonfile.writeFileSync(`${__dirname}/manifest.json`, answers, {spaces: 2, EOL: '\r\n'})
                     cp(`${__dirname}/manifest.json`, `${shell.pwd().stdout}/${folder}/manifest.json`)
                     console.log(chalk.green('Buuk initialized!'))
