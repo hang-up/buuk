@@ -1,46 +1,32 @@
 #!/usr/bin/env node
 
-
+// Imports.
 const commander = require('commander')
 const shell = require('shelljs')
 const chalk = require('chalk')
 const cp = require('cp-file').sync
 const jsonfile = require('jsonfile')
 const fs = require('fs')
-
 const inquirer = require('inquirer')
-
-const questions = [
-    {
-        type: 'input',
-        name: 'name',
-        message: 'Project name',
-        default: 'Buuk'
-    },
-
-    {
-        type: 'input',
-        name: 'short_name',
-        message: 'Project short name: fewer than 12 characters to not be truncated on homescreens',
-        default: 'Buuk'
-    },
-
-    {
-        type: 'input',
-        name: 'description',
-        message: 'Project description',
-        default: 'A Buuk project.'
-    }
-]
+const questions = require('./questions')
 
 
 
-// App.
+// Define App.
 commander
     .version('0.0.1')
     .description('Buuk CLI')
 
-// Init
+
+/**
+ * Command: Init
+ *
+ * Usage: init|i [options] <folder>
+ * Initialize buuk entry and output folders
+ * Options:
+ *      -h, --help  output usage information
+ *
+ */
 commander
     .command('init <folder>')
     .alias('i')
@@ -58,43 +44,16 @@ commander
                         default: false
                     }
                 ]).then(a => {
-                    if (!a.folderDoesExist) process.exit(1)
-                    else {
-                        inquirer.prompt(questions).then(answers => {
-
-                            // Create destination folder.
-                            shell.mkdir('-p', folder)
-                            shell.cd(folder)
-                            shell.mkdir('-p', 'docs')
-                            shell.cd('..')
-
-                            // Write manifest file.
-                            answers = {...answers, articles: {}}
-
-                            jsonfile.writeFileSync(`${__dirname}/manifest.json`, answers, {spaces: 2, EOL: '\r\n'})
-                            cp(`${__dirname}/manifest.json`, `${shell.pwd().stdout}/${folder}/manifest.json`)
-                            console.log(chalk.green('Buuk initialized!'))
-                        });
+                    if (!a.folderDoesExist) {
+                        process.exit(1)
                     }
-                }).catch(e => console.log(e));
+                    else {
+                        _scaffoldDestinationFolder(folder)
+                    }
+                }).catch(e => console.warn(e));
             }
             else {
-                inquirer.prompt(questions).then(answers => {
-
-                    // Create destination folder.
-                    shell.mkdir('-p', folder)
-                    shell.cd(folder)
-                    shell.mkdir('-p', 'docs')
-                    shell.cd('..')
-
-                    // Write manifest file.
-                    answers = {...answers, articles: {}}
-
-                    jsonfile.writeFileSync(`${__dirname}/manifest.json`, answers, {spaces: 2, EOL: '\r\n'})
-                    cp(`${__dirname}/manifest.json`, `${shell.pwd().stdout}/${folder}/manifest.json`)
-                    console.log(chalk.green('Buuk initialized!'))
-                })
-                    .catch(e => console.log(e));
+                _scaffoldDestinationFolder(folder)
             }
         }
         catch(e) {
@@ -103,10 +62,46 @@ commander
         }
     })
 
-// Build
+
+/**
+ * Command: Build
+ *
+ * TODO: Actually code it.
+ *
+ */
 commander
     .command('build')
     .alias('b')
     .description('Bundle your documentation')
 
+
+// Parse options.
 commander.parse(process.argv)
+
+
+/**
+ * Internal method used to scaffold buuk output folder.
+ *
+ * @param folder
+ * @private
+ */
+function _scaffoldDestinationFolder(folder) {
+    inquirer.prompt(questions).then(answers => {
+
+        // Create destination folder.
+        shell.mkdir('-p', folder)
+        shell.cd(folder)
+        shell.mkdir('-p', 'docs')
+        shell.cd('..')
+
+        // Write object to json file.
+        answers = {...answers, articles: {}}
+        jsonfile.writeFileSync(`${__dirname}/manifest.json`, answers, {spaces: 2, EOL: '\r\n'})
+
+        // Copy file to end folder.
+        cp(`${__dirname}/manifest.json`, `${shell.pwd().stdout}/${folder}/manifest.json`)
+
+        // Notice.
+        console.log(chalk.green('Buuk initialized!'))
+    }).catch(e => console.warn(e));
+}
