@@ -25,6 +25,9 @@
             {
               "title": "NESTED CAT 2",
               "tags": "licence, author, stuff"
+            },
+            {
+              "title": "2ND NESTED CAT 2"
             }
           ]
         }
