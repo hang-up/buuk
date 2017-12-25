@@ -1,6 +1,6 @@
 import { articles } from './tmp.json'
 import { store } from '../store/index'
-import ArticlePrimitive from './ArticlePrimitive'
+import ArticlePrimitive from './article-primitive'
 
 /**
  * Loader to bridge the manifest and the articles.

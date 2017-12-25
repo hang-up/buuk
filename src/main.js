@@ -7,7 +7,7 @@ import 'vuetify/dist/vuetify.css'
 import App from './App'
 import router from './core/router'
 import { store } from './core/store'
-import x from './core/loaders/manifestLoader'
+import x from './core/loaders/manifest-loader'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
