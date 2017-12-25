@@ -11,30 +11,20 @@
     "Example of nested categories": {
       "Category 1": [
         {
-          "title": "About Bük",
-          "tags": [
-            "getting started",
-            "about",
-            "fuzzy",
-            "search",
-            "no server"
-          ],
-          "slug": "getting-started-about-buk"
+          "title": "CAT 1 article"
         }
       ],
+
+
       "Category 2": [
         {
-          "title": "About Bük"
+          "title": "First CAT 2 article"
         },
         {
           "Nested within Category 2": [
             {
-              "title": "References",
-              "tags": [
-                "licence",
-                "author",
-                "misc"
-              ]
+              "title": "NESTED CAT 2",
+              "tags": "licence, author, stuff"
             }
           ]
         }
