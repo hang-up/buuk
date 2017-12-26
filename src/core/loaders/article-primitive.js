@@ -1,11 +1,14 @@
-import config from './buuk-config.json'
+import config from '../../__dev/buuk-config.json'
+import { paths } from '../utils/resolver'
 
 class ArticlePrimitive {
 
-    constructor(name, summary = null) {
+    constructor(name, slug, summary = null) {
         this.name = name
+        this.slug = slug
         this.summary = summary
-        this.slug = null
+
+        this._setSummary()
     }
 
 
@@ -27,28 +30,21 @@ class ArticlePrimitive {
     /**
      * Set primitive summary
      *
+     * 2 main case scenario here:
+            1) There is an api_key, in which case we call text-summarizer
+            2) There is no api_key
+                1) There are tags associated (summary is not undefined), we simply return the tags
+                2) There are no tags associated
+                    1) Required markdown file is less than 1500 characters, return that
+                    2) Required markdown file is more than 1500 characters, summary is empty
+     *
      * @private
      */
     _setSummary() {
         /*
-            2 main case scenario here:
-                1) There is an api_key, in which case we call text-summarizer
-                2) There is no api_key
-                    1) There are tags associated (summary is not undefined), we simply return the tags
-                    2) There are no tags associated
-                        1) Required markdown file is less than 1500 characters, return that
-                        2) Required markdown file is more than 1500 characters, summary is empty
+            Step 1: get the article
+            Step 2: scenarios above
          */
-    }
-
-
-    /**
-     * Set primitive slug.
-     *
-     * @private
-     */
-    _setSlug() {
-
     }
 
 }
