@@ -34,7 +34,7 @@ function manifestLoader(rootArticles = articles) {
                     manifestLoader(article)
                 }
                 else {
-                    article.primitive = new ArticlePrimitive(article.title).value
+                    article.primitive = new ArticlePrimitive(article.title, article.tags ? article.tags : null).value
                 }
             })
         }
