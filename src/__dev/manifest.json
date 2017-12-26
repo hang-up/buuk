@@ -2,32 +2,34 @@
   "articles": {
     "Getting Started": [
       {
-        "title": "Quickstart"
-      },
-      {
-        "title": "References"
+        "title": "Quickstart",
+        "slug": "quickstart"
       }
     ],
     "Example of nested categories": {
       "Category 1": [
         {
-          "title": "CAT 1 article"
+          "title": "CAT 1 article",
+          "slug": "xxx"
         }
       ],
 
 
       "Category 2": [
         {
-          "title": "First CAT 2 article"
+          "title": "First CAT 2 article",
+          "slug": "yyyy"
         },
         {
           "Nested within Category 2": [
             {
               "title": "NESTED CAT 2",
-              "tags": "licence, author, stuff"
+              "tags": "licence, author, stuff",
+              "slug": "nested"
             },
             {
-              "title": "2ND NESTED CAT 2"
+              "title": "2ND NESTED CAT 2",
+              "slug": "hahaa"
             }
           ]
         }
