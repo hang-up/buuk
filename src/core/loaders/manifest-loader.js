@@ -1,4 +1,4 @@
-import { articles } from './tmp.json'
+import { articles } from '../../__dev/manifest.json'
 import { store } from '../store/index'
 import ArticlePrimitive from './article-primitive'
 
@@ -34,7 +34,7 @@ function manifestLoader(rootArticles = articles) {
                     manifestLoader(article)
                 }
                 else {
-                    article.primitive = new ArticlePrimitive(article.title, article.tags ? article.tags : null).value
+                    article.primitive = new ArticlePrimitive(article.title, article.slug, article.tags ? article.tags : null).value
                 }
             })
         }
