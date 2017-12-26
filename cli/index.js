@@ -57,7 +57,7 @@ commander
             }
         }
         catch(e) {
-            console.log(chalk.red('Error when trying to initialize Buuk. See log below:'))
+            console.log(chalk.red('Error when trying to initialize Buuk project. See log below:'))
             console.log(e)
         }
     })
@@ -87,6 +87,8 @@ commander.parse(process.argv)
  */
 function _scaffoldDestinationFolder(folder) {
     inquirer.prompt(questions).then(answers => {
+        // Create path object.
+        let path = { "base_path": `${shell.pwd().stdout}/${folder}` }
 
         // Create destination folder.
         shell.mkdir('-p', folder)
@@ -100,6 +102,10 @@ function _scaffoldDestinationFolder(folder) {
 
         // Copy file to end folder.
         cp(`${__dirname}/manifest.json`, `${shell.pwd().stdout}/${folder}/manifest.json`)
+
+        // Save base path in an .buukrc file
+        jsonfile.writeFileSync(`${__dirname}/.buukrc`, path, {spaces: 2, EOL: '\r\n'})
+        cp(`${__dirname}/.buukrc`, `${shell.pwd().stdout}/${folder}/.buukrc`)
 
         // Notice.
         console.log(chalk.green('Buuk initialized!'))
