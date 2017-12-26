@@ -25,11 +25,16 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            '@': resolve('src')
+            '@': resolve('src'),
+            'BASE_PATH': `${require('../cli/.buukrc.json').base_path}/docs`
         }
     },
     module: {
         rules: [
+            {
+                test: /\.md$/,
+                use: 'raw-loader'
+            },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
@@ -63,10 +68,6 @@ module.exports = {
                     limit: 10000,
                     name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
                 }
-            },
-            {
-                test: /\.md/,
-                use: 'raw-loader'
             }
         ]
     }
