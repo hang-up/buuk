@@ -104,8 +104,8 @@ function _scaffoldDestinationFolder(folder) {
         cp(`${__dirname}/manifest.json`, `${shell.pwd().stdout}/${folder}/manifest.json`)
 
         // Save base path in an .buukrc file
-        jsonfile.writeFileSync(`${__dirname}/.buukrc`, path, {spaces: 2, EOL: '\r\n'})
-        cp(`${__dirname}/.buukrc`, `${shell.pwd().stdout}/${folder}/.buukrc`)
+        jsonfile.writeFileSync(`${__dirname}/.buukrc.json`, path, {spaces: 2, EOL: '\r\n'})
+        cp(`${__dirname}/.buukrc.json`, `${shell.pwd().stdout}/${folder}/.buukrc.json`)
 
         // Notice.
         console.log(chalk.green('Buuk initialized!'))
