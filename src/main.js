@@ -20,4 +20,6 @@ new Vue({
     template: '<App/>',
     components: {App}
 })
+
+// Clear cache
 x()

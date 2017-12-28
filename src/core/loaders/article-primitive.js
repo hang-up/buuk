@@ -3,10 +3,10 @@ import { paths } from '../utils/resolver'
 
 class ArticlePrimitive {
 
-    constructor(name, slug, summary = null) {
+    constructor(name, slug, tags = null) {
         this.name = name
         this.slug = slug
-        this.summary = summary
+        this.tags = tags
 
         this._setSummary()
     }
@@ -22,10 +22,10 @@ class ArticlePrimitive {
         return {
             name: this.name,
             slug: this.slug,
-            summary: this.summary
+            tags: this.tags,
+            summary: sessionStorage.getItem(`${this.slug}.md`)
         }
     }
-
 
     /**
      * Set primitive summary
@@ -41,10 +41,10 @@ class ArticlePrimitive {
      * @private
      */
     _setSummary() {
-        /*
-            Step 1: get the article
-            Step 2: scenarios above
-         */
+        return import(`BASE_PATH/${this.slug}.md`)
+            .then(content => {
+                sessionStorage.setItem(`${this.slug}.md`, content)
+            })
     }
 
 }
