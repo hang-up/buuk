@@ -20,6 +20,10 @@
                     <v-list-tile-title v-text="item.title"></v-list-tile-title>
                 </v-list-tile-content>
             </v-list-tile>
+
+
+
+
         </v-list>
     </v-navigation-drawer>
 </template>
@@ -33,7 +37,9 @@
                 items: [{
                     icon: 'bubble_chart',
                     title: 'Inspire'
-                }]
+                }],
+
+                search: ""
             }
         }
     }

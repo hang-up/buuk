@@ -3,32 +3,25 @@
 
         <sidebar :fixed="fixed" :mini-variant="miniVariant" :clipped="clipped" :drawer="drawer"></sidebar>
 
-        <v-toolbar fixed app :clipped-left="clipped">
-            <v-toolbar-side-icon @click.stop="drawer = !drawer" light></v-toolbar-side-icon>
+
+        <v-toolbar dark color="primary" fixed app :clipped-left="clipped">
+            <v-toolbar-side-icon @click.stop="drawer = !drawer" dark></v-toolbar-side-icon>
+            <v-toolbar-title v-text="title"></v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn icon>
+                <v-icon>search</v-icon>
+            </v-btn>
+            </v-btn>
             <v-btn
                     icon
-                    light
+                    dark
                     @click.stop="miniVariant = !miniVariant"
             >
                 <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
             </v-btn>
-            <v-btn
-                    icon
-                    light
-                    @click.stop="clipped = !clipped"
-            >
-                <v-icon>web</v-icon>
             </v-btn>
-            <v-btn
-                    icon
-                    light
-                    @click.stop="fixed = !fixed"
-            >
-                <v-icon>remove</v-icon>
-            </v-btn>
-            <v-toolbar-title v-text="title"></v-toolbar-title>
-            <v-spacer></v-spacer>
         </v-toolbar>
+
         <v-content>
             <router-view></router-view>
         </v-content>
@@ -50,7 +43,7 @@
 
         data() {
             return {
-                clipped: false,
+                clipped: true,
                 drawer: true,
                 fixed: false,
                 items: [{
@@ -58,7 +51,7 @@
                     title: 'Inspire'
                 }],
                 miniVariant: false,
-                title: 'Vuetify.js'
+                title: 'Bük 4'
             }
         }
     }
