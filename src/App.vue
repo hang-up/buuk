@@ -7,7 +7,6 @@
         <v-toolbar dark dense color="primary" fixed app :clipped-left="clipped">
             <v-toolbar-side-icon @click.stop="drawer = !drawer" dark></v-toolbar-side-icon>
             <v-toolbar-title v-text="title"></v-toolbar-title>
-            <v-spacer v-if="!showSearchBar"></v-spacer>
 
             </v-btn>
             <v-btn
