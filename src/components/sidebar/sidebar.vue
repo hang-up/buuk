@@ -7,6 +7,20 @@
             app
     >
         <v-list>
+            <v-list-tile>
+                <v-list-tile-content>
+                    <v-text-field label="Search here..."
+                                  v-model="search"
+                                  solo
+                                  single-line
+                                  :append-icon="search ? 'cancel' : ''"
+                                  :append-icon-cb="() => (search = '')"
+                                 >
+                    </v-text-field>
+                </v-list-tile-content>
+            </v-list-tile>
+
+            <v-divider></v-divider>
             <v-list-tile
                     value="true"
                     v-for="(item, i) in items"

@@ -4,13 +4,11 @@
         <sidebar :fixed="fixed" :mini-variant="miniVariant" :clipped="clipped" :drawer="drawer"></sidebar>
 
 
-        <v-toolbar dark color="primary" fixed app :clipped-left="clipped">
+        <v-toolbar dark dense color="primary" fixed app :clipped-left="clipped">
             <v-toolbar-side-icon @click.stop="drawer = !drawer" dark></v-toolbar-side-icon>
             <v-toolbar-title v-text="title"></v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-                <v-icon>search</v-icon>
-            </v-btn>
+            <v-spacer v-if="!showSearchBar"></v-spacer>
+
             </v-btn>
             <v-btn
                     icon
@@ -18,7 +16,6 @@
                     @click.stop="miniVariant = !miniVariant"
             >
                 <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-            </v-btn>
             </v-btn>
         </v-toolbar>
 
@@ -43,7 +40,7 @@
 
         data() {
             return {
-                clipped: true,
+                clipped: false,
                 drawer: true,
                 fixed: false,
                 items: [{
