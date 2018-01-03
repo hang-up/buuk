@@ -28,15 +28,15 @@
         h2.is-active::after {
             transform: rotate(90deg);
         }
-
-        p {
-            line-height: 1.5;
-        }
     }
 
     .sidebar-items-item-list {
         margin: 16px 0 0 20px;
         list-style-type: none;
+
+        li {
+            margin-bottom: 16px;
+        }
     }
 </style>
 
@@ -50,7 +50,7 @@
             <template v-if="Array.isArray(articles)">
                 <template v-for="article in articles">
                     <li v-if="article.title">
-                        <p>{{ article.title }}</p>
+                        <router-link :to="{ name: 'article', params: { article: article.slug }}">{{ article.title }}</router-link>
                     </li>
 
                     <sidebar-item v-for="(subArticles, subCategory) in article"
