@@ -25,6 +25,10 @@
              }
         }
 
+        h2.is-active::after {
+            transform: rotate(90deg);
+        }
+
         p {
             line-height: 1.5;
         }
@@ -38,11 +42,11 @@
 
 <template>
     <li class="sidebar-items-item">
-        <h2>
+        <h2 @click="showMenu = !showMenu" :class="{ 'is-active': showMenu }">
             {{ category }}
         </h2>
 
-        <ul class="sidebar-items-item-list">
+        <ul class="sidebar-items-item-list" v-show="showMenu">
             <template v-if="Array.isArray(articles)">
                 <template v-for="article in articles">
                     <li v-if="article.title">
@@ -69,6 +73,12 @@
 <script>
     export default {
         props: ['category', 'articles'],
-        name: 'sidebar-item'
+        name: 'sidebar-item',
+
+        data() {
+            return {
+                showMenu: true
+            }
+        }
     }
 </script>
