@@ -1,16 +1,32 @@
 <style lang="scss">
     .sidebar-items-item {
+        list-style-type: none;
+        margin-left: 15px;
+
+        h2 {
+            font-size: 14px;
+            padding: .75rem .75rem .75rem 0;
+            margin: 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color .1s linear;
+            border-bottom: 1px dashed rgba(0,0,0,.1);
+        }
+    }
+
+    .sidebar-items-item-list {
         margin-left: 20px;
+        list-style-type: none;
     }
 </style>
 
 <template>
     <li class="sidebar-items-item">
-        <h2 class="title">
+        <h2>
             {{ category }}
         </h2>
 
-        <ul>
+        <ul class="sidebar-items-item-list">
             <template v-if="Array.isArray(articles)">
                 <template v-for="article in articles">
                     <li v-if="article.title">

@@ -1,15 +1,14 @@
 <template>
     <v-navigation-drawer
             fixed
-            :mini-variant="miniVariant"
             :clipped="clipped"
             v-model="drawer"
             app
     >
         <v-list>
-            <v-list-tile>
+            <v-list-tile style="height: 55px">
                 <v-list-tile-content>
-                    <v-text-field label="Search here..."
+                    <v-text-field placeholder="Search here..."
                                   v-model="search"
                                   solo
                                   single-line
@@ -22,7 +21,6 @@
 
             <v-divider></v-divider>
 
-
             <li>
                 <ul id="sidebar-items">
                     <sidebar-item v-for="(articles, rootCategory) in $store.state.core.articles"
@@ -30,24 +28,6 @@
                                   :articles="articles"></sidebar-item>
                 </ul>
             </li>
-
-
-            <v-list-tile
-                    value="true"
-                    v-for="(item, i) in items"
-                    :key="i"
-                    exact
-            >
-                <v-list-tile-action>
-                    <v-icon light v-html="item.icon"></v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
-                    <v-list-tile-title v-text="item.title"></v-list-tile-title>
-                </v-list-tile-content>
-            </v-list-tile>
-
-
-
 
         </v-list>
     </v-navigation-drawer>
@@ -57,7 +37,7 @@
     import sidebarItem from './sidebar-item.vue'
 
     export default {
-        props: ['fixed', 'miniVariant', 'clipped', 'drawer'],
+        props: ['fixed', 'clipped', 'drawer'],
 
         components: {
             sidebarItem
@@ -65,11 +45,6 @@
 
         data() {
             return {
-                items: [{
-                    icon: 'bubble_chart',
-                    title: 'Inspire'
-                }],
-
                 search: ""
             }
         }
