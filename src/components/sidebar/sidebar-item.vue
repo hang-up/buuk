@@ -12,10 +12,14 @@
             transition: color .1s linear;
             border-bottom: 1px dashed rgba(0,0,0,.1);
         }
+
+        p {
+            line-height: 1.5;
+        }
     }
 
     .sidebar-items-item-list {
-        margin-left: 20px;
+        margin: 16px 0 0 20px;
         list-style-type: none;
     }
 </style>
