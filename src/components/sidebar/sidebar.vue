@@ -21,6 +21,17 @@
             </v-list-tile>
 
             <v-divider></v-divider>
+
+
+            <li>
+                <ul id="sidebar-items">
+                    <sidebar-item v-for="(articles, rootCategory) in $store.state.core.articles"
+                                  :category="rootCategory"
+                                  :articles="articles"></sidebar-item>
+                </ul>
+            </li>
+
+
             <v-list-tile
                     value="true"
                     v-for="(item, i) in items"
@@ -43,8 +54,14 @@
 </template>
 
 <script>
+    import sidebarItem from './sidebar-item.vue'
+
     export default {
         props: ['fixed', 'miniVariant', 'clipped', 'drawer'],
+
+        components: {
+            sidebarItem
+        },
 
         data() {
             return {
