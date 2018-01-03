@@ -11,6 +11,18 @@
             cursor: pointer;
             transition: color .1s linear;
             border-bottom: 1px dashed rgba(0,0,0,.1);
+
+            &::after {
+                content: "";
+                 position: absolute;
+                 right: 12px;
+                 width: 0;
+                 height: 0;
+                 border-top: 4px solid transparent;
+                 border-right: 4px solid transparent;
+                 border-left: 4px solid #dee0df;
+                 border-bottom: 4px solid transparent;
+             }
         }
 
         p {
