@@ -24,6 +24,7 @@
             <li>
                 <ul id="sidebar-items">
                     <sidebar-item v-for="(articles, rootCategory) in $store.state.core.articles"
+                                  :key="rootCategory"
                                   :category="rootCategory"
                                   :articles="articles"></sidebar-item>
                 </ul>

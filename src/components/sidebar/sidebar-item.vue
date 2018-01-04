@@ -48,7 +48,7 @@
 
         <ul class="sidebar-items-item-list" v-show="showMenu">
             <template v-if="Array.isArray(articles)">
-                <template v-for="article in articles">
+                <template v-for="(article, _i) in articles">
                     <li v-if="article.title">
                         <router-link :to="{ name: 'article', params: { article: article.slug }}">{{ article.title }}</router-link>
                     </li>
@@ -56,12 +56,14 @@
                     <sidebar-item v-for="(subArticles, subCategory) in article"
                                   :category="subCategory"
                                   :articles="subArticles"
+                                  :key="subCategory"
                                   v-else></sidebar-item>
                 </template>
             </template>
             <template v-else>
 
                 <sidebar-item v-for="(subArticles, subCategory) in articles"
+                              :key="subCategory"
                               :category="subCategory"
                               :articles="subArticles"></sidebar-item>
             </template>
