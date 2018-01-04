@@ -6,18 +6,7 @@
             app
     >
         <v-list>
-            <v-list-tile style="height: 55px">
-                <v-list-tile-content>
-                    <v-text-field placeholder="Search here..."
-                                  v-model="search"
-                                  solo
-                                  single-line
-                                  :append-icon="search ? 'cancel' : ''"
-                                  :append-icon-cb="() => (search = '')"
-                                 >
-                    </v-text-field>
-                </v-list-tile-content>
-            </v-list-tile>
+            <search-input></search-input>
 
             <v-divider></v-divider>
 
@@ -36,18 +25,14 @@
 
 <script>
     import sidebarItem from './sidebar-item.vue'
+    import searchInput from '../search/search-input.vue'
 
     export default {
         props: ['fixed', 'clipped', 'drawer'],
 
         components: {
-            sidebarItem
-        },
-
-        data() {
-            return {
-                search: ""
-            }
+            sidebarItem,
+            searchInput
         }
     }
 </script>
