@@ -3,16 +3,20 @@ import Fuse from 'fuse.js'
 const fuseOptions = {
     keys: [
         {
+            name: 'article.primitive.name',
+            weight: 0.4
+        },
+        {
             name: 'article.primitive.tags',
-            weight: 0.3
+            weight: 0.1
         },
         {
             name: 'article.primitive.summary',
-            weight: 0.3
+            weight: 0.25
         },
         {
             name: 'article.primitive.content',
-            weight: 0.4
+            weight: 0.25
         }
     ]
 }
