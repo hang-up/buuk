@@ -7,7 +7,8 @@ import 'vuetify/dist/vuetify.css'
 import App from './App'
 import router from './core/router'
 import { store } from './core/store'
-import x from './core/loaders/manifest-loader'
+import manifestLoader from './core/loaders/manifest-loader'
+import searchLoader from './core/loaders/search-loader'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
@@ -21,5 +22,6 @@ new Vue({
     components: {App}
 })
 
-// Clear cache
-x()
+// Loaders.
+manifestLoader()
+searchLoader()
