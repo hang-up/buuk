@@ -26,9 +26,12 @@
         watch: {
             search(query) {
                 _debounce(() => {
-                    this.$store.dispatch('search/search', {
+
+                    this.$store.commit('search/setQuery', {
                         query
                     })
+
+                    this.$store.dispatch('search/search')
                 }, 50)()
             }
         }

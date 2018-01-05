@@ -23,15 +23,16 @@ const fuseOptions = {
 
 const state = {
     flatArticles: [],
-    results: []
+    results: [],
+    query: ''
 }
 
 const actions = {
-    search({ commit, state }, { query }) {
+    search({ commit, state }) {
         let fuse = new Fuse(state.flatArticles, fuseOptions)
 
         commit('setResults', {
-            results: fuse.search(query)
+            results: fuse.search(state.query)
         })
     }
 }
@@ -43,6 +44,10 @@ const mutations = {
 
     setFlatArticle(state, article) {
         state.flatArticles.push(article)
+    },
+
+    setQuery(state, { query }) {
+        state.query = query
     }
 }
 
