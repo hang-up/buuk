@@ -38,7 +38,7 @@ const actions = {
 }
 
 const mutations = {
-    setResults(state, results) {
+    setResults(state, { results }) {
         state.results = results
     },
 

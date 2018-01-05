@@ -1,8 +1,8 @@
 <template>
     <v-data-table
             style="position: absolute; z-index:10"
-            v-show="$store.state.search.results.results && $store.state.search.results.results.length"
-            :items="$store.state.search.results.results"
+            v-show="$store.state.search.results && $store.state.search.results.length"
+            :items="$store.state.search.results"
             :headers="headers"
             hide-actions
             class="elevation-1"
