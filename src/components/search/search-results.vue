@@ -1,7 +1,7 @@
 <template>
     <v-data-table
             style="position: absolute; z-index:10"
-            v-show="$store.state.search.results && $store.state.search.results.length"
+            v-show="$store.state.search.query"
             :items="$store.state.search.results"
             :headers="headers"
             hide-actions
@@ -11,6 +11,12 @@
         <template slot="items" slot-scope="props">
             <td><strong>{{ props.item.article.primitive.name }}</strong></td>
             <td>{{ props.item.article.primitive.content.substring(0, 50) + '...' }}</td>
+        </template>
+
+        <template slot="no-data">
+            <v-alert :value="true" color="info" icon="info" outline>
+                No results
+            </v-alert>
         </template>
     </v-data-table>
 </template>
@@ -22,6 +28,7 @@
                 headers: [
                     {
                         text: 'Article',
+                        align:'left',
                         sortable: false
                     },
                     {
