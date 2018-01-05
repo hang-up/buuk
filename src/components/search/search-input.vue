@@ -29,7 +29,7 @@
                     this.$store.dispatch('search/search', {
                         query
                     })
-                }, 500)()
+                }, 50)()
             }
         }
     }

@@ -8,6 +8,10 @@
         <v-list>
             <search-input></search-input>
 
+            <li>
+                <searchResults></searchResults>
+            </li>
+
             <v-divider></v-divider>
 
             <li>
@@ -26,13 +30,15 @@
 <script>
     import sidebarItem from './sidebar-item.vue'
     import searchInput from '../search/search-input.vue'
+    import searchResults from '../search/search-results.vue'
 
     export default {
         props: ['fixed', 'clipped', 'drawer'],
 
         components: {
             sidebarItem,
-            searchInput
+            searchInput,
+            searchResults
         }
     }
 </script>
