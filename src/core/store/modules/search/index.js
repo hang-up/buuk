@@ -1,5 +1,8 @@
 import Fuse from 'fuse.js'
 
+/*
+    Options to calibrate fuse.
+ */
 const fuseOptions = {
     keys: [
         {
@@ -28,6 +31,13 @@ const state = {
 }
 
 const actions = {
+
+    /**
+     * Perform a search.
+     *
+     * @param commit
+     * @param state
+     */
     search({ commit, state }) {
         let fuse = new Fuse(state.flatArticles, fuseOptions)
 

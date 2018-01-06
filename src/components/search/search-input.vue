@@ -24,13 +24,21 @@
         },
 
         watch: {
+            /**
+             * Watch 'search' data so we can apply the right mutation and dispatch the right action.
+             *
+             * @param query
+             */
             search(query) {
-                _debounce(() => {
 
+                // Slightly debounce a sort of costly op.
+                _debounce(() => {
+                    // Set query mutation.
                     this.$store.commit('search/setQuery', {
                         query
                     })
 
+                    // Dispatch the search action.
                     this.$store.dispatch('search/search')
                 }, 50)()
             }
