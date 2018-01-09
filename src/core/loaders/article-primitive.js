@@ -1,6 +1,3 @@
-import config from '../../__dev/buuk-config.json'
-import { paths } from '../utils/resolver'
-
 /**
  * An article primitive is just a simple base class that will later get augmented with the field
  * that are being exposed in the value getter.
