@@ -9,6 +9,7 @@ import router from './core/router'
 import { store } from './core/store'
 import manifestLoader from './core/loaders/manifest-loader'
 import searchLoader from './core/loaders/search-loader'
+import configLoader from "./core/loaders/config-loader";
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
@@ -23,5 +24,6 @@ new Vue({
 })
 
 // Loaders.
+configLoader()
 manifestLoader()
 searchLoader()

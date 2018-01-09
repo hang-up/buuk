@@ -10,7 +10,7 @@ module.exports = {
     "sub": "",
 
     /*
-        Homepage references another markdown file as the default homepage. Path is relative to /docs
+        TODO: Homepage references another markdown file as the default homepage. Path is relative to /docs
      */
     "homepage": null,
 
