@@ -6,7 +6,6 @@
             :headers="headers"
             hide-actions
             class="elevation-1"
-            no-results-text="No results found"
     >
         <template slot="items" slot-scope="props">
             <td><strong>{{ props.item.article.primitive.name }}</strong></td>
