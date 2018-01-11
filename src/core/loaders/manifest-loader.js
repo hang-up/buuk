@@ -52,6 +52,9 @@ function manifestLoader(rootArticles = articles) {
                     import(`BASE_PATH/${article.primitive.slug}.md`)
                         .then(content => {
                             article.primitive.content = content
+
+                            // Dispatch an event of type 'manifest:primitive:content:${slug}' after loading the content of our md.
+                            window.EventBus.$emit(`manifest:primitive:content:${article.slug}`)
                         })
                 }
             })

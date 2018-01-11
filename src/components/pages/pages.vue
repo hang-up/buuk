@@ -18,11 +18,15 @@
         },
 
         mounted() {
-            // I am ashamed of myself, this is disgusting...
-            let mountedRender = setInterval(() => {
+            /*
+                Every article loaded will emit an event of the type 'manifest:primitive:content:${slug}';
+                We watch the event emitted by the article we land on to know when to actually have
+                something to parse. This is needed since the content is retrieved asynchronously
+                in manifest-loader.
+             */
+            window.EventBus.$on(`manifest:primitive:content:${this.$route.params.article}`, () => {
                 this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
-                if (this.renderedContent !== "" ) clearInterval(mountedRender)
-            }, 100)
+            })
         },
 
         watch: {
