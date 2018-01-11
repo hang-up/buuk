@@ -7,6 +7,7 @@ import 'vuetify/dist/vuetify.css'
 import App from './App'
 import router from './core/router'
 import { store } from './core/store'
+import { EventBus } from "./core/utils/event-bus";
 import manifestLoader from './core/loaders/manifest-loader'
 import searchLoader from './core/loaders/search-loader'
 import configLoader from "./core/loaders/config-loader";
