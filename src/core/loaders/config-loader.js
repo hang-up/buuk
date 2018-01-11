@@ -12,7 +12,7 @@ function configLoader() {
             // Load the supported option into our store.
             store.commit('core/setConfig', new ConfigPrimitive(item[0], item[1]))
 
-            // Dispatch an event of type 'config/${config_key}' every time we successfully load an event.
+            // Dispatch an event of type 'config:${config_key}' every time we successfully load an event.
             window.EventBus.$emit(`config:${item[0]}`, item[1])
         }
     })
