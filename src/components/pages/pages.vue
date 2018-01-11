@@ -1,15 +1,42 @@
 <template>
     <v-container fluid>
         <v-layout column align-center>
-            <img src="/static/img/v.png" alt="Vuetify.js" class="mb-5">
-            <blockquote>
-                &#8220;First, solve the problem. Then, write the code.&#8221;
-                <footer>
-                    <small>
-                        <em>&mdash;John Johnson</em>
-                    </small>
-                </footer>
-            </blockquote>
+            <div v-html="renderedContent"></div>
         </v-layout>
     </v-container>
 </template>
+
+<script>
+    import Renderer from "../../core/render"
+
+    export default {
+        data() {
+            return {
+                renderer : new Renderer(),
+                renderedContent: ""
+            }
+        },
+
+        mounted() {
+            // I am ashamed of myself, this is disgusting...
+            let mountedRender = setInterval(() => {
+                this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
+                if (this.renderedContent !== "" ) clearInterval(mountedRender)
+            }, 100)
+        },
+
+        watch: {
+            "$route": function (val) {
+                this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
+            }
+        },
+
+        methods: {
+            findArticleBySlug(slug) {
+                return this.$store.state.search.flatArticles.filter(({ article }) => {
+                    return article.primitive.slug === slug
+                })[0].article.primitive
+            }
+        }
+    }
+</script>
