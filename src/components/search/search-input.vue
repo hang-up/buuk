@@ -17,30 +17,26 @@
     const _debounce = require('lodash/debounce')
 
     export default {
-        data() {
-            return {
-                search: ""
-            }
-        },
 
-        watch: {
-            /**
-             * Watch 'search' data so we can apply the right mutation and dispatch the right action.
-             *
-             * @param query
-             */
-            search(query) {
+        // https://vuex.vuejs.org/en/forms.html: Two-way computed property.
+        computed: {
+            search: {
+                get() {
+                    return this.$store.state.search.query
+                },
 
-                // Slightly debounce a sort of costly op.
-                _debounce(() => {
-                    // Set query mutation.
-                    this.$store.commit('search/setQuery', {
-                        query
-                    })
+                set(query) {
+                    // Slightly debounce a sort of costly op.
+                    _debounce(() => {
+                        // Set query mutation.
+                        this.$store.commit('search/setQuery', {
+                            query
+                        })
 
-                    // Dispatch the search action.
-                    this.$store.dispatch('search/search')
-                }, 50)()
+                        // Dispatch the search action.
+                        this.$store.dispatch('search/search')
+                    }, 50)()
+                }
             }
         }
     }

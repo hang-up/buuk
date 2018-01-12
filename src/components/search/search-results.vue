@@ -8,8 +8,22 @@
             class="elevation-1"
     >
         <template slot="items" slot-scope="props">
-            <td><strong>{{ props.item.article.primitive.name }}</strong></td>
-            <td>{{ props.item.article.primitive.content.substring(0, 50) + '...' }}</td>
+            <td>
+                <strong>
+                    <router-link
+                            :to="{ name: 'article', params: { article: props.item.article.primitive.slug }}"
+                            v-on:click.native="clearSearch">
+                        {{ props.item.article.primitive.name }}
+                    </router-link>
+                </strong>
+            </td>
+            <td>
+                <router-link
+                        :to="{ name: 'article', params: { article: props.item.article.primitive.slug }}"
+                        v-on:click.native="clearSearch">
+                    {{ props.item.article.primitive.content.substring(0, 50) + '...' }}
+                </router-link>
+            </td>
         </template>
 
         <template slot="no-data">
@@ -36,6 +50,14 @@
                         sortable: false
                     }
                 ]
+            }
+        },
+
+        methods: {
+            clearSearch() {
+                this.$store.commit('search/setQuery', {
+                    query: ''
+                })
             }
         }
     }
