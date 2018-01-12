@@ -8,6 +8,12 @@
         <v-list>
             <search-input></search-input>
 
+            <v-list-tile>
+                <v-list-tile-content>
+                    <router-link :to="{ name: 'home' }">Introduction</router-link>
+                </v-list-tile-content>
+            </v-list-tile>
+
             <li>
                 <searchResults></searchResults>
             </li>
