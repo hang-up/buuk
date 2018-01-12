@@ -8,7 +8,7 @@
         <!-- Toolbar. -->
         <v-toolbar dark color="primary" fixed app>
             <v-toolbar-side-icon @click.stop="drawer = !drawer" dark></v-toolbar-side-icon>
-            <v-toolbar-title v-text="title"></v-toolbar-title>
+            <v-toolbar-title v-text="$store.state.core.config.name"></v-toolbar-title>
         </v-toolbar>
 
 
@@ -35,8 +35,7 @@
 
         data() {
             return {
-                drawer: true,
-                title: 'Bük 4'
+                drawer: true
             }
         }
     }
