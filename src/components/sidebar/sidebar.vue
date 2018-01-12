@@ -1,5 +1,12 @@
+<style lang="scss">
+    .sidebar a {
+        text-decoration: none;
+    }
+</style>
+
 <template>
     <v-navigation-drawer
+            class="sidebar"
             fixed
             :clipped="clipped"
             v-model="drawer"
@@ -12,11 +19,7 @@
                 <searchResults></searchResults>
             </li>
 
-            <v-list-tile>
-                <v-list-tile-content>
-                    <router-link :to="{ name: 'home' }">Introduction</router-link>
-                </v-list-tile-content>
-            </v-list-tile>
+            <sidebar-intro-link></sidebar-intro-link>
 
             <v-divider></v-divider>
 
@@ -35,6 +38,7 @@
 
 <script>
     import sidebarItem from './sidebar-item.vue'
+    import sidebarIntroLink from './sidebar-intro-link.vue'
     import searchInput from '../search/search-input.vue'
     import searchResults from '../search/search-results.vue'
 
@@ -43,6 +47,7 @@
 
         components: {
             sidebarItem,
+            sidebarIntroLink,
             searchInput,
             searchResults
         }
