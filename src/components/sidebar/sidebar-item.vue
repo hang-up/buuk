@@ -36,6 +36,13 @@
 
         li {
             margin-bottom: 16px;
+
+            a {
+                color: #1976d2 !important;
+            }
+        }
+        li.is-active {
+            font-weight: bold;
         }
     }
 </style>
@@ -49,7 +56,7 @@
         <ul class="sidebar-items-item-list" v-show="showMenu">
             <template v-if="Array.isArray(articles)">
                 <template v-for="(article, _i) in articles">
-                    <li v-if="article.title">
+                    <li v-if="article.title" :class="{ 'is-active': $route.params.article === article.slug }">
                         <router-link :to="{ name: 'article', params: { article: article.slug }}">{{ article.title }}</router-link>
                     </li>
 
