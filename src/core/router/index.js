@@ -5,7 +5,7 @@ import intro from '@/components/pages/templates/intro'
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
     routes: [
         {
             path: '/',
@@ -19,3 +19,18 @@ export default new Router({
         }
     ]
 })
+
+router.afterEach((to, from) => {
+    if (to.name === 'article' && from.name === 'home') {
+        /*
+            We need to delay emitting the event since we want the component to actually render and be able
+            to listen to this event. FYI, this guard triggers before the component mounts.
+            100ms is arbitrary.
+         */
+        window.setTimeout(() => {
+            window.EventBus.$emit('route:from:home:to:article')
+        }, 100)
+    }
+})
+
+export default router

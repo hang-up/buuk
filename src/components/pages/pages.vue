@@ -19,6 +19,13 @@
 
         mounted() {
             /*
+                Initialize rendering when we get from homepage to an article page.
+            */
+            window.EventBus.$on('route:from:home:to:article', () => {
+                this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
+            })
+
+            /*
                 Every article loaded will emit an event of the type 'manifest:primitive:content:${slug}';
                 We watch the event emitted by the article we land on to know when to actually have
                 something to parse. This is needed since the content is retrieved asynchronously
