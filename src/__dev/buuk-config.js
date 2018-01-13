@@ -28,7 +28,7 @@ module.exports = {
         Renderer Options.
         - breaks: Enable GFM line breaks.
         - strict: Conforms to markdown.pl as much as possible. Setting this to true might resolve obscure scenarios.
-        - igore_html: Sanitizes the output, ignores any html inputted.
+        - ignore_html: Sanitizes the output, ignores any html inputted.
         - smart_typo: Subtle changes to typographic punctuation (quotes, dashes, ...)
      */
     renderer: {
