@@ -22,6 +22,7 @@
                 Initialize rendering when we get from homepage to an article page.
             */
             window.EventBus.$on('route:from:home:to:article', () => {
+                this.renderer.applyConfig(this.$store.state.core.config.renderer)
                 this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
             })
 
@@ -33,6 +34,13 @@
              */
             window.EventBus.$on(`manifest:primitive:content:${this.$route.params.article}`, () => {
                 this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
+            })
+
+            /*
+                Apply configuration to markdown parser when config-loader finishes.
+             */
+            window.EventBus.$on('config:renderer', () => {
+                this.renderer.applyConfig(this.$store.state.core.config.renderer)
             })
         },
 

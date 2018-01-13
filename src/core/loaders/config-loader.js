@@ -4,7 +4,7 @@ import ConfigPrimitive from './config-primitive'
 
 function configLoader() {
     // Array of supported options.
-    const validOptions = [ "name", "short_name", "sub"]
+    const validOptions = [ "name", "short_name", "sub", "renderer"]
 
     Object.entries(config).forEach(item => {
         if (validOptions.includes(item[0])) {

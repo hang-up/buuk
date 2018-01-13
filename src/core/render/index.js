@@ -1,14 +1,23 @@
 const marked = require('marked');
 
 class Renderer {
-
-    // TODO: apply config to Renderer.
-    constructor(config = null) {
-        this.config = config
-    }
+    constructor() {}
 
     render(content) {
-        return marked(content)
+        return this.marked(content)
+    }
+
+    applyConfig(config) {
+        this.marked = marked.setOptions({
+            renderer: new marked.Renderer(),
+            gfm: true,
+            tables: true,
+            smartLists: true,
+            breaks: config.breaks || true,
+            pedantic: config.strict || false,
+            sanitize: config.ignore_html || false,
+            smartypants: config.smart_typo || false
+        })
     }
 }
 

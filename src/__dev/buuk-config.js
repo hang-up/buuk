@@ -25,9 +25,22 @@ module.exports = {
     "theme": null,
 
     /*
-        TODO: renderer options?
+        Renderer Options.
+        - breaks: Enable GFM line breaks.
+        - strict: Conforms to markdown.pl as much as possible. Setting this to true might resolve obscure scenarios.
+        - igore_html: Sanitizes the output, ignores any html inputted.
+        - smart_typo: Subtle changes to typographic punctuation (quotes, dashes, ...)
      */
-    "no_emoji": false,
-    "no_html": false,
+    renderer: {
+        breaks: true,
+        strict: false,
+        ignore_html: false,
+        smart_typo: false
+    },
+
+    /*
+        TODO: Summary of articles
+     */
     "summarize_api_key": null
+
 }
