@@ -1,5 +1,5 @@
 /**
- * An article primitive is just a simple base class that will later get augmented with the field
+ * An article primitive is just a simple base class that will later get augmented with the fields
  * that are being exposed in the value getter.
  * Each updatable field will therefore need a corresponding setter.
  *

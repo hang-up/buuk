@@ -4,7 +4,7 @@ import { store } from '../store/index'
  * Fuse can only search arrays that are one level deep.
  * This loader will create a flat array from all the articles previously loaded by manifest-loader.
  *
- * @param rootArticles
+ * @param rootArticles = store.state.core.articles
  */
 function searchLoader(rootArticles = store.state.core.articles) {
 
