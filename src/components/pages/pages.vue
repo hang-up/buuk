@@ -1,7 +1,7 @@
 <template>
     <v-container fluid>
         <v-layout column align-center>
-            <div v-html="renderedContent"></div>
+            <pages-template-renderer :content="renderedContent"></pages-template-renderer>
         </v-layout>
     </v-container>
 </template>
@@ -10,6 +10,10 @@
     import Renderer from "../../core/render"
 
     export default {
+        components: {
+            pagesTemplateRenderer: require(`./templates/renderer.vue`)
+        },
+
         data() {
             return {
                 renderer : new Renderer(),

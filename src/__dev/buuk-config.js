@@ -26,16 +26,18 @@ module.exports = {
 
     /*
         Renderer Options.
-        - breaks: Enable GFM line breaks.
-        - strict: Conforms to markdown.pl as much as possible. Setting this to true might resolve obscure scenarios.
-        - ignore_html: Sanitizes the output, ignores any html inputted.
-        - smart_typo: Subtle changes to typographic punctuation (quotes, dashes, ...)
+        - breaks { boolean | true }: Enable GFM line breaks.
+        - strict { boolean | false }: Conforms to markdown.pl as much as possible. Setting this to true might resolve obscure scenarios.
+        - ignore_html { boolean | false }: Sanitizes the output, ignores any html inputted.
+        - smart_typo { boolean | false }: Subtle changes to typographic punctuation (quotes, dashes, ...)
+        - template { string | 'wiki' }: Defines the output layout.
      */
     renderer: {
         breaks: true,
         strict: false,
         ignore_html: false,
-        smart_typo: false
+        smart_typo: false,
+        template: 'wiki'
     },
 
     /*

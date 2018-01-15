@@ -31,6 +31,11 @@ router.afterEach((to, from) => {
             window.EventBus.$emit('route:from:home:to:article')
         }, 100)
     }
+    else if (to.name === 'article') {
+        window.setTimeout(() => {
+            window.EventBus.$emit('route:to:article')
+        }, 100)
+    }
 })
 
 export default router
