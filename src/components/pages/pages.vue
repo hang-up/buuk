@@ -37,15 +37,10 @@
                 in manifest-loader.
              */
             window.EventBus.$on(`manifest:primitive:content:${this.$route.params.article}`, () => {
+                this.renderer.applyConfig(this.$store.state.core.config.renderer)
                 this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
             })
 
-            /*
-                Apply configuration to markdown parser when config-loader finishes.
-             */
-            window.EventBus.$on('config:renderer', () => {
-                this.renderer.applyConfig(this.$store.state.core.config.renderer)
-            })
         },
 
         watch: {
