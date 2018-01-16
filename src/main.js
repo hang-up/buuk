@@ -30,6 +30,3 @@ styleLoader
     .then(() => configLoader)
     .then(() => manifestLoader())
     .then(() => searchLoader())
-    .then(() => {
-        window.EventBus.$emit('loaders:emitted')
-    })
