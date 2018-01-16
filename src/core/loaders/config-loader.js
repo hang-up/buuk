@@ -6,7 +6,7 @@ import ConfigPrimitive from './config-primitive'
  * Loader to interface buuk-config.js entries.
  *
  */
-function configLoader() {
+const configLoader = new Promise((resolve, reject) => {
     // Array of supported options.
     const validOptions = [ "name", "short_name", "sub", "renderer"]
 
@@ -20,6 +20,9 @@ function configLoader() {
             window.EventBus.$emit(`config:${item[0]}`, item[1])
         }
     })
-}
+
+    // Resolve the loader.
+    resolve()
+})
 
 export default configLoader
