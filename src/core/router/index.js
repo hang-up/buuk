@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import pages from '@/components/pages/pages.vue'
-import intro from '@/components/pages/templates/intro'
+const pages = () => import('@/components/pages/pages')
+const home = () => import('@/components/pages/templates/home')
 
 Vue.use(Router)
 
@@ -10,7 +10,7 @@ const router =  new Router({
         {
             path: '/',
             name: 'home',
-            component: intro
+            component: home
         },
         {
             path: '/articles/:article',
