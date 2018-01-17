@@ -28,14 +28,21 @@ router.afterEach((to, from) => {
             100ms is arbitrary.
          */
         window.setTimeout(() => {
-            window.EventBus.$emit('route:from:home:to:article')
+            window.EventBus.$emit('router:after:from:home:to:article')
         }, 100)
     }
     else if (to.name === 'article') {
         window.setTimeout(() => {
-            window.EventBus.$emit('route:to:article')
+            window.EventBus.$emit('router:after:to:article')
         }, 100)
     }
+})
+
+router.beforeEach((to, from, next) => {
+    if (to.name === 'article') {
+        window.EventBus.$emit('router:before:to:article')
+    }
+    next()
 })
 
 export default router

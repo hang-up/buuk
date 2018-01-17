@@ -1,13 +1,10 @@
 <template>
-    <div v-html="content" :class="template"></div>
+    <div v-html="content" :class="template" class="lol"></div>
 </template>
 
 <script>
     export default {
 
-        /* TODO: Maybe we should create a style-loader... to load primer AND template specific style?
-            AND move that font-family styling into that primer.
-         */
         props: {
             content: {
                 type: String,
@@ -17,17 +14,17 @@
 
         data() {
             return {
-                // We'll assume the default template is a wiki.
+                // Default template is a wiki.
                 template: 'wiki'
             }
         },
 
         mounted() {
-            window.EventBus.$on('route:from:home:to:article', () => {
+            window.EventBus.$on('router:after:from:home:to:article', () => {
                 this.template = this.$store.state.core.config.renderer.template
             })
 
-            window.EventBus.$on('route:to:article', () => {
+            window.EventBus.$on('router:after:to:article', () => {
                 this.template = this.$store.state.core.config.renderer.template
             })
         }

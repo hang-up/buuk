@@ -25,7 +25,15 @@
             /*
                 Initialize rendering when we get from homepage to an article page.
             */
-            window.EventBus.$on('route:from:home:to:article', () => {
+            window.EventBus.$on('router:after:from:home:to:article', () => {
+                this.renderer.applyConfig(this.$store.state.core.config.renderer)
+                this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
+            })
+
+            /*
+               Initialize rendering when we get from homepage to an article page.
+           */
+            window.EventBus.$on('router:after:to:article', () => {
                 this.renderer.applyConfig(this.$store.state.core.config.renderer)
                 this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
             })
