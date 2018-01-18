@@ -17,6 +17,6 @@ module.exports = [
         type: 'input',
         name: 'description',
         message: 'Project description',
-        default: 'A Buuk project.'
+        default: 'A Buuk project'
     }
 ]
