@@ -56,18 +56,6 @@
                 this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
                 this.activeClass = 'fade-in-enter'
             })
-
-            /*
-                Every article loaded will emit an event of the type 'manifest:primitive:content:${slug}';
-                We watch the event emitted by the article we land on to know when to actually have
-                something to parse. This is needed since the content is retrieved asynchronously
-                in manifest-loader.
-             */
-            window.EventBus.$on(`manifest:primitive:content:${this.$route.params.article}`, () => {
-                this.renderer.applyConfig(this.$store.state.core.config.renderer)
-                this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
-            })
-
         },
 
         watch: {
