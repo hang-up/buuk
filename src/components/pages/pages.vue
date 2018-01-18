@@ -1,5 +1,5 @@
 <style>
-    .container {
+    .pages-container {
         transition: opacity 0.25s ease-in-out;
         -moz-transition: opacity 0.25s ease-in-out;
         -webkit-transition: opacity 0.25s ease-in-out;
@@ -15,7 +15,7 @@
 </style>
 
 <template>
-    <v-container fluid :class="activeClass">
+    <v-container fluid :class="activeClass" class="pages-container">
         <v-layout column align-center>
             <pages-template-renderer :content="renderedContent"></pages-template-renderer>
         </v-layout>
