@@ -6,9 +6,24 @@
 
 
         <!-- Toolbar. -->
-        <v-toolbar dark color="primary" fixed app>
-            <v-toolbar-side-icon @click.stop="drawer = !drawer" dark></v-toolbar-side-icon>
+        <v-toolbar dark color="primary"  app>
             <v-toolbar-title v-text="$store.state.core.config.name"></v-toolbar-title>
+            <v-spacer></v-spacer>
+
+            <v-tooltip bottom>
+                <v-btn icon slot="activator" @click.stop="drawer = !drawer">
+                    <v-icon>fullscreen</v-icon>
+                </v-btn>
+                <span>Full screen</span>
+            </v-tooltip>
+
+            <v-tooltip bottom>
+                <v-btn icon slot="activator" @click="print">
+                    <v-icon>print</v-icon>
+                </v-btn>
+                <span>Print</span>
+            </v-tooltip>
+
         </v-toolbar>
 
 
@@ -36,6 +51,12 @@
         data() {
             return {
                 drawer: true
+            }
+        },
+
+        methods: {
+            print() {
+                window.print()
             }
         }
     }
