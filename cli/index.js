@@ -9,6 +9,7 @@ const jsonfile = require('jsonfile')
 const fs = require('fs')
 const inquirer = require('inquirer')
 const questions = require('./questions')
+const utils = require('./utils')
 
 
 
@@ -22,7 +23,7 @@ commander
  * Command: Init
  *
  * Usage: init|i [options] <folder>
- * Initialize buuk entry and output folders
+ * Initialize buuk entry and output folders.
  * Options:
  *      -h, --help  output usage information
  *
@@ -48,12 +49,12 @@ commander
                         process.exit(1)
                     }
                     else {
-                        _scaffoldDestinationFolder(folder)
+                        utils._scaffoldDestinationFolder(folder)
                     }
                 }).catch(e => console.warn(e));
             }
             else {
-                _scaffoldDestinationFolder(folder)
+                utils._scaffoldDestinationFolder(folder)
             }
         }
         catch(e) {
@@ -79,35 +80,3 @@ commander
 commander.parse(process.argv)
 
 
-/**
- * Internal method used to scaffold buuk output folder.
- *
- * @param folder
- * @private
- */
-function _scaffoldDestinationFolder(folder) {
-    inquirer.prompt(questions).then(answers => {
-        // Create path object.
-        let path = { "base_path": `${shell.pwd().stdout}/${folder}` }
-
-        // Create destination folder.
-        shell.mkdir('-p', folder)
-        shell.cd(folder)
-        shell.mkdir('-p', 'docs')
-        shell.cd('..')
-
-        // Write object to json file.
-        answers = {...answers, articles: {}}
-        jsonfile.writeFileSync(`${__dirname}/manifest.json`, answers, {spaces: 2, EOL: '\r\n'})
-
-        // Copy file to end folder.
-        cp(`${__dirname}/manifest.json`, `${shell.pwd().stdout}/${folder}/manifest.json`)
-
-        // Save base path in an .buukrc file
-        jsonfile.writeFileSync(`${__dirname}/.buukrc.json`, path, {spaces: 2, EOL: '\r\n'})
-        cp(`${__dirname}/.buukrc.json`, `${shell.pwd().stdout}/${folder}/.buukrc.json`)
-
-        // Notice.
-        console.log(chalk.green('Buuk initialized!'))
-    }).catch(e => console.warn(e));
-}
