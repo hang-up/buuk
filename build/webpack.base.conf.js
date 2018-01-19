@@ -31,6 +31,9 @@ module.exports = {
             'BASE_PATH': `${require('../cli/.buukrc.json').base_path}/docs`
         }
     },
+    resolveLoader: {
+        modules: [`${getInstalledPathSync('buuk')}/node_modules`]
+    },
     module: {
         rules: [
             {
