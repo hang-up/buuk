@@ -1,4 +1,4 @@
-import { articles } from '../../__dev/manifest.json'
+import { articles } from 'BASE_PATH/manifest.json'
 import { store } from '../store/index'
 import ArticlePrimitive from './article-primitive'
 
@@ -51,7 +51,7 @@ function manifestLoader(rootArticles = articles) {
                          */
                         article.primitive = new ArticlePrimitive(article.title, article.slug, article.tags).value
 
-                        import(`BASE_PATH/${article.primitive.slug}.md`)
+                        import(`BASE_PATH/docs/${article.primitive.slug}.md`)
                             .then(content => {
                                 article.primitive.content = content
 

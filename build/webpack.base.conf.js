@@ -28,7 +28,7 @@ module.exports = {
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
             '@': resolve('src'),
-            'BASE_PATH': `${require('../cli/.buukrc.json').base_path}/docs`
+            'BASE_PATH': `${require('../cli/.buukrc.json').base_path}`
         }
     },
     resolveLoader: {
