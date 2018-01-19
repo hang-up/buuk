@@ -10,6 +10,8 @@ const fs = require('fs')
 const inquirer = require('inquirer')
 const questions = require('./questions')
 const utils = require('./utils')
+const { getInstalledPathSync } = require('get-installed-path')
+
 
 
 
@@ -67,13 +69,16 @@ commander
 /**
  * Command: Build
  *
- * TODO: Actually code it.
- *
  */
 commander
     .command('build')
     .alias('b')
-    .description('Bundle your documentation')
+    .description('Bundle your documentation under /dist. Built files are meant to be served over an HTTP server.')
+    .action(() => {
+        require('../build/build')
+
+        // console.log(getInstalledPathSync('buuk'))
+    })
 
 
 // Parse options.

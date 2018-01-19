@@ -2,6 +2,8 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+const { getInstalledPathSync } = require('get-installed-path')
+
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
@@ -12,7 +14,7 @@ module.exports = {
         fs: 'empty'
     },
     entry: {
-        app: ['babel-polyfill', './src/main.js']
+        app: [`${getInstalledPathSync('buuk')}/node_modules/babel-polyfill`, `${getInstalledPathSync('buuk')}/src/main.js`]
     },
     output: {
         path: config.build.assetsRoot,
