@@ -75,9 +75,18 @@ commander
     .alias('b')
     .description('Bundle your documentation under /dist. Built files are meant to be served over an HTTP server.')
     .action(() => {
-        require('../build/build')
 
-        // console.log(getInstalledPathSync('buuk'))
+        if (fs.existsSync('.buukrc.json')) {
+            // Overwrite last cli/.buukrc.json with the one currently being summoned.
+            jsonfile.writeFileSync(`${__dirname}/.buukrc.json`, JSON.parse(fs.readFileSync('.buukrc.json', 'utf8')), {spaces: 2, EOL: '\r\n'})
+
+            require('../build/build')
+        }
+        else {
+            console.log(chalk.red('No .buukrc found! Make sure you execute this command in a buuk initialized folder.'))
+            process.exit(1)
+        }
+
     })
 
 
