@@ -1,4 +1,4 @@
-import config from '../../__dev/buuk-config.js'
+import config from 'BASE_PATH/buuk-config.js'
 import { store } from '../store/index'
 import ConfigPrimitive from './config-primitive'
 
@@ -8,7 +8,7 @@ import ConfigPrimitive from './config-primitive'
  */
 const configLoader = new Promise((resolve, reject) => {
     // Array of supported options.
-    const validOptions = [ "name", "short_name", "sub", "renderer"]
+    const validOptions = [ "name", "short_name", "description", "renderer"]
 
     Object.entries(config).forEach(item => {
         if (validOptions.includes(item[0])) {
