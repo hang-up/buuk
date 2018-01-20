@@ -8,7 +8,13 @@ import ConfigPrimitive from './config-primitive'
  */
 const configLoader = new Promise((resolve, reject) => {
     // Array of supported options.
-    const validOptions = [ "name", "short_name", "description", "renderer"]
+    const validOptions = [
+        "name",
+        "short_name",
+        "description",
+        "renderer",
+        "theme_color"
+    ]
 
     Object.entries(config).forEach(item => {
         if (validOptions.includes(item[0])) {

@@ -6,25 +6,7 @@
 
 
         <!-- Toolbar. -->
-        <v-toolbar dark color="primary"  app>
-            <v-toolbar-title v-text="$store.state.core.config.name"></v-toolbar-title>
-            <v-spacer></v-spacer>
-
-            <v-tooltip bottom>
-                <v-btn icon slot="activator" @click.stop="drawer = !drawer">
-                    <v-icon>fullscreen</v-icon>
-                </v-btn>
-                <span>Full screen</span>
-            </v-tooltip>
-
-            <v-tooltip bottom>
-                <v-btn icon slot="activator" @click="print">
-                    <v-icon>print</v-icon>
-                </v-btn>
-                <span>Print</span>
-            </v-tooltip>
-
-        </v-toolbar>
+        <toolbar></toolbar>
 
 
         <!-- Content. -->
@@ -42,21 +24,17 @@
 
 <script>
     import sidebar from './components/sidebar/sidebar.vue'
+    import toolbar from './components/toolbar/toolbar.vue'
 
     export default {
         components: {
-            sidebar
+            sidebar,
+            toolbar
         },
 
         data() {
             return {
                 drawer: true
-            }
-        },
-
-        methods: {
-            print() {
-                window.print()
             }
         }
     }
