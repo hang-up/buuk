@@ -1,13 +1,15 @@
 <style lang="scss">
     .sidebar-items-item {
+        font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
         list-style-type: none;
         margin-left: 15px;
 
         h2 {
+            color: #2c3e50;
             font-size: 14px;
             padding: .75rem .75rem .75rem 0;
             margin: 0;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
             transition: color .1s linear;
             border-bottom: 1px dashed rgba(0,0,0,.1);
@@ -38,7 +40,7 @@
             margin-bottom: 16px;
 
             a {
-                color: #1976d2 !important;
+                color: #7f8c8d !important;
             }
         }
         li.is-active {
@@ -56,8 +58,12 @@
         <ul class="sidebar-items-item-list" v-show="showMenu">
             <template v-if="Array.isArray(articles)">
                 <template v-for="(article, _i) in articles">
-                    <li v-if="article.title" :class="{ 'is-active': $route.params.article === article.slug }">
-                        <router-link :to="{ name: 'article', params: { article: article.slug }}">{{ article.title }}</router-link>
+                    <li v-if="article.title">
+                        <router-link
+                                :to="{ name: 'article', params: { article: article.slug }}"
+                                :style="activeLinkStyle(article.slug)">
+                            {{ article.title }}
+                        </router-link>
                     </li>
 
                     <sidebar-item v-for="(subArticles, subCategory) in article"
@@ -87,6 +93,19 @@
         data() {
             return {
                 showMenu: true
+            }
+        },
+
+        methods: {
+            activeLinkStyle(slug) {
+                let _styles = {}
+                if (this.$route.params.article === slug) {
+                    _styles = {
+                        fontWeight: 'bold',
+                        color: `${this.$store.state.core.config.theme_color} !important`
+                    }
+                }
+                return _styles
             }
         }
     }
