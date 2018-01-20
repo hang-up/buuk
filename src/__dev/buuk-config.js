@@ -3,11 +3,11 @@ module.exports = {
     /*
       name and sub are displayed on the default homepage.
       short_name is displayed at app startup and on top of the navbar.
-      sub should provide additional details about what the Bük is.
+      description should provide additional details about what the Bük is.
      */
     "name": "Bük 4",
     "short_name": null,
-    "sub": "",
+    "description": "",
 
     /*
         TODO: Homepage references another markdown file as the default homepage. Path is relative to /docs
@@ -22,7 +22,7 @@ module.exports = {
     /*
         TODO: Theme support?
      */
-    "theme": null,
+    "theme_color": null,
 
     /*
         Renderer Options.
