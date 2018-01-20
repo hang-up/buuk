@@ -4,7 +4,7 @@
         <v-spacer></v-spacer>
 
         <v-tooltip bottom>
-            <v-btn icon slot="activator" @click.stop="drawer = !drawer">
+            <v-btn icon slot="activator" @click.stop="updateDrawerState">
                 <v-icon>fullscreen</v-icon>
             </v-btn>
             <span>Full screen</span>
@@ -22,9 +22,15 @@
 
 <script>
     export default {
+        props: ["drawer"],
+
         methods: {
             print() {
                 window.print()
+            },
+
+            updateDrawerState() {
+                this.$emit('update:drawer', !this.drawer)
             }
         }
     }

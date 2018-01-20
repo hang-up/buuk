@@ -6,7 +6,7 @@
 
 
         <!-- Toolbar. -->
-        <toolbar></toolbar>
+        <toolbar :drawer.sync="drawer"></toolbar>
 
 
         <!-- Content. -->
