@@ -20,9 +20,9 @@ module.exports = {
     "language": "en",
 
     /*
-        TODO: Theme support?
+        Defines color of toolbar and active item in sidebar.
      */
-    "theme_color": null,
+    "theme_color": "#fff000",
 
     /*
         Renderer Options.
