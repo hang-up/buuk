@@ -12,7 +12,7 @@ var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 var loadMinified = require('./load-minified')
 const {getInstalledPathSync} = require('get-installed-path')
-var BuukEmitPlugin = require('./plugins/buuk-emit-plugin')
+var BuukDonePlugin = require('./plugins/buuk-done-plugin')
 
 
 var env = config.build.env
@@ -108,7 +108,7 @@ var webpackConfig = merge(baseWebpackConfig, {
             stripPrefix: 'dist/'
         }),
         // Buuk output plugin.
-        new BuukEmitPlugin()
+        new BuukDonePlugin()
     ],
 })
 

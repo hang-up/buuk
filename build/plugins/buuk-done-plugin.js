@@ -1,7 +1,7 @@
 var ncp = require('ncp').ncp
 var chalk = require('chalk')
 
-function BuukEmitPlugin() {
+function BuukDonePlugin() {
 
 }
 
@@ -10,7 +10,7 @@ function BuukEmitPlugin() {
  *
  * @param compiler
  */
-BuukEmitPlugin.prototype.apply = function (compiler) {
+BuukDonePlugin.prototype.apply = function (compiler) {
     compiler.plugin("done", function (stats) {
         // Copy /dist from stats.outputPath to stats.context
         ncp(compiler.outputPath, `${compiler.context}/dist`, function(e) {
@@ -26,4 +26,4 @@ BuukEmitPlugin.prototype.apply = function (compiler) {
     })
 }
 
-module.exports = BuukEmitPlugin
+module.exports = BuukDonePlugin

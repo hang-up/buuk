@@ -2,15 +2,11 @@
 
 // Imports.
 const commander = require('commander')
-const shell = require('shelljs')
 const chalk = require('chalk')
-const cp = require('cp-file').sync
 const jsonfile = require('jsonfile')
 const fs = require('fs')
 const inquirer = require('inquirer')
-const questions = require('./questions')
 const utils = require('./utils')
-const { getInstalledPathSync } = require('get-installed-path')
 
 
 
@@ -22,7 +18,7 @@ commander
 
 
 /**
- * Command: Init
+ * Command: init
  *
  * Usage: init|i [options] <folder>
  * Initialize buuk entry and output folders.
@@ -33,7 +29,7 @@ commander
 commander
     .command('init <folder>')
     .alias('i')
-    .description('Initialize buuk entry and output folders')
+    .description('Initialize a buuk project.')
     .action(folder => {
         try {
 
@@ -67,19 +63,24 @@ commander
 
 
 /**
- * Command: Build
+ * Command: build
  *
+ * Usage: build|b [options]
+ * Bundle your documentation under /dist. Built files are meant to be served over an HTTP server.
+ * Options:
+ *      -h, --help  output usage information
  */
 commander
     .command('build')
     .alias('b')
-    .description('Bundle your documentation under /dist. Built files are meant to be served over an HTTP server.')
+    .description('Bundle your documentation under /dist.')
     .action(() => {
 
         if (fs.existsSync('.buukrc.json')) {
             // Overwrite last cli/.buukrc.json with the one currently being summoned.
             jsonfile.writeFileSync(`${__dirname}/.buukrc.json`, JSON.parse(fs.readFileSync('.buukrc.json', 'utf8')), {spaces: 2, EOL: '\r\n'})
 
+            // Pack everything.
             require('../build/build')
         }
         else {
