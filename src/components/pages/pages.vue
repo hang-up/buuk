@@ -15,7 +15,7 @@
 </style>
 
 <template>
-    <v-container fluid :class="activeClass" class="pages-container">
+    <v-container fluid :class="enterClass" class="pages-container">
         <v-layout column align-center>
             <pages-template-renderer :content="renderedContent"></pages-template-renderer>
         </v-layout>
@@ -34,7 +34,7 @@
             return {
                 renderer : new Renderer(),
                 renderedContent: "",
-                activeClass: "fade-in-leave"
+                enterClass: "fade-in-leave"
             }
         },
 
@@ -45,7 +45,7 @@
             window.EventBus.$on('router:after:from:home:to:article', () => {
                 this.renderer.applyConfig(this.$store.state.core.config.renderer)
                 this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
-                this.activeClass = 'fade-in-enter'
+                this.enterClass = 'fade-in-enter'
             })
 
             /*
@@ -54,7 +54,7 @@
             window.EventBus.$on('router:after:to:article', () => {
                 this.renderer.applyConfig(this.$store.state.core.config.renderer)
                 this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
-                this.activeClass = 'fade-in-enter'
+                this.enterClass = 'fade-in-enter'
             })
         },
 
