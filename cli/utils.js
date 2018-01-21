@@ -21,6 +21,9 @@ module.exports = {
             shell.mkdir('-p', folder)
             shell.cd(folder)
             shell.mkdir('-p', 'static')
+            shell.cd('static')
+            shell.mkdir('-p', 'img')
+            shell.cd('..')
             shell.mkdir('-p', 'docs')
             shell.cd('..')
 
@@ -53,7 +56,7 @@ module.exports = {
                 "description": answers.description,
 
                 /*
-                    TODO: Homepage references another markdown file as the default homepage. Path is relative to /docs
+                    Custom homepage. References a markdown file under /docs by its slug.
                  */
                 "homepage": null,
 
@@ -63,7 +66,7 @@ module.exports = {
                 "language": null,
 
                 /*
-                    TODO: Theme support?
+                    Toolbar / sidebar active color.
                  */
                 "theme_color": null,
 

@@ -80,6 +80,8 @@ commander
             // Overwrite last cli/.buukrc.json with the one currently being summoned.
             jsonfile.writeFileSync(`${__dirname}/.buukrc.json`, JSON.parse(fs.readFileSync('.buukrc.json', 'utf8')), {spaces: 2, EOL: '\r\n'})
 
+            // Merge
+
             // Pack everything.
             require('../build/build')
         }
