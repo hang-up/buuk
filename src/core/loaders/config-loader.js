@@ -21,7 +21,6 @@ const configLoader = new Promise((resolve, reject) => {
 
     // Homepage specific operation
     window.EventBus.$on('config:homepage', () => {
-
         // If homepage is specified, we load its content to our store.
         if (store.state.core.config.homepage) {
             articleLoader(store.state.core.config.homepage).then(({ primitive }) => {
