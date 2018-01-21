@@ -16,7 +16,8 @@ const configLoader = new Promise((resolve, reject) => {
         "description",
         "renderer",
         "theme_color",
-        "homepage"
+        "homepage",
+        "logo"
     ]
 
     // Homepage specific operation

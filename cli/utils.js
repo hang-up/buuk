@@ -71,6 +71,11 @@ module.exports = {
                 "theme_color": null,
 
                 /*
+                    Logo. Must be under /static/img
+                 */
+                "logo": null,
+
+                /*
                     Renderer Options.
                     - breaks { boolean | true }: Enable GFM line breaks.
                     - strict { boolean | false }: Conforms to markdown.pl as much as possible. Setting this to true might resolve obscure scenarios.
