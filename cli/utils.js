@@ -20,6 +20,7 @@ module.exports = {
             // Create destination folder.
             shell.mkdir('-p', folder)
             shell.cd(folder)
+            shell.mkdir('-p', 'static')
             shell.mkdir('-p', 'docs')
             shell.cd('..')
 
