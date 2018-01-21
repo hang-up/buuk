@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 const state = {
     articles: null,
+    homepage: null,
     config: {}
 }
 
@@ -16,6 +17,10 @@ const mutations = {
 
     setConfig(state, payload) {
         Vue.set(state.config, payload.getKey, payload.getValue)
+    },
+
+    setConfigHomepageValue(state, value) {
+        state.homepage = value
     }
 }
 

@@ -21,12 +21,12 @@ const router =  new Router({
 })
 
 router.afterEach((to, from) => {
+    /*
+        We need to delay emitting events since we want components to actually render and be able
+        to listen to those events. FYI, this guard triggers before the components mount.
+        100ms is arbitrary.
+     */
     if (to.name === 'article' && from.name === 'home') {
-        /*
-            We need to delay emitting the event since we want the component to actually render and be able
-            to listen to this event. FYI, this guard triggers before the component mounts.
-            100ms is arbitrary.
-         */
         window.setTimeout(() => {
             window.EventBus.$emit('router:after:from:home:to:article')
         }, 100)
@@ -34,6 +34,11 @@ router.afterEach((to, from) => {
     else if (to.name === 'article') {
         window.setTimeout(() => {
             window.EventBus.$emit('router:after:to:article')
+        }, 100)
+    }
+    else if (to.name === 'home') {
+        window.setTimeout(() => {
+            window.EventBus.$emit('router:after:to:home')
         }, 100)
     }
 })
