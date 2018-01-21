@@ -1,6 +1,8 @@
 import config from 'BASE_PATH/buuk-config.js'
 import { store } from '../store/index'
 import ConfigPrimitive from './config-primitive'
+import articleLoader from './article-loader'
+
 
 /**
  * Loader to interface buuk-config.js entries.
@@ -13,8 +15,20 @@ const configLoader = new Promise((resolve, reject) => {
         "short_name",
         "description",
         "renderer",
-        "theme_color"
+        "theme_color",
+        "homepage"
     ]
+
+    // Homepage specific operation
+    window.EventBus.$on('config:homepage', () => {
+
+        // If homepage is specified, we load its content to our store.
+        if (store.state.core.config.homepage) {
+            articleLoader(store.state.core.config.homepage).then(({ primitive }) => {
+                store.commit('core/setConfigHomepageValue', primitive)
+            })
+        }
+    })
 
     Object.entries(config).forEach(item => {
         if (validOptions.includes(item[0])) {

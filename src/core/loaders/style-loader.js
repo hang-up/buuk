@@ -1,5 +1,6 @@
 import { store } from "../store/index";
 
+
 const styleLoader = new Promise((resolve, reject) => {
     window.EventBus.$on('config:renderer', () => {
         let template = store.state.core.config.renderer.template

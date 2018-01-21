@@ -2,6 +2,7 @@ import { articles } from 'BASE_PATH/manifest.json'
 import { store } from '../store/index'
 import ArticlePrimitive from './article-primitive'
 
+
 /**
  * Loader to bridge the manifest and the articles.
  * This loader is wrapped in a function to pass parameters to the underlying promise.
@@ -36,19 +37,7 @@ function manifestLoader(rootArticles = articles) {
                         manifestLoader(article)
                     }
                     else {
-                        // TODO: Put that in its own loader?
-                        /*
-                            Create an article primitive. A primitive is a simple base object that will get augmented
-                            depending on the config passed in buuk-config.json.
-
-                            There are 2 main scenarios:
-                            1) There is an api_key, in which case we call text-summarizer and store the value in "summary"
-                            2) There is no api_key
-                                1) There are tags associated (summary is not undefined), we simply return the tags
-                                2) There are no tags associated
-                                    1) Required markdown file is less than 1500 characters, return that
-                                    2) Required markdown file is more than 1500 characters, summary is empty
-                         */
+                        // TODO: USE articleLoader
                         article.primitive = new ArticlePrimitive(article.title, article.slug, article.tags).value
 
                         import(`BASE_PATH/docs/${article.primitive.slug}.md`)
