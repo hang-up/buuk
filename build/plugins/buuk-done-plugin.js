@@ -1,5 +1,7 @@
 var ncp = require('ncp').ncp
 var chalk = require('chalk')
+var shell = require('shelljs')
+var path = require('path')
 
 function BuukDonePlugin() {
 
@@ -23,6 +25,10 @@ BuukDonePlugin.prototype.apply = function (compiler) {
                 '  Opening index.html over file:// won\'t work.\n'
             ))
         })
+
+        // Clear up static folder to avoid leaks...
+        shell.cd(path.join(__dirname, '../..', 'static'))
+        shell.rm('-rf', 'img/*')
     })
 }
 

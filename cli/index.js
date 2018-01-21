@@ -7,6 +7,9 @@ const jsonfile = require('jsonfile')
 const fs = require('fs')
 const inquirer = require('inquirer')
 const utils = require('./utils')
+const shell = require('shelljs')
+const path = require('path')
+const mergedirs = require('merge-dirs').default
 
 
 
@@ -80,7 +83,8 @@ commander
             // Overwrite last cli/.buukrc.json with the one currently being summoned.
             jsonfile.writeFileSync(`${__dirname}/.buukrc.json`, JSON.parse(fs.readFileSync('.buukrc.json', 'utf8')), {spaces: 2, EOL: '\r\n'})
 
-            // Merge
+            // Merge static folders.
+            mergedirs('static', path.join(__dirname, '..', 'static'), 'overwrite')
 
             // Pack everything.
             require('../build/build')
