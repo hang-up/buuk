@@ -12,8 +12,6 @@ const path = require('path')
 const mergedirs = require('merge-dirs').default
 
 
-
-
 // Define App.
 commander
     .version('0.0.1')
@@ -72,6 +70,7 @@ commander
  * Bundle your documentation under /dist. Built files are meant to be served over an HTTP server.
  * Options:
  *      -h, --help  output usage information
+ *
  */
 commander
     .command('build')
@@ -97,7 +96,37 @@ commander
     })
 
 
+/**
+ * Command: watch
+ *
+ * Usage: watch|w [options]
+ * Watch for changes in any of the resolved files.
+ * Options:
+ *      -h, --help  output usage information
+ *
+ */
+commander
+    .command('watch')
+    .alias('w')
+    .description('Watch for changes in any of the resolved files.')
+    .action(() => {
+        if (fs.existsSync('.buukrc.json')) {
+            // Overwrite last cli/.buukrc.json with the one currently being summoned.
+            jsonfile.writeFileSync(`${__dirname}/.buukrc.json`, JSON.parse(fs.readFileSync('.buukrc.json', 'utf8')), {spaces: 2, EOL: '\r\n'})
+
+            // Watch everything.
+            require('../build/dev-server')
+        }
+        else {
+            console.log(chalk.red('No .buukrc found! Make sure you execute this command in a buuk initialized folder.'))
+            process.exit(1)
+        }
+    })
+
 // Parse options.
 commander.parse(process.argv)
 
+if (!process.argv.slice(2).length) {
+    commander.help()
+}
 
