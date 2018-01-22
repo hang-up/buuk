@@ -5,6 +5,7 @@ module.exports = {
     "homepage": null,
     "language": null,
     "theme_color": null,
+    "logo": null,
     "renderer": {
         "breaks": true,
         "strict": false,
