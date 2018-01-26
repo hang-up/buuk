@@ -56,6 +56,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
+            title: require(`${process.cwd()}/buuk-config.js`).name,
             filename: config.build.index,
             template: `${getInstalledPathSync('buuk')}/index.html`,
             inject: true,
