@@ -56,6 +56,7 @@
         },
 
         mounted() {
+            // If a homepage article is set, we render it here.
             if (this.$store.state.core.config.homepage) {
                 this.renderer.applyConfig(this.$store.state.core.config.renderer)
                 this.renderedContent = this.renderer.render(this.$store.state.core.homepage.content)

@@ -1,7 +1,7 @@
 class ConfigPrimitive {
     constructor(key, value) {
         this.key = key
-        this.value = value ? value : null
+        this.value = value || null
     }
 
     get getKey() {

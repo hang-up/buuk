@@ -16,7 +16,7 @@ import configLoader from "./core/loaders/config-loader"
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
+// Initialize Vue root component.
 new Vue({
     el: '#app',
     router,

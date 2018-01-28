@@ -1,7 +1,7 @@
 module.exports = {
-    "name": "Buuk",
-    "short_name": "Buuk",
-    "description": "A Buuk project",
+    "name": "Entrepreneurship ideas 2018",
+    "short_name": "Ideas 2018",
+    "description": "List of entrepreneurial ideas along with some execution specifics",
     "homepage": null,
     "language": null,
     "theme_color": null,

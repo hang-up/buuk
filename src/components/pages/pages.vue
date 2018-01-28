@@ -39,18 +39,14 @@
         },
 
         mounted() {
-            /*
-                Initialize rendering when we get from homepage to an article page.
-            */
+            // Initialize rendering when we get from homepage to an article page.
             window.EventBus.$on('router:after:from:home:to:article', () => {
                 this.renderer.applyConfig(this.$store.state.core.config.renderer)
                 this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
                 this.enterClass = 'fade-in-enter'
             })
 
-            /*
-               Initialize rendering when we get to an article page.
-           */
+           // Initialize rendering when we get to an article page.
             window.EventBus.$on('router:after:to:article', () => {
                 this.renderer.applyConfig(this.$store.state.core.config.renderer)
                 this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
@@ -65,6 +61,12 @@
         },
 
         methods: {
+            /**
+             * Find an article by its slug from the search article flat array.
+             *
+             * @param slug
+             * @returns {*}
+             */
             findArticleBySlug(slug) {
                 return this.$store.state.search.flatArticles.filter(({ article }) => {
                     return article.primitive.slug === slug

@@ -97,6 +97,12 @@
         },
 
         methods: {
+            /**
+             * Helper returning an object styling the current sidebar-item.
+             *
+             * @param slug
+             * @returns {{}}
+             */
             activeLinkStyle(slug) {
                 let _styles = {}
                 if (this.$route.params.article === slug) {
