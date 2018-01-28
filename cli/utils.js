@@ -68,7 +68,7 @@ module.exports = {
                 /*
                     Toolbar / sidebar active color.
                  */
-                "theme_color": null,
+                "theme_color": '#1f77b4',
 
                 /*
                     Logo. Must be under /static/img

@@ -7,10 +7,8 @@ const jsonfile = require('jsonfile')
 const fs = require('fs')
 const inquirer = require('inquirer')
 const utils = require('./utils')
-const shell = require('shelljs')
 const path = require('path')
 const mergedirs = require('merge-dirs').default
-
 
 // Define App.
 commander
@@ -35,7 +33,7 @@ commander
         try {
 
             if (fs.existsSync(folder)) {
-
+                // If folder already exists, ask if we should override it.
                 inquirer.prompt([
                     {
                         type: 'confirm',
@@ -44,15 +42,15 @@ commander
                         default: false
                     }
                 ]).then(a => {
-                    if (!a.folderDoesExist) {
-                        process.exit(1)
-                    }
-                    else {
+                    if (a.folderDoesExist) {
                         utils._scaffoldDestinationFolder(folder)
+                    } else {
+                        process.exit(1)
                     }
                 }).catch(e => console.warn(e));
             }
             else {
+                // If the folder doesn't exist, just scaffold the damn thing.
                 utils._scaffoldDestinationFolder(folder)
             }
         }
@@ -80,7 +78,16 @@ commander
 
         if (fs.existsSync('.buukrc.json')) {
             // Overwrite last cli/.buukrc.json with the one currently being summoned.
-            jsonfile.writeFileSync(`${__dirname}/.buukrc.json`, JSON.parse(fs.readFileSync('.buukrc.json', 'utf8')), {spaces: 2, EOL: '\r\n'})
+            jsonfile.writeFileSync(
+                `${__dirname}/.buukrc.json`,
+                JSON.parse(fs.readFileSync('.buukrc.json', 'utf8')),
+                {spaces: 2, EOL: '\r\n'})
+
+            // Overwrite web-manifest.json with something that has the right values from buuk-config.
+            jsonfile.writeFileSync(
+                `${path.join(__dirname, '../static', 'manifest.json')}`,
+                require('./web-manifest'),
+                {spaces: 2, EOL: '\r\n'})
 
             // Merge static folders.
             mergedirs('static', path.join(__dirname, '..', 'static'), 'overwrite')
@@ -126,6 +133,7 @@ commander
 // Parse options.
 commander.parse(process.argv)
 
+// Show help command if only buuk is called.
 if (!process.argv.slice(2).length) {
     commander.help()
 }
