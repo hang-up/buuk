@@ -1,10 +1,10 @@
 module.exports = {
-    "name": "Entrepreneurship ideas 2018",
-    "short_name": "Ideas 2018",
-    "description": "List of entrepreneurial ideas along with some execution specifics",
+    "name": "remy",
+    "short_name": "Buuk",
+    "description": "A Buuk project",
     "homepage": null,
     "language": null,
-    "theme_color": null,
+    "theme_color": "#1f77b4",
     "logo": null,
     "renderer": {
         "breaks": true,

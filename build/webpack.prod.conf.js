@@ -10,6 +10,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var loadMinified = require('./load-minified')
 const {getInstalledPathSync} = require('get-installed-path')
 var BuukDonePlugin = require('./plugins/buuk-done-plugin')
@@ -35,11 +36,44 @@ var webpackConfig = merge(baseWebpackConfig, {
         new webpack.DefinePlugin({
             'process.env': env
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            sourceMap: true
+        new UglifyJsPlugin({
+            cache: true,
+            parallel: true,
+            uglifyOptions: {
+                compress: {
+                    arrows: false,
+                    booleans: false,
+                    collapse_vars: false,
+                    computed_props: false,
+                    hoist_funs: false,
+                    hoist_props: false,
+                    hoist_vars: false,
+                    if_return: false,
+                    join_vars: false,
+                    keep_infinity: true,
+                    loops: false,
+                    negate_iife: false,
+                    properties: false,
+                    reduce_funcs: false,
+                    reduce_vars: false,
+                    sequences: false,
+                    side_effects: false,
+                    switches: false,
+                    top_retain: false,
+                    toplevel: false,
+                    typeofs: false,
+                    unused: false,
+
+                    // Switch off all types of compression except those needed to convince
+                    // react-devtools that we're using a production build
+                    conditionals: true,
+                    dead_code: true,
+                    evaluate: true,
+                    comparisons: true,
+                    inline: true
+                },
+                mangle: true
+            }
         }),
         // extract css into its own file
         new ExtractTextPlugin({
