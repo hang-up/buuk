@@ -1,6 +1,6 @@
 <template>
     <v-toolbar dark app :style="{ background: $store.state.core.config.theme_color }">
-        <v-toolbar-title v-text="$store.state.core.config.name"></v-toolbar-title>
+        <v-toolbar-title v-text="$store.state.pages.currentArticle.name"></v-toolbar-title>
         <v-spacer></v-spacer>
 
         <v-tooltip bottom>

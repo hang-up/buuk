@@ -41,22 +41,24 @@
         mounted() {
             // Initialize rendering when we get from homepage to an article page.
             window.EventBus.$on('router:after:from:home:to:article', () => {
+                this.$store.commit('pages/setCurrentArticle', { currentArticle: this.findArticleBySlug(this.$route.params.article)})
                 this.renderer.applyConfig(this.$store.state.core.config.renderer)
-                this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
+                this.renderedContent = this.renderer.render(this.$store.state.pages.currentArticle.content)
                 this.enterClass = 'fade-in-enter'
             })
 
            // Initialize rendering when we get to an article page.
             window.EventBus.$on('router:after:to:article', () => {
+                this.$store.commit('pages/setCurrentArticle', { currentArticle: this.findArticleBySlug(this.$route.params.article)})
                 this.renderer.applyConfig(this.$store.state.core.config.renderer)
-                this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
+                this.renderedContent = this.renderer.render(this.$store.state.pages.currentArticle.content)
                 this.enterClass = 'fade-in-enter'
             })
         },
 
         watch: {
             "$route": function (val) {
-                this.renderedContent = this.renderer.render(this.findArticleBySlug(this.$route.params.article).content)
+                this.renderedContent = this.renderer.render(this.$store.state.pages.currentArticle.content)
             }
         },
 
