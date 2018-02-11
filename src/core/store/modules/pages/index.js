@@ -1,5 +1,7 @@
 const state = {
-    currentArticle: null
+    currentArticle: {
+        name: ''
+    }
 }
 
 const actions = {

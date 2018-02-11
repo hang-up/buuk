@@ -24,6 +24,16 @@
     export default {
         props: ["drawer"],
 
+        mounted() {
+            window.EventBus.$on('router:after:to:home', () => {
+                this.$store.commit('pages/setCurrentArticle', {
+                    currentArticle: {
+                        name: this.$store.state.core.config.name
+                    }
+                })
+            })
+        },
+
         methods: {
             print() {
                 window.print()
