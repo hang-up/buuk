@@ -27,8 +27,6 @@
             <!-- Homepage link -->
             <sidebar-intro-link></sidebar-intro-link>
 
-            <v-divider></v-divider>
-
             <!-- Articles tree -->
             <li>
                 <ul id="sidebar-items">
