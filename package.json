@@ -1,7 +1,7 @@
 {
   "name": "buuk",
   "description": "A fast and simple markdown based documentation generator.",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.0",
   "keywords": [
     "markdown",
     "documentation",
@@ -47,6 +47,7 @@
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
     "chalk": "^2.0.1",
+    "commander": "^2.14.1",
     "connect-history-api-fallback": "^1.3.0",
     "copy-webpack-plugin": "^4.0.1",
     "cp-file": "^5.0.0",
