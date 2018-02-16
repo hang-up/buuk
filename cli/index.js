@@ -12,7 +12,7 @@ const mergedirs = require('merge-dirs').default
 
 // Define App.
 commander
-    .version('0.0.1')
+    .version('1.0.0')
     .description('Buuk CLI')
 
 
