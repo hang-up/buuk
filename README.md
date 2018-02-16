@@ -1,21 +1,15 @@
-# buuk4
+<p align="center"><img src="http://groundedrob.com/images/projects/buk.png" height='250px'></p>
 
-> A Vue.js project
+[![Build Status](https://travis-ci.org/hang-up/buuk.svg?branch=master)](https://travis-ci.org/hang-up/buuk)
 
-## Build Setup
+## About Bük
+> A markdown based documentation generator.
 
-``` bash
-# install dependencies
-npm install
+Bük is a fast and simple markdown based static site generator geared towards documentation.
+Its integrated CLI makes it painless to scaffold a project, customize it to your liking and output a progressive web application.
 
-# serve with hot reload at localhost:8080
-npm run dev
+## Changelog:
+Details changes for each release are documented in the [release notes](https://github.com/hang-up/buk/releases)
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### Licence
+MIT
