@@ -1,6 +1,7 @@
 <style lang="scss">
     .sidebar a {
         text-decoration: none;
+        color: #7f8c8d !important;
     }
 </style>
 

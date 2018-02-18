@@ -13,8 +13,7 @@ import {
     VAlert,
     VToolbar,
     VTooltip,
-    VBtn,
-    VFooter
+    VBtn
 } from 'vuetify'
 
 require('vuetify/src/stylus/app.styl')
@@ -40,8 +39,7 @@ Vue.use(Vuetify, {
         VAlert,
         VToolbar,
         VTooltip,
-        VBtn,
-        VFooter
+        VBtn
     }
 })
 Vue.config.productionTip = false
