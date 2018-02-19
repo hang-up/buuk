@@ -1,7 +1,5 @@
-$mobile: 768px;
-$tablet: 769px;
 $desktop: 1024px;
-$wide: 1216px;
+$wide: 1600px;
 
 @media screen and (min-width: $wide) {
   .wiki {
@@ -10,10 +8,10 @@ $wide: 1216px;
   }
 }
 
-@media screen and (min-width: $desktop) {
+@media screen and (min-width: $desktop) and (max-width: $wide) {
   .wiki {
-    max-width: 960px;
-    width: 960px;
+    max-width: 768px;
+    width: 768px;
   }
 }
 

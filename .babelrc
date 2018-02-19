@@ -8,7 +8,18 @@
     }],
     "stage-2"
   ],
-  "plugins": ["transform-runtime", "syntax-dynamic-import"],
+  "plugins": [
+    ["transform-runtime"],
+    [ "syntax-dynamic-import"],
+    [
+      "transform-imports", {
+        "vuetify": {
+          "transform": "vuetify/es5/components/${member}",
+          "preventFullImport": true
+        }
+      }
+    ]
+  ],
   "env": {
     "test": {
       "presets": ["env", "stage-2"],
