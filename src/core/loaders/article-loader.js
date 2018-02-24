@@ -15,8 +15,10 @@ function articleLoader(articleParam) {
 
         // Called with an incomplete article object with only title, slug and tags properties.
         if (articleParam.slug) {
-            res = {...articleParam}
-            res.primitive = new ArticlePrimitive(articleParam.title, articleParam.slug, articleParam.tags).value
+            res = {
+                ...articleParam,
+                primitive: new ArticlePrimitive(articleParam.title, articleParam.slug, articleParam.tags).value
+            }
 
             // Dynamically load content of .md associated to the slug.
              _load(res.primitive.slug, res)
