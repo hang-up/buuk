@@ -12,11 +12,12 @@
             :clipped="clipped"
             v-model="drawer"
             app
+            :style="navigationDrawerStyle"
     >
         <!-- Logo -->
         <sidebar-logo v-if="$store.state.core.config.logo"></sidebar-logo>
 
-        <v-list :style="listStyle">
+        <v-list style="padding-top: 0;">
             <!-- Search input -->
             <search-input></search-input>
 
@@ -54,8 +55,7 @@
 
         data() {
             return {
-                listStyle: {
-                    paddingTop: 0,
+                navigationDrawerStyle: {
                     borderTop: `3px solid ${this.$store.state.core.config.theme_color}`
                 }
             }
