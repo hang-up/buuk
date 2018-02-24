@@ -1,6 +1,6 @@
 <style lang="scss">
     .sidebar-items-item {
-        font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         list-style-type: none;
         margin-left: 15px;
 

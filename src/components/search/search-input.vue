@@ -1,5 +1,5 @@
 <template>
-    <v-list-tile style="height: 56px; border-bottom: 1px solid rgba(0,0,0,.1);">
+    <v-list-tile style="height: 56px; box-shadow: 0 3px 4px 0 hsla(0, 0%, 0%, 0.2)">
         <v-list-tile-content>
             <v-text-field placeholder="Search here..."
                           v-model="search"

@@ -4,6 +4,7 @@ import Vue from 'vue'
 import {
     Vuetify,
     VApp,
+    VCard,
     VNavigationDrawer,
     VIcon,
     VList,
@@ -16,7 +17,7 @@ import {
     VBtn
 } from 'vuetify'
 
-require('vuetify/src/stylus/app.styl')
+require('./themes/main.styl')
 
 import App from './App'
 import router from './core/router'
@@ -31,6 +32,7 @@ Vue.use(Vuetify, {
     components: {
         VApp,
         VNavigationDrawer,
+        VCard,
         VIcon,
         VList,
         VGrid,

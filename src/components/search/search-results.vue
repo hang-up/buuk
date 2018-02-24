@@ -28,7 +28,7 @@
 
         <template slot="no-data">
             <v-alert :value="true" color="info" icon="info" outline>
-                No results
+                No results were found for '{{ this.$store.state.search.query }}'
             </v-alert>
         </template>
     </v-data-table>
