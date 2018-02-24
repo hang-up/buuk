@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar dark app :style="{ background: $store.state.core.config.theme_color }">
+    <v-toolbar app :style="toolbarStyle">
         <v-toolbar-title v-text="$store.state.pages.currentArticle.name"></v-toolbar-title>
         <v-spacer></v-spacer>
 
@@ -23,6 +23,16 @@
 <script>
     export default {
         props: ["drawer"],
+
+        data() {
+            return {
+                toolbarStyle: {
+                    borderTop: `3px solid ${this.$store.state.core.config.theme_color}`,
+                    boxShadow: '0 0 1px rgba(0,0,0,0.25)',
+                    background: '#fafafa'
+                }
+            }
+        },
 
         mounted() {
             window.EventBus.$on('router:after:to:home', () => {

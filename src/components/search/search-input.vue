@@ -1,12 +1,18 @@
+<style lang="scss">
+    .sidebar .search-input-list-tile  .list__tile{
+        height: 64px;
+    }
+</style>
+
 <template>
-    <v-list-tile style="height: 56px; box-shadow: 0 3px 4px 0 hsla(0, 0%, 0%, 0.2)">
+    <v-list-tile style="box-shadow: 0 0 1px rgba(0,0,0,0.25)"
+                 class="search-input-list-tile">
         <v-list-tile-content>
             <v-text-field placeholder="Search here..."
                           v-model="search"
                           solo
                           single-line
-                          :append-icon="search ? 'cancel' : ''"
-                          :append-icon-cb="() => (search = '')"
+                          clearable
             >
             </v-text-field>
         </v-list-tile-content>

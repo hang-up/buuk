@@ -16,7 +16,7 @@
         <!-- Logo -->
         <sidebar-logo v-if="$store.state.core.config.logo"></sidebar-logo>
 
-        <v-list>
+        <v-list :style="listStyle">
             <!-- Search input -->
             <search-input></search-input>
 
@@ -51,6 +51,15 @@
 
     export default {
         props: ['fixed', 'clipped', 'drawer'],
+
+        data() {
+            return {
+                listStyle: {
+                    paddingTop: 0,
+                    borderTop: `3px solid ${this.$store.state.core.config.theme_color}`
+                }
+            }
+        },
 
         components: {
             sidebarLogo,
