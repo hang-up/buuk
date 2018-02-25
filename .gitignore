@@ -13,3 +13,4 @@ cli/.buukrc.json
 *.njsproj
 *.sln
 *.swp
+.vscode
