@@ -45,6 +45,7 @@
                 this.renderer.applyConfig(this.$store.state.core.config.renderer)
                 this.renderedContent = this.renderer.render(this.$store.state.pages.currentArticle.content)
                 this.enterClass = 'fade-in-enter'
+                window.scrollTo(0, 0)
             })
 
            // Initialize rendering when we get to an article page.
@@ -53,6 +54,7 @@
                 this.renderer.applyConfig(this.$store.state.core.config.renderer)
                 this.renderedContent = this.renderer.render(this.$store.state.pages.currentArticle.content)
                 this.enterClass = 'fade-in-enter'
+                window.scrollTo(0, 0)
             })
         },
 
