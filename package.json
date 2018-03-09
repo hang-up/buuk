@@ -1,7 +1,7 @@
 {
   "name": "buuk",
   "description": "A fast and simple markdown based documentation generator.",
-  "version": "3.9.0",
+  "version": "4.0.0-0",
   "keywords": [
     "markdown",
     "documentation",
