@@ -13,6 +13,10 @@
 Bük is a fast and simple markdown based static site generator geared towards documentation.
 Its integrated CLI makes it painless to scaffold a project, customize it to your liking and output a progressive web application.
 
+## Documentation
+
+The documentation can be found here: https://buuk.groundedrob.com
+
 ## Changelog:
 Details changes for each release are documented in the [release notes](https://github.com/hang-up/buk/releases)
 
