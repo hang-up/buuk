@@ -1,6 +1,14 @@
 <p align="center"><img src="http://groundedrob.com/images/projects/buk.png" height='250px'></p>
 
+<p align="center">
 [![Build Status](https://travis-ci.org/hang-up/buuk.svg?branch=master)](https://travis-ci.org/hang-up/buuk)
+
+[![npm version](https://badge.fury.io/js/buuk.svg)](https://badge.fury.io/js/buuk)
+
+<a href="https://npmcharts.com/compare/buuk?minimal=true"><img src="https://img.shields.io/npm/dt/buuk.svg" alt="NPM"></a>
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+</p>
 
 ## About Bük
 > A markdown based documentation generator.
