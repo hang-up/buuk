@@ -5,6 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 cli/.buukrc.json
+cli/manifest.json
+cli/buuk-config.js
+static/manifest.json
 
 # Editor directories and files
 .idea
@@ -14,6 +17,3 @@ cli/.buukrc.json
 *.sln
 *.swp
 .vscode
-cli/manifest.json
-cli/buuk-config.js
-static/manifest.json
