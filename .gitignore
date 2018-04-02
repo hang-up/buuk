@@ -14,3 +14,6 @@ cli/.buukrc.json
 *.sln
 *.swp
 .vscode
+cli/manifest.json
+cli/buuk-config.js
+static/manifest.json
