@@ -10,6 +10,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+var loadMinified = require('./load-minified')
+const {getInstalledPathSync} = require('get-installed-path')
+var BuukDonePlugin = require('./plugins/buuk-done-plugin')
+
 
 var env = config.build.env
 
@@ -31,16 +36,44 @@ var webpackConfig = merge(baseWebpackConfig, {
         new webpack.DefinePlugin({
             'process.env': env
         }),
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            "window.jQuery": "jquery"
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            sourceMap: true
+        new UglifyJsPlugin({
+            cache: true,
+            parallel: true,
+            uglifyOptions: {
+                compress: {
+                    arrows: false,
+                    booleans: false,
+                    collapse_vars: false,
+                    computed_props: false,
+                    hoist_funs: false,
+                    hoist_props: false,
+                    hoist_vars: false,
+                    if_return: false,
+                    join_vars: false,
+                    keep_infinity: true,
+                    loops: false,
+                    negate_iife: false,
+                    properties: false,
+                    reduce_funcs: false,
+                    reduce_vars: false,
+                    sequences: false,
+                    side_effects: false,
+                    switches: false,
+                    top_retain: false,
+                    toplevel: false,
+                    typeofs: false,
+                    unused: false,
+
+                    // Switch off all types of compression except those needed to convince
+                    // react-devtools that we're using a production build
+                    conditionals: true,
+                    dead_code: true,
+                    evaluate: true,
+                    comparisons: true,
+                    inline: true
+                },
+                mangle: true
+            }
         }),
         // extract css into its own file
         new ExtractTextPlugin({
@@ -57,8 +90,9 @@ var webpackConfig = merge(baseWebpackConfig, {
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
+            title: require(`${process.cwd()}/buuk-config.js`).name,
             filename: config.build.index,
-            template: 'index.html',
+            template: `${getInstalledPathSync('buuk')}/index.html`,
             inject: true,
             minify: {
                 removeComments: true,
@@ -69,8 +103,8 @@ var webpackConfig = merge(baseWebpackConfig, {
             },
             // necessary to consistently work with multiple chunks via CommonsChunkPlugin
             chunksSortMode: 'dependency',
-            serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
-                './service-worker-prod.js'), 'utf-8')}</script>`
+            serviceWorkerLoader: `<script>${loadMinified(path.join(__dirname,
+                './service-worker-prod.js'))}</script>`
         }),
         // split vendor js into its own file
         new webpack.optimize.CommonsChunkPlugin({
@@ -102,18 +136,15 @@ var webpackConfig = merge(baseWebpackConfig, {
         ]),
         // service worker caching
         new SWPrecacheWebpackPlugin({
-            cacheId: 'buuk-pwa',
+            cacheId: 'buuk',
             filename: 'service-worker.js',
-            staticFileGlobs: ['dist/**/*.{js,html,css,png}'],
-            runtimeCaching: [{
-                // https://googlechrome.github.io/sw-toolbox/api.html#handlers
-                handler: 'fastest',
-                urlPattern: /^https:\/\/fonts\.gstatic\.com\/s\/materialicons\/v22\/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw\.woff2/,
-            }],
+            staticFileGlobs: ['dist/**/*.{js,html,css}'],
             minify: true,
             stripPrefix: 'dist/'
-        })
-    ]
+        }),
+        // Buuk output plugin.
+        new BuukDonePlugin()
+    ],
 })
 
 if (config.build.productionGzip) {

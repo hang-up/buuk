@@ -1,28 +1,62 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import {
+    Vuetify,
+    VApp,
+    VCard,
+    VNavigationDrawer,
+    VIcon,
+    VList,
+    VGrid,
+    VTextField,
+    VDataTable,
+    VAlert,
+    VToolbar,
+    VTooltip,
+    VBtn
+} from 'vuetify'
+
+require('./themes/main.styl')
+
 import App from './App'
-import Vuex from 'vuex'
-import VueRouter from 'vue-router'
-import store from './js/store'
-require('materialize-css/dist/js/materialize.min')
+import router from './core/router'
+import { store } from './core/store'
+import { EventBus } from "./core/utils/event-bus";
+import manifestLoader from './core/loaders/manifest-loader'
+import styleLoader from './core/loaders/style-loader'
+import searchLoader from './core/loaders/search-loader'
+import configLoader from "./core/loaders/config-loader"
 
-
-// Load bootstrap
-import { routes } from './js/bootstrap/routes'
-
-// Load the chosen theme.
-require('./sass/app.scss')
-
-Vue.use(Vuex)
-Vue.use(VueRouter)
+Vue.use(Vuetify, {
+    components: {
+        VApp,
+        VNavigationDrawer,
+        VCard,
+        VIcon,
+        VList,
+        VGrid,
+        VTextField,
+        VDataTable,
+        VAlert,
+        VToolbar,
+        VTooltip,
+        VBtn
+    }
+})
 Vue.config.productionTip = false
 
-const router = new VueRouter({
-    routes: routes()
+// Initialize Vue root component.
+new Vue({
+    el: '#app',
+    router,
+    store,
+    template: '<App/>',
+    components: {App}
 })
 
-new Vue({
-  el: '#app',
-    store,
-    router,
-    render: h => h(App)
-});
+// Loaders.
+styleLoader
+    .then(() => configLoader)
+    .then(() => manifestLoader())
+    .then(() => searchLoader())

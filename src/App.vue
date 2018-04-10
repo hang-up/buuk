@@ -1,79 +1,37 @@
-<style scoped>
-    main, #nav-mobile {
-        transition: all .3s ease-in;
-    }
-
-    @media screen and (min-width: 992px) {
-        main {
-            margin-left: 300px;
-        }
-    }
-</style>
-
 <template>
-    <div>
-        <!-- Menu. -->
-        <sidebar></sidebar>
+    <v-app light>
 
-        <main>
+        <!-- Sidebar. -->
+        <sidebar :drawer="drawer"></sidebar>
 
-            <!-- Navigation -->
-            <navigation></navigation>
 
-            <div class="container">
-                <!-- Floating action button -->
-                <fab :is-full-screen.sync="isFullScreen"></fab>
+        <!-- Toolbar. -->
+        <toolbar :drawer.sync="drawer"></toolbar>
 
-                <!-- Mobile menu trigger. -->
-                <a href="#"
-                   data-activates="nav-mobile"
-                   class="top-nav waves-effect waves-light hide-on-large-only btn button-collapse"
-                   id="nav-mobile-trigger"
-                   style="margin-top: 19.25px">
-                    <i class="material-icons left">menu</i>
-                    Menu
-                </a>
 
-                <!-- Article. -->
-                <router-view></router-view>
-            </div>
-        </main>
+        <!-- Content. -->
+        <v-content>
+            <router-view></router-view>
+        </v-content>
 
-    </div>
+
+    </v-app>
 </template>
 
 <script>
-    import fab from './js/components/articles/fab.vue'
-    import sidebar from './js/components/sidebar/sidebar.vue'
-    import articleContainer from './js/components/articles/article-container.vue'
-    import navigation from './js/components/navigation/navigation.vue'
+    import sidebar from './components/sidebar/sidebar.vue'
+    import toolbar from './components/toolbar/toolbar.vue'
 
     export default {
-        name: 'app',
+        components: {
+            sidebar,
+            toolbar
+        },
+
         data() {
             return {
-                isFullScreen: false
+                drawer: true
             }
-        },
-        components: {
-            fab,
-            sidebar,
-            articleContainer,
-            navigation
-        },
-        mounted() {
-            /**
-             * Initialize mobile menu trigger.
-             *
-             */
-            $(".button-collapse").sideNav({
-                draggable: true
-            })
-            /**
-             * Initialize tooltip.
-             *
-             */
-            $('.tooltipped').tooltip({delay: 50});
         }
     }
 </script>

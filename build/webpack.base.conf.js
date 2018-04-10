@@ -2,14 +2,19 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+const { getInstalledPathSync } = require('get-installed-path')
+
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
 
 module.exports = {
+    node: {
+        fs: 'empty'
+    },
     entry: {
-        app: './src/main.js'
+        app: [`${getInstalledPathSync('buuk')}/node_modules/babel-polyfill`, `${getInstalledPathSync('buuk')}/src/main.js`]
     },
     output: {
         path: config.build.assetsRoot,
@@ -22,10 +27,19 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
+            '@': resolve('src'),
+            'BASE_PATH': `${require('../cli/.buukrc.json').base_path}`
         }
+    },
+    resolveLoader: {
+        modules: [`${getInstalledPathSync('buuk')}/node_modules`]
     },
     module: {
         rules: [
+            {
+                test: /\.md$/,
+                use: 'raw-loader'
+            },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
@@ -33,33 +47,32 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                // https://github.com/webpack/webpack/issues/2031#issuecomment-219040479
-                exclude: /node_modules\/(?!(markdown-it-highlightjs|markdown-it-mermaid|markdown-it-latex)\/).*/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['env']
-                    }
-                }
+                loader: 'babel-loader?cacheDirectory',
+                include: [resolve('src'), resolve('test')]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loaders: [
-                    {
-                        // Inline images smaller than 10kb
-                        loader: 'url-loader',
-                        options: {
-                            limit: 10000,
-                            name: utils.assetsPath('img/[name].[hash:7].[ext]')
-                        }
-                    },
-                    // Or attempt to optimize them.
-                    'image-webpack-loader?bypassOnDebug&optimizationLevel=6&interlaced=false'
-                ]
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: utils.assetsPath('img/[name].[hash:7].[ext]')
+                }
             },
             {
-                test: /\.md/,
-                use: 'raw-loader'
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: utils.assetsPath('media/[name].[hash:7].[ext]')
+                }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+                }
             }
         ]
     }
