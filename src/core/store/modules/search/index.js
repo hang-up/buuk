@@ -1,4 +1,4 @@
-import Fuse from 'fuse.js'
+import Fuse from 'fuse.js';
 
 /*
     Options to calibrate fuse.
@@ -22,16 +22,15 @@ const fuseOptions = {
             weight: 0.25
         }
     ]
-}
+};
 
 const state = {
     flatArticles: [],
     results: [],
     query: ''
-}
+};
 
 const actions = {
-
     /**
      * Perform a search.
      *
@@ -39,31 +38,31 @@ const actions = {
      * @param state
      */
     search({ commit, state }) {
-        let fuse = new Fuse(state.flatArticles, fuseOptions)
+        let fuse = new Fuse(state.flatArticles, fuseOptions);
 
         commit('setResults', {
             results: fuse.search(state.query)
-        })
+        });
     }
-}
+};
 
 const mutations = {
     setResults(state, { results }) {
-        state.results = results
+        state.results = results;
     },
 
     setFlatArticle(state, article) {
-        state.flatArticles.push(article)
+        state.flatArticles.push(article);
     },
 
     setQuery(state, { query }) {
-        state.query = query
+        state.query = query;
     }
-}
+};
 
 export default {
     namespaced: true,
     state,
     actions,
     mutations
-}
+};

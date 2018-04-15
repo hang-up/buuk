@@ -1,16 +1,17 @@
+/*eslint-disable */
 const marked = require('marked');
-const highlightjs = require('./lib/index')
+const highlightjs = require('./lib/index');
 
 // TODO: Configurable theme.
-require('./lib/styles/tomorrow.css')
-
+require('./lib/styles/tomorrow.css');
+/*eslint-enable */
 /**
  * Renderer class.
  *
  */
 class Renderer {
     constructor() {
-        this.renderer = marked
+        this.renderer = marked;
     }
 
     /**
@@ -20,9 +21,8 @@ class Renderer {
      * @returns {*}
      */
     render(content) {
-        return this.renderer(content)
+        return this.renderer(content);
     }
-
 
     /**
      * Apply configuration to our renderer.
@@ -39,12 +39,12 @@ class Renderer {
             pedantic: config.strict || false,
             sanitize: config.ignore_html || false,
             smartypants: config.smart_typo || false,
-            highlight: ((code) => {
+            highlight: code => {
                 return highlightjs.highlightAuto(code).value;
-            }),
+            },
             langPrefix: 'hljs lang-'
-        })
+        });
     }
 }
 
-export default Renderer
+export default Renderer;

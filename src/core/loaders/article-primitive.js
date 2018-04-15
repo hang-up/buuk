@@ -5,13 +5,11 @@
  *
  */
 class ArticlePrimitive {
-
     constructor(name, slug, tags = null) {
-        this.name = name
-        this.slug = slug
-        this.tags = tags
+        this.name = name;
+        this.slug = slug;
+        this.tags = tags;
     }
-
 
     /**
      * Getter to access primitive value.
@@ -26,9 +24,8 @@ class ArticlePrimitive {
             tags: this.tags,
             summary: null,
             content: null
-        }
+        };
     }
-
 
     /**
      * Setter for exposed summary field.
@@ -36,9 +33,8 @@ class ArticlePrimitive {
      * @param value
      */
     set summary(value) {
-        this.summary = value
+        this.summary = value;
     }
-
 
     /**
      * Setter for exposed content field.
@@ -46,8 +42,8 @@ class ArticlePrimitive {
      * @param value
      */
     set content(value) {
-        this.content = value
+        this.content = value;
     }
 }
 
-export default ArticlePrimitive
+export default ArticlePrimitive;
