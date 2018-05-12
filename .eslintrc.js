@@ -19,6 +19,9 @@ module.exports = {
       "singleQuote": true,
       "semi": true,
       "tabWidth": 4
-    }]
+    }],
+    "no-undef": "off",
+    "no-console": "off",
+    "no-inline-comments": "off"
   }
 }
