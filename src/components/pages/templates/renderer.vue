@@ -1,5 +1,36 @@
+<style lang="scss" scoped>
+    .toc {
+        display: table;
+
+        ul {
+            list-style-type: none;
+            li.heading {
+                &-2 {
+                    margin-left: 17px;
+                }
+                &-3 {
+                    margin-left: 32px;
+                }
+                &-4 {
+                    margin-left: 40px;
+                }
+        }
+        }
+    }
+</style>
+
+
 <template>
-    <div v-html="content" :class="template"></div>
+    <div>
+        <div class="toc">
+            <ul>
+                <li v-for="heading in toc" :key=heading.text :class="`heading-${heading.level}`">
+                    {{ heading.text }}
+                </li>
+            </ul>
+        </div>
+        <div v-html="content" :class="template"></div>
+    </div>
 </template>
 
 <script>
@@ -9,6 +40,9 @@
             content: {
                 type: String,
                 default: "Uh oh! You broke it. This page does't exist or doesn't have any content... yet!"
+            },
+            toc: {
+                type: [Array, Object]
             }
         },
 

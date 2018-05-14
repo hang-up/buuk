@@ -24,6 +24,23 @@ class Renderer {
         return this.renderer(content);
     }
 
+    renderToc(content) {
+        const customRenderer = new marked.Renderer();
+        let arrayToHoldAllHeaders = [];
+        customRenderer.heading = (text, level) => {
+            arrayToHoldAllHeaders.push({
+                level,
+                text
+            });
+            return `<h${level} class="toc toc-header-${level}">${text}</h${level}>`;
+        };
+        this.renderer(content, {
+            renderer: customRenderer
+        });
+
+        return arrayToHoldAllHeaders;
+    }
+
     /**
      * Apply configuration to our renderer.
      *

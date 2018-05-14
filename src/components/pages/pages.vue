@@ -17,7 +17,7 @@
 <template>
     <v-container fluid :class="enterClass" class="pages-container">
         <v-layout column align-center>
-            <pages-template-renderer :content="renderedContent"></pages-template-renderer>
+            <pages-template-renderer :content="renderedContent" :toc="toc"></pages-template-renderer>
         </v-layout>
     </v-container>
 </template>
@@ -34,27 +34,20 @@
             return {
                 renderer : new Renderer(),
                 renderedContent: "",
-                enterClass: "fade-in-leave"
+                enterClass: "fade-in-leave",
+                toc: {}
             }
         },
 
         mounted() {
             // Initialize rendering when we get from homepage to an article page.
             window.EventBus.$on('router:after:from:home:to:article', () => {
-                this.$store.commit('pages/setCurrentArticle', { currentArticle: this.findArticleBySlug(this.$route.params.article)})
-                this.renderer.applyConfig(this.$store.state.core.config.renderer)
-                this.renderedContent = this.renderer.render(this.$store.state.pages.currentArticle.content)
-                this.enterClass = 'fade-in-enter'
-                window.scrollTo(0, 0)
+                this.initRendering();
             })
 
            // Initialize rendering when we get to an article page.
             window.EventBus.$on('router:after:to:article', () => {
-                this.$store.commit('pages/setCurrentArticle', { currentArticle: this.findArticleBySlug(this.$route.params.article)})
-                this.renderer.applyConfig(this.$store.state.core.config.renderer)
-                this.renderedContent = this.renderer.render(this.$store.state.pages.currentArticle.content)
-                this.enterClass = 'fade-in-enter'
-                window.scrollTo(0, 0)
+               this.initRendering();
             })
         },
 
@@ -75,6 +68,22 @@
                 return this.$store.state.search.flatArticles.filter(({ article }) => {
                     return article.primitive.slug === slug
                 })[0].article.primitive
+            },
+
+            /**
+             * Initialize Rendering.
+             * 
+             * @returns {*}
+             */
+            initRendering() {
+                this.$store.commit('pages/setCurrentArticle', { currentArticle: this.findArticleBySlug(this.$route.params.article)})
+                this.renderer.applyConfig(this.$store.state.core.config.renderer)
+                this.renderedContent = this.renderer.render(this.$store.state.pages.currentArticle.content)
+                this.enterClass = 'fade-in-enter'
+                window.scrollTo(0, 0)
+
+
+                this.toc = this.renderer.renderToc(this.$store.state.pages.currentArticle.content);
             }
         }
     }
