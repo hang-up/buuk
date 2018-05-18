@@ -17,13 +17,17 @@
 <template>
     <v-container fluid :class="enterClass" class="pages-container">
         <v-layout column align-center>
-            <pages-template-renderer :content="renderedContent" :toc="toc"></pages-template-renderer>
+            <pages-template-renderer 
+                :content="renderedContent.content" 
+                :toc="renderedContent.artifacts"
+            ></pages-template-renderer>
         </v-layout>
     </v-container>
 </template>
 
 <script>
     import Renderer from "../../core/render"
+    import { mapState } from 'vuex'
 
     export default {
         components: {
@@ -32,11 +36,14 @@
 
         data() {
             return {
-                renderer : new Renderer(),
+                renderer : new Renderer({options: ['toc']}),
                 renderedContent: "",
                 enterClass: "fade-in-leave",
-                toc: {}
             }
+        },
+
+        computed: {
+            ...mapState('pages', ['currentArticle'])
         },
 
         mounted() {
@@ -53,7 +60,7 @@
 
         watch: {
             "$route": function (val) {
-                this.renderedContent = this.renderer.render(this.$store.state.pages.currentArticle.content)
+                this.renderedContent = this.renderer.render(this.currentArticle.content)
             }
         },
 
@@ -78,12 +85,9 @@
             initRendering() {
                 this.$store.commit('pages/setCurrentArticle', { currentArticle: this.findArticleBySlug(this.$route.params.article)})
                 this.renderer.applyConfig(this.$store.state.core.config.renderer)
-                this.renderedContent = this.renderer.render(this.$store.state.pages.currentArticle.content)
+                this.renderedContent = this.renderer.render(this.currentArticle.content)
                 this.enterClass = 'fade-in-enter'
                 window.scrollTo(0, 0)
-
-
-                this.toc = this.renderer.renderToc(this.$store.state.pages.currentArticle.content);
             }
         }
     }

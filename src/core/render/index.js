@@ -1,6 +1,7 @@
 /*eslint-disable */
 const marked = require('marked');
 const highlightjs = require('./lib/index');
+const OPTIONS_TOC = 'toc';
 
 // TODO: Configurable theme.
 require('./lib/styles/tomorrow.css');
@@ -10,8 +11,11 @@ require('./lib/styles/tomorrow.css');
  *
  */
 class Renderer {
-    constructor() {
+    constructor({ options }) {
         this.renderer = marked;
+
+        this.rendererWithOptions = new marked.Renderer();
+        this.options = options || null;
     }
 
     /**
@@ -21,24 +25,51 @@ class Renderer {
      * @returns {*}
      */
     render(content) {
-        return this.renderer(content);
+        if (!this.options) {
+            return this.renderer(content);
+        } else {
+            const options = this.setOptionsToRenderer();
+            return this.setRenderedContent(options, content);
+        }
     }
 
-    renderToc(content) {
-        const customRenderer = new marked.Renderer();
-        let arrayToHoldAllHeaders = [];
-        customRenderer.heading = (text, level) => {
-            arrayToHoldAllHeaders.push({
-                level,
-                text
-            });
-            return `<h${level} class="toc toc-header-${level}">${text}</h${level}>`;
-        };
-        this.renderer(content, {
-            renderer: customRenderer
-        });
+    /**
+     * Set user configured options to renderer. For now, the only options available is
+     * toggling a custom table of contents.
+     *
+     */
+    setOptionsToRenderer() {
+        if (this.options.includes(OPTIONS_TOC)) {
+            try {
+                let headers = [];
+                this.rendererWithOptions.heading = (text, level) => {
+                    headers.push({
+                        level,
+                        text
+                    });
+                    return `<h${level} class="toc toc-header-${level}">${text}</h${level}>`;
+                };
+                // Returns the list of headers (that I decided to call artifact.)
+                return headers;
+            } catch (e) {
+                throw new (e => `Error: setOptionsToRenderer ${e}`)();
+            }
+        }
+    }
 
-        return arrayToHoldAllHeaders;
+    /**
+     * Returns an object containing arbitrary artifacts and the actual parsed content.
+     *
+     * @param {*} artifacts An optional side effect from generating a custom renderer.
+     * @param {*} content The rendered content.
+     */
+    setRenderedContent(artifacts, content) {
+        return {
+            artifacts,
+            content: this.renderer(content, {
+                renderer: this.rendererWithOptions
+            })
+        };
     }
 
     /**

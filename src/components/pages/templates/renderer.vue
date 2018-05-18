@@ -1,40 +1,21 @@
 <style lang="scss" scoped>
-    .toc {
-        display: table;
-
-        ul {
-            list-style-type: none;
-            li.heading {
-                &-2 {
-                    margin-left: 17px;
-                }
-                &-3 {
-                    margin-left: 32px;
-                }
-                &-4 {
-                    margin-left: 40px;
-                }
-        }
-        }
-    }
+    
 </style>
 
 
 <template>
     <div>
-        <div class="toc">
-            <ul>
-                <li v-for="heading in toc" :key=heading.text :class="`heading-${heading.level}`">
-                    {{ heading.text }}
-                </li>
-            </ul>
-        </div>
+        <toc :headings="toc"></toc>
         <div v-html="content" :class="template"></div>
     </div>
 </template>
 
 <script>
     export default {
+
+        components: {
+            toc: () => import('./toc.vue')
+        },
 
         props: {
             content: {
