@@ -11,11 +11,11 @@ require('./lib/styles/tomorrow.css');
  *
  */
 class Renderer {
-    constructor({ options }) {
+    constructor({ options = undefined } = {}) {
         this.renderer = marked;
 
         this.rendererWithOptions = new marked.Renderer();
-        this.options = options || null;
+        this.options = options;
     }
 
     /**
