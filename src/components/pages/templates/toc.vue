@@ -1,8 +1,12 @@
 <style lang="scss" scoped>
+    $toc-padding: 17px;
+
     .toc {
         display: table;
         background: #fff;
         box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 1px;
+        padding: $toc-padding $toc-padding $toc-padding 0;
+        margin: $toc-padding;
 
         ul {
             list-style-type: none;
@@ -17,14 +21,17 @@
                 }
                 &.heading {
                     &-2 {
-                        margin-left: 17px;
+                        margin-left: $toc-padding;
                     }
                     &-3 {
-                        margin-left: 32px;
+                        margin-left: $toc-padding * 2;
                     }
                     &-4 {
-                        margin-left: 47px;
+                        margin-left: $toc-padding * 3;
                     }
+                }
+                &:last-child {
+                    margin-bottom: 0;
                 }
             }
         }
