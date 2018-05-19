@@ -11,6 +11,8 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
+
     export default {
 
         components: {
@@ -27,6 +29,10 @@
             }
         },
 
+        computed: {
+            ...mapState('core', ['config'])
+        },
+
         data() {
             return {
                 // Default template is a wiki.
@@ -36,11 +42,11 @@
 
         mounted() {
             window.EventBus.$on('router:after:from:home:to:article', () => {
-                this.template = this.$store.state.core.config.renderer.template
+                this.template = this.config.renderer.template
             })
 
             window.EventBus.$on('router:after:to:article', () => {
-                this.template = this.$store.state.core.config.renderer.template
+                this.template = this.config.renderer.template
             })
         }
     }
