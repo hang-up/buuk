@@ -1,6 +1,11 @@
 <template>
-    <v-container fluid :class="activeClass" class="pages-container wiki">
-        <v-layout column v-if="!$store.state.core.config.homepage">
+    <v-container fluid :class="activeClass" class="pages-container">
+        <v-layout column 
+                align-center 
+                v-if="!$store.state.core.config.homepage" 
+                class="wiki" 
+                style="margin: 0 auto"
+        >
             <h1>
                 {{ $store.state.core.config.name }}
             </h1>
@@ -14,7 +19,7 @@
             <hr>
         </v-layout>
 
-        <v-layout row v-if="!$store.state.core.config.homepage">
+        <v-layout row align-center v-if="!$store.state.core.config.homepage">
             <v-flex xs12 sm6 offset-sm3>
                 <v-card>
                     <v-toolbar dark>
@@ -33,22 +38,30 @@
             </v-flex>
         </v-layout>
 
-        <v-layout column v-if="$store.state.core.config.homepage">
-            <pages-template-renderer :content="renderedContent.content"></pages-template-renderer>
+        <v-layout column align-center v-if="$store.state.core.config.homepage">
+            <pages-template-renderer 
+                :content="renderedContent.content" 
+                :toc="renderedContent.artifacts"
+            ></pages-template-renderer>
         </v-layout>
     </v-container>
 </template>
 
 <script>
     import Renderer from "../../../core/render"
+    import { mapState } from 'vuex'
 
     export default {
         data() {
             return {
                 activeClass: "fade-in-leave",
-                renderer: new Renderer(),
+                renderer : new Renderer({options: ['toc']}),
                 renderedContent: ''
             }
+        },
+
+        computed: {
+            ...mapState('core', ['config', 'homepage'])
         },
 
         components: {
@@ -57,9 +70,9 @@
 
         mounted() {
             // If a homepage article is set, we render it here.
-            if (this.$store.state.core.config.homepage) {
-                this.renderer.applyConfig(this.$store.state.core.config.renderer)
-                this.renderedContent = this.renderer.render(this.$store.state.core.homepage.content)
+            if (this.config.homepage) {
+                this.renderer.applyConfig(this.config.renderer)
+                this.renderedContent = this.renderer.render(this.homepage.content)
             }
 
             window.setTimeout(() => {
