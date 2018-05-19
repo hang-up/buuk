@@ -1,6 +1,8 @@
 /*eslint-disable */
 const marked = require('marked');
 const highlightjs = require('./lib/index');
+const slugify = require('slugify')
+const OPTIONS_TOC = 'toc';
 
 // TODO: Configurable theme.
 require('./lib/styles/tomorrow.css');
@@ -10,8 +12,11 @@ require('./lib/styles/tomorrow.css');
  *
  */
 class Renderer {
-    constructor() {
+    constructor({ options = undefined } = {}) {
         this.renderer = marked;
+
+        this.rendererWithOptions = new marked.Renderer();
+        this.options = options;
     }
 
     /**
@@ -21,7 +26,55 @@ class Renderer {
      * @returns {*}
      */
     render(content) {
-        return this.renderer(content);
+        if (!this.options) {
+            return this.renderer(content);
+        } else {
+            const options = this.setOptionsToRenderer();
+            return this.renderWithOptions(options, content);
+        }
+    }
+
+    /**
+     * Set user configured options to renderer. For now, the only options available is
+     * toggling a custom table of contents.
+     *
+     */
+    setOptionsToRenderer() {
+        if (this.options.includes(OPTIONS_TOC)) {
+            try {
+                let headers = [];
+                this.rendererWithOptions.heading = (text, level) => {
+                    headers.push({
+                        level,
+                        text,
+                        slug: `#${slugify(text, { lower: true, remove: /[$*_+~.()'"!/\-:@]/g })}`
+                    });
+                    return `<h${level} id="${slugify(text, {
+                        lower: true,
+                        remove: /[$*_+~.()'"!/\-:@]/g
+                    })}">${text}</h${level}>`;
+                };
+                // Returns the list of headers (that I decided to call artifact.)
+                return headers;
+            } catch (e) {
+                throw new (e => `Error: setOptionsToRenderer ${e}`)();
+            }
+        }
+    }
+
+    /**
+     * Returns an object containing arbitrary artifacts and the actual parsed content.
+     *
+     * @param {*} artifacts An optional side effect from generating a custom renderer.
+     * @param {*} content The rendered content.
+     */
+    renderWithOptions(artifacts, content) {
+        return {
+            artifacts,
+            content: this.renderer(content, {
+                renderer: this.rendererWithOptions
+            })
+        };
     }
 
     /**

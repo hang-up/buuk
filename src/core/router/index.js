@@ -6,6 +6,7 @@ const home = () => import('@/components/pages/templates/home');
 Vue.use(Router);
 
 const router = new Router({
+    mode: 'history',
     routes: [
         {
             path: '/',
@@ -17,7 +18,22 @@ const router = new Router({
             name: 'article',
             component: pages
         }
-    ]
+    ],
+    scrollBehavior: function(to) {
+        if (to.hash) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve({
+                        selector: to.hash,
+                        offset: {
+                            x: 0,
+                            y: 70 // Navigation header is 64px, we just need a small padding.
+                        }
+                    });
+                }, 100);
+            });
+        }
+    }
 });
 
 router.afterEach((to, from) => {

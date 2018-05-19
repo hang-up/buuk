@@ -34,7 +34,7 @@
         </v-layout>
 
         <v-layout column v-if="$store.state.core.config.homepage">
-            <pages-template-renderer :content="renderedContent"></pages-template-renderer>
+            <pages-template-renderer :content="renderedContent.content"></pages-template-renderer>
         </v-layout>
     </v-container>
 </template>

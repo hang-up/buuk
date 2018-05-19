@@ -19,4 +19,4 @@ module.exports = [
         message: 'Project description',
         default: 'A Buuk project'
     }
-]
+];

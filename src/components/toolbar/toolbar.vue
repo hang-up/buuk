@@ -1,6 +1,17 @@
+<style lang="scss">
+    .toolbar__title h1 {
+        font-size: 20px;
+        line-height: 30px;
+        letter-spacing: 0.4px;
+        font-weight: 500;
+    }
+</style>
+
 <template>
     <v-toolbar app :style="toolbarStyle">
-        <v-toolbar-title v-text="$store.state.pages.currentArticle.name"></v-toolbar-title>
+        <v-toolbar-title>
+            <h1>{{$store.state.pages.currentArticle.name}}</h1>
+        </v-toolbar-title>
         <v-spacer></v-spacer>
 
         <v-tooltip bottom>

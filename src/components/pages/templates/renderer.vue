@@ -1,14 +1,29 @@
+<style lang="scss" scoped>
+    
+</style>
+
+
 <template>
-    <div v-html="content" :class="template"></div>
+    <div>
+        <toc :headings="toc" v-if="$store.state.core.config.toc"></toc>
+        <div v-html="content" :class="template"></div>
+    </div>
 </template>
 
 <script>
     export default {
 
+        components: {
+            toc: () => import('./toc.vue')
+        },
+
         props: {
             content: {
                 type: String,
                 default: "Uh oh! You broke it. This page does't exist or doesn't have any content... yet!"
+            },
+            toc: {
+                type: [Array, Object]
             }
         },
 
