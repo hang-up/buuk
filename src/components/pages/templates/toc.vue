@@ -15,7 +15,7 @@
                 a {
                     color: #7f8c8d !important;
                     text-decoration: none;
-                    &:hover, &:focus, &:active {
+                    &:hover {
                         text-decoration: underline;
                     }
                 }
@@ -43,7 +43,7 @@
     <div class="toc">
         <ul>
             <li v-for="heading in headings" :key=heading.text :class="`heading-${heading.level}`">
-                <a href="/">{{ heading.text }}</a>
+                <router-link :to="heading.slug">{{ heading.text }}</router-link>
             </li>
         </ul>
     </div>

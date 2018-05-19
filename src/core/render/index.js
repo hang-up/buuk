@@ -1,6 +1,7 @@
 /*eslint-disable */
 const marked = require('marked');
 const highlightjs = require('./lib/index');
+const slugify = require('slugify')
 const OPTIONS_TOC = 'toc';
 
 // TODO: Configurable theme.
@@ -29,7 +30,7 @@ class Renderer {
             return this.renderer(content);
         } else {
             const options = this.setOptionsToRenderer();
-            return this.setRenderedContent(options, content);
+            return this.renderWithOptions(options, content);
         }
     }
 
@@ -45,9 +46,13 @@ class Renderer {
                 this.rendererWithOptions.heading = (text, level) => {
                     headers.push({
                         level,
-                        text
+                        text,
+                        slug: `#${slugify(text, { lower: true, remove: /[$*_+~.()'"!/\-:@]/g })}`
                     });
-                    return `<h${level} class="toc toc-header-${level}">${text}</h${level}>`;
+                    return `<h${level} id="${slugify(text, {
+                        lower: true,
+                        remove: /[$*_+~.()'"!/\-:@]/g
+                    })}">${text}</h${level}>`;
                 };
                 // Returns the list of headers (that I decided to call artifact.)
                 return headers;
@@ -63,7 +68,7 @@ class Renderer {
      * @param {*} artifacts An optional side effect from generating a custom renderer.
      * @param {*} content The rendered content.
      */
-    setRenderedContent(artifacts, content) {
+    renderWithOptions(artifacts, content) {
         return {
             artifacts,
             content: this.renderer(content, {
