@@ -8,7 +8,6 @@ import ArticlePrimitive from './article-primitive';
  */
 function articleLoader(articleParam) {
     return new Promise(resolve => {
-        // Returned value.
         let res = {};
 
         // Called with an incomplete article object with only title, slug and tags properties.
@@ -19,37 +18,36 @@ function articleLoader(articleParam) {
             };
 
             // Dynamically load content of .md associated to the slug.
-            _load(res.primitive.slug, res);
+            asyncImportArticleContent(res, resolve);
         } else {
             /*
-           Called with a slug: the only case this is used is to load a custom homepage,
-           so we assume the primitive will have "Homepage" as title.
-       */
+            Called with a slug: the only case this is used is to load a custom homepage,
+            so we assume the primitive will have "Homepage" as title.
+        */
             res.primitive = new ArticlePrimitive('Homepage', articleParam, '').value;
 
             // Dynamically load content of .md associated to the slug.
-            _load(articleParam, res);
+            asyncImportArticleContent(res, resolve);
         }
-
-        // Resolve the loader.
-        resolve(res);
     });
 }
 
 /**
- * Internal function to load the content of the .md associated with the slug.
+ * Asynchronously import article content. Eventually resolves the promise it is being called in.
  *
- * @param slug
- * @param article: THIS PARAM IS MUTATED. // TODO: change it.
- * @private
+ * @param {*} article
+ * @param {*} resolve
  */
-function _load(slug, article) {
-    import(`BASE_PATH/docs/${slug}.md`).then(content => {
-        article.primitive.content = content;
-
-        // Dispatch an event of type 'article:primitive:content:${slug}' after loading the content of our md.
-        window.EventBus.$emit(`article:primitive:content:${slug}`);
-    });
+function asyncImportArticleContent(article, resolve) {
+    import(`BASE_PATH/docs/${article.primitive.slug}.md`)
+        .then(content => {
+            article.primitive.content = content;
+            window.EventBus.$emit(`article:primitive:content:${article.primitive.slug}`);
+            return article;
+        })
+        .then(article => {
+            resolve(article);
+        });
 }
 
 export default articleLoader;
