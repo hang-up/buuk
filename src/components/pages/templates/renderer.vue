@@ -5,7 +5,7 @@
 
 <template>
     <div>
-        <toc :headings="toc"></toc>
+        <toc :headings="toc" v-if="$store.state.core.config.toc"></toc>
         <div v-html="content" :class="template"></div>
     </div>
 </template>

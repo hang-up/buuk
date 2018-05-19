@@ -9,7 +9,7 @@ import articleLoader from './article-loader';
  */
 const configLoader = new Promise(resolve => {
     // Array of supported options.
-    const validOptions = ['name', 'short_name', 'description', 'renderer', 'theme_color', 'homepage', 'logo'];
+    const validOptions = ['name', 'short_name', 'description', 'renderer', 'theme_color', 'homepage', 'logo', 'toc'];
 
     // Homepage specific operation
     window.EventBus.$on('config:homepage', () => {

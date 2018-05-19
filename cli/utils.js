@@ -99,7 +99,12 @@ module.exports = {
                     /*
               TODO: Summary of articles
           */
-                    summarize_api_key: null
+                    summarize_api_key: null,
+
+                    /*
+              Toggles a table of contents for each article page. Automatically generates it from markdown headers.
+          */
+                    toc: true
                 };
                 fs.writeFileSync(
                     `${__dirname}/buuk-config.js`,
