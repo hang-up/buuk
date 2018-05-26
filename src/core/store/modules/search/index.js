@@ -1,7 +1,8 @@
 import Fuse from 'fuse.js';
 
-/*
-    Options to calibrate fuse.
+/**
+ * Options to calibrate fuse.
+ *
  */
 const fuseOptions = {
     keys: [
