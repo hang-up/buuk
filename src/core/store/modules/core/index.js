@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 const state = {
-    articles: null,
+    articles: {},
     homepage: null,
     config: {}
 };

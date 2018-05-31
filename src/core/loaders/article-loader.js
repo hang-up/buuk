@@ -20,10 +20,10 @@ function articleLoader(articleParam) {
             // Dynamically load content of .md associated to the slug.
             asyncImportArticleContent(res, resolve);
         } else {
-            /*
-            Called with a slug: the only case this is used is to load a custom homepage,
-            so we assume the primitive will have "Homepage" as title.
-        */
+            /**
+             * Called with a slug: the only case this is used is to load a custom homepage,
+             * so we assume the primitive will have "Homepage" as title.
+             */
             res.primitive = new ArticlePrimitive('Homepage', articleParam, '').value;
 
             // Dynamically load content of .md associated to the slug.
