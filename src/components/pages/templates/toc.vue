@@ -1,41 +1,47 @@
 <style lang="scss" scoped>
-    $toc-padding: 17px;
+$toc-padding: 17px;
 
-    .toc {
-        display: table;
-        background: #fff;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 1px;
-        padding: $toc-padding $toc-padding $toc-padding 0;
-        margin: $toc-padding;
+.toc {
+    display: table;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 1px;
+    padding: $toc-padding $toc-padding $toc-padding 0;
+    margin: $toc-padding;
 
-        ul {
-            list-style-type: none;
-            li {
-                margin-bottom: 6px;
-                a {
-                    color: #7f8c8d !important;
-                    text-decoration: none;
-                    &:hover {
-                        text-decoration: underline;
-                    }
+    ul {
+        list-style-type: none;
+        li {
+            margin-bottom: 6px;
+            a {
+                color: #7f8c8d !important;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
                 }
-                &.heading {
-                    &-2 {
-                        margin-left: $toc-padding;
-                    }
-                    &-3 {
-                        margin-left: $toc-padding * 2;
-                    }
-                    &-4 {
-                        margin-left: $toc-padding * 3;
-                    }
+            }
+            &.heading {
+                &-2 {
+                    margin-left: $toc-padding;
                 }
-                &:last-child {
-                    margin-bottom: 0;
+                &-3 {
+                    margin-left: $toc-padding * 2;
                 }
+                &-4 {
+                    margin-left: $toc-padding * 3;
+                }
+                &-5 {
+                    margin-left: $toc-padding * 4;
+                }
+                &-6 {
+                    margin-left: $toc-padding * 5;
+                }
+            }
+            &:last-child {
+                margin-bottom: 0;
             }
         }
     }
+}
 </style>
 
 
