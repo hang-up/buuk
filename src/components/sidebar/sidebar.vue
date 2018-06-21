@@ -1,8 +1,8 @@
 <style lang="scss">
-    .sidebar a {
-        text-decoration: none;
-        color: #7f8c8d !important;
-    }
+.sidebar a {
+    text-decoration: none;
+    color: #7f8c8d !important;
+}
 </style>
 
 <template>
@@ -44,29 +44,29 @@
 </template>
 
 <script>
-    import sidebarLogo from './sidebar-logo.vue'
-    import sidebarItem from './sidebar-item.vue'
-    import sidebarIntroLink from './sidebar-intro-link.vue'
-    import searchInput from '../search/search-input.vue'
-    import searchResults from '../search/search-results.vue'
+import sidebarLogo from './sidebar-logo.vue'
+import sidebarItem from './sidebar-item.vue'
+import sidebarIntroLink from './sidebar-intro-link.vue'
+import searchInput from '../search/search-input.vue'
+import searchResults from '../search/search-results.vue'
 
-    export default {
-        props: ['fixed', 'clipped', 'drawer'],
+export default {
+    props: ['fixed', 'clipped', 'drawer'],
 
-        data() {
-            return {
-                navigationDrawerStyle: {
-                    borderTop: `3px solid ${this.$store.state.core.config.theme_color}`
-                }
+    data() {
+        return {
+            navigationDrawerStyle: {
+                borderTop: `3px solid ${this.$store.state.core.config.theme_color}`
             }
-        },
-
-        components: {
-            sidebarLogo,
-            sidebarItem,
-            sidebarIntroLink,
-            searchInput,
-            searchResults
         }
+    },
+
+    components: {
+        sidebarLogo,
+        sidebarItem,
+        sidebarIntroLink,
+        searchInput,
+        searchResults
     }
+}
 </script>

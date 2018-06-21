@@ -11,11 +11,11 @@
 </template>
 
 <script>
-    export default {
-        computed: {
-            logoRelativePath() {
-                return `static/img/${this.$store.state.core.config.logo}`
-            }
+export default {
+    computed: {
+        logoRelativePath() {
+            return `static/img/${this.$store.state.core.config.logo}`
         }
     }
+}
 </script>

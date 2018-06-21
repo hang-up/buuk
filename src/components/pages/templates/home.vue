@@ -48,36 +48,36 @@
 </template>
 
 <script>
-    import Renderer from "../../../core/render"
-    import { mapState } from 'vuex'
+import Renderer from '../../../core/render'
+import { mapState } from 'vuex'
 
-    export default {
-        data() {
-            return {
-                activeClass: "fade-in-leave",
-                renderer : new Renderer({options: ['toc']}),
-                renderedContent: ''
-            }
-        },
-
-        computed: {
-            ...mapState('core', ['config', 'homepage'])
-        },
-
-        components: {
-            pagesTemplateRenderer: () => import(`./renderer.vue`)
-        },
-
-        mounted() {
-            // If a homepage article is set, we render it here.
-            if (this.config.homepage) {
-                this.renderer.applyConfig(this.config.renderer)
-                this.renderedContent = this.renderer.render(this.homepage.content)
-            }
-
-            window.setTimeout(() => {
-                this.activeClass = "fade-in-enter"
-            }, 250)
+export default {
+    data() {
+        return {
+            activeClass: 'fade-in-leave',
+            renderer: new Renderer({ options: ['toc'] }),
+            renderedContent: ''
         }
+    },
+
+    computed: {
+        ...mapState('core', ['config', 'homepage'])
+    },
+
+    components: {
+        pagesTemplateRenderer: () => import(`./renderer.vue`)
+    },
+
+    mounted() {
+        // If a homepage article is set, we render it here.
+        if (this.config.homepage) {
+            this.renderer.applyConfig(this.config.renderer)
+            this.renderedContent = this.renderer.render(this.homepage.content)
+        }
+
+        window.setTimeout(() => {
+            this.activeClass = 'fade-in-enter'
+        }, 250)
     }
+}
 </script>
