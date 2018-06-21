@@ -1,6 +1,5 @@
 $desktop: 1024px;
 $wide: 1600px;
-
 @media screen and (min-width: $wide) {
   .wiki {
     max-width: 1152px;
@@ -18,31 +17,34 @@ $wide: 1600px;
 .wiki {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14.5px;
-
-  p, blockquote, pre, ol, ul {
+  p,
+  blockquote,
+  pre,
+  ol,
+  ul {
     margin-top: 0;
     line-height: 1.7;
     letter-spacing: -.021em;
   }
-
+  img {
+    width: 100%;
+    height: 100%;
+  }
   blockquote {
     padding-left: 14.5px;
     border-left: 2px solid #000;
   }
-
-  ul, ol {
+  ul,
+  ol {
     padding-left: 2em;
-
     li {
       margin: 8px;
       line-height: 1.65;
     }
-
-    li + li {
+    li+li {
       margin-top: 0.25em;
     }
   }
-
   hr {
     border: 0;
     height: 0;
@@ -50,53 +52,45 @@ $wide: 1600px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     margin: 50px 0;
   }
-
   /* Titles */
   h1 {
     font-size: 45px;
     font-weight: 400;
     margin: 0.67em 0;
   }
-
   h2 {
     font-size: 30px;
     font-weight: 400;
     margin-top: 55px;
     margin-bottom: 15px;
     position: relative;
-
     &:first-of-type {
       margin-top: 15px;
     }
   }
-
   h3 {
     font-size: 24px;
     font-weight: 400;
     margin-top: 45px;
     margin-bottom: 10px;
   }
-
   h4 {
     font-size: 16px;
     font-weight: 700;
     margin-top: 35px;
     margin-bottom: 10px;
   }
-
   /* Code blocks */
   pre {
     margin: 10px 0 20px;
     overflow: auto;
     border-radius: 3px;
     padding: 10px 0;
-
     code {
       width: 100%;
     }
   }
-
-  :not(pre) > code {
+  :not(pre)>code {
     padding: 1px 5px;
     border-radius: 3px;
     width: auto;
