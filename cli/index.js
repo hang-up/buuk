@@ -11,7 +11,9 @@ const path = require('path');
 const mergedirs = require('merge-dirs').default;
 
 // Define App.
-commander.version('1.0.0').description('Buuk CLI');
+commander
+    .version(require('../package.json').version)
+    .description('Buuk - A simple markdown based documentation generator.');
 
 /**
  * Command: init

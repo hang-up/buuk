@@ -35,30 +35,30 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                headers: [
-                    {
-                        text: 'Article',
-                        align:'left',
-                        sortable: false
-                    },
-                    {
-                        text: 'Preview',
-                        align: 'left',
-                        sortable: false
-                    }
-                ]
-            }
-        },
+export default {
+    data() {
+        return {
+            headers: [
+                {
+                    text: 'Article',
+                    align: 'left',
+                    sortable: false
+                },
+                {
+                    text: 'Preview',
+                    align: 'left',
+                    sortable: false
+                }
+            ]
+        }
+    },
 
-        methods: {
-            clearSearch() {
-                this.$store.commit('search/setQuery', {
-                    query: ''
-                })
-            }
+    methods: {
+        clearSearch() {
+            this.$store.commit('search/setQuery', {
+                query: ''
+            })
         }
     }
+}
 </script>
