@@ -44,15 +44,17 @@ class Renderer {
             try {
                 let headers = [];
                 this.rendererWithOptions.heading = (text, level) => {
+                    // Strip html tags (https://stackoverflow.com/a/822464).
+                    const sanitizedText = text.replace(/<(?:.|\n)*?>/gm, '');
+
+                    const sanitizedSlug = slugify(sanitizedText, { lower: true, remove: /[$*_+~.()'"!/\-:@]/g });
+
                     headers.push({
                         level,
-                        text,
-                        slug: `#${slugify(text, { lower: true, remove: /[$*_+~.()'"!/\-:@]/g })}`
+                        text: sanitizedText,
+                        slug: `#${sanitizedSlug}`
                     });
-                    return `<h${level} id="${slugify(text, {
-                        lower: true,
-                        remove: /[$*_+~.()'"!/\-:@]/g
-                    })}">${text}</h${level}>`;
+                    return `<h${level} id="${sanitizedSlug}">${sanitizedText}</h${level}>`;
                 };
                 // Returns the list of headers (that I decided to call artifact.)
                 return headers;
