@@ -95,4 +95,22 @@ $wide: 1600px;
     border-radius: 3px;
     width: auto;
   }
+  /* Tables */
+  table {
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 1px;
+    width: 100%;
+    padding: 17px;
+    thead th {
+      border-width: 0 0 2px;
+      text-align: left;
+    }
+    td,
+    th {
+      border: 1px solid #dbdbdb;
+      border-width: 0 0 1px;
+      padding: .5em .75em;
+      vertical-align: top;
+    }
+  }
 }
