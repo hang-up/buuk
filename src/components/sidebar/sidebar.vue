@@ -9,8 +9,7 @@
     <v-navigation-drawer
             class="sidebar"
             fixed
-            :clipped="clipped"
-            v-model="drawer"
+            v-model="proxyDrawerState"
             app
             :style="navigationDrawerStyle"
     >
@@ -40,7 +39,7 @@
             </li>
 
         </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer>    
 </template>
 
 <script>
@@ -51,13 +50,36 @@ import searchInput from '../search/search-input.vue'
 import searchResults from '../search/search-results.vue'
 
 export default {
-    props: ['fixed', 'clipped', 'drawer'],
+    props: {
+        drawer: {
+            type: Boolean,
+            required: true
+        }
+    },
 
     data() {
         return {
+            // proxyDrawerState is used to avoid mutating directly the drawer parent prop.
+            // Since v-navigation-drawer doesn't have an onClose hook, we are v-model-ing
+            // this to the drawer and watching for changes so we can emit them back to
+            // the parent. Hackish af.
+            proxyDrawerState: this.drawer,
+
             navigationDrawerStyle: {
                 borderTop: `3px solid ${this.$store.state.core.config.theme_color}`
             }
+        }
+    },
+
+    watch: {
+        proxyDrawerState(val, old) {
+            this.$emit('update:drawer', this.proxyDrawerState)
+        },
+
+        // We need to watch for the prop to change so we can update the local state
+        // with whatever the parent has.
+        drawer(val, old) {
+            this.proxyDrawerState = this.drawer
         }
     },
 

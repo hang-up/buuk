@@ -2,7 +2,7 @@
     <v-app light>
 
         <!-- Sidebar. -->
-        <sidebar :drawer="drawer"></sidebar>
+        <sidebar :drawer.sync="drawer"></sidebar>
 
 
         <!-- Toolbar. -->
@@ -19,19 +19,20 @@
 </template>
 
 <script>
-    import sidebar from './components/sidebar/sidebar.vue'
-    import toolbar from './components/toolbar/toolbar.vue'
+import sidebar from './components/sidebar/sidebar.vue'
+import toolbar from './components/toolbar/toolbar.vue'
+import { viewportService } from './core/services/viewport-service.js'
 
-    export default {
-        components: {
-            sidebar,
-            toolbar
-        },
+export default {
+    components: {
+        sidebar,
+        toolbar
+    },
 
-        data() {
-            return {
-                drawer: true
-            }
+    data() {
+        return {
+            drawer: viewportService.isMobileViewport() ? false : true
         }
     }
+}
 </script>
