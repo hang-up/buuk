@@ -16,9 +16,9 @@
 
         <v-tooltip bottom>
             <v-btn icon slot="activator" @click.stop="updateDrawerState">
-                <v-icon>fullscreen</v-icon>
+                <v-icon>menu</v-icon>
             </v-btn>
-            <span>Full screen</span>
+            <span>Navigation</span>
         </v-tooltip>
 
         <v-tooltip bottom>

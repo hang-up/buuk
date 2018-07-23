@@ -2,7 +2,7 @@
     <v-app light>
 
         <!-- Sidebar. -->
-        <sidebar :drawer="drawer"></sidebar>
+        <sidebar :drawer.sync="drawer"></sidebar>
 
 
         <!-- Toolbar. -->
